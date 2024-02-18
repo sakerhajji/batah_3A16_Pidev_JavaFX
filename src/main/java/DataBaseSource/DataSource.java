@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataSource {
-
+//
     private  Connection cnx;
     private  String url="jdbc:mysql://localhost:3306/batah";
     private  String login="root";
