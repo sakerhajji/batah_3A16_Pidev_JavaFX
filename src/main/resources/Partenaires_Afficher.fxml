@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="445.0" prefWidth="600.0" styleClass="form_container" stylesheets="@../css/Stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fxml.Partenaires_AfficherController">
+   <children>
+      <Button fx:id="afficher" layoutX="494.0" layoutY="401.0" mnemonicParsing="false"  text="Afficher" />
+      <Label alignment="CENTER" layoutX="235.0" layoutY="14.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" stylesheets="@../css/Stylesheet.css" text="Afficher" />
+      <Button fx:id="supprimer" layoutX="339.0" layoutY="401.0" mnemonicParsing="false"  text="Supprimer" />
+      <TableView fx:id="table" layoutX="4.0" layoutY="66.0" prefHeight="284.0" prefWidth="589.0" AnchorPane.topAnchor="66.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colnom" prefWidth="123.20001220703125" text="Nom" />
+            <TableColumn fx:id="coltype" prefWidth="132.79998779296875" text="Type" />
+            <TableColumn fx:id="coladresse" prefWidth="124.800048828125" text="Adresse" />
+            <TableColumn fx:id="coltel" prefWidth="134.39996337890625" text="Telephone" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
