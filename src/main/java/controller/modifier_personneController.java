@@ -58,13 +58,15 @@ public class modifier_personneController  {
         partenaire pr = new partenaire(id,nm, tp, ad, tl, eml);
         ps.update(pr);
 
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/Afficher_personne.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/Afficher_personne.fxml"));
         try {
-            Parent root = loader.load();
+            Stage stage = (Stage) adressee.getScene().getWindow();
+            stage.close();
 
-            adressee.getScene().setRoot(root);
-        } catch (IOException e) {
+            //Parent root = loader.load();
+
+            //adressee.getScene().setRoot(root);
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
         }

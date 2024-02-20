@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -50,67 +51,71 @@ public class Afficher_personneController implements Initializable {
 
     @FXML
     private TableColumn<partenaire, String> colemail;
+    @FXML
+    private TableColumn<partenaire, Void> modifyTC;
+    @FXML
+    private TableColumn<partenaire, Void> deleteTC;
 
-    @FXML
-    private Button supprimer;
-    @FXML
-    private Button modifier;
+
     @FXML
     private Button ajouter;
-    private int id=0;
-    @FXML
-    void getData(MouseEvent event) {
-        partenaire p = table.getSelectionModel().getSelectedItem();
-        if (p != null) {
-            id = p.getId();
-        }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showPartenaires();
+        buttonModifier();
+        buttonSupprimer();
+
     }
 
+
+
     @FXML
-    void modifier(ActionEvent event) {
-        partenaire p = table.getSelectionModel().getSelectedItem();
-        if (p != null) {
+    void modifier(partenaire event) {
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifier_personne.fxml"));
                 Parent root = loader.load();
 
-
                 modifier_personneController c = loader.getController();
-                c.initData(id);
+                c.initData(event.getId());
 
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
+                Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.show();
+                stage.setTitle("Modifier Partenaire");
+                stage.showAndWait();
+                showPartenaires();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        } else {
-
-            System.out.println("Aucune personne sélectionnée !");
         }
-    }
-
-
 
 
     @FXML
-    void supprimer(ActionEvent event) {
-        partenaireService ps=new partenaireService();
-        ps.delete(id);
+    void supprimer(partenaire event) {
 
-        showPartenaires();
-    }
+            partenaireService ps=new partenaireService();
+            ps.delete(event.getId());
+            showPartenaires();
+        }
+
     @FXML
     void ajouter(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/Ajouter_personne.fxml"));
+
         try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/Ajouter_personne.fxml"));
             Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            showPartenaires();
+            stage.setTitle("Ajouter Partenaire");
 
 
-            table.getScene().setRoot(root);
         } catch (IOException e) {
 
             System.out.println(e.getMessage());
@@ -118,10 +123,7 @@ public class Afficher_personneController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        showPartenaires();
-    }
+
 
         public void showPartenaires () {
             partenaireService ps = new partenaireService();
@@ -136,6 +138,48 @@ public class Afficher_personneController implements Initializable {
             coltype.setCellValueFactory(new PropertyValueFactory<partenaire, String>("type"));
             colemail.setCellValueFactory(new PropertyValueFactory<partenaire, String>("email"));
         }
+    private void buttonModifier() {
+
+        modifyTC.setCellFactory(param -> new TableCell<>() {
+            private final Button modifyButton = new Button("Modify");
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(modifyButton);
+                    modifyButton.setOnAction(event -> {
+                        partenaire pm = getTableView().getItems().get(getIndex());
+                        modifier(pm);
+                    });
+                }
+            }
+        });
+    }
+    private void buttonSupprimer() {
+        // Set up the delete button column
+        deleteTC.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("Delete");
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(deleteButton);
+                    deleteButton.setOnAction(event -> {
+                        partenaire pm = getTableView().getItems().get(getIndex());
+                        supprimer(pm);
+                    });
+                }
+            }
+        });
+    }
 
 
 

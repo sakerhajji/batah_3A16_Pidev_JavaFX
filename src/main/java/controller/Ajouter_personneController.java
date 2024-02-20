@@ -41,13 +41,14 @@ public class Ajouter_personneController {
         ps.add(p);
 
 
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/Afficher_personne.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/Afficher_personne.fxml"));
         try {
-            Parent root = loader.load();
+            Stage stage = (Stage) adresse.getScene().getWindow();
+            stage.close();
+            //Parent root = loader.load();
 
-            adresse.getScene().setRoot(root);
-        } catch (IOException e) {
+            //adresse.getScene().setRoot(root);
+        } catch (Exception e) {
 
             System.out.println(e.getMessage());
         }
