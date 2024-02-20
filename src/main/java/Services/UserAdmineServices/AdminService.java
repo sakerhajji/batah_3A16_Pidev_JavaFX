@@ -24,13 +24,13 @@ public class AdminService implements IService<Admin> {
 
         try {
             PreparedStatement pst = conn.prepareStatement(requete);
-            pst.setString(1, admin.getNomUtlisateur());
-            pst.setString(2, admin.getPrenomUtlisateur());
-            pst.setString(3, admin.getMailUtlisateur());
+            pst.setString(1, admin.getNomUtilisateur());
+            pst.setString(2, admin.getPrenomUtilisateur());
+            pst.setString(3, admin.getMailUtilisateur());
             pst.setDate(4, admin.getDateDeNaissance());
-            pst.setString(5, String.valueOf(admin.getSexeUtlisateur()));
-            pst.setString(6, admin.getMotDePassUtlisateur());
-            pst.setString(7, String.valueOf(admin.getRoleUtlisateur()));
+            pst.setString(5, String.valueOf(admin.getSexeUtilisateur()));
+            pst.setString(6, admin.getMotDePassUtilisateur());
+            pst.setString(7, String.valueOf(admin.getRoleUtilisateur()));
 
             pst.executeUpdate();
         } catch (SQLException e) {
@@ -46,7 +46,7 @@ public class AdminService implements IService<Admin> {
 
         try {
             pst = conn.prepareStatement(requete);
-            pst.setInt(1, admin.getIdUtlisateur());
+            pst.setInt(1, admin.getIdUtilisateur());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,18 +59,18 @@ public class AdminService implements IService<Admin> {
 
         try {
             pst = conn.prepareStatement(requete);
-            pst.setString(1, admin.getNomUtlisateur());
-            pst.setString(2, admin.getPrenomUtlisateur());
-            pst.setString(3, admin.getMailUtlisateur());
-            pst.setString(4, admin.getMotDePassUtlisateur());
+            pst.setString(1, admin.getNomUtilisateur());
+            pst.setString(2, admin.getPrenomUtilisateur());
+            pst.setString(3, admin.getMailUtilisateur());
+            pst.setString(4, admin.getMotDePassUtilisateur());
             pst.setDate(5, new java.sql.Date(admin.getDateDeNaissance().getTime()));
-            pst.setString(6, String.valueOf(admin.getSexeUtlisateur()));
-            pst.setString(7, admin.getCinUtlisateur());
-            pst.setString(8, String.valueOf(admin.getRoleUtlisateur()));
-            pst.setString(9, admin.getNumUtlisateur());
+            pst.setString(6, String.valueOf(admin.getSexeUtilisateur()));
+            pst.setString(7, admin.getCinUtilisateur());
+            pst.setString(8, String.valueOf(admin.getRoleUtilisateur()));
+            pst.setString(9, admin.getNumUtilisateur());
             pst.setString(10, admin.getPays());
             pst.setString(11, admin.getAvatar());
-            pst.setInt(12, admin.getIdUtlisateur());
+            pst.setInt(12, admin.getIdUtilisateur());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -89,16 +89,16 @@ public class AdminService implements IService<Admin> {
             ResultSet resultSet = ste.executeQuery(requete);
             while (resultSet.next()) {
                 Admin admin = new Admin();
-                admin.setIdUtlisateur(resultSet.getInt("id"));
-                admin.setNomUtlisateur(resultSet.getString("nomUtilisateur"));
-                admin.setPrenomUtlisateur(resultSet.getString("prenomUtilisateur"));
-                admin.setMailUtlisateur(resultSet.getString("adresseEmail"));
-                admin.setMotDePassUtlisateur(resultSet.getString("motDePasse"));
+                admin.setIdUtilisateur(resultSet.getInt("id"));
+                admin.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
+                admin.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
+                admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
+                admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
                 admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                admin.setSexeUtlisateur(resultSet.getString("sexe").charAt(0));
-                admin.setCinUtlisateur(resultSet.getString("numeroCin"));
-                admin.setRoleUtlisateur(resultSet.getString("role").charAt(0));
-                admin.setNumUtlisateur(resultSet.getString("numeroTelephone"));
+                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
+                admin.setCinUtilisateur(resultSet.getString("numeroCin"));
+                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
+                admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
                 admin.setPays(resultSet.getString("pays"));
                 admin.setAvatar(resultSet.getString("avatar"));
                 admins.add(admin);
@@ -121,16 +121,16 @@ public class AdminService implements IService<Admin> {
             ResultSet resultSet = pst.executeQuery();
             if (resultSet.next()) {
                 admin = new Admin();
-                admin.setIdUtlisateur(resultSet.getInt("id"));
-                admin.setNomUtlisateur(resultSet.getString("nomUtilisateur"));
-                admin.setPrenomUtlisateur(resultSet.getString("prenomUtilisateur"));
-                admin.setMailUtlisateur(resultSet.getString("adresseEmail"));
-                admin.setMotDePassUtlisateur(resultSet.getString("motDePasse"));
+                admin.setIdUtilisateur(resultSet.getInt("id"));
+                admin.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
+                admin.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
+                admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
+                admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
                 admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                admin.setSexeUtlisateur(resultSet.getString("sexe").charAt(0));
-                admin.setCinUtlisateur(resultSet.getString("numeroCin"));
-                admin.setRoleUtlisateur(resultSet.getString("role").charAt(0));
-                admin.setNumUtlisateur(resultSet.getString("numeroTelephone"));
+                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
+                admin.setCinUtilisateur(resultSet.getString("numeroCin"));
+                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
+                admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
                 admin.setPays(resultSet.getString("pays"));
                 admin.setAvatar(resultSet.getString("avatar"));
             }
