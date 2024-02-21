@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>test_co</artifactId>
+    <artifactId>BatahApp</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -38,7 +38,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>test.mainFx</mainClass>
+                    <mainClass>test.MainFx</mainClass>
                 </configuration>
             </plugin>
         </plugins>

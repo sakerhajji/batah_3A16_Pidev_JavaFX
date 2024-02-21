@@ -6,7 +6,7 @@
 
 .form_container{
     -fx-background-color: #EEEEEE;
-    -fx-background-image: url("sofienne.png");
+    -fx-background-image: url("sofienne.PNG");
 }
 .form_container text{
     -fx-font-size: 1.2em;
