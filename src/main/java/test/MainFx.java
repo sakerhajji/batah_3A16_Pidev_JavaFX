@@ -18,7 +18,7 @@ private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/AccueilAdmin.fxml"));
+                .getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);
@@ -35,6 +35,7 @@ private  double x,y  ;
 
             });
             primaryStage.setScene(scene);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

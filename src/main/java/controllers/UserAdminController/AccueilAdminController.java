@@ -1,11 +1,10 @@
-package controllers;//package test;
+package controllers.UserAdminController;//package test;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class AccueilAdminController implements Initializable {
     @FXML
-    private Circle profile ;
+    private Circle profile;
     @FXML
     private VBox pnItems;
 
@@ -51,7 +50,7 @@ public class AccueilAdminController implements Initializable {
             for (int i = 0; i < 10; i++) {
                 final int j = i;
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ligne.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/ligne.fxml"));
                 Node item = loader.load();
                 LigneController l = loader.getController();
 
@@ -76,6 +75,11 @@ public class AccueilAdminController implements Initializable {
         if (actionEvent.getSource() == btnCustomers) {
             pnlCustomer.setStyle("-fx-background-color: #FFFFFF");
             pnlCustomer.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/sof.fxml"));
+            pnlCustomer.getChildren().removeAll();
+            loadSofXMLContent();
+
+
         } else if (actionEvent.getSource() == btnMenus) {
             pnlMenus.setStyle("-fx-background-color: #53639F");
             pnlMenus.toFront();
@@ -87,4 +91,16 @@ public class AccueilAdminController implements Initializable {
             pnlOrders.toFront();
         }
     }
+    private void loadSofXMLContent() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/sof.fxml"));
+            Pane sofXMLPane = loader.load();
+            pnlCustomer.getChildren().clear(); // Use clear() instead of removeAll() for clarity
+            pnlCustomer.getChildren().setAll(sofXMLPane);
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
 }
+
+

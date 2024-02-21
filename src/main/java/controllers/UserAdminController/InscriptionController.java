@@ -1,4 +1,4 @@
-package controllers;
+package controllers.UserAdminController;
 
 import Entity.AdminUser.Admin;
 import Services.UserAdmineServices.AdminService;
