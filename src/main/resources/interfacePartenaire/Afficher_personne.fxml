@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="554.0" prefWidth="709.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.Afficher_personneController">
+   <children>
+      <Label alignment="CENTER" layoutX="167.0" layoutY="14.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" text="Afficher" />
+      <HBox layoutX="407.0" layoutY="23.0">
+         <TextField fx:id="searchField" promptText="Nom du partenaire" />
+         <Button onAction="#rechercher" text="Rechercher" />
+      </HBox>
+      <TableView fx:id="table" layoutX="4.0" layoutY="67.2" prefHeight="363.0" prefWidth="709.0" AnchorPane.topAnchor="67.0">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="42.3999924659729" text="ID" />
+            <TableColumn fx:id="colnom" prefWidth="70.4000244140625" text="Nom" />
+            <TableColumn fx:id="coltype" prefWidth="82.40008544921875" text="Type" />
+            <TableColumn fx:id="coladresse" prefWidth="91.19999694824219" text="Adresse" />
+            <TableColumn fx:id="coltel" prefWidth="92.7999267578125" text="Telephone" />
+            <TableColumn fx:id="colemail" prefWidth="123.199951171875" text="Email" />
+            <TableColumn fx:id="deleteTC" prefWidth="103.199951171875" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" prefWidth="87.99993896484375" text="Modifier" />
+         </columns>
+      </TableView>
+      <Button fx:id="ajouter" layoutX="492.0" layoutY="457.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+   </children>
+</AnchorPane>
