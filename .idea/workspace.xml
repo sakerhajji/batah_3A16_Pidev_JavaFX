@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6dc3aa1b-5210-4e70-918f-2c7189b27107" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Entity/entitiesPartenaire/partenaire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/IService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/partenaireService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/servicePartenaire/IService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/servicePartenaire/partenaireService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/Afficher_personneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/Ajouter_personneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/modifier_personneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/Stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/afficher.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/modifier.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/sofienne.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/supprimer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/Afficher_personne.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/Ajouter_personne.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/modifier_personne.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,15 +28,15 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2civxVXySjQkc0A5GCyTjoYbbR9" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -71,15 +48,30 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.MainFx.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "SakerHajji__UserAdmin",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="JavaFxRun" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="test.MainFx" />
+      <module name="BatahApp" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,7 +80,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708607460913</updated>
-      <workItem from="1708607463897" duration="209000" />
+      <workItem from="1708607463897" duration="1367000" />
+      <workItem from="1708627755800" duration="695000" />
     </task>
     <servers />
   </component>
