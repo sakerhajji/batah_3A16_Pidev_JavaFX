@@ -1,21 +1,21 @@
 package entities;
 
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Enchere {
     private int idEnchere;
-    private Date dateDebut;
-    private Date dateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private boolean status;
     private float prixMin;
     private float prixMax;
     private float prixActuelle;
-    private Utilisateur id; // Je suppose que Utilisateur est une classe
-    private Produit idProduit; // Je suppose que Produit est une classe
+    private Produits idProduit;
 
-    // Constructeurs
-    public Enchere(int idEnchere, Date dateDebut, Date dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Utilisateur id, Produit idProduit) {
+    public Enchere() {
+    }
+
+    public Enchere(int idEnchere, LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Produits idProduit) {
         this.idEnchere = idEnchere;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -23,45 +23,40 @@ public class Enchere {
         this.prixMin = prixMin;
         this.prixMax = prixMax;
         this.prixActuelle = prixActuelle;
-        this.id = id;
         this.idProduit = idProduit;
     }
 
-
-
-    // Getters et Setters
-    public int getIdEnchere() {
-        return idEnchere;
-    }
-
-    public Enchere(Date dateDebut, Date dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Utilisateur id, Produit idProduit) {
+    public Enchere(LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Produits idProduit) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.status = status;
         this.prixMin = prixMin;
         this.prixMax = prixMax;
         this.prixActuelle = prixActuelle;
-        this.id = id;
         this.idProduit = idProduit;
+    }
+
+    public int getIdEnchere() {
+        return idEnchere;
     }
 
     public void setIdEnchere(int idEnchere) {
         this.idEnchere = idEnchere;
     }
 
-    public Date getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 
@@ -97,26 +92,12 @@ public class Enchere {
         this.prixActuelle = prixActuelle;
     }
 
-    public Utilisateur getId() {
-        return id;
-    }
-
-    public void setId(Utilisateur id) {
-        this.id = id;
-    }
-
-    public Produit getIdProduit() {
+    public Produits getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(Produit idProduit) {
+    public void setIdProduit(Produits idProduit) {
         this.idProduit = idProduit;
-    }
-    public int getIdUtilisateur() {
-        return id.getId();
-    }
-    public int getIddProduit() {
-        return idProduit.getIdProduit();
     }
 
     @Override
@@ -129,9 +110,7 @@ public class Enchere {
                 ", prixMin=" + prixMin +
                 ", prixMax=" + prixMax +
                 ", prixActuelle=" + prixActuelle +
-                ", id=" + id +
                 ", idProduit=" + idProduit +
                 '}';
     }
-// Autres méthodes si nécessaire
 }

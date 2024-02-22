@@ -1,43 +1,53 @@
 package entities;
 
-public class Produit {
+public class Produits {
     private int idProduit;
     private String type;
     private String description;
     private float prix;
     private String labelle;
-    private String photo;
-    private boolean status;
-    private int periodeGarantie;
-    private Utilisateur utilisateur;
+    private int status;
+    private int periodeGarantie ;
+    private Utilisateur id;
+//constructor
 
-    public Produit() {
+    public Produits() {
+
     }
 
-    public Produit(String type, String description, float prix, String labelle, String photo, boolean status, int periodeGarantie, Utilisateur utilisateur) {
-        this.type = type;
-        this.description = description;
-        this.prix = prix;
-        this.labelle = labelle;
-        this.photo = photo;
-        this.status = status;
-        this.periodeGarantie = periodeGarantie;
-        this.utilisateur = utilisateur;
-    }
-
-    public Produit(int idProduit, String type, String description, float prix, String labelle, String photo, boolean status, int periodeGarantie, Utilisateur utilisateur) {
+    public Produits(int idProduit, String type, String description, float prix, String labelle, int status, int periodeGarentie, Utilisateur id) {
         this.idProduit = idProduit;
         this.type = type;
         this.description = description;
         this.prix = prix;
         this.labelle = labelle;
-        this.photo = photo;
         this.status = status;
-        this.periodeGarantie = periodeGarantie;
-        this.utilisateur = utilisateur;
+        this.periodeGarantie = periodeGarentie;
+        this.id = id;
     }
 
-    // Getters et Setters
+    public Produits(String type, String description, float prix, String labelle, int status, int periodeGarantie, Utilisateur id) {
+        this.type = type;
+        this.description = description;
+        this.prix = prix;
+        this.labelle = labelle;
+        this.status = status;
+        this.periodeGarantie = periodeGarantie;
+        this.id = id;
+    }
+
+    public Produits(int idProduit) {
+    }
+
+
+    public Utilisateur getId() {
+        return id;
+    }
+
+    public void setId(Utilisateur id) {
+        this.id = id;
+    }
+
     public int getIdProduit() {
         return idProduit;
     }
@@ -78,50 +88,52 @@ public class Produit {
         this.labelle = labelle;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     public int getPeriodeGarantie() {
-        return periodeGarantie;
+        return this.periodeGarantie;
     }
 
     public void setPeriodeGarantie(int periodeGarantie) {
         this.periodeGarantie = periodeGarantie;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+
+    ///////
+//    public ObjectProperty<Utilisateur> utilisateurProperty() {
+//        if (utilisateur == null) {
+//            utilisateur = new SimpleObjectProperty<>(this, "utilisateur");
+//        }
+//        return utilisateur;
+//    }
+
+    /*public Utlisateur getUtilisateur() {
+        return utilisateurProperty().get();
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
+    public void setUtilisateur(Utlisateur utilisateur) {
+        utilisateurProperty().set(utilisateur);
+    }*/
 
     @Override
     public String toString() {
-        return "Produit{" +
+        return "Produits{" +
                 "idProduit=" + idProduit +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", labelle='" + labelle + '\'' +
-                ", photo='" + photo + '\'' +
                 ", status=" + status +
-                ", periodeGarantie=" + periodeGarantie +
-                ", utilisateur=" + utilisateur +
+                ", periodeGarentie=" + periodeGarantie +
+                ", id=" + id +
                 '}';
     }
 }

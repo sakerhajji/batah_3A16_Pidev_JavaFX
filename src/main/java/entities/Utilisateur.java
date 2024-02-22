@@ -8,6 +8,7 @@ public class Utilisateur {
     private String prenomUtilisateur;
     private char sexe;
     private LocalDate dateDeNaissance;
+
     private String adresseEmail;
     private String motDePasse;
     private String adressePostale;
