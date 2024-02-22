@@ -1,6 +1,7 @@
 package Entity.UserAdmin;
 
 import java.sql.Date;
+//dedicas il 5ouya sofiane
 
 public class Admin extends Utilisateur {
 
