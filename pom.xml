@@ -38,7 +38,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>test.MainFx</mainClass>
+                    <mainClass>test.UserTest.MainFx</mainClass>
                 </configuration>
             </plugin>
         </plugins>
