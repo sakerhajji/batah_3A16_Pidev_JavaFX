@@ -63,7 +63,6 @@ public class AfficherProduitsController {
             coldescription.setCellValueFactory(new PropertyValueFactory<Produits, String>("description"));
             colprix.setCellValueFactory(new PropertyValueFactory<Produits,Float>("prix"));
             collabelle.setCellValueFactory(new PropertyValueFactory<Produits, String>("labelle"));
-            colphoto.setCellValueFactory(new PropertyValueFactory<Produits, String>("photo"));
             colstatus.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("status"));
             colperiodeGarentie.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("periodeGarantie"));
             colUser.setCellValueFactory(cellData -> {

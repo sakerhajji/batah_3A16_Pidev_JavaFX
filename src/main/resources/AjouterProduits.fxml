@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -25,19 +23,6 @@
         <TextField fx:id="txtstatus" layoutX="758.0" layoutY="111.0" />
         <Label layoutX="347.0" layoutY="144.0" text="periodeGarentie" />
         <TextField fx:id="txtperiodeGarentie" layoutX="430.0" layoutY="140.0" />
-      <TableView fx:id="table" layoutX="125.0" layoutY="460.0" prefHeight="82.0" prefWidth="300.0">
-        <columns>
-          <TableColumn fx:id="colidProduit" prefWidth="75.0" text="id" />
-          <TableColumn fx:id="coltype" prefWidth="75.0" text="type" />
-            <TableColumn fx:id="coldescription" prefWidth="75.0" text="description" />
-            <TableColumn fx:id="colprix" prefWidth="75.0" text="prix" />
-            <TableColumn fx:id="collabelle" prefWidth="75.0" text="labelle" />
-            <TableColumn fx:id="colphoto" prefWidth="75.0" text="photo" />
-            <TableColumn fx:id="colstatus" prefWidth="75.0" text="status" />
-            <TableColumn fx:id="colperiodeGarentie" prefWidth="77.60009765625" text="periodeGarentie" />
-            <TableColumn fx:id="colUser" prefWidth="102.39990234375" text="User" />
-        </columns>
-      </TableView>
       <Button layoutX="607.0" layoutY="482.0" mnemonicParsing="false" onAction="#ViewAllProduct" prefHeight="38.0" prefWidth="150.0" text="View all Product" />
       <ChoiceBox fx:id="idUser" layoutX="757.0" layoutY="159.0" prefWidth="150.0" />
       <Label layoutX="695.0" layoutY="163.0" text="user id:" />

@@ -24,13 +24,13 @@ public class Utilisateur {
     private boolean statutVerificationCompte;
     private String avatar;
     private LocalDate dateInscription;
-    private boolean role;
+    private char role;
 
     // Constructeur par défaut
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nomUtilisateur, String prenomUtilisateur, char sexe, LocalDate dateDeNaissance, String adresseEmail, String motDePasse, String adressePostale, String numeroTelephone, String numeroCin, String pays, int nbrProduitAchat, int nbrProduitVendu, int nbrProduit, int nbrPoint, String languePreferree, float evaluationUtilisateur, boolean statutVerificationCompte, String avatar, LocalDate dateInscription, boolean role) {
+    public Utilisateur(int id, String nomUtilisateur, String prenomUtilisateur, char sexe, LocalDate dateDeNaissance, String adresseEmail, String motDePasse, String adressePostale, String numeroTelephone, String numeroCin, String pays, int nbrProduitAchat, int nbrProduitVendu, int nbrProduit, int nbrPoint, String languePreferree, float evaluationUtilisateur, boolean statutVerificationCompte, String avatar, LocalDate dateInscription, char role) {
         this.id = id;
         this.nomUtilisateur = nomUtilisateur;
         this.prenomUtilisateur = prenomUtilisateur;
@@ -54,7 +54,7 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public Utilisateur(String nomUtilisateur, String prenomUtilisateur, char sexe, LocalDate dateDeNaissance, String adresseEmail, String motDePasse, String adressePostale, String numeroTelephone, String numeroCin, String pays, int nbrProduitAchat, int nbrProduitVendu, int nbrProduit, int nbrPoint, String languePreferree, float evaluationUtilisateur, boolean statutVerificationCompte, String avatar, LocalDate dateInscription, boolean role) {
+    public Utilisateur(String nomUtilisateur, String prenomUtilisateur, char sexe, LocalDate dateDeNaissance, String adresseEmail, String motDePasse, String adressePostale, String numeroTelephone, String numeroCin, String pays, int nbrProduitAchat, int nbrProduitVendu, int nbrProduit, int nbrPoint, String languePreferree, float evaluationUtilisateur, boolean statutVerificationCompte, String avatar, LocalDate dateInscription, char role) {
         this.nomUtilisateur = nomUtilisateur;
         this.prenomUtilisateur = prenomUtilisateur;
         this.sexe = sexe;
@@ -76,6 +76,17 @@ public class Utilisateur {
         this.dateInscription = dateInscription;
         this.role = role;
     }
+
+    public Utilisateur(int id) {
+    }
+    public Utilisateur(int id,String nomUtilisateur, String prenomUtilisateur)
+    {
+        this.id = id;
+        this.nomUtilisateur = nomUtilisateur;
+        this.prenomUtilisateur = prenomUtilisateur;
+
+    }
+
     // Getters et Setters
     public int getId() {
         return id;
@@ -237,11 +248,11 @@ public class Utilisateur {
         this.dateInscription = dateInscription;
     }
 
-    public boolean isRole() {
+    public char isRole() {
         return role;
     }
 
-    public void setRole(boolean role) {
+    public void setRole(char role) {
         this.role = role;
     }
 

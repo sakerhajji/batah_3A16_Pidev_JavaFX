@@ -24,16 +24,15 @@ public class ProduitsService {
 
 
     public void add(Produits produits) {
-        String query = "INSERT INTO produits (type, description, prix, labelle, photo,status,periodeGarantie ,id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO produits (type, description, prix, labelle,status,periodeGarantie ,idUtilisateur) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setString(1, produits.getType());
             pst.setString(2, produits.getDescription());
             pst.setFloat(3, produits.getPrix());
             pst.setString(4, produits.getLabelle());
-            pst.setString(5, produits.getPhoto());
-            pst.setInt(6, produits.getStatus());
-            pst.setInt(7, produits.getPeriodeGarentie());
-            pst.setInt(8, produits.getId().getId());
+            pst.setInt(5, produits.getStatus());
+            pst.setInt(6, produits.getPeriodeGarentie());
+            pst.setInt(7, produits.getId().getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("1");
@@ -46,7 +45,7 @@ public class ProduitsService {
 
 
     public void delete(int idProduit) {
-        String requete = "DELETE FROM produits WHERE `id`=?";
+        String requete = "DELETE FROM produits WHERE `idProduit`=?";
         try {
             PreparedStatement ps = conn.prepareStatement(requete);
             ps.setInt(1,idProduit);
@@ -60,17 +59,16 @@ public class ProduitsService {
 
 
     public void update(Produits produits) {
-        String requete = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, photo=?, status=?, periodeGarantie=? WHERE id=?";
+        String requete = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=? WHERE id=?";
         try {
             PreparedStatement ps = conn.prepareStatement(requete);
             ps.setString(1, produits.getType());
             ps.setString(2, produits.getDescription());
             ps.setFloat(3, produits.getPrix());
             ps.setString(4, produits.getLabelle());
-            ps.setString(5, produits.getPhoto());
-            ps.setInt(6, produits.getStatus());
-            ps.setInt(7, produits.getPeriodeGarentie());
-            //ps.setInt(8, produits.getIdProduit());  // Assuming getId() returns the ID of the product
+            ps.setInt(5, produits.getStatus());
+            ps.setInt(6, produits.getPeriodeGarentie());
+            ps.setInt(7, produits.getId().getId());  // Assuming getId() returns the ID of the product
 
             ps.executeUpdate();
             ps.close();
@@ -81,26 +79,32 @@ public class ProduitsService {
 
 
     public List<Produits> readAll() {
-        String sql = "SELECT p.*, u.* FROM produits p \n" +
-                "JOIN utilisateur u ON p.id = u.id \n";
+        String sql = "SELECT p.*, u.nomUtilisateur , u.prenomUtilisateur FROM produits as p \n" +
+                "JOIN utilisateur as u ON p.idUtilisateur = u.id \n";
+
 
         List<Produits> list = new ArrayList<>();
 
-        try (PreparedStatement pst = conn.prepareStatement(sql); ResultSet rs = pst.executeQuery()) {
+        try (
+                Statement pst = conn.createStatement();
+                ResultSet rs = pst.executeQuery(sql)) {
             while (rs.next()) {
-                Utilisateur utilisateur = new Utilisateur();
-                utilisateur.setId(rs.getInt("id"));
-                list.add(new Produits(
-                        rs.getInt(1),
-                        rs.getString("type"),
-                        rs.getString("description"),
-                        rs.getFloat("prix"),
-                        rs.getString("labelle"),
-                        rs.getString("photo"),
-                        rs.getInt("status"),
-                        rs.getInt("periodeGarantie"),
-                        utilisateur
-                ));
+                Produits produits=new Produits();
+                produits.setIdProduit(rs.getInt(1));
+                produits.setType(rs.getString("type"));
+                produits.setDescription(rs.getString("description"));
+                produits.setPrix(rs.getFloat("prix"));
+                produits.setLabelle(rs.getString("labelle"));
+                produits.setStatus(rs.getInt("status"));
+                produits.setPeriodeGarentie(rs.getInt(7));
+                Utilisateur user=new Utilisateur();
+                user.setId(rs.getInt("idUtilisateur"));
+                produits.setId(user);
+
+
+
+
+                list.add(produits);
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -134,27 +138,8 @@ public class ProduitsService {
         int id = rs.getInt(1);
         String nomUtilisateur = rs.getString(2);
         String prenomUtilisateur = rs.getString(3);
-        char sexe = rs.getString(4) != null && !rs.getString(4).isEmpty() ? rs.getString(4).charAt(0) : '\0';
-        LocalDate dateDeNaissance = rs.getDate(5) != null ? rs.getDate(5).toLocalDate() : null;
-        String adresseEmail = rs.getString(6);
-        String motDePasse = rs.getString(7);
-        String adressePostale = rs.getString(8);
-        String numeroTelephone = rs.getString(9);
-        String numeroCin = rs.getString(10);
-        String pays = rs.getString(11);
-        int nbrProduitAchat = rs.getInt(12);
-        int nbrProduitVendu = rs.getInt(13);
-        int nbrProduit = rs.getInt(14);
-        int nbrPoint = rs.getInt(15);
-        String languePreferree = rs.getString(16);
-        float evaluationUtilisateur = rs.getFloat(17);
-        boolean statutVerificationCompte = rs.getBoolean(18);
-        String avatar = rs.getString(19);
-        LocalDate dateInscription = rs.getDate(20) != null ? rs.getDate(20).toLocalDate() : null;
-        boolean role = rs.getBoolean(21);
-        Utilisateur u = new Utilisateur(id, nomUtilisateur, prenomUtilisateur, sexe, dateDeNaissance, adresseEmail, motDePasse, adressePostale,
-                numeroTelephone, numeroCin, pays, nbrProduitAchat, nbrProduitVendu, nbrProduit, nbrPoint, languePreferree,
-                evaluationUtilisateur, statutVerificationCompte, avatar, dateInscription, role);
+
+        Utilisateur u = new Utilisateur(id, nomUtilisateur, prenomUtilisateur);
         return u;
     }
 
@@ -274,9 +259,10 @@ public class ProduitsService {
     }
 
 
-
-
 }
+
+
+
 
 
 
