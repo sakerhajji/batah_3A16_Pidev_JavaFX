@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6dc3aa1b-5210-4e70-918f-2c7189b27107" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Entity/entitiesPartenaire/partenaire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/IService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/partenaireService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/servicePartenaire/IService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/servicePartenaire/partenaireService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/Afficher_personneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/Ajouter_personneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/modifier_personneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/Stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/afficher.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/modifier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/sofienne.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cssPartenaire/supprimer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/Afficher_personne.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/Ajouter_personne.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/interfacePartenaire/modifier_personne.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="SakerHajji_UserAdmin" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2civxVXySjQkc0A5GCyTjoYbbR9" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "SakerHajji__UserAdmin",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6dc3aa1b-5210-4e70-918f-2c7189b27107" name="Changes" comment="" />
+      <created>1708607460913</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708607460913</updated>
+      <workItem from="1708607463897" duration="209000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
