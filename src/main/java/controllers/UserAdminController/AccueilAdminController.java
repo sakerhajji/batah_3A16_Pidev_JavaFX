@@ -108,7 +108,7 @@ public class AccueilAdminController implements Initializable {
         if (actionEvent.getSource() == btnCustomers) {
             pnlCustomer.setStyle("-fx-background-color: #FFFFFF");
             pnlCustomer.toFront();
-            FXMLLoader p = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/sof.fxml"));
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_personne.fxml"));
             pnlCustomer.getChildren().removeAll();
             loadSofXMLContent();
 
@@ -126,7 +126,7 @@ public class AccueilAdminController implements Initializable {
     }
     private void loadSofXMLContent() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/sof.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_personne.fxml"));
             Pane sofXMLPane = loader.load();
             pnlCustomer.getChildren().clear(); // Use clear() instead of removeAll() for clarity
             pnlCustomer.getChildren().setAll(sofXMLPane);
