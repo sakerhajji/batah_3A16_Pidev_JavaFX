@@ -13,20 +13,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #FB7D5B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.AccueilAdminController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #FB7D5B;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="profileImage" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/jimmy-fallon.png" />
-               </image>
+            <Circle fx:id="Profile" fill="WHITE" radius="45.0" stroke="TRANSPARENT" strokeType="INSIDE">
                <VBox.margin>
-                  <Insets bottom="10.0" top="50.0" />
+                  <Insets bottom="15.0" top="80.0" />
                </VBox.margin>
-            </ImageView>
+            </Circle>
 
             <Label text="Saker Hajji" textFill="WHITE">
                <VBox.margin>
@@ -123,6 +121,11 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
+            <ImageView fitHeight="76.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+            </ImageView>
          </children>
       </VBox>
       <StackPane layoutX="258.0" prefHeight="680.0" prefWidth="721.0" style="-fx-background-color: #FFF0E7;">
@@ -182,29 +185,29 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="178.0" prefHeight="42.0" prefWidth="661.0" spacing="80.0" style="-fx-background-color: #FB7D5B;">
+                  <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="178.0" prefHeight="42.0" prefWidth="661.0" spacing="88.0" style="-fx-background-color: #FB7D5B;">
                      <children>
-                        <Label text="Company Name" textFill="#e7e5e5">
+                        <Label text="  Nom" textFill="#e7e5e5">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Airport" textFill="#e7e5e5">
+                        <Label text="  Prenom" textFill="#e7e5e5">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label text="Delivery Date" textFill="#e7e5e5">
+                        <Label text="Date de naisance" textFill="#e7e5e5">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label text="Amount" textFill="#e7e5e5">
+                        <Label text="Email" textFill="#e7e5e5">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label text="Status" textFill="#e7e5e5">
+                        <Label text="detaills" textFill="#e7e5e5">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

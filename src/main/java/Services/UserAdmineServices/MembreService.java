@@ -1,5 +1,5 @@
 package Services.UserAdmineServices;
-import Entity.AdminUser.Membre;
+import Entity.UserAdmin.Membre;
 import InterfaceServices.IService;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package controllers.UserAdminController;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -28,8 +29,8 @@ public class LigneController implements Initializable {
         return DateNaissance;
     }
 
-    public void setDateNaissance(Label dateNaissance) {
-        DateNaissance = dateNaissance;
+    public void setDateNaissance(String dateNaissance) {
+        DateNaissance.setText(dateNaissance);
     }
 
     public Label getEmail() {
@@ -74,5 +75,11 @@ public class LigneController implements Initializable {
 
 
     }
+    @FXML
+    void DetailleClick(ActionEvent event) {
+        System.out.println(Nom.getText());
+
+    }
+
 
 }

@@ -1,8 +1,7 @@
 package Services.UserAdmineServices;
 
 import DataBaseSource.DataSource;
-import Entity.AdminUser.Admin;
-import Entity.AdminUser.Membre;
+import Entity.UserAdmin.Admin;
 import InterfaceServices.IService;
 
 import java.sql.*;

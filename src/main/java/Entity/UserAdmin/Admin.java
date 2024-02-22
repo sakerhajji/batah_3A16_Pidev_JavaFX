@@ -1,4 +1,4 @@
-package Entity.AdminUser;
+package Entity.UserAdmin;
 
 import java.sql.Date;
 
