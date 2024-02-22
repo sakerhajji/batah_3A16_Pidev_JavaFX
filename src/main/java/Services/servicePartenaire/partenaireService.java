@@ -15,8 +15,9 @@ public class partenaireService implements IService<partenaire>{
     public partenaireService() {
         con= DataSource.getInstance().getCnx();
     }
+
     public void add(partenaire p){
-        String requete="insert into partenaires (nom,type,adresse,telephone,email) values ('"+p.getNom()+"','"+p.getType()+"','"+p.getAdresse()+"',"+p.getTel()+",'"+p.getEmail()+"')";
+        String requete="insert into partenaires (nom,type,adresse,telephone,email,logo) values ('"+p.getNom()+"','"+p.getType()+"','"+p.getAdresse()+"',"+p.getTel()+",'"+p.getEmail()+"','"+p.getLogo()+"')";
         try {
             ste=con.createStatement();
             ste.executeUpdate(requete);
@@ -24,17 +25,12 @@ public class partenaireService implements IService<partenaire>{
             throw new RuntimeException(e);
         }
     }
-    public void addPst(partenaire p){
-        String requete="insert into partenaires (nom,type,adresse,telephone,email) values (?,?,?,?,?)";
-        try {
-            pst=con.prepareStatement(requete);
-            pst.setString(1,p.getNom());
-            pst.setString(2,p.getType());
-            pst.setString(3,p.getAdresse());
-            pst.setInt(4,p.getTel());
-            pst.setString(5,p.getEmail());
-            pst.executeUpdate();
 
+    public void update(partenaire p) {
+        String requete="update partenaires set nom='"+p.getNom()+"',type='"+p.getType()+"',adresse='"+p.getAdresse()+"',telephone="+p.getTel()+",email='"+p.getEmail()+"',logo='"+p.getLogo()+"' where idPartenaire="+p.getId()+"";
+        try {
+            ste=con.createStatement();
+            ste.executeUpdate(requete);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -51,19 +47,6 @@ public class partenaireService implements IService<partenaire>{
             throw new RuntimeException(e);
         }
     }
-
-
-    @Override
-    public void update(partenaire p) {
-        String requete="update partenaires set nom='"+p.getNom()+"',type='"+p.getType()+"',adresse='"+p.getAdresse()+"',telephone="+p.getTel()+",email='"+p.getEmail()+"' where idPartenaire="+p.getId()+"";
-        try {
-            ste=con.createStatement();
-            ste.executeUpdate(requete);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public List<partenaire> readAll() {
         String requte="select * from partenaires";
@@ -72,7 +55,7 @@ public class partenaireService implements IService<partenaire>{
             ste=con.createStatement();
             ResultSet rs =ste.executeQuery(requte);
             while(rs.next()){
-                list.add(new partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6)));
+                list.add(new partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -89,7 +72,7 @@ public class partenaireService implements IService<partenaire>{
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                par = new partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
+                par = new partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7));
             }
             ps.close();
         } catch (SQLException e) {
@@ -97,6 +80,7 @@ public class partenaireService implements IService<partenaire>{
         }
         return par;
     }
+
     public List<partenaire> rechercheParNom(String nom) {
         ResultSet resultSet = null;
         List<partenaire> partenaires = new ArrayList<>();
@@ -114,6 +98,8 @@ public class partenaireService implements IService<partenaire>{
                 p.setEmail(resultSet.getString(4));
                 p.setTel(resultSet.getInt(5));
                 p.setType(resultSet.getString(6));
+                p.setLogo(resultSet.getString(7)); // Ajout du logo
+                p.setPoints(resultSet.getInt(8)); // Ajout des points
 
                 partenaires.add(p);
             }
@@ -130,5 +116,5 @@ public class partenaireService implements IService<partenaire>{
         return partenaires;
     }
 
-
+    // Autres méthodes (addPst, delete) non modifiées pour inclure le champ logo
 }

@@ -1,5 +1,5 @@
 package Entity.entitiesPartenaire;
-//test
+
 public class partenaire {
     private int id;
     private String nom;
@@ -7,25 +7,29 @@ public class partenaire {
     private String adresse;
     private int tel;
     private String email;
+    private String logo; // Nouveau champ logo
+    private int points; // Nouveau champ points
 
     public partenaire() {
     }
 
-    public partenaire(int id, String nom, String type, String adresse, int tel, String email) {
+    public partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
         this.id = id;
         this.nom = nom;
         this.type = type;
         this.adresse = adresse;
         this.tel = tel;
-        this.email=email;
+        this.email = email;
+        this.logo = logo;
     }
 
-    public partenaire(String nom, String type, String adresse, int tel, String email) {
+    public partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
         this.nom = nom;
         this.type = type;
         this.adresse = adresse;
         this.tel = tel;
-        this.email=email;
+        this.email = email;
+        this.logo = logo;
     }
 
     public int getId() {
@@ -76,6 +80,22 @@ public class partenaire {
         this.email = email;
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     @Override
     public String toString() {
         return "partenaire{" +
@@ -85,6 +105,8 @@ public class partenaire {
                 ", adresse='" + adresse + '\'' +
                 ", tel=" + tel +
                 ", email='" + email + '\'' +
+                ", logo='" + logo + '\'' +
+                ", points=" + points +
                 '}';
     }
 }
