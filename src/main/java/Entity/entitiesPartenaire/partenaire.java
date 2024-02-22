@@ -1,5 +1,5 @@
 package Entity.entitiesPartenaire;
-
+//test
 public class partenaire {
     private int id;
     private String nom;
