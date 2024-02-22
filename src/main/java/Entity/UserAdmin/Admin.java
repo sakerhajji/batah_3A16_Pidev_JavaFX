@@ -4,7 +4,9 @@ import java.sql.Date;
 
 
 public class Admin extends Utilisateur {
-
+    public Admin(int idUtilisateur) {
+        super(idUtilisateur);
+    }
 
     public Admin() {
     }

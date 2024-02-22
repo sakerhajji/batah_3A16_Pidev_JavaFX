@@ -14,11 +14,11 @@ public class MainFx extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-private  double x,y  ;
+    private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                .getResource("/locationInterface/AjouterLocation.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);

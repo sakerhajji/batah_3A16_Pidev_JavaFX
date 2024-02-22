@@ -18,6 +18,9 @@ public class Utilisateur {
     protected String pays;
     protected String avatar;
 
+    public Utilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
 
     public Utilisateur() {
     }

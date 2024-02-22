@@ -78,7 +78,7 @@ public class AdminService implements IService<Admin> {
 
 
 
-    @Override
+
     public List<Admin> readAll() {
         List<Admin> admins = new ArrayList<>();
         String requete = "SELECT * FROM utilisateur";
@@ -137,6 +137,24 @@ public class AdminService implements IService<Admin> {
             throw new RuntimeException(e);
         }
         return admin;
+    }
+    ////////////////////////////////////
+
+    public Admin getUserByName(String nomUtilisateur, String prenomUtilisateur) throws SQLException {
+        String query = "SELECT * FROM utilisateur WHERE nomUtilisateur = ? AND prenomUtilisateur = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, nomUtilisateur);
+        preparedStatement.setString(2, prenomUtilisateur);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+
+            int idUtilisateur = resultSet.getInt("id");
+
+            return new Admin(idUtilisateur);
+        } else {
+            // If no user was found, return null
+            return null;
+        }
     }
 
 }
