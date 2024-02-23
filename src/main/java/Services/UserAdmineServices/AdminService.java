@@ -76,7 +76,7 @@ public class AdminService implements IService<Admin> {
         }
     }
     public void updateCard(Admin admin) {
-        String requete = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, adresseEmail = ?, numeroTelephone = ?, numeroCinn = ?, dateDeNaissance = ? WHERE id = ?";
+        String requete = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, adresseEmail = ?, numeroTelephone = ?, numeroCin = ?, dateDeNaissance = ? WHERE id = ?";
 
         try {
             pst = conn.prepareStatement(requete);
@@ -85,7 +85,7 @@ public class AdminService implements IService<Admin> {
             pst.setString(3, admin.getMailUtilisateur());
             pst.setString(4, admin.getNumUtilisateur());
             pst.setString(5, admin.getCinUtilisateur());
-            pst.setDate(6, new java.sql.Date(admin.getDateDeNaissance().getTime()));
+            pst.setDate(6, admin.getDateDeNaissance());
             pst.setInt(7, admin.getIdUtilisateur());
             pst.executeUpdate();
         } catch (SQLException e) {

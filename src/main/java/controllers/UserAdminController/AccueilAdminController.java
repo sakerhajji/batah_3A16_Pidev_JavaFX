@@ -28,10 +28,19 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class AccueilAdminController implements Initializable {
+    private  List<Admin>a;
     @FXML
     private Circle profile;
     @FXML
     private VBox pnItems;
+
+    public VBox getPnItems() {
+        return pnItems;
+    }
+
+    public void setPnItems(VBox pnItems) {
+        this.pnItems = pnItems;
+    }
 
     @FXML
     private Button btnOverview;
@@ -76,17 +85,23 @@ public class AccueilAdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), this::updatePage));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        refrechPage();
+
+    }
+    public void refrechPage()
+    {
+pnItems.getChildren().clear();
+
         try {
-            timeline = new Timeline(new KeyFrame(Duration.seconds(10), this::updatePage));
-            timeline.setCycleCount(Timeline.INDEFINITE); // Pour répéter indéfiniment
-            timeline.play();
             Image image = new Image("/images/SakerHajji.png");
-         Profile.setFill(new ImagePattern(image));
-            List<Admin>a;
+            Profile.setFill(new ImagePattern(image));
+
             AdminService adminService=new AdminService() ;
             a=adminService.readAll();
             int i = 0 ;
-            n=a.size();
 
             for (Admin admin:a) {
                 final int j = i;
@@ -95,26 +110,24 @@ public class AccueilAdminController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/ligne.fxml"));
                 Node item = loader.load();
                 LigneController l = loader.getController();
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
-
                 l.setAdmin(admin);
                 l.setNom(admin.getNomUtilisateur());
                 l.setPrenom(admin.getPrenomUtilisateur());
                 l.setDateNaissance(dateOfBirthString);
                 l.setEmail(admin.getMailUtilisateur());
-
-                // Give the items some effect
                 item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
                 item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
 
                 pnItems.getChildren().add(item);
 
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        a.clear();
     }
 
     @FXML
@@ -136,6 +149,8 @@ public class AccueilAdminController implements Initializable {
             pnlMenus.getChildren().removeAll();
             loadhamzaXMLContent();
         } else if (actionEvent.getSource() == btnOverview) {
+            timeline.stop();
+            timeline.play();
             pnlOverview.setStyle("-fx-background-color: #fff0e7");
             pnlOverview.toFront();
         } else if (actionEvent.getSource() == btnOrders) {
@@ -155,6 +170,7 @@ public class AccueilAdminController implements Initializable {
     }
     private void loadhamzaXMLContent() {
         try {
+    timeline.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
             Pane sofXMLPane = loader.load();
             pnlMenus.getChildren().clear(); // Use clear() instead of removeAll() for clarity
@@ -165,41 +181,9 @@ public class AccueilAdminController implements Initializable {
     }
 
     private void updatePage(ActionEvent events) {
-        try {
+        timeline=null;
 
-            List<Admin>a;
-            AdminService adminService=new AdminService() ;
-            a=adminService.readAll();
-            int k = a.size() ;
-            int x = a.size();
-            if(x>n){
-
-            for (int  i = (a.size()-x)-1;i<a.size();i++) {
-                final int j = k;
-                k++ ;
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/ligne.fxml"));
-                Node item = loader.load();
-                LigneController l = loader.getController();
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                String dateOfBirthString = sdf.format(a.get(i).getDateDeNaissance());
-
-                l.setNom(a.get(i).getNomUtilisateur());
-                l.setPrenom(a.get(i).getPrenomUtilisateur());
-                l.setDateNaissance(dateOfBirthString);
-                l.setEmail(a.get(i).getMailUtilisateur());
-
-                // Give the items some effect
-                item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
-                item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
-
-                pnItems.getChildren().add(item);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        refrechPage();
         System.out.println("Mise à jour de la page...");
     }
 }
