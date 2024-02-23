@@ -55,7 +55,7 @@ public class partenaireService implements IService<partenaire>{
             ste=con.createStatement();
             ResultSet rs =ste.executeQuery(requte);
             while(rs.next()){
-                list.add(new partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(7)));
+                list.add(new partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -72,7 +72,7 @@ public class partenaireService implements IService<partenaire>{
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                par = new partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+                par = new partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(8));
             }
             ps.close();
         } catch (SQLException e) {
@@ -98,8 +98,8 @@ public class partenaireService implements IService<partenaire>{
                 p.setEmail(resultSet.getString(4));
                 p.setTel(resultSet.getInt(5));
                 p.setType(resultSet.getString(6));
-                p.setLogo(resultSet.getString(7)); // Ajout du logo
-                p.setPoints(resultSet.getInt(8)); // Ajout des points
+                p.setLogo(resultSet.getString(7));
+                p.setPoints(resultSet.getInt(8));
 
                 partenaires.add(p);
             }

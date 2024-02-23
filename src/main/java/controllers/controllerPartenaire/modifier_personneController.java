@@ -51,10 +51,12 @@ public class modifier_personneController {
         email.setText(personne.getEmail());
 
         // Charger l'image
-        if (personne.getLogo() != null && !personne.getLogo().isEmpty()) {
+        if ( !personne.getLogo().isEmpty()) {
             String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + personne.getLogo();
             Image image = new Image(new File(imagePath).toURI().toString());
             imageLogo.setImage(image);
+            // Définir le nom de fichier de l'image
+            logoFileName = personne.getLogo();
         }
     }
 

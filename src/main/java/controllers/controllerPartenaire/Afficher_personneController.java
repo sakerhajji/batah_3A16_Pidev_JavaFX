@@ -3,6 +3,7 @@ package controllers.controllerPartenaire;
 
 import Entity.entitiesPartenaire.partenaire;
 import Services.servicePartenaire.partenaireService;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,43 +65,15 @@ public class Afficher_personneController implements Initializable {
         showPartenaires();
         buttonModifier();
         buttonSupprimer();
-        logo.setCellValueFactory(new PropertyValueFactory<partenaire, String>("logo"));
-        logo.setCellFactory(column -> new TableCell<partenaire, String>() {
-            private final ImageView imageView = new ImageView();
-            private final double imageSize = 2; // Taille de l'image
 
-            @Override
-            protected void updateItem(String imageName, boolean empty) {
-                super.updateItem(imageName, empty);
-
-                if (empty || imageName == null) {
-                    setGraphic(null);
-                } else {
-
-                    String imagePath = "file://E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + imageName;
-
-
-                    Image image = new Image(imagePath);
-                    imageView.setImage(image);
-                    imageView.setFitWidth(imageSize);
-                    imageView.setFitHeight(imageSize);
-                    setGraphic(imageView);
-                }
-            }
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.trim().isEmpty()) {
+                rechercherPartenaireParNom(newValue.trim());
+            }else { showPartenaires();}
         });
     }
 
-    @FXML
-    void rechercher(ActionEvent event) {
-        String nom = searchField.getText().trim();
-        if (!nom.isEmpty()) {
-            // Appeler la méthode de recherche par nom
-            rechercherPartenaireParNom(nom);
-        } else {
-            // Si le champ de recherche est vide, afficher tous les partenaires
-            showPartenaires();
-        }
-    }
+
     private void rechercherPartenaireParNom(String nom) {
         partenaireService ps = new partenaireService();
         List<partenaire> resultatRecherche = ps.rechercheParNom(nom);
@@ -164,20 +137,41 @@ public class Afficher_personneController implements Initializable {
 
 
 
-        public void showPartenaires () {
-            partenaireService ps = new partenaireService();
-            List<partenaire> p = new ArrayList<>();
-            p = ps.readAll();
-            ObservableList<partenaire> list = FXCollections.observableArrayList(p);
-            table.setItems(list);
-            colid.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("id"));
-            colnom.setCellValueFactory(new PropertyValueFactory<partenaire, String>("nom"));
-            coltel.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("tel"));
-            coladresse.setCellValueFactory(new PropertyValueFactory<partenaire,String>("adresse"));
-            coltype.setCellValueFactory(new PropertyValueFactory<partenaire, String>("type"));
-            colemail.setCellValueFactory(new PropertyValueFactory<partenaire, String>("email"));
-            logo.setCellValueFactory(new PropertyValueFactory<partenaire, String>("logo"));
-        }
+    public void showPartenaires () {
+        partenaireService ps = new partenaireService();
+        List<partenaire> p = ps.readAll();
+        ObservableList<partenaire> list = FXCollections.observableArrayList(p);
+        table.setItems(list);
+        colid.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("id"));
+        colnom.setCellValueFactory(new PropertyValueFactory<partenaire, String>("nom"));
+        coltel.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("tel"));
+        coladresse.setCellValueFactory(new PropertyValueFactory<partenaire,String>("adresse"));
+        coltype.setCellValueFactory(new PropertyValueFactory<partenaire, String>("type"));
+        colemail.setCellValueFactory(new PropertyValueFactory<partenaire, String>("email"));
+        logo.setCellFactory(column -> new TableCell<partenaire, String>() {
+            @Override
+            protected void updateItem(String imageName, boolean empty) {
+                super.updateItem(imageName, empty);
+                if (empty || imageName == null) {
+                    setGraphic(null);
+                } else {
+                    ImageView imageView = new ImageView();
+                    String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + imageName;
+                    Image image = new Image(new File(imagePath).toURI().toString());
+                    imageView.setImage(image);
+                    imageView.setFitWidth(70);
+                    imageView.setFitHeight(50);
+                    setGraphic(imageView);
+
+
+
+
+                }
+            }
+        });
+
+
+    }
     private void buttonModifier() {
         modifyTC.setCellFactory(param -> new TableCell<>() {
             private final Button modifyButton = new Button();

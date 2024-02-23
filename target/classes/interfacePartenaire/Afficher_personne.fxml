@@ -14,7 +14,7 @@
       <Label alignment="CENTER" layoutX="167.0" layoutY="14.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" text="Afficher" />
       <HBox layoutX="407.0" layoutY="23.0">
          <TextField fx:id="searchField" promptText="Nom du partenaire" />
-         <Button onAction="#rechercher" text="Rechercher" />
+
       </HBox>
       <TableView fx:id="table" layoutX="4.0" layoutY="67.2" prefHeight="363.0" prefWidth="709.0" AnchorPane.topAnchor="67.0">
          <columns>
