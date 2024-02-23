@@ -103,7 +103,7 @@ public class LigneController implements Initializable {
             c.setNomUtilisateur(admin.getNomUtilisateur());
             c.getPrenomUtilisateur().setText(admin.getPrenomUtilisateur());
             c.setAdresseEmail(admin.getMailUtilisateur());
-            //c.setDateDeNaissance(admin.getDateDeNaissance());
+            c.setDateDeNaissance(admin.getDateDeNaissance());
             if(admin.getNumUtilisateur()==null)c.setNumeroTelephone("svp taper votre numero");
             else c.setNumeroTelephone(admin.getNumUtilisateur());
             if(admin.getCinUtilisateur()==null)c.setNumeroCin("svp taper votre numero cin") ;
