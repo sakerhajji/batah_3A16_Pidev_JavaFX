@@ -99,6 +99,7 @@ public class AccueilAdminController implements Initializable {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
 
+                l.setAdmin(admin);
                 l.setNom(admin.getNomUtilisateur());
                 l.setPrenom(admin.getPrenomUtilisateur());
                 l.setDateNaissance(dateOfBirthString);
@@ -129,8 +130,11 @@ public class AccueilAdminController implements Initializable {
 
 
         } else if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color: #53639F");
+            pnlMenus.setStyle("-fx-background-color: #FFFFFF");
             pnlMenus.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
+            pnlMenus.getChildren().removeAll();
+            loadhamzaXMLContent();
         } else if (actionEvent.getSource() == btnOverview) {
             pnlOverview.setStyle("-fx-background-color: #fff0e7");
             pnlOverview.toFront();
@@ -149,6 +153,17 @@ public class AccueilAdminController implements Initializable {
             e.printStackTrace(); // Handle the exception appropriately
         }
     }
+    private void loadhamzaXMLContent() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
+            Pane sofXMLPane = loader.load();
+            pnlMenus.getChildren().clear(); // Use clear() instead of removeAll() for clarity
+            pnlMenus.getChildren().setAll(sofXMLPane);
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
     private void updatePage(ActionEvent events) {
         try {
 

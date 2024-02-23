@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+
+<AnchorPane prefHeight="654.0" prefWidth="489.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.UpdateInterfaceAUControllers">
+   <children>
+      <Pane layoutX="71.0" layoutY="103.0" prefHeight="368.0" prefWidth="347.0" style="-fx-background-color: #FB7D5B;">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="8.0" layoutY="56.0" prefHeight="323.0" prefWidth="331.0" spacing="40.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="nomUtilisateur" prefHeight="38.0" prefWidth="156.0" />
+                        <TextField fx:id="prenomUtilisateur" layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="156.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="adresseEmail" prefHeight="41.0" prefWidth="156.0" />
+                        <TextField fx:id="numeroTelephone" prefHeight="38.0" prefWidth="156.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="48.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="numeroCin" prefHeight="38.0" prefWidth="156.0" />
+                        <DatePicker fx:id="dateDeNaissance" prefHeight="37.0" prefWidth="154.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="244.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#MisAJourClicked" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Mis a jour" textFill="#fb7d5b" />
+                        <Button layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#fermerClicked" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Fermer" textFill="#fb7d5b" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Circle fill="#fff0e7" layoutX="245.0" layoutY="77.0" radius="63.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

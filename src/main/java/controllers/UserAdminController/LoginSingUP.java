@@ -39,7 +39,7 @@ public class LoginSingUP implements Initializable {
     }
     @FXML
     void SigninClick(ActionEvent event) {
-        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vBox);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(0.4), vBox);
         t.setToX((vBox.getLayoutX()*6.5));
         t.play();
         t.setOnFinished((e)->{
