@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class Afficher_personneController implements Initializable {
     @FXML
     private TableColumn<partenaire, String> colemail;
     @FXML
+    private TableColumn<partenaire, String> logo;
+    @FXML
     private TableColumn<partenaire, Void> modifyTC;
     @FXML
     private TableColumn<partenaire, Void> deleteTC;
@@ -61,8 +64,32 @@ public class Afficher_personneController implements Initializable {
         showPartenaires();
         buttonModifier();
         buttonSupprimer();
+        logo.setCellValueFactory(new PropertyValueFactory<partenaire, String>("logo"));
+        logo.setCellFactory(column -> new TableCell<partenaire, String>() {
+            private final ImageView imageView = new ImageView();
+            private final double imageSize = 2; // Taille de l'image
 
+            @Override
+            protected void updateItem(String imageName, boolean empty) {
+                super.updateItem(imageName, empty);
+
+                if (empty || imageName == null) {
+                    setGraphic(null);
+                } else {
+
+                    String imagePath = "file://E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + imageName;
+
+
+                    Image image = new Image(imagePath);
+                    imageView.setImage(image);
+                    imageView.setFitWidth(imageSize);
+                    imageView.setFitHeight(imageSize);
+                    setGraphic(imageView);
+                }
+            }
+        });
     }
+
     @FXML
     void rechercher(ActionEvent event) {
         String nom = searchField.getText().trim();
@@ -149,6 +176,7 @@ public class Afficher_personneController implements Initializable {
             coladresse.setCellValueFactory(new PropertyValueFactory<partenaire,String>("adresse"));
             coltype.setCellValueFactory(new PropertyValueFactory<partenaire, String>("type"));
             colemail.setCellValueFactory(new PropertyValueFactory<partenaire, String>("email"));
+            logo.setCellValueFactory(new PropertyValueFactory<partenaire, String>("logo"));
         }
     private void buttonModifier() {
         modifyTC.setCellFactory(param -> new TableCell<>() {

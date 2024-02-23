@@ -25,9 +25,6 @@ public class Ajouter_personneController {
     private TextField tel;
 
     @FXML
-    private TextField type;
-
-    @FXML
     private TextField email;
 
     @FXML
@@ -36,7 +33,7 @@ public class Ajouter_personneController {
     @FXML
     private ComboBox<?> typeComboBox;
 
-    private String logoFileName; // Ajout d'une variable pour stocker le nom du fichier de l'image
+    private String logoFileName;
 
     @FXML
     void addPerson(ActionEvent event) {
@@ -84,7 +81,7 @@ public class Ajouter_personneController {
 
         if (isValid) {
             int tl = Integer.parseInt(telText);
-            partenaire p = new partenaire(nm, tp, ad, tl, eml, logoFileName); // Utilisation du nom du fichier de l'image
+            partenaire p = new partenaire(nm, tp, ad, tl, eml, logoFileName);
             partenaireService ps = new partenaireService();
             ps.add(p);
 
@@ -98,18 +95,21 @@ public class Ajouter_personneController {
     }
 
     @FXML
-    void chooseImage(ActionEvent event) { // Méthode pour choisir une image
+    void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
+        File initialDirectory = new File("E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire");
+        fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
+            String imageName = selectedFile.getName();
             Image image = new Image(selectedFile.toURI().toString());
             imageLogo.setImage(image);
-
-            // Récupérer le nom du fichier sélectionné
-            logoFileName = selectedFile.getName();
+            // Enregistrer le nom de l'image
+            logoFileName = imageName;
         }
     }
+
 
     private void setValid(TextField field) {
         field.setStyle("-fx-border-color: green;");

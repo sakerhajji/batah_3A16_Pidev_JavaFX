@@ -36,7 +36,7 @@ public class modifier_personneController {
     private ComboBox<String> typeComboBox;
 
     private int id;
-    private String logoFileName; // Ajout d'une variable pour stocker le nom du fichier de l'image
+    private String logoFileName;
 
     public void initData(int id) {
         this.id = id;
@@ -50,12 +50,14 @@ public class modifier_personneController {
         typeComboBox.setValue(personne.getType());
         email.setText(personne.getEmail());
 
-        // Afficher l'image du logo existant, si disponible
+        // Charger l'image
         if (personne.getLogo() != null && !personne.getLogo().isEmpty()) {
-            Image image = new Image(new File(personne.getLogo()).toURI().toString());
+            String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + personne.getLogo();
+            Image image = new Image(new File(imagePath).toURI().toString());
             imageLogo.setImage(image);
         }
     }
+
 
     @FXML
     void modifier(ActionEvent event) {
@@ -120,15 +122,17 @@ public class modifier_personneController {
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
+        File initialDirectory = new File("E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire");
+        fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
+            String imageName = selectedFile.getName();
             Image image = new Image(selectedFile.toURI().toString());
             imageLogo.setImage(image);
-
-            // Récupérer le nom du fichier sélectionné
-            logoFileName = selectedFile.getPath();
+            logoFileName = imageName;
         }
     }
+
 
     private void setValid(TextField field) {
         field.setStyle("-fx-border-color: green;");
