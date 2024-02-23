@@ -7,8 +7,12 @@ public class Main {
     public static void main(String[] args) {
 
 
-       // Admin admin=new Admin("Sofian","mrabet","sofiane.mrabet@esprit.tn","52225548",date,'H');
-        AdminService adminService =new AdminService();
+       Admin admin=new Admin();
+       admin.setMailUtilisateur("saker@gg.tn");
+       admin.setMotDePassUtilisateur("222222222");
+       AdminService adminService =new AdminService();
+       System.out.println(adminService.Login(admin));
+
 
 
 

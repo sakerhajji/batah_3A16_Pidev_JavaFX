@@ -17,7 +17,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="61.0" layoutY="243.0" mnemonicParsing="false" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="Sign UP">
+            <Button layoutX="61.0" layoutY="243.0" mnemonicParsing="false" onAction="#SingUpClicked" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="Sign UP">
                <font>
                   <Font size="17.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="633.0" layoutY="236.0" mnemonicParsing="false" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="Sign In">
+            <Button layoutX="633.0" layoutY="236.0" mnemonicParsing="false" onAction="#SigninClick" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="Sign In">
                <font>
                   <Font size="17.0" />
                </font>

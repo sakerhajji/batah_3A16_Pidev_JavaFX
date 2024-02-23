@@ -57,8 +57,23 @@ public class AccueilAdminController implements Initializable {
     @FXML
     private Pane pnlMenus;
 
+    public void setProfile(Circle profile) {
+        Profile = profile;
+    }
+
     private int n ;
     private Timeline timeline;
+
+    private Admin adminSession ;
+
+    public Admin getAdminSession() {
+        return adminSession;
+    }
+
+    public void setAdminSession(Admin adminSession) {
+        this.adminSession = adminSession;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {

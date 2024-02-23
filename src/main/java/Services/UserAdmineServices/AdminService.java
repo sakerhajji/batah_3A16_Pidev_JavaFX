@@ -156,5 +156,37 @@ public class AdminService implements IService<Admin> {
             return null;
         }
     }
+    public Admin  Login(Admin admin)
+    {
+
+        String requete = "SELECT * FROM utilisateur WHERE adresseEmail = ? AND  motDePasse = ?";
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setString(1,admin.getMailUtilisateur());
+            pst.setString(2,admin.getMotDePassUtilisateur());
+            ResultSet resultSet = pst.executeQuery();
+            admin.setIdUtilisateur(-1);
+            if (resultSet.next()){
+                admin.setIdUtilisateur(resultSet.getInt("id"));
+                admin.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
+                admin.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
+                admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
+                admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
+                admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
+                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
+                admin.setCinUtilisateur(resultSet.getString("numeroCin"));
+                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
+                admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
+                admin.setPays(resultSet.getString("pays"));
+                admin.setAvatar(resultSet.getString("avatar"));
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+return admin ;
+
+    }
 
 }

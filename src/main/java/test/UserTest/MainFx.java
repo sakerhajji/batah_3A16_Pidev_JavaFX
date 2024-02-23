@@ -2,44 +2,27 @@ package test.UserTest;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 
 public class MainFx extends Application {
 
+    @Override
+    public void start(Stage stage) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
-    }
-private  double x,y  ;
-    @Override
-    public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
-        try {
-            Parent root= loader.load();
-            Scene scene=new Scene(root);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setTitle("Inscription");
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-
-                primaryStage.setX(event.getScreenX() - x);
-                primaryStage.setY(event.getScreenY() - y);
-
-            });
-            primaryStage.setScene(scene);
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
-            primaryStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 }
