@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField MotDePass;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML
     void Loginclicked(ActionEvent event) {
@@ -40,6 +43,14 @@ public class LoginController implements Initializable {
                 root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
+                root.setOnMousePressed((MouseEvent events) -> {
+                    xOffset = events.getSceneX();
+                    yOffset = events.getSceneY();
+                });
+                root.setOnMouseDragged((MouseEvent events) -> {
+                    stage.setX(events.getScreenX() - xOffset);
+                    stage.setY(events.getScreenY() - yOffset);
+                });
                 stage.setScene(scene);
                 stage.show();
 
