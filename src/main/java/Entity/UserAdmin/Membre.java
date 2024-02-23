@@ -9,7 +9,13 @@ public class Membre extends Utilisateur {
     private int nbrProduit;
     private int nbrPoint ;
     private Date dateInscription;
-
+ public Membre(){}
+    public Membre(int id,String nom,String prenom)
+    {
+        this.idUtilisateur=id;
+        this.nomUtilisateur=nom;
+        this.prenomUtilisateur=prenom;
+    }
     public Membre(String nomUtilisateur, String prenomUtilisateur, String mailUtilisateur, String motDePassUtilisateur, java.sql.Date dateDeNaissance, char sexeUtilisateur) {
         super(nomUtilisateur, prenomUtilisateur, mailUtilisateur, motDePassUtilisateur, dateDeNaissance, sexeUtilisateur);
     }
