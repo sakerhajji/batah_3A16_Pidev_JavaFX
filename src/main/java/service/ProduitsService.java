@@ -107,12 +107,13 @@ public class ProduitsService {
                 float prixMin = rs.getFloat("prixMin");
                 float prixMax = rs.getFloat("prixMax");
                 float prixActuelle = rs.getFloat("prixActuelle");
+                int nbrParticipants=rs.getInt("nbrParticipants");
                 int idProduit = rs.getInt("idProduit");
                 // Fetch the associated product description using separate query
                 String produitDescription = getProductDescription(idProduit);
                 Produits produit = new Produits(idProduit);
                 produit.setDescription(produitDescription);
-                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, produit));
+                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle,nbrParticipants, produit));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la lecture de toutes les enchères", e);

@@ -10,12 +10,13 @@ public class Enchere {
     private float prixMin;
     private float prixMax;
     private float prixActuelle;
+    private int nbrParticipants;
     private Produits idProduit;
 
     public Enchere() {
     }
 
-    public Enchere(int idEnchere, LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Produits idProduit) {
+    public Enchere(int idEnchere, LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle,int nbrParticipants, Produits idProduit) {
         this.idEnchere = idEnchere;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -23,16 +24,18 @@ public class Enchere {
         this.prixMin = prixMin;
         this.prixMax = prixMax;
         this.prixActuelle = prixActuelle;
+        this.nbrParticipants=nbrParticipants;
         this.idProduit = idProduit;
     }
 
-    public Enchere(LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle, Produits idProduit) {
+    public Enchere(LocalDate dateDebut, LocalDate dateFin, boolean status, float prixMin, float prixMax, float prixActuelle,int nbrParticipants, Produits idProduit) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.status = status;
         this.prixMin = prixMin;
         this.prixMax = prixMax;
         this.prixActuelle = prixActuelle;
+        this.nbrParticipants=nbrParticipants;
         this.idProduit = idProduit;
     }
 
@@ -92,6 +95,14 @@ public class Enchere {
         this.prixActuelle = prixActuelle;
     }
 
+    public int getNbrParticipants() {
+        return nbrParticipants;
+    }
+
+    public void setNbrParticipants(int nbrParticipants) {
+        this.nbrParticipants = nbrParticipants;
+    }
+
     public Produits getIdProduit() {
         return idProduit;
     }
@@ -110,6 +121,7 @@ public class Enchere {
                 ", prixMin=" + prixMin +
                 ", prixMax=" + prixMax +
                 ", prixActuelle=" + prixActuelle +
+                ", nbrParticipants=" + nbrParticipants +
                 ", idProduit=" + idProduit +
                 '}';
     }

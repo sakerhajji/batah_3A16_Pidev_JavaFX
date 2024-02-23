@@ -42,6 +42,9 @@ public class afficherencheres {
     private TextField prixMinField;
 
     @FXML
+    private TextField nbrParticipantsField;
+
+    @FXML
     private ComboBox<Integer> productComboBox; // Assuming the descriptions are strings
 
     @FXML
@@ -74,6 +77,7 @@ public class afficherencheres {
         float prixActuel = Float.parseFloat(prixActuelField.getText());
         float prixMax = Float.parseFloat(prixMaxField.getText());
         float prixMin = Float.parseFloat(prixMinField.getText());
+        int nbrParticipants= Integer.parseInt(nbrParticipantsField.getText());
         Integer produit = productComboBox.getValue();
         boolean status = statusCheckbox.isSelected();
         ProduitsService ps=new ProduitsService();
@@ -84,7 +88,7 @@ public class afficherencheres {
             throw new RuntimeException(e);
         }
 
-        Enchere e=new Enchere(dateDebut,dateFin,status,prixMin,prixMax,prixActuel,p);
+        Enchere e=new Enchere(dateDebut,dateFin,status,prixMin,prixMax,prixActuel,nbrParticipants,p);
         EnchereService es=new EnchereService();
         es.add(e);
 

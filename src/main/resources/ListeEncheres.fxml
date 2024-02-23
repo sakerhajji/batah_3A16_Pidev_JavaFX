@@ -15,6 +15,7 @@
                 <TableColumn fx:id="minPriceColumn" prefWidth="80.0" text="Min Price" />
                 <TableColumn fx:id="maxPriceColumn" prefWidth="80.0" text="Max Price" />
                 <TableColumn fx:id="currentPriceColumn" prefWidth="100.0" text="Current Price" />
+                <TableColumn fx:id="nbrParticipantsColumn" prefWidth="100.0" text="nbrParticipants" />
                 <TableColumn fx:id="idProduitColumn" prefWidth="100.0" text="Product ID" />
                 <TableColumn fx:id="modifyColumn" prefWidth="70.0" text="Modify" />
                 <TableColumn fx:id="deleteColumn" prefWidth="70.0" text="Delete" />

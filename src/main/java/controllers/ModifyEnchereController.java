@@ -29,6 +29,9 @@ public class ModifyEnchereController {
     private TextField currentPriceTextField;
 
     @FXML
+    private TextField nbrParticipantsField;
+
+    @FXML
     private ComboBox<Integer> productComboBox; // Assuming the descriptions are strings
 
     @FXML
@@ -37,7 +40,7 @@ public class ModifyEnchereController {
     private Stage dialogStage;
 
     private Enchere enchere;
-    private EnchereService enchereService;
+    private EnchereService enchereService =new EnchereService();
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -61,6 +64,7 @@ public class ModifyEnchereController {
         minPriceTextField.setText(String.valueOf(enchere.getPrixMin()));
         maxPriceTextField.setText(String.valueOf(enchere.getPrixMax()));
         currentPriceTextField.setText(String.valueOf(enchere.getPrixActuelle()));
+        nbrParticipantsField.setText(String.valueOf(enchere.getNbrParticipants()));
         productComboBox.setValue(enchere.getIdProduit().getIdProduit());
         // Assuming getPrixActuel() returns the current price
 
@@ -68,9 +72,12 @@ public class ModifyEnchereController {
 
     @FXML
     void initialize() {
+        System.out.println("Initializing ModifyEnchereController...");
+        System.out.println("Product ComboBox: " + productComboBox); // Debugging statement
         enchereService = new EnchereService();
         populateProductComboBox();
     }
+
 
     @FXML
     private void handleSaveAction() {
@@ -81,7 +88,7 @@ public class ModifyEnchereController {
             enchere.setPrixMin(Float.parseFloat(minPriceTextField.getText()));
             enchere.setPrixMax(Float.parseFloat(maxPriceTextField.getText()));
             enchere.setPrixActuelle(Float.parseFloat(currentPriceTextField.getText()));
-
+            enchere.setNbrParticipants(Integer.parseInt(nbrParticipantsField.getText()));
             enchere.getIdProduit().setIdProduit(productComboBox.getValue());
 
             // Call the update method of EnchereService to persist the changes in the database
@@ -124,6 +131,10 @@ public class ModifyEnchereController {
 
         if (maxPriceTextField.getText() == null || maxPriceTextField.getText().trim().isEmpty()) {
             errorMessage += "Max price must be specified!\n";
+        }
+
+        if (nbrParticipantsField.getText() == null || nbrParticipantsField.getText().trim().isEmpty()) {
+            errorMessage += "Nbr participants must be specified!\n";
         }
 
         if (startDate != null && endDate != null && startDate.isAfter(endDate)) {

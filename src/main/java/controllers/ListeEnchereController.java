@@ -50,6 +50,9 @@ public class ListeEnchereController {
     private TableColumn<Enchere, Float> currentPriceColumn;
 
     @FXML
+    private TableColumn<Enchere, Integer> nbrParticipantsColumn;
+
+    @FXML
     private TableColumn<Enchere, Integer> idProduitColumn;
 
     @FXML
@@ -68,6 +71,7 @@ public class ListeEnchereController {
         statusColumn.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isStatus()));
         minPriceColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPrixMin()).asObject());
         maxPriceColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPrixMax()).asObject());
+        nbrParticipantsColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNbrParticipants()).asObject());
         currentPriceColumn.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getPrixActuelle()).asObject());
         idProduitColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdProduit().getIdProduit()).asObject());
 
@@ -145,11 +149,18 @@ public class ListeEnchereController {
             ModifyEnchereController modifyController = loader.getController();
             modifyController.setEnchere(enchere);
 
+            // Create a new stage for the dialog
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+
+            // Set the dialog stage in the controller
+            modifyController.setDialogStage(stage);
+
+            // Show the dialog
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

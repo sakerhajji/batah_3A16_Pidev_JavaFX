@@ -12,15 +12,16 @@ import java.util.List;
 public class EnchereService implements IService<Enchere> {
 
     private final Connection conn;
-
+    private PreparedStatement pst;
+    private Statement ste;
     public EnchereService() {
         conn = DataSource.getInstance().getCnx();
     }
 
     @Override
     public void add(Enchere enchere) {
-        String query = "INSERT INTO encheres (dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, idProduit) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO encheres (dateDebut, dateFin, status, prixMin, prixMax, prixActuelle,nbrParticipants, idProduit) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setObject(1, enchere.getDateDebut());
             pst.setObject(2, enchere.getDateFin());
@@ -28,7 +29,8 @@ public class EnchereService implements IService<Enchere> {
             pst.setFloat(4, enchere.getPrixMin());
             pst.setFloat(5, enchere.getPrixMax());
             pst.setFloat(6, enchere.getPrixActuelle());
-            pst.setInt(7, enchere.getIdProduit().getIdProduit());
+            pst.setInt(7,enchere.getNbrParticipants());
+            pst.setInt(8, enchere.getIdProduit().getIdProduit());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de l'ajout de l'enchère", e);
@@ -48,7 +50,7 @@ public class EnchereService implements IService<Enchere> {
 
     @Override
     public void update(Enchere enchere) {
-        String query = "UPDATE encheres SET dateDebut=?, dateFin=?, status=?, prixMin=?, prixMax=?, prixActuelle=?, idProduit=? WHERE idEnchere=?";
+        String query = "UPDATE encheres SET dateDebut=?, dateFin=?, status=?, prixMin=?, prixMax=?, prixActuelle=?,nbrParticipants=?, idProduit=? WHERE idEnchere=?";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setObject(1, enchere.getDateDebut());
             pst.setObject(2, enchere.getDateFin());
@@ -56,8 +58,9 @@ public class EnchereService implements IService<Enchere> {
             pst.setFloat(4, enchere.getPrixMin());
             pst.setFloat(5, enchere.getPrixMax());
             pst.setFloat(6, enchere.getPrixActuelle());
-            pst.setInt(7, enchere.getIdProduit().getIdProduit());
-            pst.setInt(8, enchere.getIdEnchere());
+            pst.setInt(7,enchere.getNbrParticipants());
+            pst.setInt(8, enchere.getIdProduit().getIdProduit());
+            pst.setInt(9, enchere.getIdEnchere());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de l'enchère", e);
@@ -80,6 +83,7 @@ public class EnchereService implements IService<Enchere> {
                 float prixMin = rs.getFloat("prixMin");
                 float prixMax = rs.getFloat("prixMax");
                 float prixActuelle = rs.getFloat("prixActuelle");
+                int nbrParticipants =rs.getInt("nbrParticipants");
                 int idProduit = rs.getInt("idProduit");
                 String productDescription = rs.getString("productDescription");
 
@@ -88,7 +92,7 @@ public class EnchereService implements IService<Enchere> {
                 Produits produit = produitsService.fetchProduitById(idProduit);
 
                 // Create Enchere object using the fetched Produits object
-                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, produit));
+                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle,nbrParticipants, produit));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la lecture de toutes les enchères", e);
@@ -114,6 +118,7 @@ public class EnchereService implements IService<Enchere> {
                     float prixMin = rs.getFloat("prixMin");
                     float prixMax = rs.getFloat("prixMax");
                     float prixActuelle = rs.getFloat("prixActuelle");
+                    int nbrParticipants =rs.getInt("nbrParticipants");
                     int idProduit = rs.getInt("idProduit");
                     //return new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, idProduit);
                 }

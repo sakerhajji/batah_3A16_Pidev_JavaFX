@@ -29,9 +29,11 @@
         <Label layoutX="40.0" layoutY="240.0" text="Prix Actuel:" />
         <TextField fx:id="prixActuelField" layoutX="150.0" layoutY="240.0" promptText="Prix Actuel" />
 
-        <Label layoutX="40.0" layoutY="280.0" text="Product Description:" />
-        <ComboBox fx:id="productComboBox" layoutX="150.0" layoutY="280.0" promptText="Select Product" />
+        <Label layoutX="40.0" layoutY="280.0" text="nbrParticipants:" />
+        <TextField fx:id="nbrParticipantsField" layoutX="150.0" layoutY="280.0" promptText="nbrParticipants" />
 
-        <Button layoutX="40.0" layoutY="320.0" text="Ajouter" onAction="#ajouterAction" />
+        <Label layoutX="40.0" layoutY="320.0" text="Product Description:" />
+        <ComboBox fx:id="productComboBox" layoutX="150.0" layoutY="320.0" promptText="Select Product" />
+        <Button layoutX="40.0" layoutY="380.0" text="Ajouter" onAction="#ajouterAction" />
     </children>
 </AnchorPane>
