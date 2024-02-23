@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="Vbox" alignment="CENTER_LEFT" prefHeight="480.0" prefWidth="480.0" spacing="20.0" styleClass="white-pane" stylesheets="@../cssStyleSheet/LoginSignUP.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.SingUPController">
+    <children>
+        <HBox prefHeight="45.0" prefWidth="450.0">
+            <children>
+                <Label prefHeight="49.0" prefWidth="256.0" text="Sign Up" textFill="#dd4242">
+                    <font>
+                        <Font name="Argentum Sans Regular" size="36.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox prefHeight="43.0" prefWidth="480.0">
+            <children>
+                <TextField fx:id="NomUtlisateur" prefHeight="43.0" prefWidth="480.0" promptText="Nom" />
+            </children>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="229.0" prefHeight="43.0" prefWidth="480.0">
+            <children>
+                <TextField fx:id="PrenomUtlisateur" prefHeight="43.0" prefWidth="480.0" promptText="Prenom" />
+            </children>
+        </HBox>
+      <HBox layoutX="25.0" layoutY="210.0" prefHeight="43.0" prefWidth="480.0">
+         <children>
+            <TextField fx:id="MailUtilisateur" prefHeight="43.0" prefWidth="480.0" promptText="Email" />
+         </children>
+      </HBox>
+      <HBox layoutX="25.0" layoutY="305.0" prefHeight="43.0" prefWidth="480.0">
+         <children>
+            <PasswordField fx:id="MotDePass" prefHeight="64.0" prefWidth="450.0" promptText="Mot de Pass" />
+         </children>
+      </HBox>
+      <HBox layoutX="25.0" layoutY="336.0" prefHeight="43.0" prefWidth="480.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="DateDeNaissance" prefHeight="43.0" prefWidth="244.0" promptText="Date de naissance" />
+               </children>
+            </HBox>
+            <ComboBox fx:id="Sexe" prefHeight="43.0" prefWidth="251.0" promptText="sexe" />
+         </children>
+      </HBox>
+        <HBox layoutX="10.0" layoutY="250.0" prefHeight="43.0" prefWidth="480.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#inscriptionUtilisateur" prefHeight="49.0" prefWidth="480.0" text="Inscription" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets left="15.0" right="15.0" top="20.0" />
+    </padding>
+</VBox>
