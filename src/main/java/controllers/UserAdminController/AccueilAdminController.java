@@ -99,6 +99,7 @@ public class AccueilAdminController implements Initializable {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
 
+                l.setAdmin(admin);
                 l.setNom(admin.getNomUtilisateur());
                 l.setPrenom(admin.getPrenomUtilisateur());
                 l.setDateNaissance(dateOfBirthString);
