@@ -141,7 +141,6 @@ public class AjouterProduitsController {
     void addProduits(ActionEvent event) {
         String description = txtdescription.getText();
         String labelle = txtlabelle.getText();
-        String photo = txtphoto.getText();
         int status = Integer.parseInt(txtstatus.getText());
         String type = txttype.getItems().toString();
         float prix = Float.parseFloat(txtprix.getText());
@@ -155,7 +154,7 @@ public class AjouterProduitsController {
 
             Utilisateur selectedUser = produitsService.getUserById(selectedUserid);
 
-        Produits newProduit = new Produits( type,description,  prix,labelle, photo, status,periodeGarantie, selectedUser);
+        Produits newProduit = new Produits( type,description,  prix,labelle, status,periodeGarantie, selectedUser);
         produitsService.add(newProduit);
 
     }

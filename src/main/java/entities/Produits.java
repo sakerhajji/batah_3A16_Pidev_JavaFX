@@ -6,7 +6,7 @@ public class Produits {
     private String description;
     private float prix;
     private String labelle;
-    private String photo;
+
     private int status;
     private int periodeGarentie ;
 
@@ -21,24 +21,24 @@ public class Produits {
 
     }
 
-    public Produits(int idProduit, String type, String description, float prix, String labelle, String photo, int status, int periodeGarentie, Utilisateur id) {
+    public Produits(int idProduit, String type, String description, float prix, String labelle, int status, int periodeGarentie, Utilisateur id) {
         this.idProduit = idProduit;
         this.type = type;
         this.description = description;
         this.prix = prix;
         this.labelle = labelle;
-        this.photo = photo;
+
         this.status = status;
         this.periodeGarentie = periodeGarentie;
         this.id = id;
     }
 
-    public Produits(String type, String description, float prix, String labelle, String photo, int status, int periodeGarentie, Utilisateur id) {
+    public Produits(String type, String description, float prix, String labelle, int status, int periodeGarentie, Utilisateur id) {
         this.type = type;
         this.description = description;
         this.prix = prix;
         this.labelle = labelle;
-        this.photo = photo;
+
         this.status = status;
         this.periodeGarentie = periodeGarentie;
         this.id = id;
@@ -46,11 +46,6 @@ public class Produits {
 
 
 
-    public Produits(int idProduitResult, String type, String description, float prix, String labelle, int status, int periodeGarantie, Object id) {
-    }
-
-    public Produits(int id, String type, String description, float prix, String labelle, int status, int periodeGarantie) {
-    }
 
 
     public Utilisateur getId() {
@@ -101,13 +96,6 @@ public class Produits {
         this.labelle = labelle;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
     public int getStatus() {
         return status;
@@ -150,7 +138,6 @@ public class Produits {
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", labelle='" + labelle + '\'' +
-                ", photo='" + photo + '\'' +
                 ", status=" + status +
                 ", periodeGarentie=" + periodeGarentie +
                 ", id=" + id +

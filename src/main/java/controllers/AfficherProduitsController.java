@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import entities.Produits;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -93,6 +94,7 @@ public class AfficherProduitsController  implements Initializable{
 
 
     private ProduitsService produitsService = new ProduitsService();
+    private final ObservableList<Produits> produits = FXCollections.observableArrayList();
 
    /* @FXML
     void initialize() {
@@ -119,6 +121,14 @@ public class AfficherProduitsController  implements Initializable{
 
     }*/
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showProduits();
+        buttonModifier();
+        buttonSupprimer();
+       // refreshTable();
+    }
+
     public void refreshTableView() {
         // Mettez à jour la table avec les nouvelles données
         try {
@@ -138,6 +148,12 @@ public class AfficherProduitsController  implements Initializable{
             e.printStackTrace();
         }
     }
+   /* public void refreshTable() {
+        produits.clear();
+        List<Produits> produitsList = produitsService.readAll();
+        produits.addAll(produitsList);
+        table.setItems(produits);
+    }*/
 
     @FXML
     void rechercher(ActionEvent event) {
@@ -204,19 +220,7 @@ public class AfficherProduitsController  implements Initializable{
     @FXML
     void updatebtn(ActionEvent event) {
 
-       /* FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/ModifierProduits.fxml"));
-        try {
-            Parent root = loader.load();
-//je peut recupere la scene actuelle a traveres tous les composant graphiques
-            txtrecherche.getScene().setRoot(root);
-        } catch (IOException e) {
-
-            System.out.println(e.getMessage());
-        }*/
-
-            // you have to select a product in the table
-            Produits selectedProduct = table.getSelectionModel().getSelectedItem();
+           /* Produits selectedProduct = table.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
                 // Show a dialog or another form to edit the selected product details
                 // After editing, update the product in the database
@@ -238,7 +242,7 @@ public class AfficherProduitsController  implements Initializable{
                 showProduits();
             } else {
                 // Show an alert or message indicating that no product is selected
-            }
+            }*/
 
 
     }
@@ -267,13 +271,7 @@ public class AfficherProduitsController  implements Initializable{
     void PrintPDF(ActionEvent event) {
 
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        showProduits();
-        buttonModifier();
-        buttonSupprimer();
 
-    }
     @FXML
     void modifier(Produits event) {
         try {
@@ -283,8 +281,8 @@ public class AfficherProduitsController  implements Initializable{
             ModifierProduitsController c = loader.getController();
 
             // Assurez-vous d'appeler populateUserComboBox() avant initData
-            c.populateUserComboBox();
-            c.initData(event.getId());
+
+            c.initData(event.getIdProduit());
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -342,7 +340,7 @@ public class AfficherProduitsController  implements Initializable{
         colprix.setCellValueFactory(new PropertyValueFactory<Produits, Float>("prix"));
         collabelle.setCellValueFactory(new PropertyValueFactory<Produits, String>("labelle"));
         colstatus.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("status"));
-        colperiodeGarentie.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("periodeGarantie"));
+        colperiodeGarentie.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("periodeGarentie"));
         colUser.setCellValueFactory(cellData -> {
             int userId = cellData.getValue().getId().getId();
             String userName = produitsService.getUserById(userId).getNomUtilisateur();
@@ -355,6 +353,7 @@ public class AfficherProduitsController  implements Initializable{
             private final javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView();
             private final double iconWidth = 24; // Largeur de l'icône
             private final double iconHeight = 24; // Hauteur de l'icône
+
 
             {
                 // Initialiser le bouton et l'image une seule fois

@@ -77,7 +77,7 @@ public class ProduitsService {
         }
     }*/
    public void update(Produits p) {
-       String requete = "UPDATE produits SET type='" + p.getType() + "', description='" + p.getDescription() + "', prix='" + p.getPrix() + "', labelle='" + p.getLabelle() + "', status='" + p.getStatus() + "', periodeGarantie=" + p.getPeriodeGarentie() + " WHERE idProduit=" + p.getIdProduit();
+       String requete = "UPDATE produits SET type='" + p.getType() + "', description='" + p.getDescription() + "', prix='" + p.getPrix() + "', labelle='" + p.getLabelle() + "', status='" + p.getStatus() + "', periodeGarantie=" + p.getPeriodeGarentie() + ", idUtilisateur=" + p.getId().getId() + " WHERE idProduit=" + p.getIdProduit();
        try {
            ste=conn.createStatement();
            ste.executeUpdate(requete);
@@ -105,7 +105,7 @@ public class ProduitsService {
                 produits.setPrix(rs.getFloat("prix"));
                 produits.setLabelle(rs.getString("labelle"));
                 produits.setStatus(rs.getInt("status"));
-                produits.setPeriodeGarentie(rs.getInt(7));
+                produits.setPeriodeGarentie(rs.getInt("periodeGarantie"));
                 Utilisateur user=new Utilisateur();
                 user.setId(rs.getInt("idUtilisateur"));
                 produits.setId(user);
@@ -207,9 +207,14 @@ public class ProduitsService {
                     String labelle = rs.getString("labelle");
                     int status = rs.getInt("status");
                     int periodeGarantie = rs.getInt("periodeGarantie");
+                    int idUser =rs.getInt(8);
+                    ProduitsService ps = new ProduitsService();
+                    Utilisateur selectedUser = ps.getUserById(idUser);
+
+
 
                     // Create and return Produits object
-                    return new Produits(idProduitResult, type, description, prix, labelle, status, periodeGarantie, null); // Assuming Utilisateur id is not needed here
+                    return new Produits(idProduitResult, type, description, prix, labelle, status, periodeGarantie, selectedUser); // Assuming Utilisateur id is not needed here
                 }
             }
         } catch (SQLException e) {
@@ -263,9 +268,8 @@ public class ProduitsService {
                 rs.getString(3),
                 rs.getFloat(4),
                 rs.getString(5),
-                rs.getString(6),
+                rs.getInt(6),
                 rs.getInt(7),
-                rs.getInt(8),
                 utilisateur// L'utilisateur associé au produit
 
         );

@@ -52,28 +52,12 @@ public class ModifierProduitsController  {
         // Initialiser idUser ici si nécessaire
         idUser = new ChoiceBox<>();
     }
-    void initialize() {
-        idUser = new ChoiceBox<>(); // Assurez-vous que idUser est initialisé
 
-        // Assurez-vous que idUser n'est pas null avant d'essayer d'obtenir sa valeur
-        if (idUser != null) {
-            Integer selectedUserid = idUser.getValue();
-            populateUserComboBox();
-        } else {
-            System.out.println("Erreur : idUser est null");
-        }
-    }
-    public void initData(Utilisateur id) {
-        if (idUser != null) {
-            Integer selectedUserId = idUser.getValue();
-
-            if (selectedUserId == null) {
-                System.out.println("Error: No user selected");
-                return;
-            }
+    public void initData(int id) {
+        this.id=id;
 
             ProduitsService ps = new ProduitsService();
-            Produits produits = ps.fetchProduitById(selectedUserId);
+            Produits produits = ps.fetchProduitById(id);
 
             txttype.setText(produits.getType());
             txtdescription.setText(produits.getDescription());
@@ -82,13 +66,9 @@ public class ModifierProduitsController  {
             txtlabelle.setText(produits.getLabelle());
             txtstatus.setText(String.valueOf(produits.getStatus()));
             txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
+            populateUserComboBox();
 
-            // Notez que vous n'utilisez pas réellement la variable 'selectedUser'
-            // Si nécessaire, vous pouvez l'utiliser pour d'autres opérations.
-            Utilisateur selectedUser = ps.getUserById(selectedUserId);
-        } else {
-            System.out.println("Error: idUser is null");
-        }
+
     }
 
 
@@ -111,55 +91,24 @@ public class ModifierProduitsController  {
         }
 
         idUser.setItems(userIds);
-    }/*public void populateUserComboBox(utilisateurService userService) {
-        List<Utilisateur> users = null;
-
-        try {
-            users = userService.readAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        ObservableList<Integer> userIds = FXCollections.observableArrayList();
-
-        for (Utilisateur user : users) {
-            userIds.add(user.getId());
-        }
-
-        idUser.setItems(userIds);
-    }*/
-
- /*   public void initData(int id) {
-        this.id = id;
-
-        ProduitsService ps=new ProduitsService();
-        Produits produits = ps.fetchProduitById(id);
-
-        txttype.setText(produits.getType());
-        txtdescription.setText(produits.getDescription());
-        txtlabelle.setText(produits.getLabelle());
-        txtstatus.setText(String.valueOf(produits.getStatus()));
-        txtprix.setText(String.valueOf(produits.getPrix()));
-        txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
     }
 
-  */
  @FXML
  void updateProduits(ActionEvent event) {
-     ProduitsService ps = new ProduitsService();
+
 
      String description = txtdescription.getText();
      String labelle = txtlabelle.getText();
-     String photo = txtphoto.getText();
+
      String type = txttype.getText();
      int status = Integer.parseInt(txtstatus.getText());
      float prix = Float.parseFloat(txtprix.getText());
      int periodeGarantie = Integer.parseInt(txtperiodeGarentie.getText());
      Integer selectedUserid = idUser.getValue();
-     Utilisateur selectedUser = ps.getUserById(selectedUserid);
-
-     Produits pr = new Produits(id, type, description, prix, labelle, status, periodeGarantie, selectedUserid);
-     ps.update(pr);
+      ProduitsService produitsService = new ProduitsService();
+     Utilisateur iduser = produitsService.getUserById(selectedUserid);
+     Produits pr = new Produits(id,type, description, prix, labelle, status, periodeGarantie, iduser);
+     produitsService.update(pr);
 
      try {
          // Fermez la fenêtre

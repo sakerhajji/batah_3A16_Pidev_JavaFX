@@ -20,10 +20,10 @@ ProduitsService ps=new ProduitsService();
             return; // Quittez la méthode si l'utilisateur n'existe pas
         }
         Produits nouvelleProduit = new Produits(
-                "cccc",
+                1,
                 "www",
-                10.0f,
-                "ww",
+                "ff",
+                20.1f,
                 "ww",
                 1,
                 50,
