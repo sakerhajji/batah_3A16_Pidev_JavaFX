@@ -35,6 +35,7 @@ public class utilisateurService {
         }
         return userList;
     }
+
   /*  public Utilisateur getUserByName(String nomUtilisateur, String prenomUtilisateur) throws SQLException {
         // Query to retrieve the Utilisateur by name
         String query = "SELECT * FROM utilisateur WHERE nomUtilisateur = ? AND prenomUtilisateur = ?";

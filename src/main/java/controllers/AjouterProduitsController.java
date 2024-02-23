@@ -74,14 +74,14 @@ public class AjouterProduitsController {
     private TextField txtstatus;
 
     @FXML
-    private TextField txttype;
+    private ChoiceBox<String> txttype;
 
     private ProduitsService produitsService = new ProduitsService();
     @FXML
     void initialize() {
         utilisateurService userService = new utilisateurService(); // Initialize the userService field
         populateUserComboBox(); // Pass the service to the method
-
+        addInputRestrictions();
         /*
             // Convertir les IDs en objets Utilisateur (vous devrez peut-être adapter cela selon votre structure)
             List<Utilisateur> users = userIds.stream()
@@ -90,7 +90,33 @@ public class AjouterProduitsController {
 */
 
     }
-                public void populateUserComboBox() {
+    private void addInputRestrictions() {
+        // Contrôle de saisie pour le champ txttype (ChoiceBox)
+        txttype.getItems().addAll("voiture", "maison");
+
+        // Contrôle de saisie pour le champ txtstatus (TextField)
+        txtstatus.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[01]")) {
+                txtstatus.setText(oldValue);
+            }
+        });
+
+        // Contrôle de saisie pour le champ txtprix (TextField)
+        txtprix.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtprix.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        // Contrôle de saisie pour le champ txtperiodeGarentie (TextField)
+        txtperiodeGarentie.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtperiodeGarentie.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
+    public void populateUserComboBox() {
 
                     utilisateurService u = new utilisateurService();
                     List<Utilisateur> users = null;
@@ -117,24 +143,19 @@ public class AjouterProduitsController {
         String labelle = txtlabelle.getText();
         String photo = txtphoto.getText();
         int status = Integer.parseInt(txtstatus.getText());
-        String type = txttype.getText();
+        String type = txttype.getItems().toString();
         float prix = Float.parseFloat(txtprix.getText());
         int periodeGarantie = Integer.parseInt(txtperiodeGarentie.getText());
-        //Utilisateur utilisateur = idUser.getValue();
-        // Check if selectedUserid is not null before using it
+
         Integer selectedUserid = idUser.getValue();
         if (selectedUserid == null) {
-            // Handle the case where no user is selected (e.g., show an error message)
             System.out.println("Error: No user selected");
             return;
         }
 
-        Utilisateur selectedUser = produitsService.getUserById(selectedUserid);
+            Utilisateur selectedUser = produitsService.getUserById(selectedUserid);
 
-        // Create a new Produits object
         Produits newProduit = new Produits( type,description,  prix,labelle, photo, status,periodeGarantie, selectedUser);
-
-        // Add the product to the database
         produitsService.add(newProduit);
 
     }
@@ -142,16 +163,16 @@ public class AjouterProduitsController {
 
     @FXML
     void ViewAllProduct(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/AfficherProduits.fxml"));
-        try {
-            Parent root = loader.load();
-//je peut recupere la scene actuelle a traveres tous les composant graphiques
-            txttype.getScene().setRoot(root);
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/AfficherProduits.fxml"));
+            try {
+                Parent root = loader.load();
+    //je peut recupere la scene actuelle a traveres tous les composant graphiques
+                txttype.getScene().setRoot(root);
+            } catch (IOException e) {
 
-            System.out.println(e.getMessage());
-        }
+                System.out.println(e.getMessage());
+            }
 
 
     }

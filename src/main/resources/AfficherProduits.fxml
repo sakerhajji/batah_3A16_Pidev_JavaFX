@@ -5,10 +5,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="684.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherProduitsController">
     <children>
-        <TableView fx:id="table" layoutX="24.0" layoutY="63.0" prefHeight="487.0" prefWidth="881.0">
+        <TableView fx:id="table" layoutX="13.0" layoutY="63.0" prefHeight="487.0" prefWidth="898.0">
             <columns>
                 <TableColumn fx:id="colidProduit" prefWidth="75.0" text="id produit" />
                 <TableColumn fx:id="coltype" prefWidth="75.0" text="type" />
@@ -19,15 +21,22 @@
                 <TableColumn fx:id="colstatus" prefWidth="42.400054931640625" text="status" />
                 <TableColumn fx:id="colperiodeGarentie" prefWidth="97.5999755859375" text="periodeGarentie" />
             <TableColumn fx:id="colUser" prefWidth="87.99993896484375" text="user" />
-            <TableColumn prefWidth="108.79998779296875" text="Actions" />
+            <TableColumn fx:id="deleteTC" prefWidth="75.0" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" prefWidth="75.0" text="Modifier" />
             </columns>
         </TableView>
       <TextField fx:id="txtrecherche" layoutX="663.0" layoutY="30.0" promptText="recherche" />
       <Button layoutX="186.0" layoutY="562.0" mnemonicParsing="false" onAction="#addProduits" text="Ajouter" />
-      <Button layoutX="353.0" layoutY="562.0" mnemonicParsing="false" onAction="#DeleteProduct" text="Supprimer" />
-      <Button layoutX="526.0" layoutY="562.0" mnemonicParsing="false" onAction="#UpdateProduct" text="Modifier" />
       <Button layoutX="806.0" layoutY="623.0" mnemonicParsing="false" onAction="#ExitToMenu" text="Retour au menu" />
       <Button layoutX="52.0" layoutY="623.0" mnemonicParsing="false" onAction="#PrintPDF" text="Print PDF" />
-      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" text="Tri" />
+      <Button layoutX="574.0" layoutY="30.0" mnemonicParsing="false" text="Tri" />
+      <Text layoutX="41.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product details" wrappingWidth="222.295654296875">
+         <font>
+            <Font name="Bauhaus 93" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="436.0" layoutY="562.0" mnemonicParsing="false" onAction="#updatebtn" text="update" />
+      <Button layoutX="649.0" layoutY="575.0" mnemonicParsing="false" onAction="#deletebtn" text="delete" />
+      <Button layoutX="821.0" layoutY="30.0" mnemonicParsing="false" onAction="#rechercher" text="search" />
     </children>
 </AnchorPane>

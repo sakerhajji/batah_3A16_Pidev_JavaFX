@@ -58,8 +58,8 @@ public class ProduitsService {
     }
 
 
-    public void update(Produits produits) {
-        String requete = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=? WHERE id=?";
+   /* public void update(Produits produits) {
+        String requete = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=? ,idUtilisateur=? WHERE id=?";
         try {
             PreparedStatement ps = conn.prepareStatement(requete);
             ps.setString(1, produits.getType());
@@ -68,14 +68,23 @@ public class ProduitsService {
             ps.setString(4, produits.getLabelle());
             ps.setInt(5, produits.getStatus());
             ps.setInt(6, produits.getPeriodeGarentie());
-            ps.setInt(7, produits.getId().getId());  // Assuming getId() returns the ID of the product
+            ps.setInt(7, produits.getId().getId());
 
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
+   public void update(Produits p) {
+       String requete = "UPDATE produits SET type='" + p.getType() + "', description='" + p.getDescription() + "', prix='" + p.getPrix() + "', labelle='" + p.getLabelle() + "', status='" + p.getStatus() + "', periodeGarantie=" + p.getPeriodeGarentie() + " WHERE idProduit=" + p.getIdProduit();
+       try {
+           ste=conn.createStatement();
+           ste.executeUpdate(requete);
+       } catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
+   }
 
 
     public List<Produits> readAll() {
@@ -158,6 +167,57 @@ public class ProduitsService {
 
         return utilisateurs;
     }
+
+
+    public Produits getProduitById(int id) throws SQLException {
+        Produits produit = null;
+        String query = "SELECT * FROM produits WHERE idProduit = ?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                produit = new Produits();
+                produit.setIdProduit(rs.getInt("idProduit"));
+                produit.setType(rs.getString("type"));
+                produit.setDescription(rs.getString("description"));
+                produit.setPrix(rs.getFloat("prix"));
+                produit.setLabelle(rs.getString("labelle"));
+                produit.setStatus(rs.getInt("status"));
+                produit.setPeriodeGarentie(rs.getInt("periodeGarantie"));
+                // Assuming Utilisateur is a class, you need to handle setting it here
+                // For the sake of demonstration, let's assume you have a method to set Utilisateur
+                // produit.setId(rs.getInt("utilisateur_id"));
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+        return produit;
+    }
+    public Produits fetchProduitById(int idProduit) {
+        String query = "SELECT * FROM produits WHERE idProduit = ?";
+        try (PreparedStatement pst = conn.prepareStatement(query)) {
+            pst.setInt(1, idProduit);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    int idProduitResult = rs.getInt("idProduit");
+                    String type = rs.getString("type");
+                    String description = rs.getString("description");
+                    float prix = rs.getFloat("prix");
+                    String labelle = rs.getString("labelle");
+                    int status = rs.getInt("status");
+                    int periodeGarantie = rs.getInt("periodeGarantie");
+
+                    // Create and return Produits object
+                    return new Produits(idProduitResult, type, description, prix, labelle, status, periodeGarantie, null); // Assuming Utilisateur id is not needed here
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la lecture du produit par ID", e);
+        }
+        return null; // Return null if no Produits object found for the given ID
+    }
+
    /*public List<Utilisateur> getAllUsers() {
        List<Utilisateur> utilisateurs = new ArrayList<>();
        String query = "SELECT * FROM utilisateur";
@@ -256,6 +316,44 @@ public class ProduitsService {
             throw new RuntimeException(ex);
         }
         return null;
+    }
+
+    public List<Produits> rechercheParNom(String nom) {
+        ResultSet rs = null;
+        List<Produits> list2 = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM produits WHERE type LIKE ?";
+            pst = conn.prepareStatement(query);
+            pst.setString(1, "%" + nom + "%");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Produits produits = new Produits();
+
+                produits.setIdProduit(rs.getInt(1));
+                produits.setType(rs.getString("type"));
+                produits.setDescription(rs.getString("description"));
+                produits.setPrix(rs.getFloat("prix"));
+                produits.setLabelle(rs.getString("labelle"));
+                produits.setStatus(rs.getInt("status"));
+                produits.setPeriodeGarentie(rs.getInt(7));
+                Utilisateur user=new Utilisateur();
+                user.setId(rs.getInt("idUtilisateur"));
+                produits.setId(user);
+
+                list2.add(produits);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list2;
     }
 
 

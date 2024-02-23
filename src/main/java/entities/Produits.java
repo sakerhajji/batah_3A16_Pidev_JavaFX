@@ -45,6 +45,14 @@ public class Produits {
     }
 
 
+
+    public Produits(int idProduitResult, String type, String description, float prix, String labelle, int status, int periodeGarantie, Object id) {
+    }
+
+    public Produits(int id, String type, String description, float prix, String labelle, int status, int periodeGarantie) {
+    }
+
+
     public Utilisateur getId() {
         return id;
     }
