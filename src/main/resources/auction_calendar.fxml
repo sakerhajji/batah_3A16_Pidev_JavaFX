@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="AuctionCalendar"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.AuctionCalendarController"
+      prefWidth="400" prefHeight="400" spacing="10"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
 
-</AnchorPane>
+    <HBox alignment="CENTER">
+        <Label text="February 2024" style="-fx-font-size: 20;"/>
+    </HBox>
+
+    <GridPane fx:id="calendarGrid" alignment="CENTER" hgap="5" vgap="5">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+            <ColumnConstraints percentWidth="14"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+            <RowConstraints percentHeight="14"/>
+        </rowConstraints>
+        <children>
+            <!-- Day labels -->
+            <Label text="Sun" style="-fx-font-weight: bold;"/>
+            <Label text="Mon" style="-fx-font-weight: bold;" GridPane.columnIndex="1"/>
+            <Label text="Tue" style="-fx-font-weight: bold;" GridPane.columnIndex="2"/>
+            <Label text="Wed" style="-fx-font-weight: bold;" GridPane.columnIndex="3"/>
+            <Label text="Thu" style="-fx-font-weight: bold;" GridPane.columnIndex="4"/>
+            <Label text="Fri" style="-fx-font-weight: bold;" GridPane.columnIndex="5"/>
+            <Label text="Sat" style="-fx-font-weight: bold;" GridPane.columnIndex="6"/>
+
+            <!-- Calendar days -->
+            <!-- You can add calendar day labels dynamically from the controller -->
+        </children>
+    </GridPane>
+
+</VBox>

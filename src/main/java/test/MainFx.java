@@ -17,7 +17,7 @@ public class MainFx extends Application {
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/ListeEncheres.fxml"));
+                .getResource("/auction_calendar.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
