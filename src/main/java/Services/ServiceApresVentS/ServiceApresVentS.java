@@ -1,7 +1,7 @@
 package Services.ServiceApresVentS;
 
 import DataBaseSource.DataSource;
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import InterfaceServices.IService;
@@ -85,7 +85,7 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 Date date=rs.getDate("date");
                 boolean status = rs.getBoolean("status");
                 // Fetching Partenaire and Achats objects
-                partenaire idPartenaire = new partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
+                Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
                 Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"), rs.getDate("dateAchats"));
                 ServiceApresVente sav = new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
                 list.add(sav);
@@ -117,7 +117,7 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 String type = rs.getString("type");
                 Date date = rs.getDate("date");
                 boolean status = rs.getBoolean("status");
-                partenaire idPartenaire = new partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
+                Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
                 Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"),date);
                 return new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
             }

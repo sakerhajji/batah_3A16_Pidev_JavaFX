@@ -1,8 +1,6 @@
 package Entity.entitiesServiceApresVente;
 
-import Entity.UserAdmin.Admin;
-import Entity.UserAdmin.Membre;
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
 
 import java.sql.Date;
@@ -13,11 +11,11 @@ public class ServiceApresVente {
     private String type;
     private Date date;
     private boolean status;
-    private partenaire idPartenaire;
+    private Partenaire idPartenaire;
     private Achats idAchats;
 
 
-    public ServiceApresVente(int idService, String description, String type, Date date, boolean status, partenaire idPartenaire, Achats idAchats) {
+    public ServiceApresVente(int idService, String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats) {
         this.idService = idService;
         this.description = description;
         this.type = type;
@@ -27,7 +25,7 @@ public class ServiceApresVente {
         this.idAchats = idAchats;
     }
 
-    public ServiceApresVente(String description, String type, Date date, boolean status, partenaire idPartenaire, Achats idAchats) {
+    public ServiceApresVente(String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats) {
         this.description = description;
         this.type = type;
         this.date = date;
@@ -76,11 +74,11 @@ public class ServiceApresVente {
         this.status = status;
     }
 
-    public partenaire getIdPartenaire() {
+    public Partenaire getIdPartenaire() {
         return idPartenaire;
     }
 
-    public void setIdPartenaire(partenaire idPartenaire) {
+    public void setIdPartenaire(Partenaire idPartenaire) {
         this.idPartenaire = idPartenaire;
     }
 

@@ -1,6 +1,6 @@
 package Entity.entitiesPartenaire;
 
-public class partenaire {
+public class Partenaire {
     private int id;
     private String nom;
     private String type;
@@ -11,7 +11,7 @@ public class partenaire {
     private int points; // Nouveau champ points
 
 
-    public partenaire(int id, String nom, String type, String adresse, int tel, String email) {
+    public Partenaire(int id, String nom, String type, String adresse, int tel, String email) {
         this.id = id;
         this.nom = nom;
         this.type = type;
@@ -20,10 +20,10 @@ public class partenaire {
         this.email = email;
     }
 
-    public partenaire() {
+    public Partenaire() {
     }
 
-    public partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
+    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
         this.id = id;
         this.nom = nom;
         this.type = type;
@@ -33,7 +33,7 @@ public class partenaire {
         this.logo = logo;
     }
 
-    public partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
+    public Partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
         this.nom = nom;
         this.type = type;
         this.adresse = adresse;
