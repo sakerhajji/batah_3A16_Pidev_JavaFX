@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="537.0" prefWidth="742.0" styleClass="form_container" stylesheets="@../cssPartenaire/Stylesheet.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.modifier_personneController">
+<AnchorPane prefHeight="537.0" prefWidth="742.0" styleClass="form_container" stylesheets="@../cssPartenaire/Stylesheet.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.modifier_PartenaireController">
     <children>
         <TextField fx:id="nom" layoutX="40.0" layoutY="111.0" prefWidth="216.0" />
         <ComboBox fx:id="typeComboBox" layoutX="329.0" layoutY="105.0" prefHeight="47.0" prefWidth="204.0" promptText="Choisir un type">

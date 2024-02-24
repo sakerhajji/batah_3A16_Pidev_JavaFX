@@ -1,6 +1,6 @@
 package controllers.controllerPartenaire;
 
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 import Services.servicePartenaire.partenaireService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 
-public class modifier_personneController {
+public class modifier_PartenaireController {
 
     @FXML
     private TextField adressee;
@@ -42,20 +42,17 @@ public class modifier_personneController {
         this.id = id;
 
         partenaireService ps = new partenaireService();
-        partenaire personne = ps.readById(id);
+        Partenaire personne = ps.readById(id);
 
         adressee.setText(personne.getAdresse());
         nom.setText(personne.getNom());
         tel.setText(String.valueOf(personne.getTel()));
         typeComboBox.setValue(personne.getType());
         email.setText(personne.getEmail());
-
-        // Charger l'image
         if ( !personne.getLogo().isEmpty()) {
             String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + personne.getLogo();
             Image image = new Image(new File(imagePath).toURI().toString());
             imageLogo.setImage(image);
-            // Définir le nom de fichier de l'image
             logoFileName = personne.getLogo();
         }
     }
@@ -108,7 +105,7 @@ public class modifier_personneController {
 
         if (isValid) {
             int tl = Integer.parseInt(telText);
-            partenaire pr = new partenaire(id, nm, tp, ad, tl, eml, logoFileName);
+            Partenaire pr = new Partenaire(id, nm, tp, ad, tl, eml, logoFileName);
             ps.update(pr);
 
             try {
