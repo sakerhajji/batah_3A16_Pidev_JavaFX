@@ -1,13 +1,13 @@
 package Services.servicePartenaire;
 
 import DataBaseSource.DataSource;
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class partenaireService implements IService<partenaire>{
+public class partenaireService implements IService<Partenaire>{
     private Connection con;
     private Statement ste;
     private PreparedStatement pst;
@@ -16,7 +16,7 @@ public class partenaireService implements IService<partenaire>{
         con= DataSource.getInstance().getCnx();
     }
 
-    public void add(partenaire p){
+    public void add(Partenaire p){
         String requete="insert into partenaires (nom,type,adresse,telephone,email,logo) values ('"+p.getNom()+"','"+p.getType()+"','"+p.getAdresse()+"',"+p.getTel()+",'"+p.getEmail()+"','"+p.getLogo()+"')";
         try {
             ste=con.createStatement();
@@ -26,7 +26,7 @@ public class partenaireService implements IService<partenaire>{
         }
     }
 
-    public void update(partenaire p) {
+    public void update(Partenaire p) {
         String requete="update partenaires set nom='"+p.getNom()+"',type='"+p.getType()+"',adresse='"+p.getAdresse()+"',telephone="+p.getTel()+",email='"+p.getEmail()+"',logo='"+p.getLogo()+"' where idPartenaire="+p.getId()+"";
         try {
             ste=con.createStatement();
@@ -48,14 +48,14 @@ public class partenaireService implements IService<partenaire>{
         }
     }
     @Override
-    public List<partenaire> readAll() {
+    public List<Partenaire> readAll() {
         String requte="select * from partenaires";
-        List<partenaire> list=new ArrayList<>();
+        List<Partenaire> list=new ArrayList<>();
         try {
             ste=con.createStatement();
             ResultSet rs =ste.executeQuery(requte);
             while(rs.next()){
-                list.add(new partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8)));
+                list.add(new Partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,15 +64,15 @@ public class partenaireService implements IService<partenaire>{
     }
 
     @Override
-    public partenaire readById(int id) {
+    public Partenaire readById(int id) {
         String requete = "SELECT * FROM partenaires WHERE idPartenaire=?";
-        partenaire par = null;
+        Partenaire par = null;
         try {
             PreparedStatement ps = con.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                par = new partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(8));
+                par = new Partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(8));
             }
             ps.close();
         } catch (SQLException e) {
@@ -81,9 +81,9 @@ public class partenaireService implements IService<partenaire>{
         return par;
     }
 
-    public List<partenaire> rechercheParNom(String nom) {
+    public List<Partenaire> rechercheParNom(String nom) {
         ResultSet resultSet = null;
-        List<partenaire> partenaires = new ArrayList<>();
+        List<Partenaire> Partenaires = new ArrayList<>();
         try {
             String query = "SELECT * FROM partenaires WHERE nom LIKE ?";
             pst = con.prepareStatement(query);
@@ -91,30 +91,25 @@ public class partenaireService implements IService<partenaire>{
             resultSet = pst.executeQuery();
 
             while (resultSet.next()) {
-                partenaire p = new partenaire();
+                Partenaire p = new Partenaire();
                 p.setId(resultSet.getInt(1));
                 p.setNom(resultSet.getString(2));
                 p.setAdresse(resultSet.getString(3));
                 p.setEmail(resultSet.getString(4));
                 p.setTel(resultSet.getInt(5));
                 p.setType(resultSet.getString(6));
-                p.setLogo(resultSet.getString(7));
-                p.setPoints(resultSet.getInt(8));
+                p.setLogo(resultSet.getString(8));
 
-                partenaires.add(p);
+
+                Partenaires.add(p);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return partenaires;
+
+        return Partenaires;
     }
 
-    // Autres méthodes (addPst, delete) non modifiées pour inclure le champ logo
+
 }

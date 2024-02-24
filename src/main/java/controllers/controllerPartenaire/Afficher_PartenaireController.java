@@ -1,9 +1,8 @@
 package controllers.controllerPartenaire;
 
 
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 import Services.servicePartenaire.partenaireService;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,38 +20,37 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Afficher_personneController implements Initializable {
+public class Afficher_PartenaireController implements Initializable {
 
     @FXML
-    private TableView<partenaire> table;
+    private TableView<Partenaire> table;
 
     @FXML
-    private TableColumn<partenaire, Integer> colid;
+    private TableColumn<Partenaire, Integer> colid;
 
     @FXML
-    private TableColumn<partenaire, String> colnom;
+    private TableColumn<Partenaire, String> colnom;
 
     @FXML
-    private TableColumn<partenaire, String> coltype;
+    private TableColumn<Partenaire, String> coltype;
 
     @FXML
-    private TableColumn<partenaire, String> coladresse;
+    private TableColumn<Partenaire, String> coladresse;
 
     @FXML
-    private TableColumn<partenaire, Integer> coltel;
+    private TableColumn<Partenaire, Integer> coltel;
 
     @FXML
-    private TableColumn<partenaire, String> colemail;
+    private TableColumn<Partenaire, String> colemail;
     @FXML
-    private TableColumn<partenaire, String> logo;
+    private TableColumn<Partenaire, String> logo;
     @FXML
-    private TableColumn<partenaire, Void> modifyTC;
+    private TableColumn<Partenaire, Void> modifyTC;
     @FXML
-    private TableColumn<partenaire, Void> deleteTC;
+    private TableColumn<Partenaire, Void> deleteTC;
     @FXML
     private TextField searchField;
 
@@ -76,20 +74,20 @@ public class Afficher_personneController implements Initializable {
 
     private void rechercherPartenaireParNom(String nom) {
         partenaireService ps = new partenaireService();
-        List<partenaire> resultatRecherche = ps.rechercheParNom(nom);
-        ObservableList<partenaire> listeResultat = FXCollections.observableArrayList(resultatRecherche);
+        List<Partenaire> resultatRecherche = ps.rechercheParNom(nom);
+        ObservableList<Partenaire> listeResultat = FXCollections.observableArrayList(resultatRecherche);
         table.setItems(listeResultat);
     }
 
 
     @FXML
-    void modifier(partenaire event) {
+    void modifier(Partenaire event) {
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/modifier_personne.fxml"));
                 Parent root = loader.load();
 
-                modifier_personneController c = loader.getController();
+                modifier_PartenaireController c = loader.getController();
                 c.initData(event.getId());
 
                 Scene scene = new Scene(root);
@@ -105,7 +103,7 @@ public class Afficher_personneController implements Initializable {
 
 
     @FXML
-    void supprimer(partenaire event) {
+    void supprimer(Partenaire event) {
 
             partenaireService ps=new partenaireService();
             ps.delete(event.getId());
@@ -139,16 +137,16 @@ public class Afficher_personneController implements Initializable {
 
     public void showPartenaires () {
         partenaireService ps = new partenaireService();
-        List<partenaire> p = ps.readAll();
-        ObservableList<partenaire> list = FXCollections.observableArrayList(p);
+        List<Partenaire> p = ps.readAll();
+        ObservableList<Partenaire> list = FXCollections.observableArrayList(p);
         table.setItems(list);
-        colid.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("id"));
-        colnom.setCellValueFactory(new PropertyValueFactory<partenaire, String>("nom"));
-        coltel.setCellValueFactory(new PropertyValueFactory<partenaire, Integer>("tel"));
-        coladresse.setCellValueFactory(new PropertyValueFactory<partenaire,String>("adresse"));
-        coltype.setCellValueFactory(new PropertyValueFactory<partenaire, String>("type"));
-        colemail.setCellValueFactory(new PropertyValueFactory<partenaire, String>("email"));
-        logo.setCellFactory(column -> new TableCell<partenaire, String>() {
+        colid.setCellValueFactory(new PropertyValueFactory<Partenaire, Integer>("id"));
+        colnom.setCellValueFactory(new PropertyValueFactory<Partenaire, String>("nom"));
+        coltel.setCellValueFactory(new PropertyValueFactory<Partenaire, Integer>("tel"));
+        coladresse.setCellValueFactory(new PropertyValueFactory<Partenaire,String>("adresse"));
+        coltype.setCellValueFactory(new PropertyValueFactory<Partenaire, String>("type"));
+        colemail.setCellValueFactory(new PropertyValueFactory<Partenaire, String>("email"));
+        logo.setCellFactory(column -> new TableCell<Partenaire, String>() {
             @Override
             protected void updateItem(String imageName, boolean empty) {
                 super.updateItem(imageName, empty);
@@ -193,7 +191,7 @@ public class Afficher_personneController implements Initializable {
                     modifyButton.setGraphic(imageView);
                     setGraphic(modifyButton);
                     modifyButton.setOnAction(event -> {
-                        partenaire pm = getTableView().getItems().get(getIndex());
+                        Partenaire pm = getTableView().getItems().get(getIndex());
                         modifier(pm);
                     });
                 }
@@ -221,7 +219,7 @@ public class Afficher_personneController implements Initializable {
                     deleteButton.setGraphic(imageView);
                     setGraphic(deleteButton);
                     deleteButton.setOnAction(event -> {
-                        partenaire pm = getTableView().getItems().get(getIndex());
+                        Partenaire pm = getTableView().getItems().get(getIndex());
                         supprimer(pm);
                     });
                 }

@@ -1,7 +1,6 @@
 package controllers.UserAdminController;
 
 import Entity.UserAdmin.Admin;
-import controllers.controllerPartenaire.modifier_personneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

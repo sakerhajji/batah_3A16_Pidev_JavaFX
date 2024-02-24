@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="554.0" prefWidth="709.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.Afficher_personneController">
+<AnchorPane prefHeight="554.0" prefWidth="709.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.Afficher_PartenaireController">
    <children>
       <Label alignment="CENTER" layoutX="167.0" layoutY="14.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" text="Afficher" />
       <HBox layoutX="407.0" layoutY="23.0">
