@@ -14,7 +14,7 @@ public class MainFx extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-private  double x,y  ;
+    private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()

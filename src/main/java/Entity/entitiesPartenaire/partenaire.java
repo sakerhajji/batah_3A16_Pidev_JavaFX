@@ -10,6 +10,16 @@ public class partenaire {
     private String logo; // Nouveau champ logo
     private int points; // Nouveau champ points
 
+
+    public partenaire(int id, String nom, String type, String adresse, int tel, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.type = type;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
+    }
+
     public partenaire() {
     }
 

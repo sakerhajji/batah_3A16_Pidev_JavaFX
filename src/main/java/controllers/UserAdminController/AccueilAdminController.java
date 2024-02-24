@@ -46,13 +46,13 @@ public class AccueilAdminController implements Initializable {
     private Button btnOverview;
 
     @FXML
-    private Button btnOrders;
+    private Button ServiceButton;
 
     @FXML
-    private Button btnCustomers;
+    private Button PartenaireButton;
 
     @FXML
-    private Button btnMenus;
+    private Button ProduitButton;
 
     @FXML
     private Pane pnlCustomer;
@@ -85,7 +85,7 @@ public class AccueilAdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), this::updatePage));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         refrechPage();
@@ -93,7 +93,7 @@ public class AccueilAdminController implements Initializable {
     }
     public void refrechPage()
     {
-pnItems.getChildren().clear();
+        pnItems.getChildren().clear();
 
         try {
             Image image = new Image("/images/SakerHajji.png");
@@ -102,21 +102,20 @@ pnItems.getChildren().clear();
             AdminService adminService=new AdminService() ;
             a=adminService.readAll();
             int i = 0 ;
-
             for (Admin admin:a) {
                 final int j = i;
                 i++ ;
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/ligne.fxml"));
                 Node item = loader.load();
-                LigneController l = loader.getController();
+                LigneController loaderController = loader.getController();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
-                l.setAdmin(admin);
-                l.setNom(admin.getNomUtilisateur());
-                l.setPrenom(admin.getPrenomUtilisateur());
-                l.setDateNaissance(dateOfBirthString);
-                l.setEmail(admin.getMailUtilisateur());
+                loaderController.setAdmin(admin);
+                loaderController.setNom(admin.getNomUtilisateur());
+                loaderController.setPrenom(admin.getPrenomUtilisateur());
+                loaderController.setDateNaissance(dateOfBirthString);
+                loaderController.setEmail(admin.getMailUtilisateur());
                 item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
                 item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
 
@@ -127,14 +126,16 @@ pnItems.getChildren().clear();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        a.clear();
+        finally {
+            a.clear();
+        }
     }
 
     @FXML
     private Circle Profile;
     @FXML
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnCustomers) {
+        if (actionEvent.getSource() == PartenaireButton) {
             pnlCustomer.setStyle("-fx-background-color: #FFFFFF");
             pnlCustomer.toFront();
             FXMLLoader p = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_personne.fxml"));
@@ -142,7 +143,7 @@ pnItems.getChildren().clear();
             loadSofXMLContent();
 
 
-        } else if (actionEvent.getSource() == btnMenus) {
+        } else if (actionEvent.getSource() == ProduitButton) {
             pnlMenus.setStyle("-fx-background-color: #FFFFFF");
             pnlMenus.toFront();
             FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
@@ -153,9 +154,12 @@ pnItems.getChildren().clear();
             timeline.play();
             pnlOverview.setStyle("-fx-background-color: #fff0e7");
             pnlOverview.toFront();
-        } else if (actionEvent.getSource() == btnOrders) {
+        } else if (actionEvent.getSource() == ServiceButton) {
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/serviceApresVente/ligneServices.fxml"));
             pnlOrders.setStyle("-fx-background-color: #464F67");
             pnlOrders.toFront();
+            loadServiceXMLContent();
+
         }
     }
     private void loadSofXMLContent() {
@@ -180,8 +184,21 @@ pnItems.getChildren().clear();
         }
     }
 
+    private void loadServiceXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteAffiche.fxml"));
+            Pane XMLPane = loader.load();
+            pnlOrders.getChildren().clear();
+            pnlOrders.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void updatePage(ActionEvent events) {
-        timeline=null;
+
 
         refrechPage();
         System.out.println("Mise à jour de la page...");
