@@ -1,11 +1,10 @@
 package controllers.controllerPartenaire;
 
-import Entity.entitiesPartenaire.partenaire;
+import Entity.entitiesPartenaire.Partenaire;
 import Services.servicePartenaire.partenaireService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 
-public class Ajouter_personneController {
+public class Ajouter_PartenaireController {
 
     @FXML
     private TextField adresse;
@@ -81,7 +80,7 @@ public class Ajouter_personneController {
 
         if (isValid) {
             int tl = Integer.parseInt(telText);
-            partenaire p = new partenaire(nm, tp, ad, tl, eml, logoFileName);
+            Partenaire p = new Partenaire(nm, tp, ad, tl, eml, logoFileName);
             partenaireService ps = new partenaireService();
             ps.add(p);
 

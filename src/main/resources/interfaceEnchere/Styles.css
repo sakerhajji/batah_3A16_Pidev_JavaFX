@@ -1,0 +1,40 @@
+/* Define a class for buttons */
+.button-orange {
+    -fx-background-color: #FFA500; /* Orange */
+    -fx-text-fill: white; /* White text */
+}
+
+/* Define styles for TableView */
+.table-view {
+    -fx-background-color: #FFEFD5; /* PapayaWhip */
+}
+
+/* Define styles for TableView cells */
+.table-cell {
+    -fx-background-color: #FFDAB9; /* PeachPuff */
+}
+
+/* Define styles for AnchorPane */
+.anchor-pane {
+    -fx-background-color: #FFA500; /* Orange */
+}
+
+/* Define styles for GridPane */
+.grid-pane {
+    -fx-background-color: #FFDAB9; /* PeachPuff */
+}
+
+/* Define styles for labels */
+.label {
+    -fx-text-fill: #FF4500; /* OrangeRed */
+}
+
+/* Define styles for text fields */
+.text-field {
+    -fx-background-color: #FFEFD5; /* PapayaWhip */
+}
+
+/* Define styles for date pickers */
+.date-picker {
+    -fx-background-color: #FFEFD5; /* PapayaWhip */
+}

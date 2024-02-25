@@ -18,7 +18,7 @@ private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                .getResource("/serviceApresVente/ServiceApresVenteAffiche.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);
