@@ -6,20 +6,36 @@ import java.sql.SQLException;
 
 public class DataSource {
     private Connection cnx;
-    private String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11685928";
-    private String login = "sql11685928";
-    private String pwd = "byRB9bfy4H";
     private static DataSource instance;
+
+    // Online database connection details
+    private String onlineUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11685928";
+    private String onlineLogin = "sql11685928";
+    private String onlinePwd = "byRB9bfy4H";
+
+    // Local database connection details
+    private String localUrl = "jdbc:mysql://localhost:3306/BatahApp";
+    private String localLogin = "root";
+    private String localPwd = "";
 
     private DataSource() {
         try {
-            cnx = DriverManager.getConnection(url, login, pwd);
-            System.out.println("success");
+            // Connect to the online database by default
+            cnx = DriverManager.getConnection(onlineUrl, onlineLogin, onlinePwd);
+            System.out.println("Connected to online database successfully");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Failed to connect to online database. Trying local database...");
+            try {
+                // If online connection fails, connect to the local database
+                cnx = DriverManager.getConnection(localUrl, localLogin, localPwd);
+                System.out.println("Connected to local database successfully");
+            } catch (SQLException ex) {
+                throw new RuntimeException("Failed to connect to both online and local databases", ex);
+            }
         }
     }
 
+    // Singleton pattern to ensure only one instance of DataSource is created
     public static DataSource getInstance() {
         if (instance == null)
             instance = new DataSource();

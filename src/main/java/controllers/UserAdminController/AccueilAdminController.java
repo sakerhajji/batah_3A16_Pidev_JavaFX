@@ -29,6 +29,7 @@ import javafx.util.Duration;
 
 public class AccueilAdminController implements Initializable {
     private  List<Admin>a;
+    AdminService adminService=new AdminService() ;
     @FXML
     private Circle profile;
     @FXML
@@ -85,21 +86,23 @@ public class AccueilAdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        refrechPage();
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        refrechPage();
+
 
     }
     public void refrechPage()
     {
+
         pnItems.getChildren().clear();
 
         try {
             Image image = new Image("/images/SakerHajji.png");
             Profile.setFill(new ImagePattern(image));
 
-            AdminService adminService=new AdminService() ;
+
             a=adminService.readAll();
             int i = 0 ;
             for (Admin admin:a) {
