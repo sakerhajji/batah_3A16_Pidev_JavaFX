@@ -1,5 +1,7 @@
 package Services.ServiceProduit;
 
+import Entity.entitiesPartenaire.Partenaire;
+import Entity.entitiesProduits.Achats;
 import Entity.entitiesProduits.Produits;
 import Entity.UserAdmin.Membre;
 import DataBaseSource.DataSource;
@@ -204,6 +206,38 @@ public class ProduitsService {
         }
         return list2;
     }
+    public List<Achats> readAllAchat() {
+        String requte="select * from achats";
+        List<Achats> list=new ArrayList<>();
+        try {
+            ste=conn.createStatement();
+            ResultSet rs =ste.executeQuery(requte);
+            while(rs.next()){
+                list.add(new Achats(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    public Achats readbyIdAchat(int id)
+    {
+        String requete = "SELECT * FROM achats WHERE idAchats=?";
+        Achats par = null;
+        try {
+            PreparedStatement ps = conn.prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                par = new Achats(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4));
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return par;
+    }
+
 
 
 }

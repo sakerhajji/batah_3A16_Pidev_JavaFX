@@ -20,14 +20,13 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
 
     @Override
     public void add(ServiceApresVente serviceApresVente) {
-        String req = "INSERT INTO service_apres_vente (description, type, date, status, idPartenaire, idAchats) VALUES (?,?,?,?,?,?)";
+        String req = "INSERT INTO service_apres_vente (description, type, date, status, idAchats) VALUES (?,?,?,?,?)";
         try (PreparedStatement pst = con.prepareStatement(req)) {
             pst.setString(1, serviceApresVente.getDescription());
             pst.setString(2, serviceApresVente.getType());
             pst.setTimestamp(3, new Timestamp(serviceApresVente.getDate().getTime()));
             pst.setBoolean(4, serviceApresVente.isStatus());
-            pst.setInt(5, serviceApresVente.getIdPartenaire().getId());
-            pst.setInt(6, serviceApresVente.getIdAchats().getIdAchats());
+            pst.setInt(5, serviceApresVente.getIdAchats().getIdAchats());
             pst.executeUpdate();
         } catch (SQLException e) {
             // Handle the exception properly (e.g., log it)
