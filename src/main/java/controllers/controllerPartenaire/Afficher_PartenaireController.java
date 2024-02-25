@@ -154,7 +154,7 @@ public class Afficher_PartenaireController implements Initializable {
                     setGraphic(null);
                 } else {
                     ImageView imageView = new ImageView();
-                    String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + imageName;
+                    String imagePath = "src/main/resources/images/imagesPartenaire/" + imageName;
                     Image image = new Image(new File(imagePath).toURI().toString());
                     imageView.setImage(image);
                     imageView.setFitWidth(70);

@@ -50,7 +50,7 @@ public class modifier_PartenaireController {
         typeComboBox.setValue(personne.getType());
         email.setText(personne.getEmail());
         if ( !personne.getLogo().isEmpty()) {
-            String imagePath = "E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire/" + personne.getLogo();
+            String imagePath = "src/main/resources/images/imagesPartenaire/" + personne.getLogo();
             Image image = new Image(new File(imagePath).toURI().toString());
             imageLogo.setImage(image);
             logoFileName = personne.getLogo();
@@ -121,7 +121,7 @@ public class modifier_PartenaireController {
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        File initialDirectory = new File("E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire");
+        File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
         fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {

@@ -9,7 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,6 +37,8 @@ public class UpdateInterfaceAUControllers implements Initializable {
     private TextField numeroCin;
     @FXML
     private TextField numeroTelephone;
+    @FXML
+    private Circle profile;
 
 
 
@@ -61,7 +69,25 @@ public class UpdateInterfaceAUControllers implements Initializable {
 
 
     }
+    @FXML
+    void UpdateImg(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        File initialDirectory = new File("src/main/resources/images");
+        fileChooser.setInitialDirectory(initialDirectory);
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            String imageName = selectedFile.getName();
+            Image image = new Image(selectedFile.toURI().toString());
 
+            profile.setFill(new ImagePattern(image));
+
+            // Enregistrer le nom de l'image
+            // Enregistrer le nom de l'image
+            String img=selectedFile.toURI().toString();
+        }
+
+    }
     @FXML
     void fermerClicked(ActionEvent event) {
         Node source = (Node) event.getSource();

@@ -97,7 +97,7 @@ public class Ajouter_PartenaireController {
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        File initialDirectory = new File("E:/fac/3eme/java/batah_3A16_Pidev_JavaFX/src/main/resources/images/imagesPartenaire");
+        File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
         fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {

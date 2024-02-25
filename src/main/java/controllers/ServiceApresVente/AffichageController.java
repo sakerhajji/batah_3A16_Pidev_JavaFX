@@ -5,14 +5,18 @@ import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
 import Services.UserAdmineServices.AdminService;
 import controllers.UserAdminController.LigneController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,6 +88,28 @@ public class AffichageController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+    @FXML
+    void ajouter(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/serviceApresVente/ServiceApresVenteAjouter.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            refrechPage();
+            stage.setTitle("Ajouter Reclamation");
+
+
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+        }
+
 
     }
     @Override
