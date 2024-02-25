@@ -18,11 +18,11 @@ public class MainFx extends Application {
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                .getResource("/interfaceEnchere/ListeEncheres.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
+           // primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("Inscription");
             root.setOnMousePressed(event -> {
                 x = event.getSceneX();
@@ -35,7 +35,7 @@ public class MainFx extends Application {
 
             });
             primaryStage.setScene(scene);
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            //primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="622.0" prefWidth="874.0" stylesheets="Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerGestionEnchere.ListeEnchereController">
+    <children>
+        <TableView fx:id="auctionsTableView" layoutX="20.0" layoutY="20.0" prefHeight="524.0" prefWidth="793.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="startDateColumn" prefWidth="100.0" text="Start Date" />
+                <TableColumn fx:id="endDateColumn" prefWidth="100.0" text="End Date" />
+                <TableColumn fx:id="statusColumn" prefWidth="50.0" text="Status" />
+                <TableColumn fx:id="minPriceColumn" prefWidth="80.0" text="Min Price" />
+                <TableColumn fx:id="maxPriceColumn" prefWidth="80.0" text="Max Price" />
+                <TableColumn fx:id="currentPriceColumn" prefWidth="100.0" text="Current Price" />
+                <TableColumn fx:id="nbrParticipantsColumn" prefWidth="100.0" text="nbrParticipants" />
+                <TableColumn fx:id="idProduitColumn" prefWidth="100.0" text="Product ID" />
+                <TableColumn fx:id="modifyColumn" prefWidth="70.0" text="Modify" />
+                <TableColumn fx:id="deleteColumn" prefWidth="70.0" text="Delete" />
+                <!-- Add more columns as needed -->
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

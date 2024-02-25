@@ -1,3 +1,5 @@
-test\MainFx.class
-controllers\controllerPartenaire\Afficher_personneController$2.class
-controllers\controllerPartenaire\Afficher_personneController$1.class
+controllers\ServiceApresVente\AffichageController.class
+Entity\entitiesServiceApresVente\ServiceApresVente.class
+Services\ServiceApresVentS\ServiceApresVentS.class
+controllers\ServiceApresVente\LigneServiceController.class
+Entity\entitiesProduits\Achats.class
