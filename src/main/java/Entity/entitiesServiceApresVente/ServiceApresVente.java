@@ -24,7 +24,12 @@ public class ServiceApresVente {
         this.idPartenaire = idPartenaire;
         this.idAchats = idAchats;
     }
-
+public ServiceApresVente(String description,String type,Date date)
+{
+    this.description = description;
+    this.type = type;
+    this.date = date;
+}
     public ServiceApresVente(String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats) {
         this.description = description;
         this.type = type;

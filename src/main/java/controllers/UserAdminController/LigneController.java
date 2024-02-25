@@ -123,6 +123,7 @@ public class LigneController implements Initializable {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.showAndWait();
 
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

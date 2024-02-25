@@ -43,7 +43,7 @@
             </VBox>
          </children>
       </Pane>
-      <Circle fx:id="profile" fill="#fff0e7" layoutX="245.0" layoutY="77.0" onMouseClicked="#updatePhoto" radius="63.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Circle fx:id="profile" fill="#fff0e7" layoutX="245.0" layoutY="77.0" radius="63.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <Button layoutX="219.0" layoutY="114.0" mnemonicParsing="false" onAction="#UpdateImg" text="Button" />
    </children>
 </AnchorPane>
