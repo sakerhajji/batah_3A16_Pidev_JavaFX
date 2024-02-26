@@ -8,35 +8,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="684.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherProduitsController">
+<AnchorPane prefHeight="554.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherProduitsController">
     <children>
-        <TableView fx:id="table" layoutX="13.0" layoutY="63.0" prefHeight="487.0" prefWidth="898.0">
+        <TableView fx:id="table" layoutX="23.0" layoutY="117.0" prefHeight="363.0" prefWidth="709.0">
             <columns>
-                <TableColumn fx:id="colidProduit" prefWidth="75.0" text="id produit" />
-                <TableColumn fx:id="coltype" prefWidth="75.0" text="type" />
-                <TableColumn fx:id="coldescription" prefWidth="133.5999755859375" text="description" />
-                <TableColumn fx:id="colprix" prefWidth="64.0" text="prix" />
-                <TableColumn fx:id="collabelle" prefWidth="78.39996337890625" text="labelle" />
-                <TableColumn fx:id="colphoto" prefWidth="72.00006103515625" text="photo" />
-                <TableColumn fx:id="colstatus" prefWidth="42.400054931640625" text="status" />
-                <TableColumn fx:id="colperiodeGarentie" prefWidth="97.5999755859375" text="periodeGarentie" />
-            <TableColumn fx:id="colUser" prefWidth="87.99993896484375" text="user" />
-            <TableColumn fx:id="deleteTC" prefWidth="75.0" text="Supprimer" />
-            <TableColumn fx:id="modifyTC" prefWidth="75.0" text="Modifier" />
+                <TableColumn fx:id="colidProduit" prefWidth="48.79998588562012" text="id produit" />
+                <TableColumn fx:id="coltype" prefWidth="62.400001525878906" text="type" />
+                <TableColumn fx:id="coldescription" prefWidth="107.199951171875" text="description" />
+                <TableColumn fx:id="colprix" prefWidth="66.39996337890625" text="prix" />
+                <TableColumn fx:id="collabelle" prefWidth="73.5999755859375" text="labelle" />
+                <TableColumn fx:id="colphoto" prefWidth="82.39990234375" text="photo" />
+                <TableColumn fx:id="colstatus" prefWidth="41.5999755859375" text="status" />
+                <TableColumn fx:id="colperiodeGarentie" prefWidth="67.99996948242188" text="periodeGarentie" />
+            <TableColumn fx:id="colUser" prefWidth="38.39996337890625" text="user" />
+            <TableColumn fx:id="deleteTC" prefWidth="46.39990234375" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" prefWidth="70.40008544921875" text="Modifier" />
             </columns>
         </TableView>
-      <TextField fx:id="txtrecherche" layoutX="663.0" layoutY="30.0" promptText="recherche" />
-      <Button layoutX="186.0" layoutY="562.0" mnemonicParsing="false" onAction="#addProduits" text="Ajouter" />
-      <Button layoutX="806.0" layoutY="623.0" mnemonicParsing="false" onAction="#ExitToMenu" text="Retour au menu" />
-      <Button layoutX="52.0" layoutY="623.0" mnemonicParsing="false" onAction="#PrintPDF" text="Print PDF" />
-      <Button layoutX="574.0" layoutY="30.0" mnemonicParsing="false" text="Tri" />
+      <TextField fx:id="txtrecherche" layoutX="506.0" layoutY="45.0" promptText="recherche" />
+      <Button layoutX="478.0" layoutY="516.0" mnemonicParsing="false" onAction="#addProduits" text="Ajouter" />
+      <Button layoutX="14.0" layoutY="516.0" mnemonicParsing="false" onAction="#ExitToMenu" text="Retour au menu" />
+      <Button layoutX="397.0" layoutY="516.0" mnemonicParsing="false" onAction="#PrintPDF" text="Print PDF" />
+      <Button layoutX="463.0" layoutY="45.0" mnemonicParsing="false" text="Tri" />
       <Text layoutX="41.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product details" wrappingWidth="222.295654296875">
          <font>
             <Font name="Bauhaus 93" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="436.0" layoutY="562.0" mnemonicParsing="false" onAction="#updatebtn" text="update" />
-      <Button layoutX="649.0" layoutY="575.0" mnemonicParsing="false" onAction="#deletebtn" text="delete" />
-      <Button layoutX="821.0" layoutY="30.0" mnemonicParsing="false" onAction="#rechercher" text="search" />
+      <Button layoutX="554.0" layoutY="516.0" mnemonicParsing="false" onAction="#updatebtn" text="update" />
+      <Button layoutX="631.0" layoutY="516.0" mnemonicParsing="false" onAction="#deletebtn" text="delete" />
+      <Button layoutX="666.0" layoutY="45.0" mnemonicParsing="false" onAction="#rechercher" text="search" />
     </children>
 </AnchorPane>
