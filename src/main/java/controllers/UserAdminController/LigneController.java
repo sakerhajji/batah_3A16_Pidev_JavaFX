@@ -13,15 +13,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LigneController implements Initializable {
     private Admin admin ;
+
+    @FXML
+    private Circle Profile;
 
     Image image ;
     public Admin getAdmin() {
@@ -141,6 +146,50 @@ public class LigneController implements Initializable {
 
 
 
+    }
+    private static boolean search(File directory, String pictureName) {
+
+        File[] files = directory.listFiles();
+
+        if (files != null) {
+
+            for (File file : files) {
+                if (file.isDirectory()) {
+
+                    if (search(file, pictureName)) {
+                        return true;
+                    }
+                } else if (file.getName().equalsIgnoreCase(pictureName)) {
+
+
+                    return true;
+                }
+            }
+        }
+
+
+        return false;
+    }
+    public static boolean searchPicture(String directoryPath, String pictureName) {
+        File directory = new File(directoryPath);
+
+        // Check if the directory exists
+        if (!directory.exists() || !directory.isDirectory()) {
+
+            return false;
+        }
+
+        return search(directory, pictureName);
+    }
+    public void setProfile(String imagePath) {
+        String directoryPath = "C:\\Users\\saker\\Desktop\\esprit\\3eme\\Pidev\\batah_3A16_Pidev_JavaFX\\src\\main\\resources\\images";
+        String pictureName = imagePath;
+        boolean pictureExists = searchPicture(directoryPath, pictureName);
+
+        if (pictureExists ) {
+            Image image = new Image("/images/"+imagePath);
+            this.Profile.setFill(new ImagePattern(image));
+        }
     }
 
 

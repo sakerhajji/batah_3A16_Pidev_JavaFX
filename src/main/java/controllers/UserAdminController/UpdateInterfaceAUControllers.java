@@ -72,6 +72,7 @@ public class UpdateInterfaceAUControllers implements Initializable {
             admin.setNumUtilisateur(numeroTelephone.getText());
             admin.setDateDeNaissance(date);
             admin.setCinUtilisateur(numeroCin.getText());
+            admin.setAvatar(img);
             System.out.println(admin);
             adminService.updateCard(admin);
             System.out.println("done");
@@ -93,6 +94,17 @@ public class UpdateInterfaceAUControllers implements Initializable {
 
 
     }
+    private   String getFileName(String filePath) {
+
+        int lastIndex = filePath.lastIndexOf('/') != -1 ? filePath.lastIndexOf('/') : filePath.lastIndexOf('\\');
+
+        if (lastIndex == -1) {
+            return filePath;
+        }
+
+        return filePath.substring(lastIndex + 1);
+    }
+
     @FXML
     void UpdateImg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -103,9 +115,10 @@ public class UpdateInterfaceAUControllers implements Initializable {
         if (selectedFile != null) {
             String imageName = selectedFile.getName();
             setProfile(selectedFile.toURI().toString());
-//            Image image = new Image(selectedFile.toURI().toString());
-//            profile.setFill(new ImagePattern(image));
+            Image image = new Image(selectedFile.toURI().toString());
+            profile.setFill(new ImagePattern(image));
             img=selectedFile.toURI().toString();
+            img=getFileName(img);
             System.out.println(img);
         }
 

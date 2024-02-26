@@ -119,6 +119,7 @@ public class AccueilAdminController implements Initializable {
                 loaderController.setPrenom(admin.getPrenomUtilisateur());
                 loaderController.setDateNaissance(dateOfBirthString);
                 loaderController.setEmail(admin.getMailUtilisateur());
+                loaderController.setProfile(admin.getAvatar());
                 item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
                 item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
 
