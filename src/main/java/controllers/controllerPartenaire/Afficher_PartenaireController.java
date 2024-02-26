@@ -231,12 +231,11 @@ public class Afficher_PartenaireController implements Initializable {
         });
     }
     void showAffectation(Partenaire event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/AffectationPartenaire.fxml"));
             Parent root = loader.load();
 
-            AffectationPartenaireController c = new AffectationPartenaireController();
+            AffectationPartenaireController c = loader.getController();
             c.init(event.getId());
 
             Scene scene = new Scene(root);
@@ -249,6 +248,7 @@ public class Afficher_PartenaireController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+
     private void buttonShowAff() {
         Affectation.setCellFactory(param -> new TableCell<>() {
             private final Button modifyButton = new Button();
