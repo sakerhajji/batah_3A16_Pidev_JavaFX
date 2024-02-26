@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.AffectationPartenaireController">
+    <TableView fx:id="table" layoutX="1.0" layoutY="37.0" prefHeight="310.0" prefWidth="594.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" AnchorPane.topAnchor="37.0">
+        <columns>
+            <TableColumn fx:id="idReclamtion" prefWidth="29.60000514984131" text="ID" />
+            <TableColumn fx:id="description" prefWidth="186.99999618530273" text="Description" />
+            <TableColumn fx:id="type" prefWidth="123.40003967285156" text="Type" />
+            <TableColumn fx:id="date" prefWidth="110.20002746582031" text="Date" />
+            <TableColumn fx:id="idAchat" prefWidth="66.39996337890625" text="idAchat" />
+         <TableColumn fx:id="delete" prefWidth="72.800048828125" text="Supprimer" />
+        </columns>
+    </TableView>
+
+</AnchorPane>
