@@ -2,6 +2,7 @@ package controllers.controllerPartenaire;
 
 
 import Entity.entitiesPartenaire.Partenaire;
+import Services.ServiceApresVentS.ServiceApresVentS;
 import Services.servicePartenaire.partenaireService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +53,8 @@ public class Afficher_PartenaireController implements Initializable {
     @FXML
     private TableColumn<Partenaire, Void> deleteTC;
     @FXML
+    private TableColumn<Partenaire, Void> Affectation;
+    @FXML
     private TextField searchField;
 
 
@@ -63,6 +66,7 @@ public class Afficher_PartenaireController implements Initializable {
         showPartenaires();
         buttonModifier();
         buttonSupprimer();
+        buttonShowAff();
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.trim().isEmpty()) {
@@ -84,7 +88,7 @@ public class Afficher_PartenaireController implements Initializable {
     void modifier(Partenaire event) {
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/modifier_personne.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/modifier_Partenaire.fxml"));
                 Parent root = loader.load();
 
                 modifier_PartenaireController c = loader.getController();
@@ -115,7 +119,7 @@ public class Afficher_PartenaireController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfacePartenaire/Ajouter_personne.fxml"));
+                    .getResource("/interfacePartenaire/Ajouter_Partenaire.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -221,6 +225,52 @@ public class Afficher_PartenaireController implements Initializable {
                     deleteButton.setOnAction(event -> {
                         Partenaire pm = getTableView().getItems().get(getIndex());
                         supprimer(pm);
+                    });
+                }
+            }
+        });
+    }
+    void showAffectation(Partenaire event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/AffectationPartenaire.fxml"));
+            Parent root = loader.load();
+
+            AffectationPartenaireController c = new AffectationPartenaireController();
+            c.init(event.getId());
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Affectation");
+            stage.showAndWait();
+            showPartenaires();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void buttonShowAff() {
+        Affectation.setCellFactory(param -> new TableCell<>() {
+            private final Button modifyButton = new Button();
+            private final ImageView imageView = new ImageView();
+            private final double iconWidth = 24;
+            private final double iconHeight = 24;
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Image image = new Image("images/affectation.png", iconWidth, iconHeight, true, true);
+                    imageView.setImage(image);
+
+                    modifyButton.setGraphic(imageView);
+                    setGraphic(modifyButton);
+                    modifyButton.setOnAction(event -> {
+                        Partenaire pm = getTableView().getItems().get(getIndex());
+                        showAffectation(pm);
                     });
                 }
             }

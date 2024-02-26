@@ -23,14 +23,15 @@
             <TableColumn fx:id="coltype" prefWidth="78.4000244140625" text="Type" />
             <TableColumn fx:id="coladresse" prefWidth="87.19993591308594" text="Adresse" />
             <TableColumn fx:id="coltel" prefWidth="77.60003662109375" text="Telephone" />
-            <TableColumn fx:id="colemail" prefWidth="109.5999755859375" text="Email" />
-            <TableColumn fx:id="logo" prefWidth="102.4000244140625" text="Logo">
+            <TableColumn fx:id="colemail" prefWidth="91.199951171875" text="Email" />
+            <TableColumn fx:id="logo" prefWidth="86.4000244140625" text="Logo">
                <cellValueFactory>
                   <PropertyValueFactory property="logo" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="deleteTC" prefWidth="76.79986572265625" text="Supprimer" />
-            <TableColumn fx:id="modifyTC" minWidth="0.0" prefWidth="69.60009765625" text="Modifier" />
+            <TableColumn fx:id="deleteTC" prefWidth="64.79998779296875" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" minWidth="0.0" prefWidth="60.79998779296875" text="Modifier" />
+            <TableColumn fx:id="Affectation" minWidth="0.0" prefWidth="56.0" text="Affectation" />
          </columns>
       </TableView>
       <Button fx:id="ajouter" layoutX="492.0" layoutY="457.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />

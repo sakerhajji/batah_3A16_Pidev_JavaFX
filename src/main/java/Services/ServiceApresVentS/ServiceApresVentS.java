@@ -127,5 +127,31 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
     }
 
 
+    public List<ServiceApresVente> readByIdPartenaire(int id) {
+        String req = "SELECT * FROM service_apres_vente WHERE idPartenaire = ?";
+        List<ServiceApresVente> list=null;
+        try {
+            PreparedStatement pst = con.prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int idService = rs.getInt("idService");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                Date date = rs.getDate("date");
+                boolean status = rs.getBoolean("status");
+                Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
+                Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"),date);
+
+                ServiceApresVente s= new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
+                list.add(s);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
 
 }
