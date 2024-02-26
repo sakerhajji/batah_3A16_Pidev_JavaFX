@@ -35,7 +35,7 @@ public class DataSource {
         }
     }
 
-    // Singleton pattern to ensure only one instance of DataSource is created
+
     public static DataSource getInstance() {
         if (instance == null)
             instance = new DataSource();
