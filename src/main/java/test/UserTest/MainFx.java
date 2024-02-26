@@ -15,7 +15,7 @@ public class MainFx extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             root.setOnMousePressed((MouseEvent event) -> {

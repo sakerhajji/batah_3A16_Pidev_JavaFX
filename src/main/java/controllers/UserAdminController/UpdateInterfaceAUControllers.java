@@ -1,5 +1,6 @@
 package controllers.UserAdminController;
 
+import Entity.ControleDeSaisieClass.ControleDeSaisieClass;
 import Entity.UserAdmin.Admin;
 import Services.UserAdmineServices.AdminService;
 import javafx.event.ActionEvent;
@@ -7,15 +8,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,6 +28,10 @@ import java.util.ResourceBundle;
 
 
 public class UpdateInterfaceAUControllers implements Initializable {
+
+    private ControleDeSaisieClass controle= new ControleDeSaisieClass() ;
+    private String img=null;
+
     private Admin admin ;
     @FXML
     private TextField nomUtilisateur;
@@ -40,30 +48,46 @@ public class UpdateInterfaceAUControllers implements Initializable {
     @FXML
     private Circle profile;
 
+    @FXML
+    private Text IdUtlisateur;
+
 
 
     @FXML
     void MisAJourClicked(ActionEvent event) {
 
-        LocalDate localDate = dateDeNaissance.getValue();
-        Date date = java.sql.Date.valueOf(localDate);
-        AdminService adminService =new AdminService();
-
-        admin.setNomUtilisateur(nomUtilisateur.getText());
-        admin.setPrenomUtilisateur(prenomUtilisateur.getText());
-        admin.setMailUtilisateur(adresseEmail.getText());
-        admin.setNumUtilisateur(numeroTelephone.getText());
-        admin.setDateDeNaissance(date);
-        admin.setCinUtilisateur(numeroCin.getText());
-        System.out.println(admin);
-        adminService.updateCard(admin);
-        System.out.println("done");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
-        AccueilAdminController c=loader.getController();
-        //c.refrechPage();
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+        if(controle.checkText(nomUtilisateur.getText()) &&
+                controle.checkText(prenomUtilisateur.getText())&&
+                controle.isValidEmail(adresseEmail.getText())&&
+                controle.chekNumero(numeroTelephone.getText())&&
+                controle.chekNumero(numeroCin.getText())&&
+                controle.isDateValidAndOver18(dateDeNaissance.getValue())
+        ) {
+            LocalDate localDate = dateDeNaissance.getValue();
+            Date date = java.sql.Date.valueOf(localDate);
+            AdminService adminService = new AdminService();
+            admin.setNomUtilisateur(nomUtilisateur.getText());
+            admin.setPrenomUtilisateur(prenomUtilisateur.getText());
+            admin.setMailUtilisateur(adresseEmail.getText());
+            admin.setNumUtilisateur(numeroTelephone.getText());
+            admin.setDateDeNaissance(date);
+            admin.setCinUtilisateur(numeroCin.getText());
+            System.out.println(admin);
+            adminService.updateCard(admin);
+            System.out.println("done");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+            AccueilAdminController c = loader.getController();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Avertissement");
+            alert.setHeaderText("Formulaire d'inscription invalide");
+            alert.setContentText("Veuillez vérifier vos informations et assurez-vous de remplir tous les champs correctement.");
+            alert.showAndWait();
+        }
 
 
 
@@ -78,13 +102,11 @@ public class UpdateInterfaceAUControllers implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             String imageName = selectedFile.getName();
-            Image image = new Image(selectedFile.toURI().toString());
-
-            profile.setFill(new ImagePattern(image));
-
-            // Enregistrer le nom de l'image
-            // Enregistrer le nom de l'image
-            String img=selectedFile.toURI().toString();
+            setProfile(selectedFile.toURI().toString());
+//            Image image = new Image(selectedFile.toURI().toString());
+//            profile.setFill(new ImagePattern(image));
+            img=selectedFile.toURI().toString();
+            System.out.println(img);
         }
 
     }
@@ -98,6 +120,43 @@ public class UpdateInterfaceAUControllers implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        nomUtilisateur.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (controle.checkText(newValue))
+                nomUtilisateur.setStyle("-fx-border-color: transparent");
+            else
+                nomUtilisateur.setStyle("-fx-border-color: red");
+        });
+        prenomUtilisateur.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (controle.checkText(newValue))
+                prenomUtilisateur.setStyle("-fx-border-color: transparent");
+            else
+                prenomUtilisateur.setStyle("-fx-border-color: red");
+        });
+        adresseEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (controle.isValidEmail(newValue))
+                adresseEmail.setStyle("-fx-border-color: transparent");
+            else
+                adresseEmail.setStyle("-fx-border-color: red");
+        });
+        numeroTelephone.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (controle.chekNumero(newValue))
+                numeroTelephone.setStyle("-fx-border-color: transparent");
+            else
+                numeroTelephone.setStyle("-fx-border-color: red");
+        });
+        numeroCin.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (controle.chekNumero(newValue))
+                numeroCin.setStyle("-fx-border-color: transparent");
+            else
+                numeroCin.setStyle("-fx-border-color: red");
+        });
+        dateDeNaissance.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (controle.isDateValidAndOver18(newValue))
+                dateDeNaissance.setStyle("-fx-border-color: transparent");
+            else
+                dateDeNaissance.setStyle("-fx-border-color: red");
+        });
 
     }
 
@@ -156,5 +215,77 @@ public class UpdateInterfaceAUControllers implements Initializable {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
+
+    public Circle getProfile() {
+        return profile;
+    }
+
+    public Text getIdUtlisateur() {
+        return IdUtlisateur;
+    }
+
+    public void setIdUtlisateur(String idUtlisateur) {
+        this.IdUtlisateur.setText(idUtlisateur);
+    }
+
+    private static boolean search(File directory, String pictureName) {
+
+        File[] files = directory.listFiles();
+
+        if (files != null) {
+
+            for (File file : files) {
+                if (file.isDirectory()) {
+
+                    if (search(file, pictureName)) {
+                        return true;
+                    }
+                } else if (file.getName().equalsIgnoreCase(pictureName)) {
+
+                    System.out.println("Picture found: " + file.getAbsolutePath());
+                    return true;
+                }
+            }
+        }
+
+
+        return false;
+    }
+    public static boolean searchPicture(String directoryPath, String pictureName) {
+        File directory = new File(directoryPath);
+
+        // Check if the directory exists
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.out.println("Directory does not exist.");
+            return false;
+        }
+
+        return search(directory, pictureName);
+    }
+    public void setProfile(String imagePath) {
+        String directoryPath = "C:\\Users\\saker\\Desktop\\esprit\\3eme\\Pidev\\batah_3A16_Pidev_JavaFX\\src\\main\\resources\\images";
+        String pictureName = imagePath;
+        boolean pictureExists = searchPicture(directoryPath, pictureName);
+        System.out.println(pictureExists);
+        if (pictureExists ) {
+            System.out.println("donne");
+            Image image = new Image("/images/"+imagePath);
+            this.profile.setFill(new ImagePattern(image));
+        }
+    }
+
+
+    @FXML
+    void SupprimerClicked(ActionEvent event) {
+        AdminService adminService =new AdminService() ;
+        admin.setIdUtilisateur( Integer.parseInt(IdUtlisateur.getText()));
+        adminService.delete(admin);
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+
+    }
+
+
 }
 

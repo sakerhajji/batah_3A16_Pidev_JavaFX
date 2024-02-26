@@ -8,9 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,6 +23,7 @@ import java.util.ResourceBundle;
 public class LigneController implements Initializable {
     private Admin admin ;
 
+    Image image ;
     public Admin getAdmin() {
         return admin;
     }
@@ -107,6 +110,14 @@ public class LigneController implements Initializable {
             else c.setNumeroTelephone(admin.getNumUtilisateur());
             if(admin.getCinUtilisateur()==null)c.setNumeroCin("svp taper votre numero cin") ;
             else c.setNumeroCin(admin.getCinUtilisateur());
+            if(admin.getAvatar()!=null)
+            {String imagePath =  admin.getAvatar();
+            c.setProfile(imagePath);}
+            c.setIdUtlisateur(String.valueOf(admin.getIdUtilisateur()));
+
+
+
+           // profile.setFill(new ImagePattern(image));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

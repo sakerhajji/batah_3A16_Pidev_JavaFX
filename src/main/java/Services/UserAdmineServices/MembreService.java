@@ -89,4 +89,22 @@ public class MembreService implements IService<Membre> {
         }
         return Membre;
     }
+    public boolean emailExists(String email) {
+        boolean exists = false;
+        String requete = "SELECT COUNT(*) FROM utilisateur WHERE adresseEmail = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setString(1, email);
+            ResultSet resultSet = pst.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                exists = (count > 0);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
+
 }

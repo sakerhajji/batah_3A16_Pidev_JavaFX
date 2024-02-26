@@ -23,7 +23,7 @@
       </HBox>
       <HBox layoutX="10.0" layoutY="229.0" prefHeight="43.0" prefWidth="480.0">
          <children>
-            <TextField fx:id="MotDePass" prefHeight="43.0" prefWidth="480.0" promptText="Mot De Pass" />
+            <PasswordField fx:id="MotDePass" prefHeight="64.0" prefWidth="450.0" promptText="Mot de Pass" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="250.0" prefHeight="43.0" prefWidth="480.0">
