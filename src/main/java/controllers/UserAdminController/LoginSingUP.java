@@ -94,7 +94,10 @@ public class LoginSingUP implements Initializable {
 
         // Use extracted values
         OAuthAuthenticator auth = new OAuthGoogleAuthenticator(gClientId, gRedir, gSecret, gScope);
-        auth.startLogin();
+        auth.startLogin(() -> {
+            // This code will be executed when the login window is closed
+            System.out.println("Hello");
+        });
     }
 
 

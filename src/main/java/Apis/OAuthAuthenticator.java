@@ -50,10 +50,10 @@ public abstract class OAuthAuthenticator {
         return redirectUri;
     }
 
-    public void startLogin() {
-        System.out.println("welcome to login ");
+    public void startLogin(Runnable callback) {
+        System.out.println("Welcome to login");
 
-        if(loginAttempted) {
+        if (loginAttempted) {
             return;
         }
         loginAttempted = true;
@@ -66,7 +66,7 @@ public abstract class OAuthAuthenticator {
         engine.setOnStatusChanged(new EventHandler<WebEvent<String>>() {
             public void handle(WebEvent<String> event) {
 
-                if(gotData || attemptRecieved) {
+                if (gotData || attemptRecieved) {
                     System.out.println("honi mouchkla");
                     return;
                 }
@@ -83,17 +83,20 @@ public abstract class OAuthAuthenticator {
 
                         accessToken = doGetAccessTokenRequest(accessCode);
 
-                        System.out.println("jison file ");
+                        System.out.println("JSON file ");
                         String returnedJson = doGetAccountInfo(accessToken);
                         System.out.println(returnedJson);
 
                         accessedJsonData = new JSONObject(returnedJson);
 
-
-
                         gotData = true;
 
                         notifyLoginViewCompleted();
+
+                        // Invoke the callback when the login process is completed
+                        if (callback != null) {
+                            callback.run();
+                        }
                     }
                 }
             }
@@ -102,8 +105,8 @@ public abstract class OAuthAuthenticator {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
+
 
     abstract String getWebUrl();
 
