@@ -140,7 +140,7 @@ public abstract class OAuthAuthenticator {
 
     private void notifyLoginViewCompleted() {
         if(gotData) {
-            //LoginView.getInstance().completedOAuthLogin(this);
+
             System.out.println("donee");
         }
     }
