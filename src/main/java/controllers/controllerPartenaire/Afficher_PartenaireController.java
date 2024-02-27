@@ -276,6 +276,28 @@ public class Afficher_PartenaireController implements Initializable {
             }
         });
     }
+    @FXML
+    void showStatistique(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/interfacePartenaire/statistiquePartenaires.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            showPartenaires();
+            stage.setTitle("Actives Partenaires");
+
+
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+        }
+
+
+    }
 
 
 

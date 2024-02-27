@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class partenaireService implements IService<Partenaire>{
+public class partenaireService implements IServicePartenaire<Partenaire> {
     private Connection con;
     private Statement ste;
     private PreparedStatement pst;
@@ -55,7 +55,7 @@ public class partenaireService implements IService<Partenaire>{
             ste=con.createStatement();
             ResultSet rs =ste.executeQuery(requte);
             while(rs.next()){
-                list.add(new Partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8)));
+                list.add(new Partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8),rs.getInt(9)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

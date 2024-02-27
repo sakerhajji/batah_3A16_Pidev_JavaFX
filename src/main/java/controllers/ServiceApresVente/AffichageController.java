@@ -1,10 +1,9 @@
 package controllers.ServiceApresVente;
 
-import Entity.UserAdmin.Admin;
+
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
-import Services.UserAdmineServices.AdminService;
-import controllers.UserAdminController.LigneController;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

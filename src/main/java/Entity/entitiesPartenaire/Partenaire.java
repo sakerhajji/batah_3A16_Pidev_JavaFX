@@ -7,8 +7,8 @@ public class Partenaire {
     private String adresse;
     private int tel;
     private String email;
-    private String logo; // Nouveau champ logo
-    private int points; // Nouveau champ points
+    private String logo;
+    private int points;
 
 
     public Partenaire(int id, String nom, String type, String adresse, int tel, String email) {
@@ -22,7 +22,6 @@ public class Partenaire {
 
     public Partenaire() {
     }
-
     public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
         this.id = id;
         this.nom = nom;
@@ -30,7 +29,17 @@ public class Partenaire {
         this.adresse = adresse;
         this.tel = tel;
         this.email = email;
+
+    }
+    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo,int points) {
+        this.id = id;
+        this.nom = nom;
+        this.type = type;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.email = email;
         this.logo = logo;
+        this.points=points;
     }
 
     public Partenaire(String nom, String type, String adresse, int tel, String email, String logo) {

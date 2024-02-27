@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -44,8 +45,13 @@
             <artifactId>google-api-client</artifactId>
             <version>1.32.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -63,6 +69,9 @@
                         <option>--add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED</option>
                     </options>
                 </configuration>
+
+
+
             </plugin>
         </plugins>
     </build>

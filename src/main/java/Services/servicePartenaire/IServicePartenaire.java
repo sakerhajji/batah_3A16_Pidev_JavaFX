@@ -2,7 +2,7 @@ package Services.servicePartenaire;
 
 import java.util.List;
 
-public interface IService<T> {
+public interface IServicePartenaire<T> {
     void add(T t);
 
     void delete(int id);

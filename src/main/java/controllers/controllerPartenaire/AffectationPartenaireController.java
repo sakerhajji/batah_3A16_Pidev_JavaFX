@@ -73,7 +73,7 @@ public class AffectationPartenaireController implements Initializable {
     void supprimer(ServiceApresVente event) {
 
         ServiceApresVentS ps=new ServiceApresVentS();
-        ps.delete(event);
+        ps.NonAffecter(event);
         showAffectation(id);
     }
 
