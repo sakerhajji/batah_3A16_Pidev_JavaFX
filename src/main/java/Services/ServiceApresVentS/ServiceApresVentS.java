@@ -5,8 +5,6 @@ import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import InterfaceServices.IService;
-import Services.ServiceProduit.ProduitsService;
-import Services.servicePartenaire.partenaireService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -130,29 +128,24 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
 
 
     public List<ServiceApresVente> readByIdPartenaire(int id) {
-        ResultSet rs = null;
         String req = "SELECT * FROM service_apres_vente WHERE idPartenaire = ?";
-        List<ServiceApresVente> list = new ArrayList<>();
+        List<ServiceApresVente> list=null;
         try {
-            pst = con.prepareStatement(req);
+            PreparedStatement pst = con.prepareStatement(req);
             pst.setInt(1, id);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                ServiceApresVente s = new ServiceApresVente();
-                s.setIdService(rs.getInt("idService"));
-                s.setDescription(rs.getString("description"));
-                s.setType(rs.getString("type"));
-                s.setDate(rs.getDate("date"));
-                s.setStatus(rs.getBoolean("status"));
-                int idPar = rs.getInt("idPartenaire");
-                partenaireService ps = new partenaireService();
-                Partenaire p = ps.readById(idPar);
-                s.setIdPartenaire(p);
-                int idAch = rs.getInt("idAchats");
-                ProduitsService pro = new ProduitsService();
-                Achats A = pro.readbyIdAchat(idAch);
-                s.setIdAchats(A);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int idService = rs.getInt("idService");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                Date date = rs.getDate("date");
+                boolean status = rs.getBoolean("status");
+                Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
+                Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"),date);
+
+                ServiceApresVente s= new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
                 list.add(s);
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

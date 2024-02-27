@@ -4,8 +4,6 @@ import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
 import Services.servicePartenaire.partenaireService;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +21,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AffectationPartenaireController  implements Initializable{
+public class AffectationPartenaireController implements Initializable {
 
     @FXML
     private TableColumn<ServiceApresVente, Date> date;
@@ -43,47 +41,40 @@ public class AffectationPartenaireController  implements Initializable{
     private TableColumn<ServiceApresVente, String> type;
 
     @FXML
-    private TableView<ServiceApresVente> tableAff;
+    private TableView<ServiceApresVente> table;
     private int id;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void init(int id)
     {
-       setId(id);
-        ServiceApresVentS sav = new ServiceApresVentS();
-        List<ServiceApresVente> s = sav.readByIdPartenaire(getId());
+        this.id=id;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //showAffectation(id);
+        buttonSupprimer();
+    }
 
+
+    public void showAffectation (int id) {
+        ServiceApresVentS sav = new ServiceApresVentS();
+        List<ServiceApresVente> s = sav.readByIdPartenaire(id);
         ObservableList<ServiceApresVente> list = FXCollections.observableArrayList(s);
-        tableAff.setItems(list);
+        table.setItems(list);
         idReclamtion.setCellValueFactory(new PropertyValueFactory<ServiceApresVente, Integer>("idService"));
         date.setCellValueFactory(new PropertyValueFactory<ServiceApresVente, Date>("date"));
         description.setCellValueFactory(new PropertyValueFactory<ServiceApresVente, String>("description"));
         type.setCellValueFactory(new PropertyValueFactory<ServiceApresVente, String>("type"));
-        idAchat.setCellValueFactory(cellData -> {
-            int AchatId = cellData.getValue().getIdAchats().getIdAchats();
-            return new SimpleIntegerProperty(AchatId).asObject();
-        });
-
-        
+        idAchat.setCellValueFactory(new PropertyValueFactory<ServiceApresVente, Integer>("idAchats"));
 
 
-    }
 
-    public void showAffectation () {
-init(id);
     }
     void supprimer(ServiceApresVente event) {
 
         ServiceApresVentS ps=new ServiceApresVentS();
         ps.delete(event);
-        showAffectation();
+        showAffectation(id);
     }
 
     private void buttonSupprimer() {
@@ -112,11 +103,5 @@ init(id);
                 }
             }
         });
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        showAffectation();
-        buttonSupprimer();
     }
 }

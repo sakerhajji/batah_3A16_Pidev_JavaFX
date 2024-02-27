@@ -276,7 +276,7 @@ public class UpdateInterfaceAUControllers implements Initializable {
         return search(directory, pictureName);
     }
     public void setProfile(String imagePath) {
-        String directoryPath = "C:\\Users\\saker\\Desktop\\esprit\\3eme\\Pidev\\batah_3A16_Pidev_JavaFX\\src\\main\\resources\\images";
+        String directoryPath = "C:/Users/saker/Desktop/esprit/3eme/Pidev/batah_3A16_Pidev_JavaFX/src/main/resources/images";
         String pictureName = imagePath;
         boolean pictureExists = searchPicture(directoryPath, pictureName);
         System.out.println(pictureExists);

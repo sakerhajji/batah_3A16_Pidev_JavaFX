@@ -1,24 +1,18 @@
 package org.example;
 
+import Entity.UserAdmin.Admin;
+import Services.UserAdmineServices.AdminService;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.channels.FileChannel;
 
 public class Main {
-    public static void main(String[] args) {
-        String sourceImagePath = "/C:/Users/saker/Desktop/A188.jpg";
-        String destinationFolderPath = "/C:/Users/saker/Desktop/esprit/3eme/Pidev/batah_3A16_Pidev_JavaFX/src/main/resources/images/";
-        try {
-            copyImage(sourceImagePath, destinationFolderPath);
-            System.out.println("Image copied successfully.");
-        } catch (IOException e) {
-            System.out.println("Error copying image: " + e.getMessage());
-        }
-    }
 
-    public static void copyImage(String sourceImagePath, String destinationFolderPath) throws IOException {
+    public static void copyImage(String sourceImagePath, String destinationFolderPath, String newFileName) throws IOException {
         File sourceFile = new File(sourceImagePath);
         File destinationFolder = new File(destinationFolderPath);
 
@@ -29,28 +23,49 @@ public class Main {
 
         // If the source file exists and it's a file (not a directory)
         if (sourceFile.exists() && sourceFile.isFile()) {
-            // Get the file name from the source path
-            String fileName = getFileName(sourceImagePath);
-            // Create a destination file with the same name in the destination folder
-            File destinationFile = new File(destinationFolder, fileName);
+            // Check if the file is an image
+            if (isImageFile(sourceFile)) {
+                // Create a destination file with the new name in the destination folder
+                File destinationFile = new File(destinationFolder, newFileName);
 
-            // Copy the file
-            try (FileInputStream inStream = new FileInputStream(sourceFile);
-                 FileOutputStream outStream = new FileOutputStream(destinationFile);
-                 FileChannel inChannel = inStream.getChannel();
-                 FileChannel outChannel = outStream.getChannel()) {
-                inChannel.transferTo(0, inChannel.size(), outChannel);
+                // Copy the file
+                try (FileInputStream inStream = new FileInputStream(sourceFile);
+                     FileOutputStream outStream = new FileOutputStream(destinationFile);
+                     FileChannel inChannel = inStream.getChannel();
+                     FileChannel outChannel = outStream.getChannel()) {
+                    inChannel.transferTo(0, inChannel.size(), outChannel);
+                }
+            } else {
+                throw new IOException("Source file is not an image.");
             }
         } else {
             throw new IOException("Source file does not exist or is not a file.");
         }
     }
 
-    public static String getFileName(String filePath) {
-        int lastIndex = filePath.lastIndexOf('/') != -1 ? filePath.lastIndexOf('/') : filePath.lastIndexOf('\\');
-        if (lastIndex == -1) {
-            return filePath;
+    // Method to check if a file is an image based on its extension
+    public static boolean isImageFile(File file) {
+        String fileName = file.getName();
+        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+        // List of image extensions to check against
+        String[] imageExtensions = {"jpg", "jpeg", "png", "gif", "bmp"};
+        for (String ext : imageExtensions) {
+            if (extension.equalsIgnoreCase(ext)) {
+                return true;
+            }
         }
-        return filePath.substring(lastIndex + 1);
+        return false;
     }
+    public static void main(String[] args) {
+        String sourceImagePath = "C:" + File.separator + "Users" + File.separator + "saker" + File.separator + "Desktop" + File.separator + "A188.jpg";
+        String destinationFolderPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "imageUserAdmin"; // Relative path to project directory
+        String newFileName = "newFileName.jpg"; // New file name
+        try {
+            copyImage(sourceImagePath, destinationFolderPath, newFileName);
+            System.out.println("Image copied and renamed successfully.");
+        } catch (IOException e) {
+            System.out.println("Error copying image: " + e.getMessage());
+        }
+    }
+
 }

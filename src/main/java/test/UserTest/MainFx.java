@@ -14,7 +14,7 @@ public class MainFx extends Application {
     private double yOffset = 0;
     @Override
     public void start(Stage stage) {
-        try {                                                                               //AccueilAdmin
+        try {                                                                                   //AccueilAdmin
             Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);

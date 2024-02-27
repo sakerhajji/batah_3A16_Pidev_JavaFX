@@ -25,10 +25,7 @@ import javafx.util.Duration;
 public class AccueilAdminController implements Initializable {
     private  List<Admin>a;
     AdminService adminService=new AdminService() ;
-    @FXML
-    private Circle profile;
-    @FXML
-    private VBox pnItems;
+
 
     public VBox getPnItems() {
         return pnItems;
@@ -37,6 +34,11 @@ public class AccueilAdminController implements Initializable {
     public void setPnItems(VBox pnItems) {
         this.pnItems = pnItems;
     }
+    @FXML
+    private Circle Profile;
+
+    @FXML
+    private VBox pnItems;
 
     @FXML
     private Button btnOverview;
@@ -62,22 +64,14 @@ public class AccueilAdminController implements Initializable {
     @FXML
     private Pane pnlMenus;
 
-    public void setProfile(Circle profile) {
-        Profile = profile;
-    }
+
 
     private int n ;
     private Timeline timeline;
 
     private Admin adminSession ;
 
-    public Admin getAdminSession() {
-        return adminSession;
-    }
 
-    public void setAdminSession(Admin adminSession) {
-        this.adminSession = adminSession;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -129,9 +123,13 @@ public class AccueilAdminController implements Initializable {
             a.clear();
         }
     }
+    private void updatePage(ActionEvent events) {
 
-    @FXML
-    private Circle Profile;
+
+        refrechPage();
+        System.out.println("Mise à jour de la page...");
+    }
+
     @FXML
     public void handleClicks(ActionEvent actionEvent) {
         if (actionEvent.getSource() == PartenaireButton) {
@@ -196,11 +194,17 @@ public class AccueilAdminController implements Initializable {
     }
 
 
-    private void updatePage(ActionEvent events) {
 
 
-        refrechPage();
-        System.out.println("Mise à jour de la page...");
+    public Admin getAdminSession() {
+        return adminSession;
+    }
+
+    public void setAdminSession(Admin adminSession) {
+        this.adminSession = adminSession;
+    }
+    public void setProfile(Circle profile) {
+        Profile = profile;
     }
 }
 
