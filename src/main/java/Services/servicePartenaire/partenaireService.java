@@ -2,6 +2,7 @@ package Services.servicePartenaire;
 
 import DataBaseSource.DataSource;
 import Entity.entitiesPartenaire.Partenaire;
+import Entity.entitiesServiceApresVente.ServiceApresVente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -109,6 +110,15 @@ public class partenaireService implements IServicePartenaire<Partenaire> {
         }
 
         return Partenaires;
+    }
+    public void updatePoints(Partenaire p) {
+        String req = "UPDATE partenaires SET points=points+1  WHERE idPartenaire=?";
+        try (PreparedStatement pst = con.prepareStatement(req)) {
+            pst.setInt(1, p.getId());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println( e.getMessage());
+        }
     }
 
 

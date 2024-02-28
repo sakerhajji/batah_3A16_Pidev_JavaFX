@@ -44,7 +44,7 @@ public class StatistiqueController implements Initializable {
     }
 
     private void addAnimation() {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(3), lineChart);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), lineChart);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.play();
