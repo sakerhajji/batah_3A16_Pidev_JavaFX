@@ -236,9 +236,8 @@ public class Afficher_PartenaireController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/AffectationPartenaire.fxml"));
             Parent root = loader.load();
 
-            AffectationPartenaireController c = new AffectationPartenaireController();
+            AffectationPartenaireController c = loader.getController();
             c.init(event.getId());
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

@@ -160,6 +160,10 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
         return list;
     }
 
+
+
+
+
     public void NonAffecter(ServiceApresVente serviceApresVente) {
         String req = "UPDATE service_apres_vente SET idPartenaire=null  WHERE idService=?";
         try (PreparedStatement pst = con.prepareStatement(req)) {
