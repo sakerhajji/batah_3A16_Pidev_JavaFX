@@ -51,6 +51,8 @@ public class Partenaire {
         this.logo = logo;
     }
 
+
+
     public int getId() {
         return id;
     }

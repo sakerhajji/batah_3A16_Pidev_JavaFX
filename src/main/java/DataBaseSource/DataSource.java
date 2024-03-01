@@ -1,45 +1,28 @@
-package DataBaseSource;
+package DataBaseSource;//package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataSource {
-    private Connection cnx;
+    private  Connection cnx;
+    private  String url="jdbc:mysql://localhost:3306/batah1";
+    private  String login="root";
+    private  String pwd="";
     private static DataSource instance;
-
-    // Online database connection details
-    private String onlineUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11685928";
-    private String onlineLogin = "sql11685928";
-    private String onlinePwd = "byRB9bfy4H";
-
-    // Local database connection details
-    private String localUrl = "jdbc:mysql://localhost:3306/BatahApp";
-    private String localLogin = "root";
-    private String localPwd = "";
 
     private DataSource() {
         try {
-            // Connect to the online database by default
-            cnx = DriverManager.getConnection(onlineUrl, onlineLogin, onlinePwd);
-            System.out.println("Connected to online database successfully");
+            cnx = DriverManager.getConnection(url,login,pwd);
+            System.out.println("sucess");
         } catch (SQLException e) {
-            System.err.println("Failed to connect to online database. Trying local database...");
-            try {
-                // If online connection fails, connect to the local database
-                cnx = DriverManager.getConnection(localUrl, localLogin, localPwd);
-                System.out.println("Connected to local database successfully");
-            } catch (SQLException ex) {
-                throw new RuntimeException("Failed to connect to both online and local databases", ex);
-            }
+            throw new RuntimeException(e);
         }
     }
-
-    // Singleton pattern to ensure only one instance of DataSource is created
-    public static DataSource getInstance() {
-        if (instance == null)
-            instance = new DataSource();
-        return instance;
+    public static DataSource getInstance(){
+        if (instance==null)
+            instance=new DataSource();
+        return instance ;
     }
 
     public Connection getCnx() {

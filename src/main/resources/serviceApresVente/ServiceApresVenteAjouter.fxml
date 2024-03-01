@@ -26,7 +26,7 @@
          </items>
       </ComboBox>
        <ChoiceBox fx:id="idAchat" layoutX="173.0" layoutY="372.0" prefWidth="150.0" />
-       <Button fx:id="addService" layoutX="430.0" layoutY="385.0" mnemonicParsing="false" onAction="#addService" styleClass="form_container" text="ajouter" />
+       <Button fx:id="addService" layoutX="369.0" layoutY="394.0" mnemonicParsing="false" onAction="#addService" styleClass="form_container" text="ajouter" />
       <Label layoutX="67.0" layoutY="240.0" text="Description:" />
       <Label layoutX="83.0" layoutY="316.0" text="Type:" />
       <Label layoutX="84.0" layoutY="376.0" text="idAchat" />
