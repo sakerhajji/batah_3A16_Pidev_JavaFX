@@ -1,37 +1,19 @@
 package Entity.entitiesPartenaire;
 
-public class Partenaire {
+public class partenaire {
     private int id;
     private String nom;
     private String type;
     private String adresse;
     private int tel;
     private String email;
-    private String logo;
-    private int points;
+    private String logo; // Nouveau champ logo
+    private int points; // Nouveau champ points
 
-
-    public Partenaire(int id, String nom, String type, String adresse, int tel, String email) {
-        this.id = id;
-        this.nom = nom;
-        this.type = type;
-        this.adresse = adresse;
-        this.tel = tel;
-        this.email = email;
+    public partenaire() {
     }
 
-    public Partenaire() {
-    }
-    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
-        this.id = id;
-        this.nom = nom;
-        this.type = type;
-        this.adresse = adresse;
-        this.tel = tel;
-        this.email = email;
-
-    }
-    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo,int points) {
+    public partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
         this.id = id;
         this.nom = nom;
         this.type = type;
@@ -39,10 +21,9 @@ public class Partenaire {
         this.tel = tel;
         this.email = email;
         this.logo = logo;
-        this.points=points;
     }
 
-    public Partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
+    public partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
         this.nom = nom;
         this.type = type;
         this.adresse = adresse;

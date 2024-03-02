@@ -7,6 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>BatahApp</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -14,7 +15,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -30,28 +30,11 @@
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20160810</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-web</artifactId>
-            <version>17.0.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>1.32.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-    </dependencies>
 
+
+
+
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -59,19 +42,8 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>test.UserTest.MainFx</mainClass>
-                    <options>
-                        <option>--add-modules=javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web</option>
-                        <option>--add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED</option>
-                        <option>--add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED</option>
-                        <option>--add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED</option>
-                        <option>--add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED</option>
-                        <option>--add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED</option>
-                    </options>
+                    <mainClass>test.LocationTest.MainFx</mainClass>
                 </configuration>
-
-
-
             </plugin>
         </plugins>
     </build>

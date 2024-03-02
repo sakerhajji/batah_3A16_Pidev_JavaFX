@@ -46,7 +46,6 @@ public class LocationService implements IService<Location> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 
@@ -60,7 +59,7 @@ public class LocationService implements IService<Location> {
             pst.setString(3, location.getDescription());
             pst.setString(4, location.getAdresse());
             pst.setBoolean(5, location.getDisponibilite());
-            pst.setInt(6, location.getIdLocation());
+            pst.setInt(6, location.getIdLocation()); // Set the location ID
             pst.executeUpdate();
             System.out.println("Location updated successfully.");
         } catch (SQLException e) {
@@ -68,11 +67,17 @@ public class LocationService implements IService<Location> {
         }
     }
 
+
+
+
+
+
+
     @Override
     public List<Location> readAll() {
         String query = "SELECT l.*, u.nomUtilisateur, u.prenomUtilisateur " +
                 "FROM location l " +
-                "JOIN utilisateur u ON l.idUtilisateur = u.idUtilisateur";
+                "JOIN utilisateur u ON l.id = u.id";
         List<Location> locations = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
@@ -129,4 +134,64 @@ public class LocationService implements IService<Location> {
         }
         return location;
     }
+    public List<Location> readAll2() {
+        String query = "SELECT * FROM location";
+        List<Location> locations = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Location location = new Location();
+                location.setIdLocation(rs.getInt("idLocation"));
+                location.setPrix(rs.getDouble("prix"));
+                location.setType(rs.getString("type"));
+                location.setDescription(rs.getString("description"));
+                location.setAdresse(rs.getString("adresse"));
+                location.setDisponibilite(rs.getBoolean("disponibilite"));
+                locations.add(location);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return locations;
+    }
+    public List<Location> fetchLocationsByType(String type) {
+        String query = "SELECT * FROM location WHERE type=?";
+        List<Location> locations = new ArrayList<>();
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, type);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Location location = new Location();
+                location.setIdLocation(rs.getInt("idLocation"));
+                location.setPrix(rs.getDouble("prix"));
+                location.setType(rs.getString("type"));
+                location.setDescription(rs.getString("description"));
+                location.setAdresse(rs.getString("adresse"));
+                location.setDisponibilite(rs.getBoolean("disponibilite"));
+                locations.add(location);
+            }
+            pst.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return locations;
+    }
+
+    public void updateAvailability(int locationId, boolean availability) {
+        String query = "UPDATE location SET disponibilite = ? WHERE idLocation = ?";
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setBoolean(1, availability);
+            pst.setInt(2, locationId);
+            pst.executeUpdate();
+            System.out.println("Location availability updated successfully.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

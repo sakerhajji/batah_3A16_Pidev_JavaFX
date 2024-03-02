@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javafx.scene.image.Image;
-
 import java.io.IOException;
 
 public class MainFx extends Application {
@@ -26,8 +24,6 @@ private  double x,y  ;
             Scene scene=new Scene(root);
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("Inscription");
-            Image logo=new Image("/cssProduits/batahlogo.png");
-            primaryStage.getIcons().add(logo);
             root.setOnMousePressed(event -> {
                 x = event.getSceneX();
                 y = event.getSceneY();

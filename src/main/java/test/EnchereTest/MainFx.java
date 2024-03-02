@@ -14,15 +14,15 @@ public class MainFx extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    private  double x,y  ;
+private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/interfaceEnchere/ListeEncheres.fxml"));
+                .getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);
-           // primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("Inscription");
             root.setOnMousePressed(event -> {
                 x = event.getSceneX();
@@ -35,7 +35,7 @@ public class MainFx extends Application {
 
             });
             primaryStage.setScene(scene);
-            //primaryStage.initStyle(StageStyle.TRANSPARENT);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

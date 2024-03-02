@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -25,8 +24,6 @@ private  double x,y  ;
             Scene scene=new Scene(root);
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("Inscription");
-            Image logo=new Image("/cssProduits/batahlogo.png");
-            primaryStage.getIcons().add(logo);
             root.setOnMousePressed(event -> {
                 x = event.getSceneX();
                 y = event.getSceneY();

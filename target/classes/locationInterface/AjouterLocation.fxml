@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="749.0" prefWidth="1167.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.locationController.AjouterLocation">
+<AnchorPane prefHeight="749.0" prefWidth="1167.0" stylesheets="@../locationInterface/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.locationController.AjouterLocation">
     <children>
         <TextField fx:id="id_prix" layoutX="347.0" layoutY="28.0" />
         
@@ -31,21 +31,24 @@
             </items>
         </ComboBox>
         <ComboBox fx:id="userComboBox" layoutX="353.0" layoutY="340.0" prefWidth="150.0" />
-        <Button layoutX="320.0" layoutY="377.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-        <TableView fx:id="table" layoutX="625.0" layoutY="132.0" prefHeight="414.0" prefWidth="511.0">
+        <Button layoutX="280.0" layoutY="464.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+        <TableView fx:id="tableView" layoutX="625.0" layoutY="132.0" prefHeight="480.0" prefWidth="928.0">
             <columns>
-                <TableColumn fx:id="coltype" prefWidth="75.0" text="Type" />
-                <TableColumn fx:id="coldescription" prefWidth="75.0" text="Description" />
-                <TableColumn fx:id="colprix" prefWidth="75.0" text="Prix" />
-                <TableColumn fx:id="coladresse" prefWidth="75.0" text="Adresse" />
-                <TableColumn fx:id="coldisponible" prefWidth="104.0" text="Disponibilité" />
-            <TableColumn prefWidth="106.0" text="Utilisateur" />
+
+                <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+                <TableColumn fx:id="colDescription" prefWidth="75.0" text="Description" />
+                <TableColumn fx:id="colPrix" prefWidth="75.0" text="Prix" />
+                <TableColumn fx:id="colAdresse" prefWidth="191.0" text="Adresse" />
+                <TableColumn fx:id="colDisponibilite" prefWidth="104.0" text="Disponibilité" />
+            <TableColumn fx:id="colUtilisateur" prefWidth="143.0" text="Utilisateur" />
             </columns>
         </TableView>
-        <Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#navigateToAffichageLocation" text="Afficher Locations" />
+        <!--
+<Button layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#navigateToAffichageLocation" text="Afficher Locations" />
+-->
 
-        <Button layoutX="199.0" layoutY="521.0" mnemonicParsing="false" onAction="#update" text="update" />
-        <Button layoutX="349.0" layoutY="521.0" mnemonicParsing="false" onAction="#delete" text="delete" />
+        <Button layoutX="282.0" layoutY="521.0" mnemonicParsing="false" onAction="#update" text="update" />
+        <Button layoutX="285.0" layoutY="587.0" mnemonicParsing="false" onAction="#delete" text="delete" />
       <Label layoutX="184.0" layoutY="288.0" text="Disponibilité" />
       <Label layoutX="190.0" layoutY="344.0" text="Utilisateur" />
     </children>

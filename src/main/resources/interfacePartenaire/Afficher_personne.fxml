@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="554.0" prefWidth="709.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.Afficher_personneController">
+   <children>
+      <Label alignment="CENTER" layoutX="167.0" layoutY="14.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" text="Afficher" />
+      <HBox layoutX="407.0" layoutY="23.0">
+         <TextField fx:id="searchField" promptText="Nom du partenaire" />
+         <Button onAction="#rechercher" text="Rechercher" />
+      </HBox>
+      <TableView fx:id="table" layoutX="4.0" layoutY="67.2" prefHeight="363.0" prefWidth="709.0" AnchorPane.topAnchor="67.0">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="29.60000514984131" text="ID" />
+            <TableColumn fx:id="colnom" prefWidth="64.00003433227539" text="Nom" />
+            <TableColumn fx:id="coltype" prefWidth="78.4000244140625" text="Type" />
+            <TableColumn fx:id="coladresse" prefWidth="87.19993591308594" text="Adresse" />
+            <TableColumn fx:id="coltel" prefWidth="77.60003662109375" text="Telephone" />
+            <TableColumn fx:id="colemail" prefWidth="109.5999755859375" text="Email" />
+            <TableColumn fx:id="logo" prefWidth="102.4000244140625" text="Logo">
+               <cellValueFactory>
+                  <PropertyValueFactory property="logo" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="deleteTC" prefWidth="76.79986572265625" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" minWidth="0.0" prefWidth="69.60009765625" text="Modifier" />
+         </columns>
+      </TableView>
+      <Button fx:id="ajouter" layoutX="492.0" layoutY="457.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+   </children>
+</AnchorPane>

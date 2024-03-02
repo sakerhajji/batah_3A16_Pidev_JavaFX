@@ -4,16 +4,20 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Circle?>
 
 <HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="695.0" spacing="30.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.LigneController">
          <children>
-      <Circle fx:id="Profile" fill="DODGERBLUE" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE">
-         <HBox.margin>
-            <Insets left="10.0" />
-         </HBox.margin>
-      </Circle>
+            <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_GPS_Antenna_64px_1.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </ImageView>
             <Label fx:id="Nom" maxWidth="100.0" prefHeight="17.0" prefWidth="84.0" text="KeepToo" textFill="#fb7d5b" />
             <Label fx:id="Prenom" maxWidth="100.0" prefHeight="17.0" prefWidth="84.0" text="JFK" textFill="#fb7d5b">
                <HBox.margin>
@@ -25,7 +29,7 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label fx:id="Email" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="53.0" prefWidth="94.0" text="\$200" textFill="#fb7d5b">
+            <Label fx:id="Email" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="53.0" prefWidth="115.0" text="\$200" textFill="#fb7d5b">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

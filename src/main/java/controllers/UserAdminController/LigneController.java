@@ -1,42 +1,15 @@
 package controllers.UserAdminController;
 
-import Entity.UserAdmin.Admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LigneController implements Initializable {
-    private Admin admin ;
-
-    @FXML
-    private Circle Profile;
-
-    Image image ;
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
     @FXML
     private Label DateNaissance;
 
@@ -51,7 +24,6 @@ public class LigneController implements Initializable {
 
     @FXML
     private HBox itemC;
-    private double xOffset , yOffset;
 
     public Label getDateNaissance() {
         return DateNaissance;
@@ -95,101 +67,18 @@ public class LigneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Nom.setText("saker");
+        Prenom.setText("hajji");
+        DateNaissance.setText(("28/05/2001"));
+        Email.setText("saker.hajji13@gmail.com");
+
 
 
     }
     @FXML
-    void DetailleClick(ActionEvent event) throws IOException {
-        System.out.println(admin);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/UpdateInterfaceAU.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-            UpdateInterfaceAUControllers c = loader.getController();
-            c.setAdmin(admin);
-            c.setNomUtilisateur(admin.getNomUtilisateur());
-            c.getPrenomUtilisateur().setText(admin.getPrenomUtilisateur());
-            c.setAdresseEmail(admin.getMailUtilisateur());
-            c.setDateDeNaissance(admin.getDateDeNaissance());
-            if(admin.getNumUtilisateur()==null)c.setNumeroTelephone("svp taper votre numero");
-            else c.setNumeroTelephone(admin.getNumUtilisateur());
-            if(admin.getCinUtilisateur()==null)c.setNumeroCin("svp taper votre numero cin") ;
-            else c.setNumeroCin(admin.getCinUtilisateur());
-            if(admin.getAvatar()!=null)
-            {String imagePath =  admin.getAvatar();
-            c.setProfile(imagePath);}
-            c.setIdUtlisateur(String.valueOf(admin.getIdUtilisateur()));
+    void DetailleClick(ActionEvent event) {
+        System.out.println(Nom.getText());
 
-
-
-           // profile.setFill(new ImagePattern(image));
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            scene.setFill(Color.TRANSPARENT);
-            root.setOnMousePressed((MouseEvent events) -> {
-                xOffset = events.getSceneX();
-                yOffset = events.getSceneY();
-            });
-            root.setOnMouseDragged((MouseEvent events) -> {
-                stage.setX(events.getScreenX() - xOffset);
-                stage.setY(events.getScreenY() - yOffset);
-            });
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.showAndWait();
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-    }
-    private static boolean search(File directory, String pictureName) {
-
-        File[] files = directory.listFiles();
-
-        if (files != null) {
-
-            for (File file : files) {
-                if (file.isDirectory()) {
-
-                    if (search(file, pictureName)) {
-                        return true;
-                    }
-                } else if (file.getName().equalsIgnoreCase(pictureName)) {
-
-
-                    return true;
-                }
-            }
-        }
-
-
-        return false;
-    }
-    public static boolean searchPicture(String directoryPath, String pictureName) {
-        File directory = new File(directoryPath);
-
-        // Check if the directory exists
-        if (!directory.exists() || !directory.isDirectory()) {
-
-            return false;
-        }
-
-        return search(directory, pictureName);
-    }
-    public void setProfile(String imagePath) {
-        String directoryPath = "C:\\Users\\saker\\Desktop\\esprit\\3eme\\Pidev\\batah_3A16_Pidev_JavaFX\\src\\main\\resources\\images";
-        String pictureName = imagePath;
-        boolean pictureExists = searchPicture(directoryPath, pictureName);
-
-        if (pictureExists ) {
-            Image image = new Image("/images/"+imagePath);
-            this.Profile.setFill(new ImagePattern(image));
-        }
     }
 
 

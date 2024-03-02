@@ -75,25 +75,6 @@ public class AdminService implements IService<Admin> {
             throw new RuntimeException(e);
         }
     }
-    public void updateCard(Admin admin) {
-        String requete = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, adresseEmail = ?, numeroTelephone = ?, numeroCin = ?, dateDeNaissance = ? , avatar = ? WHERE id = ?";
-
-        try {
-            pst = conn.prepareStatement(requete);
-            pst.setString(1, admin.getNomUtilisateur());
-            pst.setString(2, admin.getPrenomUtilisateur());
-            pst.setString(3, admin.getMailUtilisateur());
-            pst.setString(4, admin.getNumUtilisateur());
-            pst.setString(5, admin.getCinUtilisateur());
-            pst.setDate(6, admin.getDateDeNaissance());
-            pst.setString(7,admin.getAvatar());
-            pst.setInt(8, admin.getIdUtilisateur());
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
 
 
@@ -206,24 +187,6 @@ public class AdminService implements IService<Admin> {
         }
 return admin ;
 
-    }
-
-    public boolean emailExists(String email) {
-        boolean exists = false;
-        String requete = "SELECT COUNT(*) FROM utilisateur WHERE adresseEmail = ?";
-
-        try {
-            pst = conn.prepareStatement(requete);
-            pst.setString(1, email);
-            ResultSet resultSet = pst.executeQuery();
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                exists = (count > 0);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return exists;
     }
 
 }

@@ -2,20 +2,20 @@ package controllers.locationController;
 
 import Entity.location.Location;
 import Services.locationService.LocationService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
-
-public class AffichageLocation {
-
-    @FXML
-    private ResourceBundle resources;
+public class AffichageLocation implements Initializable {
 
     @FXML
-    private URL location;
+    private TableView<Location> tableView;
 
     @FXML
     private TableColumn<Location, Integer> colId;
@@ -38,15 +38,30 @@ public class AffichageLocation {
     @FXML
     private TableColumn<Location, String> colUtilisateur;
 
-    @FXML
-    private TableView<Location> tableView;
+    private LocationService locationService;
 
-    private final LocationService locationService = new LocationService();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        locationService = new LocationService(); // Assuming you have a LocationService class
 
-    @FXML
-    void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("idLocation"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        colDisponibilite.setCellValueFactory(new PropertyValueFactory<>("disponibilite"));
+        colUtilisateur.setCellValueFactory(cellData -> {
+            Location loc = cellData.getValue();
+            if (loc.getUtilisateur() != null) {
+                return new SimpleStringProperty(loc.getUtilisateur().getNomUtilisateur() + " " +
+                        loc.getUtilisateur().getPrenomUtilisateur());
+            } else {
+                return new SimpleStringProperty("N/A");
+            }
+        });
 
+        // Load locations directly into the table
+        List<Location> locations = locationService.readAll();
+        tableView.getItems().addAll(locations);
     }
-
-
 }

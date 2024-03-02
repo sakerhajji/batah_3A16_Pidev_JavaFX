@@ -1,5 +1,6 @@
 package test.LocationTest;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,17 +9,18 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class MainFx extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(MysqlxDatatypes.Scalar.String[] args) {
+        launch(Arrays.toString(args));
     }
     private  double x,y  ;
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader loader=new FXMLLoader(getClass()
-                .getResource("/locationInterface/AjouterLocation.fxml"));
+                .getResource("/locationInterface/location.fxml"));
         try {
             Parent root= loader.load();
             Scene scene=new Scene(root);
