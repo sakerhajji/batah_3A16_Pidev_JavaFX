@@ -1,15 +1,30 @@
 package controllers.ServiceApresVente;
 
+import Entity.entitiesServiceApresVente.ServiceApresVente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LigneServiceController implements Initializable {
+    ServiceApresVente sa=new ServiceApresVente();
+
+    public ServiceApresVente getSa() {
+        return sa;
+    }
+
+    public void setSa(ServiceApresVente sa) {
+        this.sa = sa;
+    }
 
     @FXML
     private Label date;
@@ -100,9 +115,29 @@ public class LigneServiceController implements Initializable {
     }
 
     @FXML
-    void DetailleClick(ActionEvent event) {
+    void detailleClicked(ActionEvent event) throws IOException {
+       // System.out.println(ServiceApresVente);
+        try {
+            // Charger l'interface graphique depuis le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteUpdate.fxml"));
+            Parent root = loader.load();
 
+            // Créer une nouvelle fenêtre pour afficher l'interface
+            Stage stage = new Stage();
+            stage.setTitle("Détail du service après-vente");
+            stage.setScene(new Scene(root));
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

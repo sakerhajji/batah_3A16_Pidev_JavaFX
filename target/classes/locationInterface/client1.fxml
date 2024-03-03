@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="722.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.locationController.client1">
+
+
+    <children>
+
+        <BorderPane layoutX="8.0" layoutY="14.0" prefHeight="727.0" prefWidth="702.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <VBox prefHeight="727.0" prefWidth="745.0" styleClass="right-bar" stylesheets="@style1.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="42.0" prefWidth="159.0" text="Produit" textAlignment="CENTER" textFill="#878787">
+                                    <font>
+                                        <Font name="Cambria Bold Italic" size="33.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" text="à louer" textAlignment="CENTER" textFill="#878787">
+                                    <font>
+                                        <Font name="Cambria" size="33.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <Pane prefHeight="29.0" prefWidth="435.0" />
+                        <VBox fx:id="chosenProduct" alignment="CENTER" prefHeight="673.0" prefWidth="645.0" styleClass="choosen-product-card" stylesheets="@style1.css">
+                            <VBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </VBox.margin>
+                            <children>
+                                <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@img/3008-PNG-876x535.jpg" />
+                                    </image>
+                           <VBox.margin>
+                              <Insets bottom="30.0" top="30.0" />
+                           </VBox.margin>
+                                </ImageView>
+                        <Button mnemonicParsing="false" text="Télécharger" />
+                        <HBox prefHeight="40.0" prefWidth="335.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="44.0" prefWidth="335.0">
+                                 <children>
+                                    <Label prefHeight="44.0" prefWidth="174.0" text="Prix" textFill="#f2f2f2">
+                                       <font>
+                                          <Font name="Cambria" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefWidth="130.0" styleClass="text-field2" stylesheets="@style1.css" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="priceLabel1" prefHeight="44.0" prefWidth="174.0" text="   Type" textAlignment="RIGHT" textFill="#f2f2f2">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <ComboBox prefHeight="31.0" prefWidth="130.0" promptText="voiture" styleClass="combo-box" stylesheets="@style1.css">
+                                 <HBox.margin>
+                                    <Insets left="17.0" top="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                                <HBox prefHeight="40.0" prefWidth="335.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="335.0">
+                                            <children>
+                                                <Label prefHeight="44.0" prefWidth="174.0" text="Description" textFill="#f2f2f2">
+                                                    <font>
+                                                        <Font name="Cambria" size="26.0" />
+                                                    </font>
+                                                    <HBox.margin>
+                                                        <Insets />
+                                                    </HBox.margin>
+                                                </Label>
+                                                <TextField prefWidth="130.0" styleClass="text-field2" stylesheets="@style1.css" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin></HBox>
+                                <HBox prefHeight="43.0" prefWidth="335.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="335.0">
+                                            <children>
+                                                <Label prefHeight="44.0" prefWidth="174.0" text="Adresse" textFill="#f2f2f2">
+                                                    <font>
+                                                        <Font name="Cambria" size="26.0" />
+                                                    </font>
+                                                    <HBox.margin>
+                                                        <Insets />
+                                                    </HBox.margin>
+                                                </Label>
+                                                <TextField prefWidth="130.0" styleClass="text-field3" stylesheets="@style1.css" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <padding>
+                                        <Insets top="10.0" />
+                                    </padding>
+                                </HBox>
+                                <Button mnemonicParsing="false" prefWidth="270.0" styleClass="add-btn" stylesheets="@style1.css" text="AJOUTER" textFill="#828282">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" top="30.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Cambria Bold" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" prefWidth="270.0" styleClass="add-btn" stylesheets="@style1.css" text="MODIFIER" textFill="#828282">
+                                    <font>
+                                        <Font name="Cambria Bold" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" prefWidth="270.0" styleClass="add-btn" stylesheets="@style1.css" text="SUPPRIMER" textFill="#828282">
+                                    <font>
+                                        <Font name="Cambria Bold" size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="15.0" />
+                                    </VBox.margin>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </left>
+        </BorderPane>
+    </children>
+</AnchorPane>
