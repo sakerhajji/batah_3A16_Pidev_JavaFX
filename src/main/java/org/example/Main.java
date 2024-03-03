@@ -112,8 +112,13 @@ public class Main {
 //            System.out.println("Error copying image: " + e.getMessage());
 //        }
         Membre membre =new Membre() ;
-        String data = "{\"name\":\"saker \\u201csaker__hajji\\u201d hajji\",\"id\":\"105048815640171183281\",\"verified_email\":true,\"given_name\":\"saker\",\"locale\":\"en-US\",\"family_name\":\"hajji\",\"email\":\"saker.hajji13@gmail.com\",\"picture\":\"https://lh3.googleusercontent.com/a/ACg8ocJazEK1yBTbbpHqZXxRE1NBrAUR8JR7KfH6-m7iqGideyA=s96-c\"}\n" ;
-        System.out.println(membre.isBinFileEmpty());
+        MembreService membreService= new MembreService() ;
+        membre=membreService.readById(2);
+
+        membre.saveJsonToBinFile(membre);
+
+        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
+        System.out.println(membre.getNomUtilisateur()+" "+ membre.getPrenomUtilisateur() );
 
     }
 

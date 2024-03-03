@@ -121,7 +121,8 @@ public class AccueilUserController implements Initializable {
             pnlEnchere.setStyle("-fx-background-color: #640680");
             pnlEnchere.toFront();
         } else if (actionEvent.getSource() == btnSignout) {
-            membre.clearBinFile();
+           if(membre!=null){
+            membre.clearBinFile();}
             try {
                 root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -177,8 +178,10 @@ public class AccueilUserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
-        //NameLastName.setText(membre.getNomUtilisateur()+" "+membre.getPrenomUtilisateur());
+        if (membre!=null) {
+            NameLastName.setText(membre.getNomUtilisateur() + " " + membre.getPrenomUtilisateur());
 
+        }
 
 
     }

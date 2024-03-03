@@ -26,13 +26,13 @@ public class MainFx extends Application {
             {
                 Session = Session.convertToMembre(Session.loadJsonFromBinFile()) ;
                 if (Session.getRoleUtilisateur()=='A'){
-                root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
+                root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));}
                 else {
-                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));
 
                 }
             }
-            else { root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+            else { root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));
                 Session=Session.convertToMembre(Session.loadJsonFromBinFile()) ;
             }
 

@@ -181,6 +181,80 @@ public class MembreService implements IService<Membre> {
         }
     }
 
+    public void updateCard(Membre membre) {
+        String requete = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, adresseEmail = ?, numeroTelephone = ?, numeroCin = ?, dateDeNaissance = ? , avatar = ? , pays = ? WHERE id = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setString(1, membre.getNomUtilisateur());
+            pst.setString(2, membre.getPrenomUtilisateur());
+            pst.setString(3, membre.getMailUtilisateur());
+            pst.setString(4, membre.getNumUtilisateur());
+            pst.setString(5, membre.getCinUtilisateur());
+            pst.setDate(6, membre.getDateDeNaissance());
+            pst.setString(7,membre.getAvatar());
+            pst.setString(8,membre.getPays());
+            pst.setInt(9, membre.getIdUtilisateur());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean isValidCredentials(int id, String password) {
+        String requete = "SELECT COUNT(*) FROM utilisateur WHERE id = ? AND motDePasse = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.setString(2, password);
+            ResultSet resultSet = pst.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0; // Returns true if count is greater than 0, indicating existence
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false; // Member not found
+    }
+    public void updatePassword(int id, String newPassword) {
+        String requete = "UPDATE utilisateur SET motDePasse = ? WHERE id = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setString(1, newPassword);
+            pst.setInt(2, id);
+
+            int rowsUpdated = pst.executeUpdate();
+
+            if (rowsUpdated == 0) {
+                throw new SQLException("Failed to update password. No rows affected.");
+            }
+            else System.out.println("Done");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public String getPassword(int id, String password) {
+        String requete = "SELECT motDePasse FROM utilisateur WHERE id = ? AND motDePasse = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.setString(2, password);
+            ResultSet resultSet = pst.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("motDePasse"); // Returns the password if the credentials are valid
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null; // Member not found or invalid credentials
+    }
 
 
 }
