@@ -9,9 +9,10 @@ public class Produits {
     private float prix;
     private String labelle;
 
-    private int status;
+    private String status;
     private int periodeGarentie ;
 
+    private String photo;
 //user id
 
 
@@ -23,7 +24,20 @@ public class Produits {
 
     }
 
-    public Produits(int idProduit, String type, String description, float prix, String labelle, int status, int periodeGarentie, Membre id) {
+
+
+    public Produits(String type, String description, float prix, String labelle, String status, int periodeGarentie, String photo,Membre id) {
+        this.type = type;
+        this.description = description;
+        this.prix = prix;
+        this.labelle = labelle;
+
+        this.status = status;
+        this.periodeGarentie = periodeGarentie;
+        this.photo=photo;
+        this.id = id;
+    }
+    public Produits(int idProduit,String type, String description, float prix, String labelle, String status, int periodeGarentie,String photo,Membre id) {
         this.idProduit = idProduit;
         this.type = type;
         this.description = description;
@@ -32,21 +46,19 @@ public class Produits {
 
         this.status = status;
         this.periodeGarentie = periodeGarentie;
-        this.id = id;
-    }
+        this.photo=photo;
 
-    public Produits(String type, String description, float prix, String labelle, int status, int periodeGarentie, Membre id) {
-        this.type = type;
-        this.description = description;
-        this.prix = prix;
-        this.labelle = labelle;
-
-        this.status = status;
-        this.periodeGarentie = periodeGarentie;
         this.id = id;
     }
 
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
 
 
@@ -58,7 +70,7 @@ public class Produits {
         this.id = id;
     }
 
-     public int getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
@@ -99,11 +111,11 @@ public class Produits {
     }
 
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -140,6 +152,7 @@ public class Produits {
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", labelle='" + labelle + '\'' +
+                ", photo='" + photo + '\'' +
                 ", status=" + status +
                 ", periodeGarentie=" + periodeGarentie +
                 ", id=" + id +

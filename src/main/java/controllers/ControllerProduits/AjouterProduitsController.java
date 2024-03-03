@@ -1,7 +1,9 @@
 package controllers.ControllerProduits;
 
-import Entity.entitiesProduits.Produits;
 import Entity.UserAdmin.Membre;
+import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
+import Services.UserAdmineServices.MembreService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,16 +14,27 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import Services.ServiceProduit.ProduitsService;
-import Services.UserAdmineServices.MembreService;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class AjouterProduitsController {
 
+    @FXML
+    private ImageView imageLogo;
+    @FXML
+    private TableColumn<Produits, String> colphoto;
+    @FXML
+    private TableColumn<?, ?> logo;
+    private String logoFileName;
+
+    @FXML
+    private TextField txtphoto;
     @FXML
     private TableColumn<Produits, String> colUser;
 
@@ -37,8 +50,8 @@ public class AjouterProduitsController {
     @FXML
     private TableColumn<Produits, Integer> colperiodeGarentie;
 
-    @FXML
-    private TableColumn<Produits, String> colphoto;
+   /* @FXML
+    private TableColumn<Produits, String> colphoto;*/
 
     @FXML
     private TableColumn<Produits, Float> colprix;
@@ -62,8 +75,8 @@ public class AjouterProduitsController {
     @FXML
     private TextField txtperiodeGarentie;
 
-    @FXML
-    private TextField txtphoto;
+   /* @FXML
+    private TextField txtphoto;*/
 
     @FXML
     private TextField txtprix;
@@ -73,8 +86,11 @@ public class AjouterProduitsController {
 
     @FXML
     private ComboBox<?> typeComboBox;
+    @FXML
+    private ComboBox<String> StatusComboBox2;
 
     private ProduitsService produitsService = new ProduitsService();
+
     @FXML
     void initialize() {
         MembreService userService = new MembreService(); // Initialize the userService field
@@ -82,6 +98,7 @@ public class AjouterProduitsController {
         addInputRestrictions();
 
     }
+
     private void addInputRestrictions() {
 
 
@@ -109,51 +126,44 @@ public class AjouterProduitsController {
 
     public void populateUserComboBox() {
 
-                    MembreService u = new MembreService();
-                    List<Membre> users = null;
+        MembreService u = new MembreService();
+        List<Membre> users = null;
 
         users = u.readAll();
 
         ObservableList<Integer> userIds = FXCollections.observableArrayList();
 
-                    for (Membre user : users) {
-                        userIds.add(user.getIdUtilisateur());
-                    }
+        for (Membre user : users) {
+            userIds.add(user.getIdUtilisateur());
+        }
 
-                    idUser.setItems(userIds);
-                }
+        idUser.setItems(userIds);
+    }
 
 
     @FXML
     void addProduits(ActionEvent event) {
         String description = txtdescription.getText();
         String labelle = txtlabelle.getText();
-        int status = Integer.parseInt(txtstatus.getText());
         String type = (String) typeComboBox.getValue();
+        String status = (String) StatusComboBox2.getValue();
         float prix = Float.parseFloat(txtprix.getText());
         int periodeGarantie = Integer.parseInt(txtperiodeGarentie.getText());
+
 
         Integer selectedUserid = idUser.getValue();
         if (selectedUserid == null) {
             System.out.println("Error: No user selected");
             return;
         }
-MembreService ms=new MembreService();
-            Membre selectedUser = ms.readById(selectedUserid);
+        MembreService ms = new MembreService();
+        Membre selectedUser = ms.readById(selectedUserid);
 
-        Produits newProduit = new Produits( type,description,  prix,labelle, status,periodeGarantie, selectedUser);
+        Produits newProduit = new Produits(type, description, prix, labelle, status, periodeGarantie, logoFileName, selectedUser);
         produitsService.add(newProduit);
-
         try {
-
             Stage stage = (Stage) txtdescription.getScene().getWindow();
             stage.close();
-
-            // Actualisez la TableView dans le contrôleur principal
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
-            Parent root = loader.load();
-            AfficherProduitsController afficherProduitsController = loader.getController();/* obtenir une référence à votre contrôleur principal */;
-            afficherProduitsController.refreshTableView();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -162,18 +172,33 @@ MembreService ms=new MembreService();
 
     @FXML
     void ViewAllProduct(ActionEvent event) {
-            FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfaceProduit/AfficherProduits.fxml"));
-            try {
-                Parent root = loader.load();
-    //je peut recupere la scene actuelle a traveres tous les composant graphiques
-                txtdescription.getScene().setRoot(root);
-            } catch (IOException e) {
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/interfaceProduit/AfficherProduits.fxml"));
+        try {
+            Parent root = loader.load();
+            txtdescription.getScene().setRoot(root);
+        } catch (IOException e) {
 
-                System.out.println(e.getMessage());
-            }
+            System.out.println(e.getMessage());
+        }
 
 
     }
+        @FXML
+        void chooseImage(ActionEvent event) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir une image");
+            File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
+            fileChooser.setInitialDirectory(initialDirectory);
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                String imageName = selectedFile.getName();
+                Image image = new Image(selectedFile.toURI().toString());
+                imageLogo.setImage(image);
+                // Enregistrer le nom de l'image
+                logoFileName = imageName;
+            }
+        }
 
-}
+    }
+

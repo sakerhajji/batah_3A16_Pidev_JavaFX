@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../interfaceEnchere/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerGestionEnchere.ListEnchereClientController">
+
+    <children>
+        <!-- Titre -->
+        <Label layoutX="104.0" layoutY="14.0" styleClass="title-label" text="Votre liste des produits encheres! " />
+
+        <!-- Sélecteur de date -->
+        <Label layoutX="68.0" layoutY="90.0" text="Filtrer par date:" />
+        <DatePicker fx:id="datePicker" layoutX="174.0" layoutY="86.0" onAction="#filterByDate" promptText="Sélectionner une date..." />
+
+        <!-- Espace -->
+        <Label layoutX="480.0" layoutY="90.0" text=" " />
+
+        <!-- Zone de recherche -->
+        <TextField fx:id="searchField" layoutX="563.0" layoutY="82.0" onKeyReleased="#searchAuctions" prefHeight="35.0" prefWidth="270.0" promptText="Recherche..." />
+
+        <!-- Liste des enchères -->
+        <ScrollPane layoutX="8.0" layoutY="152.0" prefHeight="666.0" prefWidth="930.0" style="-fx-padding: 10px;">
+            <VBox fx:id="auctionsVBox" spacing="10.0" />
+        </ScrollPane>
+        <Label layoutX="423.0" layoutY="90.0" text="Rechercher par type:" />
+    </children>
+</AnchorPane>

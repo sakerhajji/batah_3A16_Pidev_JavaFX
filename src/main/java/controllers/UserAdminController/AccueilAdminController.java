@@ -41,6 +41,8 @@ public class AccueilAdminController implements Initializable {
 
     @FXML
     private Button btnOverview;
+    @FXML
+    private Button btnEnchere;
 
     @FXML
     private Button ServiceButton;
@@ -50,6 +52,8 @@ public class AccueilAdminController implements Initializable {
 
     @FXML
     private Button ProduitButton;
+    @FXML
+    private Button btnResEnchere;
 
     @FXML
     private Pane pnlCustomer;
@@ -62,7 +66,10 @@ public class AccueilAdminController implements Initializable {
 
     @FXML
     private Pane pnlMenus;
-
+    @FXML
+    private Pane pnlEnchere;
+    @FXML
+    private Pane pnlResEnchere;
 
 
     private int n ;
@@ -163,7 +170,22 @@ public class AccueilAdminController implements Initializable {
             FXMLLoader p = new FXMLLoader(getClass().getResource("/serviceApresVente/ligneServices.fxml"));
             pnlOrders.setStyle("-fx-background-color: #464F67");
             pnlOrders.toFront();
+            pnlOrders.getChildren().removeAll();
             loadServiceXMLContent();
+
+        }else if (actionEvent.getSource() == btnEnchere) {
+            pnlEnchere.setStyle("-fx-background-color: #fff0e7");
+            pnlEnchere.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceEnchere/ListeEncheres.fxml"));
+            pnlEnchere.getChildren().removeAll();
+            loadEnchereXMLContent();
+
+        }else if (actionEvent.getSource() == btnResEnchere) {
+            pnlResEnchere.setStyle("-fx-background-color: #fff0e7");
+            pnlResEnchere.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceEnchere/ListeReservationEncheres.fxml"));
+            pnlResEnchere.getChildren().removeAll();
+            loadEnchereResXMLContent();
 
         }
     }
@@ -196,6 +218,28 @@ public class AccueilAdminController implements Initializable {
             Pane XMLPane = loader.load();
             pnlOrders.getChildren().clear();
             pnlOrders.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadEnchereXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceEnchere/ListeEncheres.fxml"));
+            Pane XMLPane = loader.load();
+            pnlEnchere.getChildren().clear();
+            pnlEnchere.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadEnchereResXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceEnchere/ListeReservationEncheres.fxml"));
+            Pane XMLPane = loader.load();
+            pnlResEnchere.getChildren().clear();
+            pnlResEnchere.getChildren().setAll(XMLPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

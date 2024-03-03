@@ -57,6 +57,30 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <Button fx:id="btnListeEncheres" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Liste Encheres" textFill="#fb7d5b">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnListeEncheresRes" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Liste Encheres Reservés" textFill="#fb7d5b">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
                 <Button fx:id="bntAllocation" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Allocation" textFill="#fb7d5b">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -135,6 +159,8 @@
                 <Pane fx:id="pnlProduit" prefHeight="200.0" prefWidth="200.0" />
                 <Pane fx:id="pnlAccuiel" prefHeight="554.0" prefWidth="793.0" />
                 <Pane layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="869.0" />
+            <Pane fx:id="pnlListeEnchere" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlListeEnchereRes" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </StackPane>
     </children>

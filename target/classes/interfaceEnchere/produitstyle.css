@@ -1,0 +1,65 @@
+.root {
+    -fx-background-color: #FDFDFD; /* Light background color */
+}
+
+/* Style for TableView */
+.table-view {
+    -fx-control-inner-background: #FDFDFD; /* Background color of cells */
+}
+
+/* Style for Label */
+.label {
+    -fx-text-fill: #E44D26; /* Red text color */
+    -fx-font-size: 14px;
+}
+
+/* Style for Button */
+.button {
+    -fx-background-color: #E44D26; /* Red background color */
+    -fx-text-fill: #FFFFFF; /* White text color */
+    -fx-font-size: 14px;
+}
+
+/* Hover effect for Button */
+.button:hover {
+    -fx-background-color: #DE2D26; /* Darker red on hover */
+}
+
+/* Style for TextField */
+.text-field {
+    -fx-background-color: #6a8a82; /* Background color of text field */
+    -fx-text-inner-color: #E44D26; /* Text color inside text field */
+}
+
+/* Apply the style to specific nodes based on their IDs or classes */
+#myTableView {
+    -fx-control-inner-background: #FDFDFD;
+}
+
+#myLabel {
+    -fx-text-fill: #E44D26;
+    -fx-font-size: 14px;
+}
+
+#myButton {
+    -fx-background-color: #E44D26;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+}
+
+#myButton:hover {
+    -fx-background-color: #DE2D26;
+}
+
+#myTextField {
+    -fx-background-color: #FDFDFD;
+    -fx-text-inner-color: #E44D26;
+}
+.root {
+    -fx-background-color: #f5b6b6; /* Light background color */
+}
+
+/* Set background color for a specific node (e.g., AnchorPane with ID "myAnchorPane") */
+#myAnchorPane {
+    -fx-background-color: #a15656; /* Light background color */
+}

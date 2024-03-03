@@ -1,12 +1,12 @@
 package Entity.entitiesEncheres;
-import Entity.UserAdmin.Admin;
+import Entity.UserAdmin.Membre;
 
 import java.time.LocalDate;
 
 public class ReservationEnchere {
     private int idReservation;
     private Enchere idEnchere;
-    private Admin idUser;
+    private Membre idUser;
     private LocalDate dateReservation;
     private boolean confirmation;
 
@@ -14,7 +14,7 @@ public class ReservationEnchere {
     public ReservationEnchere() {
     }
 
-    public ReservationEnchere(int idReservation, Enchere idEnchere, Admin idUser, LocalDate dateReservation, boolean confirmation) {
+    public ReservationEnchere(int idReservation, Enchere idEnchere, Membre idUser, LocalDate dateReservation, boolean confirmation) {
         this.idReservation = idReservation;
         this.idEnchere = idEnchere;
         this.idUser = idUser;
@@ -22,7 +22,7 @@ public class ReservationEnchere {
         this.confirmation = confirmation;
     }
 
-    public ReservationEnchere(Enchere idEnchere, Admin idUser, LocalDate dateReservation, boolean confirmation) {
+    public ReservationEnchere(Enchere idEnchere, Membre idUser, LocalDate dateReservation, boolean confirmation) {
         this.idEnchere = idEnchere;
         this.idUser = idUser;
         this.dateReservation = dateReservation;
@@ -46,11 +46,11 @@ public class ReservationEnchere {
         this.idEnchere = idEnchere;
     }
 
-    public Admin getIdUser() {
+    public Membre getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Admin idUser) {
+    public void setIdUser(Membre idUser) {
         this.idUser = idUser;
     }
 

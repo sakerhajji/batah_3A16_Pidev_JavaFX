@@ -79,8 +79,6 @@ public void Affecter(ServiceApresVente s, Partenaire p)
     partenaireService.updatePoints(p);
     sa.updateStatus(s);
 
-
-
 }
 
 

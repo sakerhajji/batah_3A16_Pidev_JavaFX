@@ -1,0 +1,119 @@
+/* Styles.css */
+
+/* Labels */
+Label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+/* TextFields */
+TextField {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-border-color: #ffa500; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Coins arrondis de la bordure */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+}
+
+/* ComboBox */
+ComboBox {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-border-color: #ffa500; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Coins arrondis de la bordure */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+}
+
+/* DatePicker */
+DatePicker {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-border-color: #ffa500; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Coins arrondis de la bordure */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+}
+
+/* CheckBox */
+CheckBox {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #f9f9f9; /* Couleur de fond */
+}
+
+/* TableColumn */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+/* TableCell */
+.table-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+/* TableRow: First Row */
+/* Styles.css */
+
+/* Appliquer un style à la première ligne du TableView */
+/* Styles.css */
+
+/* Définir un arrière-plan pour l'AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+    -fx-background-image: url("/interfaceEnchere/Capture.png"); /* Image de fond */
+    -fx-background-size: cover; /* Redimensionner l'image pour remplir l'ensemble de l'AnchorPane */
+    -fx-background-position: center; /* Positionner l'image au centre */
+    -fx-background-repeat: no-repeat; /* Ne pas répéter l'image */
+}
+.main-pane {
+    -fx-background-color: #FDF6E3; /* Fond beige */
+}
+
+.text-field {
+    -fx-background-color: #FDF6E3; /* Fond beige */
+    -fx-border-color: #D4AC0D; /* Bordure dorée */
+}
+
+.vbox {
+    -fx-padding: 10px;
+}
+
+.vbox .anchor-pane {
+    -fx-background-color:#f0f0f0; /* Fond jaune clair */
+    -fx-border-color: #D4AC0D; /* Bordure dorée */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.vbox .anchor-pane:hover {
+    -fx-background-color: #f0f0f0; /* Fond jaune plus foncé au survol */
+}
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E8B57; /* Couleur verte foncée */
+}
+.auctions-vbox {
+    -fx-margin-top: 200px; /* Adjust the value according to your preference */
+}
+.anchor-pane {
+    -fx-background-color: #f0f0f0; /* Couleur de fond gris clair */
+}
+
+/* Style spécifique pour les boutons "Reserve" et "Detail" */
+.reserve-button, .detail-button {
+    -fx-font-size: 9px; /* Taille de la police plus petite */
+    -fx-padding: 4px 9px; /* Padding plus petit autour du texte */
+}

@@ -60,6 +60,10 @@ public class AccueilUserController implements Initializable {
 
     @FXML
     private Button btnaccueil;
+    @FXML
+    private Button btnListeEncheres;
+    @FXML
+    private Button btnListeEncheresRes;
 
     @FXML
     private Pane pnlAccuiel;
@@ -75,6 +79,10 @@ public class AccueilUserController implements Initializable {
 
     @FXML
     private Pane pnlSetting;
+    @FXML
+    private Pane pnlListeEnchere;
+    @FXML
+    private Pane pnlListeEnchereRes;
 
 
     public Label getNameLastName() {
@@ -118,8 +126,11 @@ public class AccueilUserController implements Initializable {
             pnlAccuiel.toFront();
             // Uncommented block is removed because it's commented out
         } else if (actionEvent.getSource() == btnEncheres) {
-            pnlEnchere.setStyle("-fx-background-color: #640680");
+            pnlEnchere.setStyle("-fx-background-color: #FFFFFF");
             pnlEnchere.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceEnchere/test.fxml"));
+            pnlEnchere.getChildren().removeAll();
+            loadSxmlEnchere();
         } else if (actionEvent.getSource() == btnSignout) {
             membre.clearBinFile();
             try {
@@ -147,6 +158,22 @@ public class AccueilUserController implements Initializable {
             pnlAllocation.toFront();
             pnlAllocation.getChildren().clear();
             loadSxmlLocation();
+        }else if(actionEvent.getSource()==btnListeEncheres)
+        {
+            pnlListeEnchere.setStyle("-fx-background-color: #FFFFFF");
+            pnlListeEnchere.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceEnchere/ListeEnchereClient.fxml"));
+            pnlListeEnchere.getChildren().removeAll();
+            pnlListeEnchere.getChildren().clear();
+            loadSxmlListeEnchere();
+        }else if(actionEvent.getSource()==btnListeEncheresRes)
+        {
+            pnlListeEnchereRes.setStyle("-fx-background-color: #FFFFFF");
+            pnlListeEnchereRes.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceEnchere/reservedEnchere.fxml"));
+            pnlListeEnchereRes.getChildren().removeAll();
+            pnlListeEnchereRes.getChildren().clear();
+            loadSxmlListeEnchereRes();
         }
     }
 
@@ -167,6 +194,39 @@ public class AccueilUserController implements Initializable {
             Pane settingPane = loader.load();
             pnlAllocation.getChildren().clear();
             pnlAllocation.getChildren().setAll(settingPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private  void loadSxmlEnchere(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceEnchere/test.fxml"));
+            Pane settingPane = loader.load();
+            pnlEnchere.getChildren().clear();
+            pnlEnchere.getChildren().setAll(settingPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private  void loadSxmlListeEnchere(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceEnchere/listeEnchereClient.fxml"));
+            Pane settingPane = loader.load();
+            pnlListeEnchere.getChildren().clear();
+            pnlListeEnchere.getChildren().setAll(settingPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private  void loadSxmlListeEnchereRes(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceEnchere/reservedEnchere.fxml"));
+            Pane settingPane = loader.load();
+            pnlListeEnchereRes.getChildren().clear();
+            pnlListeEnchereRes.getChildren().setAll(settingPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

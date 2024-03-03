@@ -2,11 +2,9 @@ package Services.EnchereService;
 
 import DataBaseSource.DataSource;
 import Entity.entitiesEncheres.Enchere;
-import Entity.entitiesEncheres.ReservationEnchere;
 import Entity.entitiesProduits.Produits;
 import InterfaceServices.IService;
 import Services.ServiceProduit.ProduitsService;
-
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -18,6 +16,7 @@ public class EnchereService implements IService<Enchere> {
     private final Connection conn;
     private PreparedStatement pst;
     private Statement ste;
+
     public EnchereService() {
         conn = DataSource.getInstance().getCnx();
     }
@@ -33,7 +32,7 @@ public class EnchereService implements IService<Enchere> {
             pst.setFloat(4, enchere.getPrixMin());
             pst.setFloat(5, enchere.getPrixMax());
             pst.setFloat(6, enchere.getPrixActuelle());
-            pst.setInt(7,enchere.getNbrParticipants());
+            pst.setInt(7, enchere.getNbrParticipants());
             pst.setInt(8, enchere.getIdProduit().getIdProduit());
             pst.executeUpdate();
         } catch (SQLException e) {
@@ -62,7 +61,7 @@ public class EnchereService implements IService<Enchere> {
             pst.setFloat(4, enchere.getPrixMin());
             pst.setFloat(5, enchere.getPrixMax());
             pst.setFloat(6, enchere.getPrixActuelle());
-            pst.setInt(7,enchere.getNbrParticipants());
+            pst.setInt(7, enchere.getNbrParticipants());
             pst.setInt(8, enchere.getIdProduit().getIdProduit());
             pst.setInt(9, enchere.getIdEnchere());
             pst.executeUpdate();
@@ -87,7 +86,7 @@ public class EnchereService implements IService<Enchere> {
                 float prixMin = rs.getFloat("prixMin");
                 float prixMax = rs.getFloat("prixMax");
                 float prixActuelle = rs.getFloat("prixActuelle");
-                int nbrParticipants =rs.getInt("nbrParticipants");
+                int nbrParticipants = rs.getInt("nbrParticipants");
                 int idProduit = rs.getInt("idProduit");
                 String productDescription = rs.getString("productDescription");
 
@@ -96,7 +95,7 @@ public class EnchereService implements IService<Enchere> {
                 Produits produit = produitsService.fetchProduitById(idProduit);
 
                 // Create Enchere object using the fetched Produits object
-                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle,nbrParticipants, produit));
+                enchereList.add(new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, nbrParticipants, produit));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la lecture de toutes les enchères", e);
@@ -105,31 +104,39 @@ public class EnchereService implements IService<Enchere> {
     }
 
 
-
-
-
     @Override
     public Enchere readById(int id) {
-        String query = "SELECT * FROM encheres WHERE idEnchere=?";
+        String query = "SELECT e.*, p.description AS productDescription " +
+                "FROM encheres e " +
+                "JOIN produits p ON e.idProduit = p.idProduit " +
+                "WHERE e.idEnchere = ?";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setInt(1, id);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    int idEnchere = rs.getInt("idEnchere");
                     LocalDate dateDebut = rs.getObject("dateDebut", LocalDate.class);
                     LocalDate dateFin = rs.getObject("dateFin", LocalDate.class);
                     boolean status = rs.getBoolean("status");
                     float prixMin = rs.getFloat("prixMin");
                     float prixMax = rs.getFloat("prixMax");
                     float prixActuelle = rs.getFloat("prixActuelle");
-                    int nbrParticipants =rs.getInt("nbrParticipants");
+                    int nbrParticipants = rs.getInt("nbrParticipants");
                     int idProduit = rs.getInt("idProduit");
-                    //return new Enchere(idEnchere, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, idProduit);
+                    String productDescription = rs.getString("productDescription");
+
+                    ProduitsService produitsService = new ProduitsService();
+                    // Fetch Produits object by idProduit
+                    Produits produit = produitsService.fetchProduitById(idProduit);
+
+                    // Create Enchere object using the fetched Produits object
+                    return new Enchere(id, dateDebut, dateFin, status, prixMin, prixMax, prixActuelle, nbrParticipants, produit);
+                } else {
+                    // No enchere found with the given id
+                    return null;
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la lecture de l'enchère par ID", e);
+            throw new RuntimeException("Erreur lors de la lecture de l'enchère avec l'identifiant : " + id, e);
         }
-        return null;
     }
 }
