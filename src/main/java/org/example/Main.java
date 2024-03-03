@@ -102,18 +102,16 @@ public class Main {
         }
     }
     public static void main(String[] args) {
-//        String sourceImagePath = "C:" + File.separator + "Users" + File.separator + "saker" + File.separator + "Desktop" + File.separator + "A188.jpg";
-//        String destinationFolderPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "imageUserAdmin"; // Relative path to project directory
-//        String newFileName = "newFileName.jpg"; // New file name
-//        try {
-//            copyImage(sourceImagePath, destinationFolderPath, newFileName);
-//            System.out.println("Image copied and renamed successfully.");
-//        } catch (IOException e) {
-//            System.out.println("Error copying image: " + e.getMessage());
-//        }
+
         Membre membre =new Membre() ;
-        String data = "{\"name\":\"saker \\u201csaker__hajji\\u201d hajji\",\"id\":\"105048815640171183281\",\"verified_email\":true,\"given_name\":\"saker\",\"locale\":\"en-US\",\"family_name\":\"hajji\",\"email\":\"saker.hajji13@gmail.com\",\"picture\":\"https://lh3.googleusercontent.com/a/ACg8ocJazEK1yBTbbpHqZXxRE1NBrAUR8JR7KfH6-m7iqGideyA=s96-c\"}\n" ;
-        System.out.println(membre.isBinFileEmpty());
+        membre.clearBinFile();
+        MembreService membreService= new MembreService() ;
+        membre=membreService.readById(2);
+
+        membre.saveJsonToBinFile(membre);
+
+        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
+        System.out.println(membre.getNomUtilisateur()+" "+ membre.getPrenomUtilisateur() );
 
     }
 

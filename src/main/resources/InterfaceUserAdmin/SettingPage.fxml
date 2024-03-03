@@ -12,82 +12,82 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="680.0" prefWidth="722.0" style="-fx-background-color: #FFEFE7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.SettingController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #FFEFE7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.SettingController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fb7d5b" height="200.0" layoutX="8.0" layoutY="22.0" stroke="WHITE" strokeType="INSIDE" width="706.0" />
-        <Circle fill="WHITE" layoutX="539.0" layoutY="138.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-        <Circle fill="#fcc43e" layoutX="604.0" layoutY="122.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="8.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="706.0" />
-        <Circle fx:id="Profile" fill="#ffefe7" layoutX="89.0" layoutY="89.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
-        <Text fill="#303972" layoutX="19.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saker Hajji" textAlignment="CENTER" wrappingWidth="140.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fb7d5b" height="200.0" layoutX="8.0" layoutY="57.0" stroke="WHITE" strokeType="INSIDE" width="983.0" />
+        <Circle fill="WHITE" layoutX="827.0" layoutY="165.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Circle fill="#fcc43e" layoutX="892.0" layoutY="149.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="8.0" layoutY="147.0" stroke="TRANSPARENT" strokeType="INSIDE" width="983.0" />
+        <Circle fx:id="Profile" fill="#ffefe7" layoutX="89.0" layoutY="124.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
+        <Text fx:id="NomPrenom" fill="#303972" layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saker Hajji" wrappingWidth="221.0">
             <font>
                 <Font name="Poppins Bold" size="25.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="232.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone " wrappingWidth="95.13671875">
+        <Text fill="#797878" layoutX="311.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone " wrappingWidth="95.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="462.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="95.13671875">
+        <Text fill="#797878" layoutX="629.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="95.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <TextField fx:id="Telephone" layoutX="245.0" layoutY="172.0" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="24512995">
+        <TextField fx:id="Telephone" layoutX="324.0" layoutY="204.0" prefHeight="36.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="24512995">
             <font>
                 <Font name="Poppins Regular" size="14.0" />
             </font>
         </TextField>
-        <TextField fx:id="Email" layoutX="473.0" layoutY="172.0" prefHeight="36.0" prefWidth="168.0" style="-fx-background-color: transparent;" text="saker.hajji@esprit.tn">
+        <TextField fx:id="Email" layoutX="640.0" layoutY="200.0" prefHeight="36.0" prefWidth="168.0" style="-fx-background-color: transparent;" text="saker.hajji@esprit.tn">
             <font>
                 <Font name="Poppins Regular" size="14.0" />
             </font>
         </TextField>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="218.0" layoutX="4.0" layoutY="237.0" stroke="TRANSPARENT" strokeType="INSIDE" width="714.0" />
-        <Text fill="#797878" layoutX="37.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="103.13671875">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="218.0" layoutX="4.0" layoutY="272.0" stroke="TRANSPARENT" strokeType="INSIDE" width="983.0" />
+        <Text fill="#797878" layoutX="37.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="103.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="289.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" wrappingWidth="103.13671875">
+        <Text fill="#797878" layoutX="404.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" wrappingWidth="103.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="517.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="153.13671875">
+        <Text fill="#797878" layoutX="718.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="153.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="187.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero cin  " wrappingWidth="103.13671875">
+        <Text fill="#797878" layoutX="187.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero cin  " wrappingWidth="103.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <Text fill="#797878" layoutX="381.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ville" wrappingWidth="103.13671875">
+        <Text fill="#797878" layoutX="595.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ville" wrappingWidth="103.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <TextField fx:id="Nom" layoutX="52.0" layoutY="300.0" prefHeight="23.0" prefWidth="135.0" text="Saker">
+        <TextField fx:id="Nom" layoutX="52.0" layoutY="335.0" prefHeight="23.0" prefWidth="135.0" style="-fx-background-color: transparent;" text="Saker">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <TextField fx:id="prenom" layoutX="297.0" layoutY="301.0" prefHeight="23.0" prefWidth="135.0" text="hajji">
+        <TextField fx:id="Prenom" layoutX="412.0" layoutY="336.0" prefHeight="23.0" prefWidth="135.0" style="-fx-background-color: transparent;" text="hajji">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <DatePicker fx:id="DatedeNaissance" layoutX="538.0" layoutY="305.0" prefHeight="26.0" prefWidth="135.0" promptText="Date" style="-fx-background-color: transparent;" />
+        <DatePicker fx:id="DatedeNaissance" layoutX="739.0" layoutY="339.0" prefHeight="26.0" prefWidth="135.0" promptText="Date" style="-fx-background-color: transparent;" />
 
-        <TextField fx:id="Numcin" layoutX="207.0" layoutY="405.0" prefHeight="23.0" prefWidth="103.0" text="03759104">
+        <TextField fx:id="Numcin" layoutX="207.0" layoutY="440.0" prefHeight="23.0" prefWidth="103.0" style="-fx-background-color: transparent;" text="03759104">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <ChoiceBox fx:id="pays" layoutX="411.0" layoutY="404.0" maxHeight="200.0" prefHeight="23.0" prefWidth="150.0" style="-fx-overflow-y: visible;">
+        <ChoiceBox fx:id="pays" layoutX="625.0" layoutY="443.0" maxHeight="200.0" prefHeight="23.0" prefWidth="150.0" style="-fx-overflow-y: visible;">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Tunis" />
@@ -117,23 +117,24 @@
                 </FXCollections>
             </items>
         </ChoiceBox>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="116.0" layoutX="4.0" layoutY="469.0" stroke="TRANSPARENT" strokeType="INSIDE" width="714.0" />
-        <Text fill="#797878" layoutX="31.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre mot de passe" wrappingWidth="213.13671875">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="116.0" layoutX="4.0" layoutY="504.0" stroke="TRANSPARENT" strokeType="INSIDE" width="983.0" />
+        <Text fill="#797878" layoutX="31.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre mot de passe" wrappingWidth="213.13671875">
             <font>
                 <Font name="Poppins Regular" size="15.0" />
             </font>
         </Text>
-        <TextField fx:id="odlPas" layoutX="61.0" layoutY="527.0" prefHeight="23.0" prefWidth="184.0" promptText="ancien mot de passe">
+        <TextField fx:id="odlPas" accessibleRole="PASSWORD_FIELD" layoutX="61.0" layoutY="562.0" prefHeight="23.0" prefWidth="184.0" promptText="ancien mot de passe">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <TextField fx:id="newPass" layoutX="291.0" layoutY="527.0" prefHeight="23.0" prefWidth="184.0" promptText="nouveau  mot de passe">
+        <TextField fx:id="newPass" accessibleRole="PASSWORD_FIELD" layoutX="419.0" layoutY="562.0" prefHeight="23.0" prefWidth="184.0" promptText="nouveau  mot de passe">
             <font>
                 <Font size="15.0" />
             </font>
         </TextField>
-        <Button layoutX="516.0" layoutY="524.0" mnemonicParsing="false" onAction="#passUpdateCliked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Mis A jour le Mots de pass" />
-        <Button layoutX="272.0" layoutY="610.0" mnemonicParsing="false" onAction="#modifierClicked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Modifier" />
+        <Button layoutX="783.0" layoutY="556.0" mnemonicParsing="false" onAction="#passUpdateCliked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Mis A jour le Mots de pass" />
+        <Button layoutX="419.0" layoutY="670.0" mnemonicParsing="false" onAction="#modifierClicked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Modifier" />
+        <Button layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#UpdateImg" prefHeight="93.0" prefWidth="95.0" style="-fx-background-color: transparent;" />
     </children>
 </AnchorPane>

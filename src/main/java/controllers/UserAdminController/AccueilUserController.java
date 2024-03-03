@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -134,6 +135,7 @@ public class AccueilUserController implements Initializable {
         } else if (actionEvent.getSource() == btnSignout) {
             membre.clearBinFile();
             try {
+                System.out.println("test");
                 root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
                 stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -235,11 +237,25 @@ public class AccueilUserController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        membre = membre.convertToMembre(membre.loadJsonFromBinFile());
+        membre = membreService.readById(membre.getIdUtilisateur());
 
-        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
-        //NameLastName.setText(membre.getNomUtilisateur()+" "+membre.getPrenomUtilisateur());
+        if (membre != null) {
+            NameLastName.setText(membre.getNomUtilisateur() + " " + membre.getPrenomUtilisateur());
 
+            if (membre.getAvatar() != null) {
+                // Checking if the resource exists before attempting to load
+                String imageUrl = "/images/" + membre.getAvatar();
+                InputStream stream = getClass().getResourceAsStream(imageUrl);
 
-
+                if (stream != null) {
+                    Image image = new Image(stream);
+                    Profile.setFill(new ImagePattern(image));
+                } else {
+                    System.out.println("Resource not Found: " + imageUrl);
+                }
+            }
+        }
     }
+
 }
