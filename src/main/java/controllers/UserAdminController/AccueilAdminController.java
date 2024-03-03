@@ -13,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -75,6 +74,7 @@ public class AccueilAdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         refrechPage();
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -102,13 +102,21 @@ public class AccueilAdminController implements Initializable {
                 Node item = loader.load();
                 LigneController loaderController = loader.getController();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
-                loaderController.setAdmin(admin);
-                loaderController.setNom(admin.getNomUtilisateur());
-                loaderController.setPrenom(admin.getPrenomUtilisateur());
-                loaderController.setDateNaissance(dateOfBirthString);
-                loaderController.setEmail(admin.getMailUtilisateur());
-                loaderController.setProfile(admin.getAvatar());
+                if (admin.getDateDeNaissance()!= null)
+                {String dateOfBirthString = sdf.format(admin.getDateDeNaissance());
+                    loaderController.setDateNaissance(dateOfBirthString);
+
+                }
+                if (admin!=null)
+                {loaderController.setAdmin(admin);}
+                if(admin.getNomUtilisateur() != null)
+                {loaderController.setNom(admin.getNomUtilisateur());}
+                if (admin.getPrenomUtilisateur() != null)
+                {loaderController.setPrenom(admin.getPrenomUtilisateur());}
+                if(admin.getMailUtilisateur()!=null){
+                    loaderController.setEmail(admin.getMailUtilisateur());}
+                if (admin.getAvatar()!=null){
+                    loaderController.setProfile(admin.getAvatar());}
                 item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
                 item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
 
@@ -171,7 +179,7 @@ public class AccueilAdminController implements Initializable {
     }
     private void loadhamzaXMLContent() {
         try {
-    timeline.stop();
+            timeline.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/AfficherProduits.fxml"));
             Pane sofXMLPane = loader.load();
             pnlMenus.getChildren().clear(); // Use clear() instead of removeAll() for clarity

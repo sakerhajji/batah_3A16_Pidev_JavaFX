@@ -1,12 +1,12 @@
 package org.example;
 
 import Entity.UserAdmin.Admin;
+import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
+import Services.UserAdmineServices.MembreService;
+import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.channels.FileChannel;
 
@@ -56,16 +56,66 @@ public class Main {
         }
         return false;
     }
-    public static void main(String[] args) {
-        String sourceImagePath = "C:" + File.separator + "Users" + File.separator + "saker" + File.separator + "Desktop" + File.separator + "A188.jpg";
-        String destinationFolderPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "imageUserAdmin"; // Relative path to project directory
-        String newFileName = "newFileName.jpg"; // New file name
-        try {
-            copyImage(sourceImagePath, destinationFolderPath, newFileName);
-            System.out.println("Image copied and renamed successfully.");
+    public static void saveJsonToBinFile(String json) {
+        String filePath="output.bin";
+        try (FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Convert JSON string to bytes
+            byte[] jsonBytes = json.getBytes();
+
+            // Write bytes to the file
+            fos.write(jsonBytes);
+
+            System.out.println("JSON data saved to file: " + filePath);
         } catch (IOException e) {
-            System.out.println("Error copying image: " + e.getMessage());
+            System.err.println("Error saving JSON data to file: " + e.getMessage());
         }
     }
+
+    public static String loadJsonFromBinFile() {
+        String filePath ="output.bin";
+        StringBuilder jsonBuilder = new StringBuilder();
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+            int data;
+            while ((data = fis.read()) != -1) {
+                jsonBuilder.append((char) data);
+            }
+            System.out.println("JSON data loaded from file: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error loading JSON data from file: " + e.getMessage());
+        }
+        return jsonBuilder.toString();
+    }
+
+    public static boolean isBinFileEmpty() {
+        String filePath ="output.bin" ;
+        File file = new File(filePath);
+        return file.length() == 0;
+    }
+    public static void clearBinFile() {
+        String filePath = "output.bin" ;
+        try (FileOutputStream fos = new FileOutputStream(filePath, false)) {
+            // Truncate the file by opening FileOutputStream in overwrite mode (false)
+            fos.getChannel().truncate(0);
+            System.out.println("Binary file cleared: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error clearing binary file: " + e.getMessage());
+        }
+    }
+    public static void main(String[] args) {
+//        String sourceImagePath = "C:" + File.separator + "Users" + File.separator + "saker" + File.separator + "Desktop" + File.separator + "A188.jpg";
+//        String destinationFolderPath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "imageUserAdmin"; // Relative path to project directory
+//        String newFileName = "newFileName.jpg"; // New file name
+//        try {
+//            copyImage(sourceImagePath, destinationFolderPath, newFileName);
+//            System.out.println("Image copied and renamed successfully.");
+//        } catch (IOException e) {
+//            System.out.println("Error copying image: " + e.getMessage());
+//        }
+        Membre membre =new Membre() ;
+        String data = "{\"name\":\"saker \\u201csaker__hajji\\u201d hajji\",\"id\":\"105048815640171183281\",\"verified_email\":true,\"given_name\":\"saker\",\"locale\":\"en-US\",\"family_name\":\"hajji\",\"email\":\"saker.hajji13@gmail.com\",\"picture\":\"https://lh3.googleusercontent.com/a/ACg8ocJazEK1yBTbbpHqZXxRE1NBrAUR8JR7KfH6-m7iqGideyA=s96-c\"}\n" ;
+        System.out.println(membre.isBinFileEmpty());
+
+    }
+
 
 }

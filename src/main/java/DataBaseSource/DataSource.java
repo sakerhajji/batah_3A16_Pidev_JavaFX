@@ -1,8 +1,14 @@
 package DataBaseSource;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class DataSource {
     private Connection cnx;
@@ -30,6 +36,8 @@ public class DataSource {
                 cnx = DriverManager.getConnection(localUrl, localLogin, localPwd);
                 System.out.println("Connected to local database successfully");
             } catch (SQLException ex) {
+                System.err.println("Failed to connect to both online and local databases");
+                openNotConnectedPage();
                 throw new RuntimeException("Failed to connect to both online and local databases", ex);
             }
         }
@@ -44,5 +52,16 @@ public class DataSource {
 
     public Connection getCnx() {
         return cnx;
+    }
+
+    private void openNotConnectedPage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/404.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to open notConnected.fxml: " + e.getMessage());
+        }
     }
 }

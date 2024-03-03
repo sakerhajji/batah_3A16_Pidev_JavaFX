@@ -1,5 +1,11 @@
 package Entity.UserAdmin;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 
 public class Utilisateur {
@@ -144,4 +150,53 @@ public class Utilisateur {
     public void setDateDeNaissance(Date dateDeNaissance) {
         this.dateDeNaissance = dateDeNaissance;
     }
+    public  void saveJsonToBinFile(Membre membre) {
+
+        Gson gson = new Gson();
+        String json = gson.toJson(membre);
+        String filePath="Session.bin";
+        try (FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Convert JSON string to bytes
+            byte[] jsonBytes = json.getBytes();
+
+            // Write bytes to the file
+            fos.write(jsonBytes);
+
+            System.out.println("JSON data saved to file: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error saving JSON data to file: " + e.getMessage());
+        }
+    }
+
+    public  String loadJsonFromBinFile() {
+        String filePath ="Session.bin";
+        StringBuilder jsonBuilder = new StringBuilder();
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+            int data;
+            while ((data = fis.read()) != -1) {
+                jsonBuilder.append((char) data);
+            }
+            System.out.println("JSON data loaded from file: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error loading JSON data from file: " + e.getMessage());
+        }
+        return jsonBuilder.toString();
+    }
+
+    public  boolean isBinFileEmpty() {
+        String filePath ="Session.bin" ;
+        File file = new File(filePath);
+        return file.length() == 0;
+    }
+    public  void clearBinFile() {
+        String filePath = "Session.bin" ;
+        try (FileOutputStream fos = new FileOutputStream(filePath, false)) {
+            // Truncate the file by opening FileOutputStream in overwrite mode (false)
+            fos.getChannel().truncate(0);
+            System.out.println("Binary file cleared: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error clearing binary file: " + e.getMessage());
+        }
+    }
+
 }

@@ -11,9 +11,13 @@ public class Location {
     private boolean disponibilite;
     private Admin utilisateur; // Reference to the utilisateur object
 
+
     // Constructors
     public Location() {
     }
+
+
+
 
     @Override
     public String toString() {
@@ -35,6 +39,14 @@ public class Location {
         this.prix = prix;
         this.type = type;
         this.utilisateur = utilisateur; // Set the utilisateur field
+    }
+    public Location(String adresse, String description, boolean disponibilite, double prix, String type) {
+        this.adresse = adresse;
+        this.description = description;
+        this.disponibilite = disponibilite;
+        this.prix = prix;
+        this.type = type;
+
     }
 
     public Location(int idLocation, double prix, String type, String description, String adresse, boolean disponibilite, Admin utilisateur) {

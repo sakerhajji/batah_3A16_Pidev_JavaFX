@@ -1,5 +1,7 @@
 package test.UserTest;
 
+import Entity.UserAdmin.Membre;
+import controllers.UserAdminController.AccueilUserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,10 +14,28 @@ import javafx.stage.StageStyle;
 public class MainFx extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
+    public static Membre Session =new Membre() ;
+
     @Override
     public void start(Stage stage) {
         try {                                                                                   //AccueilAdmin
-            Parent root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
+            Parent root = null ;
+            System.out.println(Session.isBinFileEmpty());
+
+            if(!Session.isBinFileEmpty())
+            {
+                Session = Session.convertToMembre(Session.loadJsonFromBinFile()) ;
+                if (Session.getRoleUtilisateur()=='A'){
+                root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
+                else {
+                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+
+                }
+            }
+            else { root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                Session=Session.convertToMembre(Session.loadJsonFromBinFile()) ;
+            }
+
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             root.setOnMousePressed((MouseEvent event) -> {

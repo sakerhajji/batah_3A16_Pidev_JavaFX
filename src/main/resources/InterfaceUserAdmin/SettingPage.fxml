@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="680.0" prefWidth="722.0" style="-fx-background-color: #FFEFE7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserAdminController.SettingController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fb7d5b" height="200.0" layoutX="8.0" layoutY="22.0" stroke="WHITE" strokeType="INSIDE" width="706.0" />
+        <Circle fill="WHITE" layoutX="539.0" layoutY="138.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Circle fill="#fcc43e" layoutX="604.0" layoutY="122.0" radius="84.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="110.0" layoutX="8.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="706.0" />
+        <Circle fx:id="Profile" fill="#ffefe7" layoutX="89.0" layoutY="89.0" radius="58.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
+        <Text fill="#303972" layoutX="19.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saker Hajji" textAlignment="CENTER" wrappingWidth="140.0">
+            <font>
+                <Font name="Poppins Bold" size="25.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="232.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone " wrappingWidth="95.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="462.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="95.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="Telephone" layoutX="245.0" layoutY="172.0" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="24512995">
+            <font>
+                <Font name="Poppins Regular" size="14.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="Email" layoutX="473.0" layoutY="172.0" prefHeight="36.0" prefWidth="168.0" style="-fx-background-color: transparent;" text="saker.hajji@esprit.tn">
+            <font>
+                <Font name="Poppins Regular" size="14.0" />
+            </font>
+        </TextField>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="218.0" layoutX="4.0" layoutY="237.0" stroke="TRANSPARENT" strokeType="INSIDE" width="714.0" />
+        <Text fill="#797878" layoutX="37.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="103.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="289.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" wrappingWidth="103.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="517.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="153.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="187.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero cin  " wrappingWidth="103.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <Text fill="#797878" layoutX="381.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ville" wrappingWidth="103.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="Nom" layoutX="52.0" layoutY="300.0" prefHeight="23.0" prefWidth="135.0" text="Saker">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="prenom" layoutX="297.0" layoutY="301.0" prefHeight="23.0" prefWidth="135.0" text="hajji">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <DatePicker fx:id="DatedeNaissance" layoutX="538.0" layoutY="305.0" prefHeight="26.0" prefWidth="135.0" promptText="Date" style="-fx-background-color: transparent;" />
+
+        <TextField fx:id="Numcin" layoutX="207.0" layoutY="405.0" prefHeight="23.0" prefWidth="103.0" text="03759104">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <ChoiceBox fx:id="pays" layoutX="411.0" layoutY="404.0" maxHeight="200.0" prefHeight="23.0" prefWidth="150.0" style="-fx-overflow-y: visible;">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Tunis" />
+                    <String fx:value="Sfax" />
+                    <String fx:value="Sousse" />
+                    <String fx:value="Gabès" />
+                    <String fx:value="Kairouan" />
+                    <String fx:value="Bizerte" />
+                    <String fx:value="Gafsa" />
+                    <String fx:value="La Marsa" />
+                    <String fx:value="Monastir" />
+                    <String fx:value="Hammamet" />
+                    <String fx:value="Tataouine" />
+                    <String fx:value="Nabeul" />
+                    <String fx:value="Médenine" />
+                    <String fx:value="Mahdia" />
+                    <String fx:value="Zarzis" />
+                    <String fx:value="Beja" />
+                    <String fx:value="Siliana" />
+                    <String fx:value="Jendouba" />
+                    <String fx:value="Tozeur" />
+                    <String fx:value="Kasserine" />
+                    <String fx:value="Kebili" />
+                    <String fx:value="El Kef" />
+                    <String fx:value="Zaghouan" />
+                    <String fx:value="Ben Arous" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="116.0" layoutX="4.0" layoutY="469.0" stroke="TRANSPARENT" strokeType="INSIDE" width="714.0" />
+        <Text fill="#797878" layoutX="31.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre mot de passe" wrappingWidth="213.13671875">
+            <font>
+                <Font name="Poppins Regular" size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="odlPas" layoutX="61.0" layoutY="527.0" prefHeight="23.0" prefWidth="184.0" promptText="ancien mot de passe">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="newPass" layoutX="291.0" layoutY="527.0" prefHeight="23.0" prefWidth="184.0" promptText="nouveau  mot de passe">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <Button layoutX="516.0" layoutY="524.0" mnemonicParsing="false" onAction="#passUpdateCliked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Mis A jour le Mots de pass" />
+        <Button layoutX="272.0" layoutY="610.0" mnemonicParsing="false" onAction="#modifierClicked" prefHeight="36.0" prefWidth="176.0" style="-fx-background-color: fb7d5b;" text="Modifier" />
+    </children>
+</AnchorPane>

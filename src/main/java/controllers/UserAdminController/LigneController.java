@@ -106,23 +106,53 @@ public class LigneController implements Initializable {
         try {
             root = loader.load();
             UpdateInterfaceAUControllers c = loader.getController();
-            c.setAdmin(admin);
-            c.setNomUtilisateur(admin.getNomUtilisateur());
-            c.getPrenomUtilisateur().setText(admin.getPrenomUtilisateur());
-            c.setAdresseEmail(admin.getMailUtilisateur());
-            c.setDateDeNaissance(admin.getDateDeNaissance());
-            if(admin.getNumUtilisateur()==null)c.setNumeroTelephone("svp taper votre numero");
-            else c.setNumeroTelephone(admin.getNumUtilisateur());
-            if(admin.getCinUtilisateur()==null)c.setNumeroCin("svp taper votre numero cin") ;
-            else c.setNumeroCin(admin.getCinUtilisateur());
-            if(admin.getAvatar()!=null)
-            {String imagePath =  admin.getAvatar();
-            c.setProfile(imagePath);}
-            c.setIdUtlisateur(String.valueOf(admin.getIdUtilisateur()));
 
+            // Check if admin is not null before setting it
+            if (admin != null) {
+                c.setAdmin(admin);
 
+                // Check if admin's nomUtilisateur is not null before setting it
+                if (admin.getNomUtilisateur() != null) {
+                    c.setNomUtilisateur(admin.getNomUtilisateur());
+                }
 
-           // profile.setFill(new ImagePattern(image));
+                // Check if admin's prenomUtilisateur is not null before setting it
+                if (admin.getPrenomUtilisateur() != null) {
+                    c.getPrenomUtilisateur().setText(admin.getPrenomUtilisateur());
+                }
+
+                // Check if admin's mailUtilisateur is not null before setting it
+                if (admin.getMailUtilisateur() != null) {
+                    c.setAdresseEmail(admin.getMailUtilisateur());
+                }
+
+                // Check if admin's dateDeNaissance is not null before setting it
+                if (admin.getDateDeNaissance() != null) {
+                    c.setDateDeNaissance(admin.getDateDeNaissance());
+                }
+
+                // Check if admin's numUtilisateur is null before setting it
+                if(admin.getNumUtilisateur()==null){
+                    c.setNumeroTelephone("svp taper votre numero");
+                } else {
+                    c.setNumeroTelephone(admin.getNumUtilisateur());
+                }
+
+                // Check if admin's cinUtilisateur is null before setting it
+                if(admin.getCinUtilisateur()==null){
+                    c.setNumeroCin("svp taper votre numero cin");
+                } else {
+                    c.setNumeroCin(admin.getCinUtilisateur());
+                }
+
+                // Check if admin's avatar is not null before setting it
+                if(admin.getAvatar()!=null) {
+                    String imagePath = admin.getAvatar();
+                    c.setProfile(imagePath);
+                }
+
+                c.setIdUtlisateur(String.valueOf(admin.getIdUtilisateur()));
+            }
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -139,14 +169,11 @@ public class LigneController implements Initializable {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.showAndWait();
 
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
     }
+
     private static boolean search(File directory, String pictureName) {
 
         File[] files = directory.listFiles();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.locationController.ReservationController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox alignment="CENTER" layoutX="148.0" layoutY="52.0" prefHeight="295.0" prefWidth="302.0" spacing="10.0">
+            <children>
+                <Label text="Reservation Details" />
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="Start Date:" />
+                        <DatePicker fx:id="startDatePicker" editable="false"/>
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="End Date:" />
+                        <DatePicker fx:id="endDatePicker" editable="false"/>
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="User:" />
+                        <ComboBox fx:id="userComboBox" prefWidth="200.0" />
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="Notes:" />
+                        <TextArea fx:id="notesTextArea" prefHeight="100.0" prefWidth="200.0" />
+                    </children>
+                </HBox>
+                <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#handleReservation" text="Reserve" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

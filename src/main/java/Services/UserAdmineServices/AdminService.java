@@ -113,12 +113,36 @@ public class AdminService implements IService<Admin> {
                 admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
                 admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
                 admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
-                admin.setCinUtilisateur(resultSet.getString("numeroCin"));
-                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
-                admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
-                admin.setPays(resultSet.getString("pays"));
-                admin.setAvatar(resultSet.getString("avatar"));
+                // Handle potential null values for the 'sexe' column
+                String sexe = resultSet.getString("sexe");
+                if (sexe != null && !sexe.isEmpty()) {
+                    admin.setSexeUtilisateur(sexe.charAt(0));
+                }
+                // Handle potential null values for the 'numeroCin' column
+                String cin = resultSet.getString("numeroCin");
+                if (cin != null && !cin.isEmpty()) {
+                    admin.setCinUtilisateur(cin);
+                }
+                // Handle potential null values for the 'role' column
+                String role = resultSet.getString("role");
+                if (role != null && !role.isEmpty()) {
+                    admin.setRoleUtilisateur(role.charAt(0));
+                }
+                // Handle potential null values for the 'numeroTelephone' column
+                String numUtilisateur = resultSet.getString("numeroTelephone");
+                if (numUtilisateur != null && !numUtilisateur.isEmpty()) {
+                    admin.setNumUtilisateur(numUtilisateur);
+                }
+                // Handle potential null values for the 'pays' column
+                String pays = resultSet.getString("pays");
+                if (pays != null && !pays.isEmpty()) {
+                    admin.setPays(pays);
+                }
+                // Handle potential null values for the 'avatar' column
+                String avatar = resultSet.getString("avatar");
+                if (avatar != null && !avatar.isEmpty()) {
+                    admin.setAvatar(avatar);
+                }
                 admins.add(admin);
             }
         } catch (SQLException e) {
@@ -126,6 +150,7 @@ public class AdminService implements IService<Admin> {
         }
         return admins;
     }
+
 
 
     @Override
@@ -145,18 +170,44 @@ public class AdminService implements IService<Admin> {
                 admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
                 admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
                 admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
-                admin.setCinUtilisateur(resultSet.getString("numeroCin"));
-                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
-                admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
-                admin.setPays(resultSet.getString("pays"));
-                admin.setAvatar(resultSet.getString("avatar"));
+
+                // Handle potential null values for the 'sexe' column
+                String sexe = resultSet.getString("sexe");
+                if (sexe != null && !sexe.isEmpty()) {
+                    admin.setSexeUtilisateur(sexe.charAt(0));
+                }
+                // Handle potential null values for the 'numeroCin' column
+                String cin = resultSet.getString("numeroCin");
+                if (cin != null && !cin.isEmpty()) {
+                    admin.setCinUtilisateur(cin);
+                }
+                // Handle potential null values for the 'role' column
+                String role = resultSet.getString("role");
+                if (role != null && !role.isEmpty()) {
+                    admin.setRoleUtilisateur(role.charAt(0));
+                }
+                // Handle potential null values for the 'numeroTelephone' column
+                String numUtilisateur = resultSet.getString("numeroTelephone");
+                if (numUtilisateur != null && !numUtilisateur.isEmpty()) {
+                    admin.setNumUtilisateur(numUtilisateur);
+                }
+                // Handle potential null values for the 'pays' column
+                String pays = resultSet.getString("pays");
+                if (pays != null && !pays.isEmpty()) {
+                    admin.setPays(pays);
+                }
+                // Handle potential null values for the 'avatar' column
+                String avatar = resultSet.getString("avatar");
+                if (avatar != null && !avatar.isEmpty()) {
+                    admin.setAvatar(avatar);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return admin;
     }
+
     ////////////////////////////////////
 
     public Admin getUserByName(String nomUtilisateur, String prenomUtilisateur) throws SQLException {

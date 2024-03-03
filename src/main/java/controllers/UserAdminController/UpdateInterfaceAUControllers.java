@@ -77,7 +77,7 @@ public class UpdateInterfaceAUControllers implements Initializable {
             adminService.updateCard(admin);
             System.out.println("done");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
-            AccueilAdminController c = loader.getController();
+            //AccueilAdminController c = loader.getController();
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();

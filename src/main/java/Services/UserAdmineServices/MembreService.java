@@ -3,6 +3,11 @@ import DataBaseSource.DataSource;
 import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
 import InterfaceServices.IService;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Date;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,8 +20,23 @@ public class MembreService implements IService<Membre> {
     private PreparedStatement pst;
 
     @Override
-    public void add(Membre membre) {
+    public void add(Membre member) {
+        String requete = "INSERT INTO utilisateur (nomUtilisateur, prenomUtilisateur, adresseEmail, dateDeNaissance, sexe, motDePasse,role) VALUES (?, ?, ?, ?, ?, ?,?)";
 
+        try {
+            PreparedStatement pst = conn.prepareStatement(requete);
+            pst.setString(1, member.getNomUtilisateur());
+            pst.setString(2, member.getPrenomUtilisateur());
+            pst.setString(3, member.getMailUtilisateur());
+            pst.setDate(4, member.getDateDeNaissance());
+            pst.setString(5, String.valueOf(member.getSexeUtilisateur()));
+            pst.setString(6, member.getMotDePassUtilisateur());
+            pst.setString(7, String.valueOf(member.getRoleUtilisateur()));
+
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -106,5 +126,61 @@ public class MembreService implements IService<Membre> {
         }
         return exists;
     }
+    public Membre readByIGoogle(String id) {
+        Membre membre=new Membre();
+        String requete = "SELECT * FROM utilisateur WHERE idGoogle = ?";
+
+        try {
+            pst = conn.prepareStatement(requete);
+            pst.setString(1, id);
+            ResultSet resultSet = pst.executeQuery();
+            if (resultSet.next()) {
+                membre = new Membre();
+                membre.setIdUtilisateur(resultSet.getInt("id"));
+                membre.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
+                membre.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
+                membre.setMailUtilisateur(resultSet.getString("adresseEmail"));
+                membre.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
+                membre.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
+                membre.setMailUtilisateur(resultSet.getString("adresseEmail"));
+                // Check if the value retrieved from resultSet.getString("sexe") is null
+                String sexe = resultSet.getString("sexe");
+                if (sexe != null && !sexe.isEmpty()) {
+                    membre.setSexeUtilisateur(sexe.charAt(0));
+                }
+                membre.setCinUtilisateur(resultSet.getString("numeroCin"));
+                membre.setRoleUtilisateur(resultSet.getString("role").charAt(0));
+                membre.setNumUtilisateur(resultSet.getString("numeroTelephone"));
+                membre.setPays(resultSet.getString("pays"));
+                membre.setAvatar(resultSet.getString("avatar"));
+            }
+            else return null ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return membre;
+    }
+    public void addGoogle(Membre member) {
+        String requete = "INSERT INTO utilisateur (nomUtilisateur, prenomUtilisateur,role , statutVerificationCompte , idGoogle , adresseEmail ,dateInscription) VALUES (?, ?, ?, ?, ?,?,?)";
+        member.setStatutVerificationCompte(1);
+        member.setRoleUtilisateur('U');
+        try {
+            PreparedStatement pst = conn.prepareStatement(requete);
+            pst.setString(1, member.getNomUtilisateur());
+            pst.setString(2, member.getPrenomUtilisateur());
+            pst.setString(3,String.valueOf(member.getRoleUtilisateur()));
+            pst.setInt(4,member.getStatutVerificationCompte());
+            pst.setString(5, member.getIdGoogle());
+            pst.setString(6,member.getMailUtilisateur());
+            Date currentDate = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+            pst.setDate(7,sqlDate);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }
