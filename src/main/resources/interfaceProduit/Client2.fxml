@@ -28,6 +28,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
+            <Button fx:id="filterByPriceButton" mnemonicParsing="false" onAction="#handleFilterByPriceButton" prefHeight="26.0" prefWidth="72.0" text="Filter by Price" />
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="9.0" />
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="149.0">
                <children>

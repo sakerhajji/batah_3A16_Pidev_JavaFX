@@ -4,6 +4,7 @@ import Entity.UserAdmin.Membre;
 import Entity.entitiesProduits.Basket;
 import Entity.entitiesProduits.InvoiceGenerator;
 import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
 import Services.ServiceProduit.ServiceBasket;
 import Services.UserAdmineServices.MembreService;
 import com.itextpdf.text.DocumentException;
@@ -61,6 +62,8 @@ public class PaiementController {
             Membre client;
 
             ServiceBasket sb = new ServiceBasket();
+            ProduitsService p=new ProduitsService();
+
 
             System.out.println(isNum(moisExp.getText()));
         if ((isValidVisaCardNo(carte.getText()) && (!carte.getText().isEmpty()) && (isNum(carte.getText())))
@@ -95,10 +98,19 @@ public class PaiementController {
                 alert.setContentText("Paiement effectué avec succès \n Génération du fichier PDF");
                 Optional<ButtonType> result2 = alert.showAndWait();
                 if (result2.get() == ButtonType.OK) {
-
                     client = sc.readById(4);
                     Basket panier = sb.get(client.getIdUtilisateur());
-
+                    // Le paiement a été effectué avec succès, vous pouvez supprimer le produit
+                    for (Produits article : panier.getArticles()) {
+                        try {
+                            // Supprimer le produit de la base de données en utilisant le service ProduitsService
+                            p.delete(article.getIdProduit());
+                            System.out.println("Product with ID " + article.getIdProduit() + " deleted successfully.");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Error deleting product with ID " + article.getIdProduit() + ": " + e.getMessage());
+                        }
+                    }
                     //String pdfFilename;
                     /*JFileChooser fileChooser = new JFileChooser();
                     fileChooser.setDialogTitle("Specify a file to save");

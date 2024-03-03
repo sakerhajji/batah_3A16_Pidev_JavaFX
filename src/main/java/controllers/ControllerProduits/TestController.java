@@ -19,12 +19,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 public class TestController {
 
@@ -39,7 +45,12 @@ public class TestController {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private Button filterByPriceButton;
 
+
+    @FXML
+    private ChoiceBox<String> filterTypeChoiceBox;
     private final ProduitsService produitsService = new ProduitsService();
 
     private Membre userId;
@@ -142,6 +153,11 @@ public class TestController {
         numberOfVotesLabel.setLayoutY(300);
 
 
+        Button playVideoButton = new Button("Play Video");
+        playVideoButton.setLayoutX(300);
+        playVideoButton.setLayoutY(400);  // Adjust the Y position to make it more visible
+        playVideoButton.setStyle("-fx-font-size: 14;");  // Example: Increase font size for better visibility
+        playVideoButton.setOnAction(event -> handlePlayVideoButton(produits));
         // Feedback TextField
         TextField feedbackField = new TextField();
         feedbackField.setPromptText("Provide your feedback (1-5)");
@@ -191,7 +207,7 @@ public class TestController {
             imageView.setImage(defaultImage);
         }
 
-        anchorPane.getChildren().addAll(titleLabel, detailsLabel, feedbackField, submitFeedbackButton,cartButton, imageView,averageRatingLabel, numberOfVotesLabel);
+        anchorPane.getChildren().addAll(titleLabel, detailsLabel, feedbackField, submitFeedbackButton,cartButton, imageView,averageRatingLabel, numberOfVotesLabel,playVideoButton);
 
         return anchorPane;
     }
@@ -239,23 +255,65 @@ public class TestController {
     // Method to handle the "Add to Cart" button click
     private void handleAddToCartButton(Produits produits) {
         ServiceBasket sb = new ServiceBasket();
-        if (sb.ajouter(userId.getIdUtilisateur(), produits.getIdProduit())) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Added to Cart");
-            alert.setHeaderText("Product added to your cart.");
-            Optional<ButtonType> result = alert.showAndWait();
-        } else {
+        if ("not available".equalsIgnoreCase(produits.getStatus())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Product Exist");
-            alert.setHeaderText("This product already exists in your cart.");
-            Optional<ButtonType> result = alert.showAndWait();
+            alert.setTitle("Product Not Available");
+            alert.setHeaderText("This product is currently not available for purchase.");
+            alert.showAndWait();
+        } else {
+            if (sb.ajouter(userId.getIdUtilisateur(), produits.getIdProduit())) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Added to Cart");
+                alert.setHeaderText("Product added to your cart.");
+                Optional<ButtonType> result = alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Product Exist");
+                alert.setHeaderText("This product already exists in your cart.");
+                Optional<ButtonType> result = alert.showAndWait();
+            }
         }
     }
 
 
 
+    private void handlePlayVideoButton(Produits produits) {
+        String videoPath = getVideoPath(produits.getIdProduit());
 
+        if (videoPath != null && !videoPath.isEmpty()) {
+            // Use a concrete implementation of Media, for example, File or URL
+            Media media = new Media(getClass().getResource(videoPath).toExternalForm());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            MediaView mediaView = new MediaView(mediaPlayer);
 
+            // Create a new stage for the MediaPlayer
+            Stage videoStage = new Stage();
+            videoStage.setScene(new Scene(new BorderPane(mediaView), 800, 600));
+            videoStage.setTitle("Product Video");
+            videoStage.show();
+
+            // Play the video
+            mediaPlayer.play();
+        } else {
+            // Handle the case where the video path is not available
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Video Not Found");
+            alert.setHeaderText("The video for this product is not available.");
+            alert.showAndWait();
+        }
+    }
+    private String getVideoPath(int productId) {
+        String videoFileName = productId + ".mp4";
+        File videoFile = new File("src/main/resources/cssProduit/vids/" + videoFileName);
+
+        if (videoFile.exists()) {
+            return videoFile.toURI().toString();
+        } else {
+            System.err.println("Video file not found: " + videoFile.getAbsolutePath());
+            System.out.println("Absolute Path: " + videoFile.getAbsolutePath());
+            return null;
+        }
+    }
 
     @FXML
     void ImmobilierBtn(ActionEvent event) {
@@ -308,7 +366,35 @@ public class TestController {
 
     }
 
+    @FXML
+    void handleFilterByPriceButton(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Filter by Price");
+        dialog.setHeaderText("Enter the maximum price:");
+        dialog.setContentText("Max Price:");
 
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(maxPrice -> {
+            try {
+                double maxPriceValue = Double.parseDouble(maxPrice.trim());
+                filterProductsByPrice(maxPriceValue);
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Input");
+                alert.setHeaderText("Please enter a valid numeric value for the maximum price.");
+                alert.showAndWait();
+            }
+        });
+    }
+
+    private void filterProductsByPrice(double maxPrice) {
+        List<Produits> filteredProducts = produitsService.readAll().stream()
+                .filter(produit -> produit.getPrix() <= maxPrice)
+                .collect(Collectors.toList());
+
+        afficherProduits(filteredProducts);
+    }
 
 
 }

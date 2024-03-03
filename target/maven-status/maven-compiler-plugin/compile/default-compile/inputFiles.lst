@@ -9,6 +9,7 @@ C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ServiceApresVente\A
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesEncheres\Enchere.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesServiceApresVente\ServiceApresVente.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\test\LocationTest\MainFx.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesProduits\Paytest.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\ClientController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\UserAdmineServices\AdminService.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\test\EnchereTest\MainFx.java
@@ -21,6 +22,7 @@ C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesProduits\Basket.
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\UserAdminController\UpdateInterfaceAUControllers.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\controllerGestionEnchere\ModifyEnchereController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\PaymentStripApi.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesProduits\Avis.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesProduits\Produits.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\UserAdmineServices\MembreService.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\controllerPartenaire\modifier_PartenaireController.java
@@ -36,6 +38,7 @@ C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ServiceApresVente\L
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\UserAdminController\LigneController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\ControleDeSaisieClass\ControleDeSaisieClass.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\UserAdmin\Membre.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\Fail_pageController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesPartenaire\Partenaire.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\entitiesEncheres\ReservationEnchere.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\ModifierProduitsController.java
@@ -52,11 +55,14 @@ C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\locationController\
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\UserAdminController\AccueilAdminController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\servicePartenaire\partenaireService.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\controllerGestionEnchere\ListeEnchereController.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\paymentTestController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\ServiceApresVentS\ServiceApresVentS.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\AfficherProduitsController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\PaiementController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\UserAdminController\LoginController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\ServiceProduit\InterfaceServiceBasket.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\ControllerProduits\Success_pageController.java
+C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Services\ServiceProduit\RatingService.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\test\ProduitTest\MainFx.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\controllers\UserAdminController\CtemController.java
 C:\Users\Admin\Desktop\3eme A16\aa\src\main\java\Entity\UserAdmin\Utilisateur.java
