@@ -1,5 +1,6 @@
 package controllers.UserAdminController;//package test;
 import Entity.UserAdmin.Admin;
+import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
@@ -7,10 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import java.io.IOException;
@@ -19,12 +24,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.Timeline;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class AccueilAdminController implements Initializable {
     private  List<Admin>a;
     AdminService adminService=new AdminService() ;
-
+    @FXML
+    private Button btnSignout;
 
     public VBox getPnItems() {
         return pnItems;
@@ -71,16 +78,22 @@ public class AccueilAdminController implements Initializable {
     @FXML
     private Pane pnlResEnchere;
 
-
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    private double xOffset = 0;
+    private double yOffset = 0;
     private int n ;
     private Timeline timeline;
 
     private Admin adminSession ;
-
+    private Membre membre=new Membre() ;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
 
         refrechPage();
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
@@ -187,6 +200,28 @@ public class AccueilAdminController implements Initializable {
             pnlResEnchere.getChildren().removeAll();
             loadEnchereResXMLContent();
 
+        }
+        else if (actionEvent.getSource() == btnSignout) {
+            membre.clearBinFile();
+            try {
+                System.out.println("test");
+                root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/LoginSingUp.fxml"));
+                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                scene.setFill(Color.TRANSPARENT);
+                root.setOnMousePressed((MouseEvent events) -> {
+                    xOffset = events.getSceneX();
+                    yOffset = events.getSceneY();
+                });
+                root.setOnMouseDragged((MouseEvent events) -> {
+                    stage.setX(events.getScreenX() - xOffset);
+                    stage.setY(events.getScreenY() - yOffset);
+                });
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
     private void loadSofXMLContent() {

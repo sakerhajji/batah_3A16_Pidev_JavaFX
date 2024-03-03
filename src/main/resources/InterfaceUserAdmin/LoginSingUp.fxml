@@ -37,17 +37,17 @@
                   <Font size="17.0" />
                </font>
             </Button>
+            <Button layoutX="732.0" layoutY="236.0" mnemonicParsing="false" onAction="#GooleRegister" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="google">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
             <Label layoutX="633.0" layoutY="166.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="333.0" text="Loren ipsum uis a dummy text used as a placeholder in website." textFill="WHITE" wrapText="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
             <VBox fx:id="vBox" layoutX="61.0" layoutY="-58.0" prefHeight="516.0" prefWidth="480.0" styleClass="white-pane" stylesheets="@../cssStyleSheet/LoginSignUP.css" />
-            <Button layoutX="732.0" layoutY="236.0" mnemonicParsing="false" onAction="#GooleRegister" styleClass="trans-btn-white-border" stylesheets="@../cssStyleSheet/LoginSignUP.css" text="google">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

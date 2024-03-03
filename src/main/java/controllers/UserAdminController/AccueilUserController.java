@@ -243,10 +243,11 @@ public class AccueilUserController implements Initializable {
         if (membre != null) {
             NameLastName.setText(membre.getNomUtilisateur() + " " + membre.getPrenomUtilisateur());
 
-            if (membre.getAvatar() != null) {
+            if (membre.getAvatar() != null && membre.getAvatar()!="") {
                 // Checking if the resource exists before attempting to load
                 String imageUrl = "/images/" + membre.getAvatar();
                 InputStream stream = getClass().getResourceAsStream(imageUrl);
+                System.out.println(stream);
 
                 if (stream != null) {
                     Image image = new Image(stream);

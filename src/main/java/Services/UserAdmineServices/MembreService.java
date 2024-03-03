@@ -82,7 +82,7 @@ public class MembreService implements IService<Membre> {
 
     @Override
     public Membre readById(int id) {
-        Membre Membre=new Membre();
+        Membre membre = null;
         String requete = "SELECT * FROM utilisateur WHERE id = ?";
 
         try {
@@ -90,25 +90,50 @@ public class MembreService implements IService<Membre> {
             pst.setInt(1, id);
             ResultSet resultSet = pst.executeQuery();
             if (resultSet.next()) {
-                Membre = new Membre();
-                Membre.setIdUtilisateur(resultSet.getInt("id"));
-                Membre.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
-                Membre.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
-                Membre.setMailUtilisateur(resultSet.getString("adresseEmail"));
-                Membre.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
-                Membre.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                Membre.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
-                Membre.setCinUtilisateur(resultSet.getString("numeroCin"));
-                Membre.setRoleUtilisateur(resultSet.getString("role").charAt(0));
-                Membre.setNumUtilisateur(resultSet.getString("numeroTelephone"));
-                Membre.setPays(resultSet.getString("pays"));
-                Membre.setAvatar(resultSet.getString("avatar"));
+                membre = new Membre();
+                int userId = resultSet.getInt("id");
+                membre.setIdUtilisateur(resultSet.wasNull() ? 0 : userId);
+
+                String nomUtilisateur = resultSet.getString("nomUtilisateur");
+                membre.setNomUtilisateur(resultSet.wasNull() ? "" : nomUtilisateur);
+
+                String prenomUtilisateur = resultSet.getString("prenomUtilisateur");
+                membre.setPrenomUtilisateur(resultSet.wasNull() ? "" : prenomUtilisateur);
+
+                String adresseEmail = resultSet.getString("adresseEmail");
+                membre.setMailUtilisateur(resultSet.wasNull() ? "" : adresseEmail);
+
+                String motDePasse = resultSet.getString("motDePasse");
+                membre.setMotDePassUtilisateur(resultSet.wasNull() ? "" : motDePasse);
+
+                java.util.Date dateDeNaissance = resultSet.getDate("dateDeNaissance");
+                membre.setDateDeNaissance(resultSet.wasNull() ? null : new java.sql.Date(dateDeNaissance.getTime()));
+
+
+                String sexe = resultSet.getString("sexe");
+                membre.setSexeUtilisateur(resultSet.wasNull() ? ' ' : sexe.charAt(0));
+
+                String numeroCin = resultSet.getString("numeroCin");
+                membre.setCinUtilisateur(resultSet.wasNull() ? "" : numeroCin);
+
+                String role = resultSet.getString("role");
+                membre.setRoleUtilisateur(resultSet.wasNull() ? ' ' : role.charAt(0));
+
+                String numeroTelephone = resultSet.getString("numeroTelephone");
+                membre.setNumUtilisateur(resultSet.wasNull() ? "" : numeroTelephone);
+
+                String pays = resultSet.getString("pays");
+                membre.setPays(resultSet.wasNull() ? "" : pays);
+
+                String avatar = resultSet.getString("avatar");
+                membre.setAvatar(resultSet.wasNull() ? "" : avatar);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Membre;
+        return membre;
     }
+
     public boolean emailExists(String email) {
         boolean exists = false;
         String requete = "SELECT COUNT(*) FROM utilisateur WHERE adresseEmail = ?";

@@ -157,7 +157,7 @@ public class SettingController implements Initializable {
             {
                 pays.setValue(membre.getPays());
             }
-            if (membre.getAvatar() != null) {
+            if (membre.getAvatar() != null && membre.getAvatar()!="") {
                 String imageUrl = "/images/" + membre.getAvatar();
                 InputStream stream = getClass().getResourceAsStream(imageUrl);
 
