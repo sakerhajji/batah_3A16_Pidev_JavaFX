@@ -7,22 +7,21 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="557.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.AjouterProduitsController">
+<AnchorPane prefHeight="557.0" prefWidth="953.0" stylesheets="@produitstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.AjouterProduitsController">
     <children>
         <Label layoutX="368.0" layoutY="27.0" text="type" />
         <Label layoutX="350.0" layoutY="66.0" text="description" />
         <Label layoutX="370.0" layoutY="106.0" text="prix" />
         <TextField fx:id="txtdescription" layoutX="430.0" layoutY="62.0" />
         <TextField fx:id="txtprix" layoutX="430.0" layoutY="102.0" />
-        <Button layoutX="624.0" layoutY="226.0" mnemonicParsing="false" onAction="#addProduits" text="Add" />
+        <Button layoutX="554.0" layoutY="279.0" mnemonicParsing="false" onAction="#addProduits" text="Add" />
         <Label layoutX="690.0" layoutY="31.0" text="labelle" />
-        <Label layoutX="692.0" layoutY="76.0" text="photo" />
+        <Label layoutX="608.0" layoutY="397.0" text="photo" />
         <Label layoutX="698.0" layoutY="114.0" text="status" />
         <TextField fx:id="txtlabelle" layoutX="758.0" layoutY="27.0" />
-        <TextField fx:id="txtphoto" layoutX="758.0" layoutY="72.0" />
-        <TextField fx:id="txtstatus" layoutX="758.0" layoutY="111.0" />
         <Label layoutX="347.0" layoutY="144.0" text="periodeGarentie" />
         <TextField fx:id="txtperiodeGarentie" layoutX="430.0" layoutY="140.0" />
       <Button layoutX="607.0" layoutY="482.0" mnemonicParsing="false" onAction="#ViewAllProduct" prefHeight="38.0" prefWidth="150.0" text="View all Product" />
@@ -37,5 +36,15 @@
                 </FXCollections>
             </items>
         </ComboBox>
+      <Button layoutX="669.0" layoutY="379.0" onAction="#chooseImage" prefHeight="35.0" prefWidth="137.0" text="Choisir....." />
+      <ImageView fx:id="imageLogo" fitHeight="68.0" fitWidth="80.0" layoutX="679.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
+      <ComboBox fx:id="StatusComboBox2" layoutX="759.0" layoutY="108.0" prefHeight="38.0" prefWidth="150.0" promptText="Choisir un type">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="available" />
+               <String fx:value="not available" />
+            </FXCollections>
+         </items>
+      </ComboBox>
     </children>
 </AnchorPane>

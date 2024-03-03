@@ -32,7 +32,8 @@ public class DataSource {
             } catch (SQLException ex) {
                 throw new RuntimeException("Failed to connect to both online and local databases", ex);
             }
-        }
+       }
+
     }
 
     // Singleton pattern to ensure only one instance of DataSource is created

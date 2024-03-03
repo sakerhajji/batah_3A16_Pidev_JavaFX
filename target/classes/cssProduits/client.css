@@ -1,0 +1,55 @@
+/* Main Background Color */
+#mainBorderPane {
+    -fx-background-color: #F5F5F5; /* Light Gray */
+}
+
+/* Top Section */
+#topHBox {
+    -fx-background-color: #34495E; /* Dark Blue Gray */
+}
+
+#titleLabel {
+    -fx-text-fill: #ECF0F1; /* Light Gray */
+}
+
+#searchField {
+    -fx-prompt-text-fill: #BDC3C7; /* Silver */
+}
+
+#searchIcon {
+    -fx-fill: #BDC3C7; /* Silver */
+}
+
+/* Center Section - Recently Added */
+#recentLabel {
+    -fx-text-fill: #3498DB; /* Blue */
+}
+
+#recentScrollPane {
+    -fx-background: #FFFFFF; /* White */
+    -fx-border-color: #D6DBDF; /* Lighter Gray */
+}
+
+/* Center Section - Recommended */
+#recommendedLabel {
+    -fx-text-fill: #E74C3C; /* Red */
+}
+
+#recommendedScrollPane {
+    -fx-background: #F2D7D5; /* Light Red */
+    -fx-border-color: #D98880; /* Darker Red */
+}
+
+#recommendedTilePane {
+    -fx-background-color: #F2D7D5; /* Light Red */
+}
+
+/* Left Section */
+#leftVBox {
+    -fx-background-color: #ECF0F1; /* Light Gray */
+}
+
+/* Separator Color */
+#separator {
+    -fx-background-color: #D6DBDF; /* Lighter Gray */
+}

@@ -1,3 +1,4 @@
+/*
 package controllers.ServiceApresVente;
 import Entity.UserAdmin.Membre;
 import Entity.entitiesProduits.Achats;
@@ -81,3 +82,4 @@ public class ServiceApresVenteAjouter implements Initializable {
 
 
 }
+*/

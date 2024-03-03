@@ -1,14 +1,19 @@
 package Entity.entitiesProduits;
 
+import Entity.UserAdmin.Membre;
+
 import java.util.Date;
 
 public class Achats {
     private int idAchats;
-    private int idProduits;
-    private int idUtilisateur;
+    private Produits idProduits;
+    private Membre idUtilisateur;
     private Date dateAchats;
 
-    public Achats(int idAchats, int idProduits, int idUtilisateur, Date dateAchats) {
+    public Achats() {
+    }
+
+    public Achats(int idAchats, Produits idProduits, Membre idUtilisateur, Date dateAchats) {
         this.idAchats = idAchats;
         this.idProduits = idProduits;
         this.idUtilisateur = idUtilisateur;
@@ -23,19 +28,19 @@ public class Achats {
         this.idAchats = idAchats;
     }
 
-    public int getIdProduits() {
+    public Produits getIdProduits() {
         return idProduits;
     }
 
-    public void setIdProduits(int idProduits) {
+    public void setIdProduits(Produits idProduits) {
         this.idProduits = idProduits;
     }
 
-    public int getIdUtilisateur() {
+    public Membre getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
+    public void setIdUtilisateur(Membre idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

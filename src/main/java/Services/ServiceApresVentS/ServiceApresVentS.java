@@ -1,8 +1,11 @@
+
 package Services.ServiceApresVentS;
 
 import DataBaseSource.DataSource;
+import Entity.UserAdmin.Membre;
 import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
+import Entity.entitiesProduits.Produits;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import InterfaceServices.IService;
 
@@ -85,7 +88,19 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 boolean status = rs.getBoolean("status");
                 // Fetching Partenaire and Achats objects
                 Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
-                Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"), rs.getDate("dateAchats"));
+                Produits produits = new Produits(
+                        rs.getInt("idProduit"),
+                        rs.getString("type"),
+                        rs.getString("description"),
+                        rs.getFloat("prix"),
+                        rs.getString("labelle"),
+                        rs.getString("status"),
+                        rs.getInt("periodeGarantie"),
+                        rs.getString("photo"),
+                        new Membre(rs.getInt(9), rs.getString("nomUtilisateur"), rs.getString("prenomUtilisateur"))
+                );
+                Membre membre = new Membre(rs.getInt("id"), rs.getString("membre_nom"), rs.getString("membre_email"));
+                Achats idAchats = new Achats(rs.getInt("idAchats"), produits, membre, rs.getDate("dateAchats"));
                 ServiceApresVente sav = new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
                 list.add(sav);
             }
@@ -116,8 +131,60 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 String type = rs.getString("type");
                 Date date = rs.getDate("date");
                 boolean status = rs.getBoolean("status");
-                Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
-                Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"),date);
+
+                Membre user=new Membre() ;
+                //Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
+                Produits produits = new Produits(
+                        rs.getInt("idProduits"),
+                        rs.getString("type"),
+                        rs.getString("description"),
+                        rs.getFloat("prix"),
+                        rs.getString("labelle"),
+                        rs.getString("status"),
+                        rs.getInt("periodeGarantie"),
+                        rs.getString("photo"),
+                        user
+
+                );
+
+                Membre membre = new Membre(
+                        rs.getInt("idUtilisateur"),
+                        rs.getString("nomUtilisateur"),
+                        rs.getString("prenomUtilisateur"),
+                        rs.getString("mailUtilisateur"),
+                        // Add other fields based on your Membre entity
+                        rs.getString("motDePassUtilisateur"),  // Assuming there's a field for password
+                        rs.getDate("dateDeNaissance"),         // Assuming there's a field for date of birth
+                        rs.getString("sexeUtilisateur").charAt(0),  // Assuming 'sexeUtilisateur' is a char
+                        rs.getString("cinUtilisateur"),
+                        rs.getString("roleUtilisateur").charAt(0),  // Assuming 'roleUtilisateur' is a char
+                        rs.getString("numUtilisateur"),
+                        rs.getString("pays"),
+                        rs.getString("avatar"),
+                        rs.getInt("nbrProuduitAchat"),          // Assuming there's a field for number of products bought
+                        rs.getInt("nbrProduitVendu"),           // Assuming there's a field for number of products sold
+                        rs.getString("languePreferree"),
+                        rs.getInt("nbrProduit"),                // Assuming there's a field for total number of products
+                        rs.getInt("nbrPoint"),
+                        rs.getDate("dateInscription")
+                );
+
+                Achats idAchats = new Achats(
+                        rs.getInt("idAchats"),
+                        produits,
+                        membre,
+                        date
+                );
+
+                Partenaire idPartenaire = new Partenaire(
+                        rs.getInt("idPartenaire"),
+                        rs.getString("nom"),
+                        rs.getString("partenaire_type"),
+                        rs.getString("adresse"),
+                        rs.getInt("telephone"),
+                        rs.getString("email")
+                );
+
                 return new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
             }
         } catch (SQLException e) {

@@ -1,0 +1,32 @@
+.product-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #3498db; /* Dodger Blue */
+}
+
+.add-to-cart-button {
+    -fx-background-color: #2ecc71; /* Emerald Green */
+    -fx-border: none;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.add-to-cart-button:hover {
+    -fx-background-color: #27ae60; /* Slightly Darker Green */
+}
+
+.product-pane {
+    -fx-background-color: #ecf0f1; /* Clouds Gray */
+    -fx-border-color: #bdc3c7; /* Silver Sand */
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    //-fx-effect: dropshadow(3px, 3px, 3px, #bdc3c7); /* Silver Sand */
+}
+
+#searchField {
+    -fx-background-color: #ecf0f1; /* Clouds Gray */
+}
+
+#ProduitVbox, #produitTilePane {
+    -fx-background-color: #ecf0f1; /* Clouds Gray */
+}
