@@ -49,6 +49,19 @@ public class ReservationService {
     public void updateReservation(Reservation reservation) {
         // Implement update logic here
     }
+    public void deleteReservationsByLocationId(int locationId) {
+        String query = "DELETE FROM reservation_location WHERE idLocation=?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, locationId);
+            pst.executeUpdate();
+            System.out.println("Reservations for location with ID " + locationId + " deleted successfully.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     // Method to retrieve all reservations from the database
     public List<Reservation> getAllReservations() {

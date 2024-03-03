@@ -21,15 +21,42 @@ public class ImageService {
     }
 
     public void add(Image image) {
-        // Implement the add method similar to LocationService
+        String query = "INSERT INTO image (url, idLocations) VALUES (?, ?)";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, image.getUrl());
+            pst.setInt(2, image.getLocation().getIdLocation()); // Assuming getIdLocation returns the ID of the location
+            pst.executeUpdate();
+            System.out.println("Image added successfully.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void delete(Image image) {
-        // Implement the delete method similar to LocationService
+        String query = "DELETE FROM image WHERE idImage=?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, image.getIdImage());
+            pst.executeUpdate();
+            System.out.println("Image deleted successfully.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void update(Image image) {
-        // Implement the update method similar to LocationService
+        String query = "UPDATE image SET url=?, idLocations=? WHERE idImage=?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, image.getUrl());
+            pst.setInt(2, image.getLocation().getIdLocation());
+            pst.setInt(3, image.getIdImage());
+            pst.executeUpdate();
+            System.out.println("Image updated successfully.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Image> readAllByLocationId(int locationId) {

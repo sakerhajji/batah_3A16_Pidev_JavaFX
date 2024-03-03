@@ -1,21 +1,26 @@
 package controllers.locationController;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.control.TextField;
 
 import Entity.location.Image;
 import Entity.location.Location;
 import Services.locationService.ImageService;
 import Services.locationService.LocationService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -50,6 +55,10 @@ public class location {
     private Label descriptionLabel;
 
 
+    private LocationService locationService = new LocationService();
+
+    @FXML
+    private TextField adresseFilterTextField;
 
     @FXML
     private GridPane grid;
@@ -58,6 +67,7 @@ public class location {
     private ScrollPane scroll;
 
     private int selectedLocationId;
+
 
 
 
@@ -249,8 +259,80 @@ public class location {
                 row++;
             }
         }
+
+    }
+    // Method to initialize the grid with location data
+    private void initializeGrid() {
+        // Fetch locations from the database
+        LocationService locationService = new LocationService();
+        List<Location> locations = locationService.readAll();
+
+        // Clear the existing grid
+        grid.getChildren().clear();
+
+        // Initialize column and row counters
+        int column = 0;
+        int row = 1; // Start displaying images from the second row
+
+        // Populate the grid with items representing each location
+        for (Location location : locations) {
+            // Fetch the associated image for the location
+            ImageService imageService = new ImageService();
+            Image image = imageService.getImageByLocationId(location.getIdLocation()); // Assuming location.getId() gives the location ID
+
+            // Load the image
+            if (image != null) {
+                javafx.scene.image.Image fxImage = new javafx.scene.image.Image(image.getUrl());
+
+                // Create a new item controller for the location
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/locationInterface/item.fxml"));
+                AnchorPane itemPane;
+                try {
+                    itemPane = fxmlLoader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Item itemController = fxmlLoader.getController();
+
+                // Set the location information in the item controller
+                itemController.setLocation(location.getType(), location.getPrix(), fxImage);
+
+                // Set size constraints for the itemPane
+                itemPane.setPrefSize(200, 200); // Adjust size as needed
+
+                // Add event handler for item click
+                itemPane.setOnMouseClicked(event -> handleItemClick(event, location.getIdLocation())); // Pass location ID to handleItemClick
+
+                // Add the item to the grid
+                grid.add(itemPane, column++, row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_COMPUTED_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            } else {
+                // Print "not available" in the console
+                System.out.println("Image not available for location: " + location.getIdLocation());
+            }
+
+            // Check if column exceeds the maximum allowed (3)
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
+        }
     }
 
+    // Method to refresh the grid
+    public void refreshGrid() {
+        initializeGrid();
+    }
+
+    public void refreshLocation() {
+        initialize();
+    }
 
     public void Publier_location(ActionEvent actionEvent)  {
 
@@ -275,6 +357,35 @@ public class location {
         }
     }
 
-    public void filtrer(ActionEvent actionEvent) {
+    @FXML
+    private void filtrer(ActionEvent event) {
+
+            String adresseFilter = adresseFilterTextField.getText().trim(); // Get the entered address filter
+
+            // Fetch locations from the database based on the address filter
+            LocationService locationService = new LocationService();
+            List<Location> filteredLocations = locationService.fetchLocationsByAddress(adresseFilter);
+
+            // Clear the existing grid
+            grid.getChildren().clear();
+
+            // Populate the grid with filtered locations
+            int column = 0;
+            int row = 1;
+            for (Location location : filteredLocations) {
+                // Your code to add location items to the grid
+            }
+        }
+
+
+
+
+
+    public void clear_filter(ActionEvent actionEvent) {
     }
-}
+
+   /* public void clear_filter(ActionEvent actionEvent) {
+        tableView.getItems().clear();
+        List<Location> locations = locationService.readAll();
+        tableView.getItems().addAll(locations);
+    */}

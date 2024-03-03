@@ -1,10 +1,15 @@
 package controllers.locationController;
 
 import Entity.UserAdmin.Admin;
+import Entity.location.Image;
 import Entity.location.Location;
+import Entity.location.Reservation;
 import Services.UserAdmineServices.AdminService;
+import Services.locationService.ImageService;
 import Services.locationService.LocationService;
 import Services.locationService.PublierService;
+import Services.locationService.ReservationService;
+import controllers.locationInterface.AddImage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +21,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +71,7 @@ public class PublierProduit {
     private AdminService userService;
     private LocationService locationService;
     private PublierService publierService;
+    private Location newLocation;
 
     @FXML
     void initialize() {
@@ -97,7 +105,7 @@ public class PublierProduit {
 
     public void refreshTable() {
         tableView_Location.getItems().clear();
-        List<Location> locations = locationService.readAll();
+        List<Location> locations = locationService.readAll3();
         tableView_Location.getItems().addAll(locations);
     }
 
@@ -138,6 +146,15 @@ public class PublierProduit {
 
             Location newLocation = new Location(adresse, description, true, prix, type, selectedUser);
             publierService.add(newLocation);
+            // Pass the location to the controller of the next interface
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/locationInterface/add_image.fxml"));
+            Parent root = loader.load();
+            AddImage nextController = loader.getController();
+            nextController.setLocation(newLocation); // Pass the location
+            // Show the image interface
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
 
             id_prix.clear();
             id_type.getSelectionModel().clearSelection();
@@ -145,15 +162,15 @@ public class PublierProduit {
             id_adresse.clear();
             id_utilisateur.getSelectionModel().clearSelection();
 
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Success");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Produit publié avec succès");
-            successAlert.showAndWait();
+
             refreshTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    // Method to set the Location object
+    public void setLocation(Location location) {
+        this.newLocation = location;
     }
 
 
@@ -170,12 +187,27 @@ public class PublierProduit {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                ReservationService reservationService = new ReservationService();
+                reservationService.deleteReservationsByLocationId(selectedLocation.getIdLocation());
+
+                }
                 // Delete the selected location
+                // Retrieve the images associated with the location
+                ImageService imageService = new ImageService();
+                // Delete reservations associated with the location
+                List<Image> images = imageService.readAllByLocationId(selectedLocation.getIdLocation());
+
+
+                // Delete the associated images
+                for (Image image : images) {
+                    imageService.delete(image);
+                }
+
                 publierService.delete(selectedLocation);
 
                 // Refresh the table to reflect the deletion
                 refreshTable();
-            }
+
         } else {
             // If no location is selected, show an error message
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -225,9 +257,6 @@ public class PublierProduit {
         }
     }
 
-
-    public void importer(ActionEvent actionEvent) {
-    }
 
 
     public void filtrer(ActionEvent actionEvent) {

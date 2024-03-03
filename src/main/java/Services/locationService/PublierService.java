@@ -37,6 +37,32 @@ public class PublierService implements IService<Location> {
             throw new RuntimeException(e);
         }
     }
+    public Location getLocationByDescription(String description) {
+        String query = "SELECT * FROM location WHERE description=?";
+        Location location = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, description);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+
+                // Create a new location object and set its attributes
+                location = new Location();
+                location.setIdLocation(rs.getInt("idLocation"));
+                location.setPrix(rs.getDouble("prix"));
+                location.setType(rs.getString("type"));
+                location.setDescription(rs.getString("description"));
+                location.setAdresse(rs.getString("adresse"));
+                // Set the utilisateur for the location
+
+            }
+            pst.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return location;
+    }
+
 
     @Override
     public void delete(Location location) {

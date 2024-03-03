@@ -14,8 +14,13 @@ public class LocationService implements IService<Location> {
     private Connection conn;
     private PreparedStatement pst;
 
+    private List<Location> locationList;
+
+
     public LocationService() {
         conn = DataSource.getInstance().getCnx();
+        this.locationList = new ArrayList<>();
+
     }
 
     @Override
@@ -75,6 +80,42 @@ public class LocationService implements IService<Location> {
 
     @Override
     public List<Location> readAll() {
+        String query = "SELECT l.*, u.nomUtilisateur, u.prenomUtilisateur " +
+                "FROM location l " +
+                "JOIN utilisateur u ON l.id = u.id " +
+                "WHERE l.disponibilite = true"; // Filter for disponibilite being true
+        List<Location> locations = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Location location = new Location();
+                location.setIdLocation(rs.getInt("idLocation"));
+                location.setPrix(rs.getDouble("prix"));
+                location.setType(rs.getString("type"));
+                location.setDescription(rs.getString("description"));
+                location.setAdresse(rs.getString("adresse"));
+                location.setDisponibilite(rs.getBoolean("disponibilite"));
+
+                // Create a new utilisateur object and set its attributes
+                Admin user = new Admin();
+                user.setNomUtilisateur(rs.getString("nomUtilisateur"));
+                user.setPrenomUtilisateur(rs.getString("prenomUtilisateur"));
+
+                // Set the utilisateur for the location
+                location.setUtilisateur(user);
+
+                locations.add(location);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return locations;
+    }
+
+
+    public List<Location> readAll3() {
         String query = "SELECT l.*, u.nomUtilisateur, u.prenomUtilisateur " +
                 "FROM location l " +
                 "JOIN utilisateur u ON l.id = u.id";
@@ -192,6 +233,27 @@ public class LocationService implements IService<Location> {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Location> getAllLocations() {
+        // Return the list of all locations
+        return locationList;
+    }
+
+    // Method to fetch locations by address
+    public List<Location> fetchLocationsByAddress(String address) {
+        List<Location> filteredLocations = new ArrayList<>();
+
+        // Iterate over all locations to find matching addresses
+        for (Location location : locationList) {
+            if (location.getAdresse().equalsIgnoreCase(address)) {
+                filteredLocations.add(location);
+            }
+        }
+
+        return filteredLocations;
+    }
+
+
 
 
 }
