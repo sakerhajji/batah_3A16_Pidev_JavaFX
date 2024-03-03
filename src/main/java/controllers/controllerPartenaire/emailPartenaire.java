@@ -9,6 +9,8 @@ import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 
 public class emailPartenaire {
+    public emailPartenaire() {
+    }
 
     public static void sendEmail(String recipientEmail, String subject, String messageBody) {
         Properties props = new Properties();

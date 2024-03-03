@@ -16,7 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LigneServiceController implements Initializable {
-    ServiceApresVente sa=new ServiceApresVente();
+    ServiceApresVente sa ;
+    private double xOffset , yOffset;
 
     public ServiceApresVente getSa() {
         return sa;
@@ -116,23 +117,32 @@ public class LigneServiceController implements Initializable {
 
     @FXML
     void detailleClicked(ActionEvent event) throws IOException {
-       // System.out.println(ServiceApresVente);
-        try {
-            // Charger l'interface graphique depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteUpdate.fxml"));
-            Parent root = loader.load();
 
-            // Créer une nouvelle fenêtre pour afficher l'interface
-            Stage stage = new Stage();
-            stage.setTitle("Détail du service après-vente");
-            stage.setScene(new Scene(root));
 
-            // Afficher la fenêtre
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            System.out.println(sa.getIdService());
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteUpdate.fxml")) ;
+            Parent root = null;
+            root =loader.load() ;
+            Updatecontroller c = loader.getController();
+
+           c.setDescription(sa.getDescription());
+
+          // c.setType(sa.getType());
+           c.setNomPartenaire(sa.getIdPartenaire().getNom());
+           c.setDate(sa.getDate());
+           Updatecontroller u=loader.getController();
+           u.init(sa.getIdService());
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
+
+
+
+
+
     }
+
 
 
 

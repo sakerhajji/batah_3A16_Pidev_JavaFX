@@ -19,6 +19,11 @@ public class Partenaire {
         this.tel = tel;
         this.email = email;
     }
+    public Partenaire(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+
+    }
 
     public Partenaire() {
     }

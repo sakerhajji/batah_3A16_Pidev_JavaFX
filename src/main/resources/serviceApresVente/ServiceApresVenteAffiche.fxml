@@ -21,6 +21,7 @@
             <Label fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="53.0" prefWidth="45.0" text="date" textFill="WHITE" />
             <Label fx:id="status" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="35.0" text="status" textFill="WHITE" />
             <Label fx:id="idPartenaire" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="82.0" text="idPartenaire" textFill="WHITE" />
+            <Label fx:id="idAchats" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="82.0" text="idAchats" textFill="WHITE" />
             <Label fx:id="detaills" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="72.0" text="detailles" textFill="WHITE" />
          </children>
          <padding>

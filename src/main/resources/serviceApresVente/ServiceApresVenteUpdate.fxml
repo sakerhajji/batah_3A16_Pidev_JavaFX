@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServiceApresVente.Updatecontroller">
    <children>
       <Pane layoutX="35.0" layoutY="2.0" prefHeight="368.0" prefWidth="347.0" style="-fx-background-color: #FB7D5B;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -18,7 +20,15 @@
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
                      <children>
-                        <ComboBox fx:id="type" prefWidth="150.0" promptText="Choisir un type" />
+                        <ComboBox fx:id="type" layoutX="146.0" layoutY="277.0" prefHeight="47.0" prefWidth="204.0" promptText="Choisir un type">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="voiture" />
+                                 <String fx:value="maison" />
+                                 <String fx:value="terrain" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
                         <DatePicker fx:id="date" prefHeight="37.0" prefWidth="154.0" promptText="date" />
                      </children>
                   </HBox>
@@ -30,7 +40,6 @@
                   <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="48.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
                      <children>
                         <TextField fx:id="NomPartenaire" prefHeight="38.0" prefWidth="156.0" promptText="idPartenaire" />
-                        <TextField fx:id="status" prefHeight="38.0" prefWidth="156.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="244.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">

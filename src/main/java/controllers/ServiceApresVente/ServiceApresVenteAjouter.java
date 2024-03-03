@@ -1,5 +1,6 @@
 package controllers.ServiceApresVente;
 
+import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
@@ -15,7 +16,6 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ServiceApresVenteAjouter implements Initializable {
@@ -34,6 +34,9 @@ public class ServiceApresVenteAjouter implements Initializable {
     @FXML
     private ChoiceBox<Integer> idAchat;
 
+    @FXML
+    private ComboBox<Partenaire> idPartenaire;
+
     ServiceApresVentS sav = new ServiceApresVentS();
     ProduitsService ps = new ProduitsService();
 
@@ -43,14 +46,20 @@ public class ServiceApresVenteAjouter implements Initializable {
     }
 
     public void populateUserComboBox() {
-        List<Achats> Achat = ps.readAllAchat();
         ObservableList<Integer> achtIds = FXCollections.observableArrayList();
+        ObservableList<Partenaire> partenaires = FXCollections.observableArrayList();
 
-        for (Achats user : Achat) {
-            achtIds.add(user.getIdAchats());
+        // Lire les achats et les partenaires depuis les services appropriés
+        for (Achats achat : ps.readAllAchat()) {
+            achtIds.add(achat.getIdAchats());
         }
-
         idAchat.setItems(achtIds);
+
+// Itération sur la liste des partenaires
+        for (Partenaire partenaire : partenaires) {
+            // Faites quelque chose avec chaque partenaire, par exemple :
+            System.out.println(partenaire.getId() + ": " + partenaire.getNom());
+        }
     }
 
     @FXML
@@ -80,18 +89,15 @@ public class ServiceApresVenteAjouter implements Initializable {
             return;
         }
 
+
+
         Achats achat = ps.readbyIdAchat(selectedAchatid);
 
         ServiceApresVente service = new ServiceApresVente(descript, tp, sqlDate, achat);
         sav.add(service);
         System.out.println("Succès");
 
-        try {
-            Stage stage = (Stage) description.getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        closeWindow();
     }
 
     private void showAlert(String title, String message) {
@@ -101,11 +107,9 @@ public class ServiceApresVenteAjouter implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    void supprimer(ServiceApresVente event) {
 
-        ServiceApresVentS ps=new ServiceApresVentS();
-        ps.delete(event);
-        //showAffectation(id);
+    private void closeWindow() {
+        Stage stage = (Stage) addService.getScene().getWindow();
+        stage.close();
     }
-
 }

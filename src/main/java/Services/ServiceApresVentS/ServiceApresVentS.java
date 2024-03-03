@@ -4,7 +4,6 @@ import DataBaseSource.DataSource;
 import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Achats;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
-import InterfaceServices.IService;
 import Services.ServiceProduit.ProduitsService;
 import Services.servicePartenaire.partenaireService;
 
@@ -12,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceApresVentS implements IService<ServiceApresVente> {
+public class ServiceApresVentS {
     private Connection con;
     private PreparedStatement pst;
 
@@ -20,7 +19,7 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
         con = DataSource.getInstance().getCnx();
     }
 
-    @Override
+
     public void add(ServiceApresVente serviceApresVente) {
         String req = "INSERT INTO service_apres_vente (description, type, date, status, idAchats) VALUES (?,?,?,?,?)";
         try (PreparedStatement pst = con.prepareStatement(req)) {
@@ -37,11 +36,11 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
     }
 
 
-    @Override
-    public void delete(ServiceApresVente serviceApresVente) {
+
+    public void delete(int serviceApresVente) {
         String req = "DELETE FROM service_apres_vente WHERE idService=?";
         try (PreparedStatement pst = con.prepareStatement(req)) {
-            pst.setInt(1, serviceApresVente.getIdService());
+            pst.setInt(1, serviceApresVente);
             pst.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error while deleting ServiceApresVente: " + e.getMessage());
@@ -49,7 +48,7 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
     }
 
 
-    @Override
+
     public void update(ServiceApresVente serviceApresVente) {
         String req = "UPDATE service_apres_vente SET description=?, type=?, date=?, status=?, idPartenaire=?, idAchats=? WHERE idService=?";
         try (PreparedStatement pst = con.prepareStatement(req)) {
@@ -65,9 +64,21 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
             System.err.println("Error while updating ServiceApresVente: " + e.getMessage());
         }
     }
+    public void updateS(ServiceApresVente serviceApresVente) {
+        String req = "UPDATE service_apres_vente SET description=?, type=?, date=? WHERE idService=?";
+        try (PreparedStatement pst = con.prepareStatement(req)) {
+            pst.setString(1, serviceApresVente.getDescription());
+            pst.setString(2, serviceApresVente.getType());
+            pst.setTimestamp(3, new Timestamp(serviceApresVente.getDate().getTime()));
+            pst.setInt(4, serviceApresVente.getIdService());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error while updating ServiceApresVente: " + e.getMessage());
+        }
+    }
 
 
-    @Override
+
     public List<ServiceApresVente> readAll() {
         List<ServiceApresVente> list = new ArrayList<>();
         String req = "SELECT sav.idService, sav.description, sav.type, sav.date, sav.status, " +
@@ -75,7 +86,8 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 "p.idPartenaire, p.nom, p.type AS partenaire_type, p.adresse, p.telephone, p.email " +
                 "FROM service_apres_vente sav " +
                 "JOIN achats a ON sav.idAchats = a.idAchats " +
-                "JOIN partenaires p ON sav.idPartenaire = p.idPartenaire";
+                "LEFT JOIN partenaires p ON sav.idPartenaire = p.idPartenaire";
+
         try {
             PreparedStatement pst = con.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
@@ -88,26 +100,28 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
                 // Fetching Partenaire and Achats objects
                 Partenaire idPartenaire = new Partenaire(rs.getInt("idPartenaire"), rs.getString("nom"), rs.getString("partenaire_type"), rs.getString("adresse"), rs.getInt("telephone"), rs.getString("email"));
                 Achats idAchats = new Achats(rs.getInt("idAchats"), rs.getInt("idProduits"), rs.getInt("idUtilisateur"), rs.getDate("dateAchats"));
-                ServiceApresVente sav = new ServiceApresVente(idService, description, type, date, status, idPartenaire, idAchats);
+                ServiceApresVente sav = new ServiceApresVente (idService, description, type, date, status, idPartenaire, idAchats);
                 list.add(sav);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(list);
         return list;
     }
 
 
 
-    @Override
+
     public ServiceApresVente readById(int id) {
         String req = "SELECT sav.idService, sav.description, sav.type, sav.date, sav.status, " +
                 "a.idAchats, a.idProduits, a.idUtilisateur, a.dateAchats, " +
                 "p.idPartenaire, p.nom, p.type AS partenaire_type, p.adresse, p.telephone, p.email " +
                 "FROM service_apres_vente sav " +
                 "JOIN achats a ON sav.idAchats = a.idAchats " +
-                "JOIN partenaires p ON sav.idPartenaire = p.idPartenaire " +
+                "LEFT JOIN partenaires p ON sav.idPartenaire = p.idPartenaire " +
                 "WHERE sav.idService = ?";
+
         try {
             PreparedStatement pst = con.prepareStatement(req);
             pst.setInt(1, id);
@@ -163,6 +177,16 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
 
 
 
+    public void Affecter(ServiceApresVente serviceApresVente,Partenaire p) {
+        String req = "UPDATE service_apres_vente SET idPartenaire=?  WHERE idService=?";
+        try (PreparedStatement pst = con.prepareStatement(req)) {
+            pst.setInt(1, p.getId());
+            pst.setInt(2,serviceApresVente.getIdService());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error while NonAffecter ServiceApresVente: " + e.getMessage());
+        }
+    }
 
     public void NonAffecter(ServiceApresVente serviceApresVente) {
         String req = "UPDATE service_apres_vente SET idPartenaire=null  WHERE idService=?";
@@ -171,6 +195,15 @@ public class ServiceApresVentS implements IService<ServiceApresVente> {
             pst.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Error while NonAffecter ServiceApresVente: " + e.getMessage());
+        }
+    }
+    public void updateStatus(ServiceApresVente serviceApresVente) {
+        String req = "UPDATE service_apres_vente SET status=true  WHERE idService=?";
+        try (PreparedStatement pst = con.prepareStatement(req)) {
+            pst.setInt(1, serviceApresVente.getIdService());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error ServiceApresVente: " + e.getMessage());
         }
     }
 

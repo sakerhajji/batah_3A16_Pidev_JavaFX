@@ -1,8 +1,11 @@
 package controllers.ServiceApresVente;
 
 
+import Entity.UserAdmin.Admin;
 import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +25,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AffichageController implements Initializable {
+    private Timeline timeline;
+
+    private Admin adminSession ;
 
     @FXML
     private Label date;
@@ -55,16 +62,20 @@ public class AffichageController implements Initializable {
 
             ServiceApresVentS s = new ServiceApresVentS() ;
             serviceApresVenteList=s.readAll();
+
+
             int i = 0 ;
 
             for (ServiceApresVente service:serviceApresVenteList) {
                 final int j = i;
                 i++ ;
 
+                String idPartenaireText = String.valueOf(service.getIdPartenaire().getId());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ligneServices.fxml"));
                 Node item = loader.load();
                 LigneServiceController l = loader.getController();
-                String idService = String.valueOf(service.getIdService()) ;
+                l.setSa(service);
+                String idService = String.valueOf(service.getIdService());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String date = sdf.format(service.getDate());
                 l.setIdService(idService);
@@ -72,7 +83,11 @@ public class AffichageController implements Initializable {
                 l.setType(service.getType());
                 l.setDate(date);
                 l.setStatus(String.valueOf(service.isStatus()));
-                l.setIdPartenaire(service.getIdPartenaire().getNom());
+                if (idPartenaireText!=null) {
+                    l.setIdPartenaire(service.getIdPartenaire().getNom());
+                } else {
+                    l.setIdPartenaire("Null");
+                }
                 l.setIdAchats(String.valueOf(service.getIdAchats().getIdAchats()));
                 item.setOnMouseEntered(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFF0E7"));
                 item.setOnMouseExited(event -> pnItems.getChildren().get(j).setStyle("-fx-background-color: #FFFFFF"));
@@ -111,6 +126,18 @@ public class AffichageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         refrechPage() ;
+        ServiceApresVentS ServiceApresVentS = new ServiceApresVentS();
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 
+
+
+    }
+    private void updatePage(ActionEvent events) {
+
+
+        refrechPage();
+        System.out.println("Mise à jour de la page 1..");
     }
 }
