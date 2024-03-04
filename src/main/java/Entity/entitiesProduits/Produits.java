@@ -13,6 +13,8 @@ public class Produits {
     private int periodeGarentie ;
 
     private String photo;
+
+
 //user id
 
 
@@ -51,6 +53,26 @@ public class Produits {
         this.id = id;
     }
 
+    public Produits(String labelle, String photo, String description) {
+        this.labelle = labelle;
+        this.photo = photo;
+        this.description = description;
+    }
+
+    public Produits(String labelle, float prix,String description ) {
+        this.labelle = labelle;
+        this.prix = prix;
+        this.description = description;
+    }
+
+    public Produits(String labelle, float prix,String description , String photo) {
+        this.labelle = labelle;
+        this.prix = prix;
+        this.description = description;
+        this.photo = photo;
+    }
+
+
 
     public String getPhoto() {
         return photo;
@@ -70,7 +92,7 @@ public class Produits {
         this.id = id;
     }
 
-    public int getIdProduit() {
+     public int getIdProduit() {
         return idProduit;
     }
 

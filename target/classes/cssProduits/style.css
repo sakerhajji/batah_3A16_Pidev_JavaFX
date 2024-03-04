@@ -1,0 +1,59 @@
+.root {
+    -fx-background-color: #f2f2f2; /* Light gray background */
+}
+
+/* Table View */
+.table-view {
+    -fx-control-inner-background: white; /* Table background color */
+}
+
+/* Table Header */
+.table-view .column-header-background {
+    -fx-background-color: #ff8c00; /* Orange background for column headers */
+}
+
+/* Table Rows */
+.table-row-cell:odd {
+    -fx-background-color: #ffe4b5; /* Light orange background for odd rows */
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #ff4500; /* Dark red text color for labels */
+}
+
+/* Text Area */
+.text-area {
+    -fx-control-inner-background: #ffd700; /* Yellow background for text area */
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #ff6347; /* Tomato red background for buttons */
+    -fx-text-fill: white; /* White text color for buttons */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #ff4500; /* Darker red background on hover */
+}
+.panel {
+    -fx-background-color: #ff8c00; /* Orange background for the panel */
+    -fx-border-color: #ff4500; /* Dark red border color for the panel */
+    -fx-border-width: 2; /* Border width */
+    -fx-border-radius: 5; /* Border radius for rounded corners */
+    -fx-padding: 10; /* Padding inside the panel */
+}
+
+/* Text Field */
+.text-field {
+    -fx-background-color: #ffe4b5; /* Light orange background for text fields */
+    -fx-border-color: #ff4500; /* Dark red border color for text fields */
+    -fx-border-width: 1; /* Border width */
+    -fx-border-radius: 3; /* Border radius for rounded corners */
+}
+
+/* Focus effect for text fields */
+.text-field:focused {
+    -fx-border-color: #ff6347; /* Lighter red border color when focused */
+}

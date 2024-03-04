@@ -16,6 +16,8 @@ public class ProduitsService {
     private Statement ste;
     private PreparedStatement pst;
 
+    ServiceBasket sb=new ServiceBasket();
+    RatingService rs=new RatingService();
     public ProduitsService() {
         conn= DataSource.getInstance().getCnx();
 
@@ -24,7 +26,7 @@ public class ProduitsService {
 
 
     public void add(Produits produits) {
-        String query = "INSERT INTO produits (type, description, prix, labelle,status,periodeGarantie,photo ,idUtilisateur) VALUES ( ?,?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO produits (type, description, prix, labelle,status,periodeGarantie,photo ,idUtilisateur) VALUES (?, ?,?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setString(1, produits.getType());
             pst.setString(2, produits.getDescription());
@@ -46,6 +48,10 @@ public class ProduitsService {
 
 
     public void delete(int idProduit) {
+
+        sb.RemoveProdFromBasket(idProduit);
+        rs.RemoveRatingFromProduct(idProduit);
+
         String requete = "DELETE FROM produits WHERE `idProduit`=?";
         try {
             PreparedStatement ps = conn.prepareStatement(requete);
@@ -59,32 +65,23 @@ public class ProduitsService {
     }
 
 
-    public void update(Produits produits) {
-       /*String requete = "UPDATE produits SET type='" + p.getType() + "', description='" + p.getDescription() + "', prix='" + p.getPrix() + "', labelle='" + p.getLabelle() + "', status='" + p.getStatus() + "', periodeGarantie='"+ p.getPeriodeGarentie() +"',idUtilisateur='"+ p.getId().getIdUtilisateur() +"' WHERE idProduit='"+ p.getIdProduit()+"'";
-       try {
-           ste=conn.createStatement();
-
-
-           ste.executeUpdate(requete);
+   public void update(Produits produits) {
+       String query = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=?,photo=?, idUtilisateur=? WHERE idProduit=?";
+       try (PreparedStatement pst = conn.prepareStatement(query)) {
+           pst.setString(1,produits.getType());
+           pst.setString(2,produits.getDescription());
+           pst.setFloat(3,produits.getPrix());
+           pst.setString(4,produits.getLabelle());
+           pst.setString(5,produits.getStatus());
+           pst.setInt(6,produits.getPeriodeGarentie());
+           pst.setString(7,produits.getPhoto());
+           pst.setInt(8,produits.getId().getIdUtilisateur());
+           pst.setInt(9,produits.getIdProduit());
+           pst.executeUpdate();
        } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }*/
-        String query = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=?,photo=?, idUtilisateur=? WHERE idProduit=?";
-        try (PreparedStatement pst = conn.prepareStatement(query)) {
-            pst.setString(1,produits.getType());
-            pst.setString(2,produits.getDescription());
-            pst.setFloat(3,produits.getPrix());
-            pst.setString(4,produits.getLabelle());
-            pst.setString(5,produits.getStatus());
-            pst.setInt(6,produits.getPeriodeGarentie());
-            pst.setString(7,produits.getPhoto());
-            pst.setInt(8,produits.getId().getIdUtilisateur());
-            pst.setInt(9,produits.getIdProduit());
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la mise à jour du produit", e);
-        }
-    }
+           throw new RuntimeException("Erreur lors de la mise à jour du produit", e);
+       }
+   }
 
 
     public List<Produits> readAll() {
@@ -166,7 +163,7 @@ public class ProduitsService {
 
 
     private Produits extractProduitFromResultSet(ResultSet rs, Membre utilisateur) throws SQLException {
-        Produits p =new Produits(
+       Produits p =new Produits(
                 rs.getInt(1),
                 rs.getString(2),
                 rs.getString(3),
@@ -174,7 +171,7 @@ public class ProduitsService {
                 rs.getString(5),
                 rs.getString(6),
                 rs.getInt(7),
-                rs.getString(8),
+               rs.getString(8),
                 utilisateur// L'utilisateur associé au produit
 
         );
@@ -255,7 +252,6 @@ public class ProduitsService {
         }
         return par;
     }
-
 
 
 }

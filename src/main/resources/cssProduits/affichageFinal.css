@@ -1,0 +1,47 @@
+/* Add your CSS styling here */
+.root {
+    -fx-background-color: #f7f1e3; /* Antique White */
+}
+
+.table-view {
+    -fx-background-color: #fff3e0; /* Moccasin */
+    -fx-border-color: #e57373; /* Deep Orange */
+    -fx-border-width: 1;
+}
+
+.table-column {
+    -fx-background-color: #f4511e; /* Deep Orange */
+    -fx-text-fill: #fff; /* White */
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table-view .text-field {
+    -fx-background-color: #ffe0b2; /* Orange Accent 1 */
+    -fx-border-color: #d84315; /* Darker Deep Orange */
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+}
+
+.button {
+    -fx-background-color: #ff5722; /* Deep Orange */
+    -fx-text-fill: #fff; /* White */
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.button:hover {
+    -fx-background-color: #e64a19; /* Darker Deep Orange on hover */
+}
+
+.text {
+    -fx-font-family: 'Bauhaus 93', sans-serif;
+    -fx-fill: #d32f2f; /* Darker Red */
+}
+
+#txtrecherche {
+    -fx-background-color: #ffe0b2; /* Orange Accent 1 */
+    -fx-border-color: #d84315; /* Darker Deep Orange */
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+}
+
+/* Add more styles as needed */

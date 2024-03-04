@@ -1,19 +1,20 @@
 package controllers.ControllerProduits;
 
-import Entity.UserAdmin.Membre;
 import Entity.entitiesProduits.Produits;
-import Services.ServiceProduit.ProduitsService;
-import Services.UserAdmineServices.MembreService;
+import Entity.UserAdmin.Membre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import Services.ServiceProduit.ProduitsService;
+import Services.UserAdmineServices.MembreService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class AjouterProduitsController {
@@ -93,8 +95,8 @@ public class AjouterProduitsController {
 
     @FXML
     void initialize() {
-        MembreService userService = new MembreService(); // Initialize the userService field
-        populateUserComboBox(); // Pass the service to the method
+        MembreService userService = new MembreService();
+        populateUserComboBox();
         addInputRestrictions();
 
     }
@@ -103,11 +105,11 @@ public class AjouterProduitsController {
 
 
         // Contrôle de saisie pour le champ txtstatus (TextField)
-        txtstatus.textProperty().addListener((observable, oldValue, newValue) -> {
+        /*txtstatus.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[01]")) {
                 txtstatus.setText(oldValue);
             }
-        });
+        });*/
 
         // Contrôle de saisie pour le champ txtprix (TextField)
         txtprix.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -172,11 +174,20 @@ public class AjouterProduitsController {
 
     @FXML
     void ViewAllProduct(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass()
-                .getResource("/interfaceProduit/AfficherProduits.fxml"));
+
         try {
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/interfaceProduit/AfficherProduits.fxml"));
             Parent root = loader.load();
-            txtdescription.getScene().setRoot(root);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+           // showProduits();
+            stage.setTitle("Ajouter Partenaire");
+
+
         } catch (IOException e) {
 
             System.out.println(e.getMessage());
@@ -188,7 +199,7 @@ public class AjouterProduitsController {
         void chooseImage(ActionEvent event) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choisir une image");
-            File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
+            File initialDirectory = new File("src/main/resources/cssProduits/cars/");
             fileChooser.setInitialDirectory(initialDirectory);
             File selectedFile = fileChooser.showOpenDialog(new Stage());
             if (selectedFile != null) {

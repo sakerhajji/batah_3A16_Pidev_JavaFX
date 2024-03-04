@@ -1,9 +1,12 @@
 
 package controllers.ControllerProduits;
 
+import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Produits;
-import Services.ServiceProduit.ProduitsService;
 import Services.UserAdmineServices.MembreService;
+import Services.servicePartenaire.partenaireService;
+//import com.itextpdf.text.pdf.PdfPTable;
+import controllers.UserAdminController.AccueilAdminController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,16 +14,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import Services.ServiceProduit.ProduitsService;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -28,8 +44,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
-public class AfficherProduitsController  implements Initializable{
+
+public class AfficherProduitsController  implements Initializable {
 
     @FXML
     private TableColumn<Produits, String> colUser;
@@ -91,13 +109,17 @@ public class AfficherProduitsController  implements Initializable{
     private TableColumn<Produits, Void> modifyTC;
 
     @FXML
+    private TableColumn<Produits, Void> detailsTC;
+    @FXML
+    private Button ajouterButton;
+
+    @FXML
     private ImageView placeholderImageView;
 
 
     private ProduitsService produitsService = new ProduitsService();
-    MembreService ms=new MembreService();
+    MembreService ms = new MembreService();
     private final ObservableList<Produits> produits = FXCollections.observableArrayList();
-
 
 
     @Override
@@ -105,10 +127,13 @@ public class AfficherProduitsController  implements Initializable{
         showProduits();
         buttonModifier();
         buttonSupprimer();
+        buttonDetails();
         txtrecherche.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.trim().isEmpty()) {
                 rechercherProduitParNom(newValue.trim());
-            }else { showProduits();}
+            } else {
+                showProduits();
+            }
         });
     }
 
@@ -118,6 +143,7 @@ public class AfficherProduitsController  implements Initializable{
         ObservableList<Produits> listeResultat = FXCollections.observableArrayList(resultatRecherche);
         table.setItems(listeResultat);
     }
+
     public void refreshTableView() {
         // Mettez à jour la table avec les nouvelles données
         try {
@@ -125,13 +151,13 @@ public class AfficherProduitsController  implements Initializable{
             ObservableList<Produits> prodObservableList = FXCollections.observableArrayList(prodList);
             table.setItems(prodObservableList);
 
-            // Lier les colonnes à la classe Produits (ajustez les noms des méthodes selon votre modèle)
+
             colUser.setCellValueFactory(cellData -> {
                 int userId = cellData.getValue().getId().getIdUtilisateur();
                 String userName = ms.readById(userId).getNomUtilisateur();
                 return new SimpleStringProperty(userName);
             });
-            // ... (liens des autres colonnes)
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -139,27 +165,27 @@ public class AfficherProduitsController  implements Initializable{
     }
 
 
-
     @FXML
     void addProduits(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/AjouterProduits.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("/interfaceProduit/Ajouterproduits.fxml"));
             Parent root = loader.load();
-
-            AjouterProduitsController c = loader.getController();
-            // Assurez-vous d'appeler populateUserComboBox() avant initData
-            // c.initData(event.getIdProduit());
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Ajouter Produit");
+
             stage.showAndWait();
             showProduits();
+            stage.setTitle("Ajouter Partenaire");
+
+
         } catch (IOException e) {
+
             System.out.println(e.getMessage());
         }
     }
+
     private boolean showConfirmationDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
@@ -169,7 +195,6 @@ public class AfficherProduitsController  implements Initializable{
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }
-
 
 
     @FXML
@@ -189,7 +214,7 @@ public class AfficherProduitsController  implements Initializable{
             txtprix.setText(String.valueOf(produits.getPrix()));
             txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
             // Load and display the image
-            String imagePath = "src/main/resources/images/imagesPartenaire/" + produits.getPhoto();
+            String imagePath = "src/main/resources/cssProduits/cars/" + produits.getPhoto();
             Image image = new Image(new File(imagePath).toURI().toString());
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(70);
@@ -197,27 +222,41 @@ public class AfficherProduitsController  implements Initializable{
             // Assuming you have a placeholder in your UI to display the image, replace 'placeholderImageView' with the actual ID of the ImageView in your FXML.
             placeholderImageView.setImage(imageView.getImage());
         }
-        }
-
-    @FXML
-    void ExitToMenu(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfaceUserAdmin/AccueilAdmin.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
+
 
     @FXML
     void PrintPDF(ActionEvent event) {
+        // Get data from your tableview or any other source
+        List<Produits> produits = table.getItems();
 
+        // Create a new PDF document
+        Document document = new Document();
+
+        try {
+            // Write PDF content to a file
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream("Produit.pdf"));
+            } catch (DocumentException e) {
+                throw new RuntimeException(e);
+            }
+            document.open();
+
+            // Add content to the PDF document
+            for (Produits p : produits) {
+                document.add(new Paragraph("Labelle: " + p.getLabelle()));
+                document.add(new Paragraph("prix " + p.getPrix()));
+                document.add(new Paragraph("description " + p.getDescription()));
+                // Add more content if needed
+                document.add(new Paragraph("\n")); // Add space between recettes
+            }
+
+            document.close();
+            System.out.println("PDF file generated successfully!");
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
 
     @FXML
@@ -244,42 +283,16 @@ public class AfficherProduitsController  implements Initializable{
     }
 
 
-
-
     @FXML
     void supprimer(Produits event) {
 
-        ProduitsService ps=new ProduitsService();
+        ProduitsService ps = new ProduitsService();
         ps.delete(event.getIdProduit());
         showProduits();
     }
 
-    @FXML
-    void ajouter(ActionEvent event) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfaceProduit/AjouterProduits.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-
-            stage.showAndWait();
-            showProduits();
-            stage.setTitle("Ajouter Produits");
-
-
-        } catch (IOException e) {
-
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-
-
-    public void showProduits () {
+    public void showProduits() {
         ObservableList<Produits> observableList = FXCollections.observableArrayList(produitsService.readAll());
         table.setItems(observableList);
         colidProduit.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("idProduit"));
@@ -297,7 +310,7 @@ public class AfficherProduitsController  implements Initializable{
                     setGraphic(null);
                 } else {
                     ImageView imageView = new ImageView();
-                    String imagePath = "src/main/resources/images/imagesPartenaire/" + imageName;
+                    String imagePath = "src/main/resources/cssProduits/cars/" + imageName;
                     Image image = new Image(new File(imagePath).toURI().toString());
                     imageView.setImage(image);
                     imageView.setFitWidth(70);
@@ -305,15 +318,9 @@ public class AfficherProduitsController  implements Initializable{
                     setGraphic(imageView);
 
 
-
-
                 }
             }
         });
-
-
-        //colphoto.setCellValueFactory(new PropertyValueFactory<Produits, String>("photoFileName"));
-
 
         colUser.setCellValueFactory(cellData -> {
             int userId = cellData.getValue().getId().getIdUtilisateur();
@@ -322,6 +329,7 @@ public class AfficherProduitsController  implements Initializable{
         });
 
     }
+
     private void buttonModifier() {
         modifyTC.setCellFactory(param -> new TableCell<>() {
             private final Button modifyButton = new Button();
@@ -350,6 +358,7 @@ public class AfficherProduitsController  implements Initializable{
             }
         });
     }
+
     private void buttonSupprimer() {
         deleteTC.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button();
@@ -377,22 +386,92 @@ public class AfficherProduitsController  implements Initializable{
                 }
             }
         });
+    }private void buttonDetails() {
+        detailsTC.setCellFactory(param -> new TableCell<>() {
+            private final Button detailsButton = new Button();
+            private final ImageView imageView = new ImageView();
+            private final double iconWidth = 24; // Largeur de l'icône
+            private final double iconHeight = 24; // Hauteur de l'icône
+
+            Stage stage = new Stage();
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    // Charger l'image avec les dimensions spécifiées
+                    Image image = new Image("cssPartenaire/modifier.png", iconWidth, iconHeight, true, true);
+                    imageView.setImage(image);
+
+                    detailsButton.setGraphic(imageView);
+                    setGraphic(detailsButton);
+                    detailsButton.setOnAction(event -> {
+                        Produits pm = getTableView().getItems().get(getIndex());
+                        showDetailsPopup(pm);
+                    });
+                }
+            }
+
+            private void showDetailsPopup(Produits produits) {
+                stage.setTitle("Détails du produit");
+
+                VBox vbox = new VBox();
+                vbox.setSpacing(10);
+                vbox.setPadding(new Insets(10));
+
+                // ImageView pour afficher la photo du produit
+                ImageView productImageView = new ImageView();
+                productImageView.setFitWidth(150); // Largeur souhaitée
+                productImageView.setFitHeight(150); // Hauteur souhaitée
+                productImageView.setPreserveRatio(true); // Conserver les proportions de l'image
+
+                try {
+                    String imageName = produits.getPhoto();
+                    if (imageName != null && !imageName.isEmpty()) {
+                        String imagePath = "src/main/resources/cssProduits/cars/" + imageName;
+                        Image productImage = new Image(new File(imagePath).toURI().toString());
+                        productImageView.setImage(productImage);
+                    } else {
+                        // Utiliser une image par défaut si aucune image n'est spécifiée
+                        Image defaultImage = new Image(getClass().getResourceAsStream("/interfaceEnchere/Capture.png"));
+                        productImageView.setImage(defaultImage);
+                    }
+                } catch (Exception e) {
+                    // En cas d'erreur, afficher une image par défaut
+                    Image defaultImage = new Image(getClass().getResourceAsStream("/interfaceEnchere/Capture.png"));
+                    productImageView.setImage(defaultImage);
+                }
+
+                Label titleLabel = new Label("Type: " + produits.getType());
+                Label descriptionLabel = new Label("Description : " + produits.getDescription());
+                Label labelLabel = new Label("Label : " + produits.getLabelle());
+                Label prixMaxLabel = new Label("Prix  : " + produits.getPrix());
+
+                // Ajouter les éléments à la VBox
+                vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel);
+
+                Scene scene = new Scene(vbox, 400, 500); // Taille de la scène
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
     }
-
-    @FXML
+ @FXML
     void Clientbtn(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfaceProduit/Client.fxml"));
+                    .getResource("/interfaceProduit/Client2.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
 
             stage.showAndWait();
-          //  showPartenaires();
-            stage.setTitle("Ajouter Partenaire");
+            showProduits();
+            stage.setTitle("Ajouter Produit");
 
 
         } catch (IOException e) {
@@ -400,8 +479,6 @@ public class AfficherProduitsController  implements Initializable{
             System.out.println(e.getMessage());
         }
 
+
     }
-
-
-
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" stylesheets="@../cssProduits/frontFinal.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.TestController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="10.0" prefWidth="742.0" stylesheets="@../cssProduits/client.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="26.0" prefWidth="86.0" styleClass="product-title" text="Batah">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Button fx:id="filterByPriceButton" mnemonicParsing="false" onAction="#handleFilterByPriceButton" prefHeight="26.0" prefWidth="100.0" text="Filter by Price" />
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="9.0" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="149.0">
+               <children>
+                  <TextField fx:id="searchField" promptText="Rechercher sur BatahVos recherches:Pas de recheches récentes" />
+                  <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="140.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../cssProduits/chercher.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../cssProduits/icons/auto.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#vehiculeBtn" styleClass="add-to-cart-button" text="Véhicules" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="284.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../cssProduits/icons/pret.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="304.0" layoutY="28.0" mnemonicParsing="false" onAction="#ImmobilierBtn" prefHeight="30.0" prefWidth="82.0" styleClass="add-to-cart-button" text="Immobilier" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <ImageView fitHeight="32.0" fitWidth="27.0" layoutX="391.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../cssProduits/icons/plus.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Button layoutX="427.0" layoutY="28.0" mnemonicParsing="false" onAction="#publierAnnonceBtn" styleClass="add-to-cart-button" text="Publier une annonce">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="391.0" layoutY="24.0" onMouseClicked="#PanierBtn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../cssProduits/icons/AjoutPanier.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="472.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="821.0">
+               <children>
+                  <ScrollPane prefHeight="900.0" prefWidth="950.0">
+                     <content>
+                        <VBox prefHeight="900.0" prefWidth="950.0">
+                           <children>
+                              <HBox fx:id="hbox1" prefHeight="450.0" prefWidth="940.0" />
+                              <HBox fx:id="hbox2" prefHeight="450.0" prefWidth="940.0" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <stylesheets>
+            <URL value="@../cssProduits/client.css" />
+            <URL value="@../cssProduits/prod.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="add-to-cart-button" />
+            <String fx:value="product-title" />
+            <String fx:value="product-pane" />
+         </styleClass>
+      </VBox>
+   </center>
+</BorderPane>

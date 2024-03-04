@@ -1,9 +1,7 @@
     package controllers.ControllerProduits;
 
-    import Entity.UserAdmin.Membre;
     import Entity.entitiesProduits.Produits;
-    import Services.ServiceProduit.ProduitsService;
-    import Services.UserAdmineServices.MembreService;
+    import Entity.UserAdmin.Membre;
     import javafx.collections.FXCollections;
     import javafx.collections.ObservableList;
     import javafx.event.ActionEvent;
@@ -17,9 +15,12 @@
     import javafx.scene.image.ImageView;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
+    import Services.ServiceProduit.ProduitsService;
+    import Services.UserAdmineServices.MembreService;
 
     import java.io.File;
     import java.io.IOException;
+    import java.sql.SQLException;
     import java.util.List;
 
     public class ModifierProduitsController  {
@@ -142,7 +143,7 @@
         void chooseImage(ActionEvent event) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choisir une image");
-            File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
+            File initialDirectory = new File("src/main/resources/cssProduits/cars/");
             fileChooser.setInitialDirectory(initialDirectory);
             File selectedFile = fileChooser.showOpenDialog(new Stage());
             if (selectedFile != null) {

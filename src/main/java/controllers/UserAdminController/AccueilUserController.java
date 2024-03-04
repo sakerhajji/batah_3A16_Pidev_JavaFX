@@ -176,6 +176,14 @@ public class AccueilUserController implements Initializable {
             pnlListeEnchereRes.getChildren().removeAll();
             pnlListeEnchereRes.getChildren().clear();
             loadSxmlListeEnchereRes();
+        }else if(actionEvent.getSource()==BtnProduit)
+        {
+            pnlProduit.setStyle("-fx-background-color: #FFFFFF");
+            pnlProduit.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfaceProduit/Client2.fxml"));
+            pnlProduit.getChildren().removeAll();
+            pnlProduit.getChildren().clear();
+            loadSxmlProduits();
         }
     }
 
@@ -229,6 +237,17 @@ public class AccueilUserController implements Initializable {
             Pane settingPane = loader.load();
             pnlListeEnchereRes.getChildren().clear();
             pnlListeEnchereRes.getChildren().setAll(settingPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private  void loadSxmlProduits(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/Client2.fxml"));
+            Pane settingPane = loader.load();
+            pnlProduit.getChildren().clear();
+            pnlProduit.getChildren().setAll(settingPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

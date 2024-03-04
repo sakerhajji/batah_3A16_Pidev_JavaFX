@@ -1,0 +1,48 @@
+/* Add your CSS styling here */
+.label {
+    -fx-font-size: 16px;
+}
+
+.text-field {
+    -fx-pref-width: 242px;
+    -fx-pref-height: 34px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #b9b1b1; /* Light Gray */
+    -fx-border-color: #b9b1b1; /* Light Gray */
+}
+
+.button {
+    -fx-pref-width: 242px;
+    -fx-pref-height: 34px;
+    -fx-font-size: 16px;
+    -fx-background-color: #a48041; /* Dark Gold */
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #876a38; /* Darker Gold on hover */
+}
+
+#pay {
+    -fx-background-color: #a48041; /* Dark Gold */
+}
+
+#pay:hover {
+    -fx-background-color: #876a38; /* Darker Gold on hover */
+}
+
+.line {
+    -fx-stroke: #b9b1b1; /* Light Gray */
+    -fx-stroke-dash-array: 2;
+}
+
+.label-header {
+    -fx-font-size: 24px;
+    -fx-font-family: 'System Bold Italic';
+    -fx-text-fill: #eab95f; /* Light Gold */
+}
+
+.label-description {
+    -fx-font-size: 16px;
+    -fx-text-fill: #9a9292; /* Light Gray */
+}

@@ -1,0 +1,31 @@
+/* Add your CSS styling here */
+.root {
+    -fx-background-color: #f7f1e3; /* Antique White */
+}
+
+.product-title {
+    -fx-text-fill: #e74c3c; /* Alizarin Crimson */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 20; /* Padding left to the product title */
+}
+
+.add-to-cart-button {
+    -fx-background-color: #e74c3c; /* Alizarin Crimson */
+    -fx-text-fill: #fff; /* White */
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10; /* Padding for the button */
+}
+
+.add-to-cart-button:hover {
+    -fx-background-color: #c0392b; /* Darker Alizarin Crimson on hover */
+}
+
+.product-pane {
+    -fx-background-color: #fff3e0; /* Moccasin */
+    -fx-border-color: #e57373; /* Deep Orange */
+    -fx-border-width: 1;
+}
+
+/* Add more styles as needed */
