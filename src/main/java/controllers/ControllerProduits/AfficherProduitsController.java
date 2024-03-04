@@ -295,7 +295,7 @@ public class AfficherProduitsController  implements Initializable {
     public void showProduits() {
         ObservableList<Produits> observableList = FXCollections.observableArrayList(produitsService.readAll());
         table.setItems(observableList);
-        colidProduit.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("idProduit"));
+       // colidProduit.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("idProduit"));
         coltype.setCellValueFactory(new PropertyValueFactory<Produits, String>("type"));
         coldescription.setCellValueFactory(new PropertyValueFactory<Produits, String>("description"));
         colprix.setCellValueFactory(new PropertyValueFactory<Produits, Float>("prix"));
