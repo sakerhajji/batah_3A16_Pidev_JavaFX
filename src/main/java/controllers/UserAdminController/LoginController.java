@@ -4,6 +4,7 @@ import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
 import Services.UserAdmineServices.MembreService;
+import controllers.controllerPartenaire.emailPartenaire;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +47,7 @@ public class LoginController implements Initializable {
         if(controle.isValidEmail(MailUtilisateur.getText()) && controle.checkPasswordStrength(MotDePass.getText())!= 0 && admin.getIdUtilisateur()!=-1 )
         {
 
+            emailPartenaire.sendEmail(admin.getMailUtilisateur(),"Login","vous avez recu login de votre compte a Batah");
             try {
                     if (admin.getRoleUtilisateur()=='A')
                     {root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
