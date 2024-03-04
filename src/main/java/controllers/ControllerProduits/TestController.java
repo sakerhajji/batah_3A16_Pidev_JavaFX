@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,9 +37,9 @@ import java.util.stream.Collectors;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Callback;
 
 public class TestController {
-
 
 
     @FXML
@@ -59,14 +60,23 @@ public class TestController {
     private final ProduitsService produitsService = new ProduitsService();
 
     private Membre userId;
+    private MediaPlayer mediaPlayer;
 
     public void setUserId(Membre userId) {
         this.userId = userId;
     }
 
+    @FXML
+    private Pagination pagination;
+
+    private static final int ITEMS_PER_PAGE = 4;
+
 
     @FXML
     public void initialize() {
+
+        hbox1.setSpacing(10);
+        hbox2.setSpacing(10);
         userId = new Membre(); // Initialisation de userId avec un nouvel objet Membre
         userId.setIdUtilisateur(5);
         loadProduitsHbox();
@@ -77,24 +87,37 @@ public class TestController {
                 loadProduitsHbox(); // Reload all products if the search field is empty
             }
         });
+        String musicPath = "src/main/resources/cssProduits/music/once-in-paris-168895.mp3";
+        Media media = new Media(new File(musicPath).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Repeat indefinitely
+        mediaPlayer.play();
+
     }
+
     private void rechercherProduitParNom(String nom) {
         List<Produits> resultatRecherche = produitsService.rechercheParNom(nom);
         afficherProduits(resultatRecherche);
     }
+
     private void afficherProduits(List<Produits> produits) {
         hbox1.getChildren().clear();
         hbox2.getChildren().clear();
 
         // Use a flag to alternate between hbox1 and hbox2
         boolean useHbox1 = true;
-        for (Produits produit : produits) {
+        for (int i = 0; i < produits.size(); i++) {
             // Create nodes for each product (you may customize this part based on your UI)
-            Pane productPane = createAuctionPane(produit);
-            if (useHbox1) {
-                hbox1.getChildren().add(productPane);
+            Pane productPane = createAuctionPane(produits.get(i));
+
+            // Add a separator (line) between each product
+            if (i < produits.size() - 1) {
+                Separator separator = new Separator();
+                separator.setOrientation(Orientation.HORIZONTAL);
+
+                hbox1.getChildren().addAll(productPane, separator);
             } else {
-                hbox2.getChildren().add(productPane);
+                hbox1.getChildren().add(productPane);
             }
 
             // Switch the flag for the next product
@@ -126,23 +149,24 @@ public class TestController {
             useHbox1 = !useHbox1;
         }
     }
+
     // Création de l'élément de produit pour l'affichage dans le VBox
     private AnchorPane createAuctionPane(Produits produits) {
         AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setPrefWidth(500);
-        anchorPane.setPrefHeight(500);
+        anchorPane.setPrefWidth(250);
+        anchorPane.setPrefHeight(400);
 
-        Label titleLabel = new Label("labelle:" +produits.getLabelle());
+        Label titleLabel = new Label("labelle:" + produits.getLabelle());
         titleLabel.setLayoutX(300);
-        titleLabel.setLayoutY(10);
+        titleLabel.setLayoutY(-5);
         titleLabel.setStyle("-fx-font-weight: bold;");
         Label detailsLabel = new Label("Type: " + produits.getType() +
-                "\nPrice: " + produits.getPrix() + "dt"+
+                "\nPrice: " + produits.getPrix() + "dt" +
                 "\nstatus: " + produits.getStatus() +
                 "\ndescription: " + produits.getDescription() +
                 "\nWarranty: " + produits.getPeriodeGarentie() + " months");
         detailsLabel.setLayoutX(300);
-        detailsLabel.setLayoutY(40);
+        detailsLabel.setLayoutY(10);
 
         RatingService ratingService = new RatingService();
 
@@ -151,11 +175,11 @@ public class TestController {
 
         Label averageRatingLabel = new Label("Average Rating: " + averageRating);
         averageRatingLabel.setLayoutX(300);
-        averageRatingLabel.setLayoutY(270);
+        averageRatingLabel.setLayoutY(230);
 
         Label numberOfVotesLabel = new Label("Number of Votes: " + numberOfVotes);
         numberOfVotesLabel.setLayoutX(300);
-        numberOfVotesLabel.setLayoutY(300);
+        numberOfVotesLabel.setLayoutY(270);
 
         Button detailButton = new Button("Détail");
         detailButton.setOnAction(event -> handleDetailButton(produits));
@@ -163,8 +187,8 @@ public class TestController {
         detailButton.setLayoutY(60);
 
         Button playVideoButton = new Button("Play Video");
-        playVideoButton.setLayoutX(300);
-        playVideoButton.setLayoutY(380);  // Adjust the Y position to make it more visible
+        playVideoButton.setLayoutX(anchorPane.getPrefWidth() - 90);
+        playVideoButton.setLayoutY(30);  // Adjust the Y position to make it more visible
         playVideoButton.setStyle("-fx-font-size: 14;");  // Example: Increase font size for better visibility
         playVideoButton.setOnAction(event -> handlePlayVideoButton(produits));
         // Feedback TextField
@@ -181,16 +205,20 @@ public class TestController {
         submitFeedbackButton.setOnAction(event -> handleSubmitFeedbackButton(produits, feedbackField));
 
 
-        Button cartButton = new Button("add to cart");
-        cartButton.setLayoutX(300);
-        cartButton.setLayoutY(230);
-        // Add action for the "Add to Cart" button
+        Button cartButton = new Button();
+        cartButton.setStyle("-fx-background-image: url('/cssProduits/icons/AjoutPanier.png'); " +
+                "-fx-background-size: 25 25; " +
+                "-fx-background-repeat: no-repeat;");
+        cartButton.setPrefSize(30, 30);
+        cartButton.setLayoutX(150); // Ajustez la position X en conséquence
+        cartButton.setLayoutY(260); // Ajustez la position Y en conséquence
+
         cartButton.setOnAction(event -> handleAddToCartButton(produits));
 
         Button enchereButton = new Button("Ajouter ce Produit a l'enchere");
         enchereButton.setOnAction(event -> handleAddToBid(produits));
-        enchereButton.setLayoutX(355);
-        enchereButton.setLayoutY(270);
+        enchereButton.setLayoutX(50);
+        enchereButton.setLayoutY(300);
 
         // Associer la méthode handleReserveButton à l'action du bouton
 
@@ -221,7 +249,7 @@ public class TestController {
             imageView.setImage(defaultImage);
         }
 
-        anchorPane.getChildren().addAll(titleLabel, detailsLabel, feedbackField, submitFeedbackButton,cartButton, imageView,averageRatingLabel, numberOfVotesLabel,playVideoButton,detailButton,enchereButton);
+        anchorPane.getChildren().addAll(titleLabel, detailsLabel, feedbackField, submitFeedbackButton, cartButton, imageView, averageRatingLabel, numberOfVotesLabel, playVideoButton, detailButton, enchereButton);
 
         return anchorPane;
     }
@@ -230,6 +258,7 @@ public class TestController {
         // Ouvrir une nouvelle fenêtre pour afficher les détails de l'enchère
         showAuctionDetails(produits);
     }
+
     private void showAuctionDetails(Produits produits) {
         Stage stage = new Stage();
         stage.setTitle("Détails du produit");
@@ -274,7 +303,6 @@ public class TestController {
     }
 
 
-
     private void handleSubmitFeedbackButton(Produits produits, TextField feedbackField) {
         RatingService ratingService = new RatingService();  // Create an instance of RatingService
 
@@ -315,6 +343,7 @@ public class TestController {
             alert.showAndWait();
         }
     }
+
     // Method to handle the "Add to Cart" button click
     private void handleAddToCartButton(Produits produits) {
         ServiceBasket sb = new ServiceBasket();
@@ -339,13 +368,12 @@ public class TestController {
     }
 
 
-
     private void handlePlayVideoButton(Produits produits) {
         String videoPath = getVideoPath(produits.getIdProduit());
 
         if (videoPath != null && !videoPath.isEmpty()) {
             // Use a concrete implementation of Media, for example, File or URL
-            Media media = new Media(getClass().getResource(videoPath).toExternalForm());
+            Media media = new Media(videoPath);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             MediaView mediaView = new MediaView(mediaPlayer);
 
@@ -365,6 +393,7 @@ public class TestController {
             alert.showAndWait();
         }
     }
+
     private String getVideoPath(int productId) {
         String videoFileName = productId + ".mp4";
         File videoFile = new File("src/main/resources/cssProduit/vids/" + videoFileName);
@@ -377,6 +406,9 @@ public class TestController {
             return null;
         }
     }
+
+
+
     private void handleAddToBid(Produits produits){
       /*  try {
             // Load the FXML file for the auction interface

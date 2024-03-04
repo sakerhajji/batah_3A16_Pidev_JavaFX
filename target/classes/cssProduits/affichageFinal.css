@@ -1,47 +1,70 @@
 /* Add your CSS styling here */
 .root {
-    -fx-background-color: #f7f1e3; /* Antique White */
+    -fx-background-color: #f4f4f4; /* Light Gray */
 }
 
 .table-view {
-    -fx-background-color: #fff3e0; /* Moccasin */
-    -fx-border-color: #e57373; /* Deep Orange */
+    -fx-background-color: #ffffff; /* White */
+    -fx-border-color: #e0e0e0; /* Light Gray */
     -fx-border-width: 1;
 }
 
 .table-column {
-    -fx-background-color: #f4511e; /* Deep Orange */
-    -fx-text-fill: #fff; /* White */
-    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #fc7a97; /* Blue */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-font-family: 'Arial', sans-serif;
 }
 
+/* Table Cell Content Style */
+.table-cell {
+    -fx-text-fill: #ecb3b3; /* Black */
+    /* Add more styles as needed */
+}
 .table-view .text-field {
-    -fx-background-color: #ffe0b2; /* Orange Accent 1 */
-    -fx-border-color: #d84315; /* Darker Deep Orange */
+    -fx-background-color: #ecf0f1; /* Silver */
+    -fx-border-color: #bdc3c7; /* Silver */
     -fx-border-width: 1;
     -fx-border-radius: 3;
 }
 
 .button {
-    -fx-background-color: #ff5722; /* Deep Orange */
-    -fx-text-fill: #fff; /* White */
-    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #ff851d; /* Green */
+    -fx-text-fill: #ffffff; /* White */
+    -fx-font-family: 'Arial', sans-serif;
 }
 
 .button:hover {
-    -fx-background-color: #e64a19; /* Darker Deep Orange on hover */
+    -fx-background-color: #ff851d; /* Darker Green on hover */
 }
 
 .text {
-    -fx-font-family: 'Bauhaus 93', sans-serif;
-    -fx-fill: #d32f2f; /* Darker Red */
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-fill: #34495e; /* Dark Blue Gray */
 }
 
 #txtrecherche {
-    -fx-background-color: #ffe0b2; /* Orange Accent 1 */
-    -fx-border-color: #d84315; /* Darker Deep Orange */
+    -fx-background-color: #ecf0f1; /* Silver */
+    -fx-border-color: #bdc3c7; /* Silver */
     -fx-border-width: 1;
     -fx-border-radius: 3;
 }
 
 /* Add more styles as needed */
+.text-field {
+-fx-background-color: #f2f2f2; /* Light Gray */
+-fx-border-color: #3498db; /* Belize Hole - Dark Blue */
+-fx-border-width: 2;
+-fx-border-radius: 5;
+-fx-prompt-text-fill: #95a5a6; /* Concrete - Medium Gray */
+-fx-text-fill: #34495e; /* Wet Asphalt - Dark Gray */
+-fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text-field:hover {
+    -fx-border-color: #2980b9; /* Belize Hole - Slightly Lighter Blue on Hover */
+}
+
+.text-field:focused {
+    -fx-border-color: #2980b9; /* Belize Hole - Slightly Lighter Blue when Focused */
+    -fx-background-color: #ecf0f1; /* Clouds - Lighter Gray when Focused */
+}

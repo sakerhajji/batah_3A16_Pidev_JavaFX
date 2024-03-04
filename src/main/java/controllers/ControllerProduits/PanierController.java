@@ -58,7 +58,7 @@ public class PanierController {
     @FXML
     public void initialize() {
         userId = new Membre(); // Initialisation de userId avec un nouvel objet Membre
-        userId.setIdUtilisateur(5);
+       userId.setIdUtilisateur(5);
         loadUserCart();
 
     }
@@ -85,6 +85,11 @@ public class PanierController {
         // Create an HBox to hold the product information and delete button
         HBox itemBox = new HBox();
 
+      /*  // Create an ImageView for the product image
+        ImageView productImageView = new ImageView(new Image(product.getPhoto()));
+        productImageView.setFitWidth(50); // Adjust the width as needed
+        productImageView.setFitHeight(50); // Adjust the height as needed
+*/
         // Create a Label to display the product information
         Label itemLabel = new Label(product.getLabelle() + " - " + product.getPrix() + "dt" );
 
@@ -96,7 +101,7 @@ public class PanierController {
         itemBox.getChildren().addAll(itemLabel, deleteButton);
 
         // Adjust spacing and alignment as needed
-        itemBox.setSpacing(10);
+        itemBox.setSpacing(40);
         itemBox.setAlignment(Pos.CENTER_LEFT);
 
 
@@ -186,7 +191,9 @@ public class PanierController {
                     Label itemLabel = (Label) ((HBox) node).getChildren().get(0);
                     String[] parts = itemLabel.getText().split(" - ");
                     String labelle = parts[0];
-                    float prix = Float.parseFloat(parts[1].replace("$", ""));
+                    // Extract numeric part and convert to float
+                    String numericPart = parts[1].replaceAll("[^\\d.]", "");
+                    float prix = Float.parseFloat(numericPart);
                     // You may need to adjust this based on your actual UI structure
                     return new Produits(labelle, prix, ""); // Create Produits object with the extracted data
                 })

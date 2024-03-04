@@ -47,9 +47,9 @@
             </Label>
             <ScrollPane layoutX="4.0" layoutY="196.0" prefHeight="258.0" prefWidth="435.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="409.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="330.0" prefWidth="416.0">
                      <children>
-                        <VBox fx:id="vbox1" layoutY="-10.0" prefHeight="234.0" prefWidth="361.0" />
+                        <VBox fx:id="vbox1" layoutX="27.0" layoutY="22.0" prefHeight="287.0" prefWidth="362.0" />
                      </children>
                   </AnchorPane>
               </content>
