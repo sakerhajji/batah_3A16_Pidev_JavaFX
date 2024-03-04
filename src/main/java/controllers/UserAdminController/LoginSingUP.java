@@ -140,7 +140,13 @@ public class LoginSingUP implements Initializable {
             }
         });
     }
+    @FXML
+    void closeClicked(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
 
+    }
 
 }
 

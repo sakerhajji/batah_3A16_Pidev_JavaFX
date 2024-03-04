@@ -2,7 +2,9 @@ package controllers.UserAdminController;
 
 import Entity.ControleDeSaisieClass.ControleDeSaisieClass;
 import Entity.UserAdmin.Admin;
+import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
+import Services.UserAdmineServices.MembreService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,10 +69,17 @@ public class SingUPController implements Initializable {
                 Date date = java.sql.Date.valueOf(localDate);
                 char sexe = gender.charAt(0);
                 Admin admin = new Admin(NomUtlisateur.getText(), PrenomUtlisateur.getText(), MailUtilisateur.getText(), MotDePass.getText(), date, sexe);
+                admin.setRoleUtilisateur('U');
                 adminService.add(admin);
+                admin=adminService.Login(admin) ;
+                Membre membre =new Membre() ;
+                membre.setIdUtilisateur(admin.getIdUtilisateur());
+                MembreService membreService =new MembreService();
+                membre=membreService.readById(membre.getIdUtilisateur()) ;
+                membre.saveJsonToBinFile(membre);
                 try {
 
-                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));
                     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     root.setOnMousePressed((MouseEvent events) -> {

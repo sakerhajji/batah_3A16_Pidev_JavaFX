@@ -1,7 +1,9 @@
 package controllers.UserAdminController;
 import Entity.ControleDeSaisieClass.ControleDeSaisieClass;
 import Entity.UserAdmin.Admin;
+import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
+import Services.UserAdmineServices.MembreService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,8 +47,15 @@ public class LoginController implements Initializable {
         {
 
             try {
-
-                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));
+                    if (admin.getRoleUtilisateur()=='A')
+                    {root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
+                    else {
+                        Membre membre = new Membre() ;
+                        MembreService membreService =new MembreService();
+                        membre.setIdUtilisateur(admin.getIdUtilisateur());
+                        membre=membreService.readById(membre.getIdUtilisateur()) ;
+                        membre.saveJsonToBinFile(membre);
+                        root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));}
                     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     root.setOnMousePressed((MouseEvent events) -> {
