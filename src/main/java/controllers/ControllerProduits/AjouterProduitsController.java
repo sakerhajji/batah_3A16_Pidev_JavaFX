@@ -63,6 +63,8 @@ public class AjouterProduitsController {
 
     @FXML
     private TableColumn<Produits, String> coltype;
+    @FXML
+    private TableColumn<Produits, String> collocalisation;
 
     @FXML
     private ChoiceBox<Integer> idUser;
@@ -71,6 +73,8 @@ public class AjouterProduitsController {
     @FXML
     private TextField txtdescription;
 
+    @FXML
+    private TextField txtlocalisation;
     @FXML
     private TextField txtlabelle;
 
@@ -151,6 +155,7 @@ public class AjouterProduitsController {
         String status = (String) StatusComboBox2.getValue();
         float prix = Float.parseFloat(txtprix.getText());
         int periodeGarantie = Integer.parseInt(txtperiodeGarentie.getText());
+        String localisation = txtlocalisation.getText();
 
 
         Integer selectedUserid = idUser.getValue();
@@ -161,7 +166,7 @@ public class AjouterProduitsController {
         MembreService ms = new MembreService();
         Membre selectedUser = ms.readById(selectedUserid);
 
-        Produits newProduit = new Produits(type, description, prix, labelle, status, periodeGarantie, logoFileName, selectedUser);
+        Produits newProduit = new Produits(type, description, prix, labelle, status, periodeGarantie, logoFileName,localisation, selectedUser);
         produitsService.add(newProduit);
         try {
             Stage stage = (Stage) txtdescription.getScene().getWindow();

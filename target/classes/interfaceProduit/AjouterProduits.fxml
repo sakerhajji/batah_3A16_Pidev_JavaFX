@@ -51,5 +51,7 @@
          <font>
             <Font size="17.0" />
          </font></Label>
+      <Label layoutX="48.0" layoutY="71.0" text="localisation" />
+      <TextField fx:id="txtlocalisation" layoutX="134.0" layoutY="68.0" />
     </children>
 </AnchorPane>

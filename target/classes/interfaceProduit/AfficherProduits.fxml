@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="554.0" prefWidth="709.0" stylesheets="@../cssProduits/affichageFinal.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.AfficherProduitsController">
+<AnchorPane prefHeight="577.0" prefWidth="866.0" stylesheets="@../cssProduits/affichageFinal.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.AfficherProduitsController">
     <children>
         <ImageView fx:id="placeholderImageView" fitHeight="50" fitWidth="70" />
 
-        <TableView fx:id="table" layoutX="13.0" layoutY="63.0" prefHeight="382.0" prefWidth="710.0" stylesheets="@produitstyle.css">
+        <TableView fx:id="table" layoutX="13.0" layoutY="63.0" prefHeight="382.0" prefWidth="785.0" stylesheets="@produitstyle.css">
             <columns>
                 <TableColumn fx:id="colidProduit" prefWidth="41.59997367858887" text="id produit" />
                 <TableColumn fx:id="coltype" prefWidth="52.79998779296875" text="type" />
@@ -30,9 +30,10 @@
                 <TableColumn fx:id="colstatus" prefWidth="42.4000244140625" text="status" />
                 <TableColumn fx:id="colperiodeGarentie" prefWidth="60.000030517578125" text="periodeGarentie" />
             <TableColumn fx:id="colUser" prefWidth="43.20001220703125" text="user" />
-            <TableColumn fx:id="deleteTC" prefWidth="65.5999755859375" text="Supprimer" />
-            <TableColumn fx:id="modifyTC" prefWidth="43.2000732421875" text="Modifier" />
-            <TableColumn fx:id="detailsTC" prefWidth="41.60009765625" text="details" />
+            <TableColumn fx:id="deleteTC" prefWidth="21.5999755859375" text="Supprimer" />
+            <TableColumn fx:id="modifyTC" prefWidth="38.4000244140625" text="Modifier" />
+            <TableColumn fx:id="detailsTC" prefWidth="29.60003662109375" text="details" />
+            <TableColumn fx:id="collocalisation" prefWidth="113.60003662109375" text="localisation" />
 
             </columns>
         </TableView>
@@ -45,5 +46,7 @@
          </font>
       </Text>
       <Button layoutX="35.0" layoutY="457.0" mnemonicParsing="false" onAction="#Clientbtn" prefHeight="38.0" prefWidth="148.0" text="interface front" />
+      <Button layoutX="424.0" layoutY="517.0" mnemonicParsing="false" onAction="#GoToMap" prefHeight="38.0" prefWidth="160.0" text="Map" />
+      <Button fx:id="showMapButton" layoutX="298.0" layoutY="476.0" mnemonicParsing="false" text="Button" />
      </children>
 </AnchorPane>

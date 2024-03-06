@@ -33,6 +33,8 @@
 
         @FXML
         private TextField txtlabelle;
+        @FXML
+        private TextField txtlocalisation;
 
         @FXML
         private TextField txtperiodeGarentie;
@@ -73,6 +75,7 @@
                 txtprix.setText(String.valueOf(produits.getPrix()));
                 idUser.setValue(produits.getId().getIdUtilisateur());
                 txtlabelle.setText(produits.getLabelle());
+            txtlocalisation.setText(produits.getLocalisation());
                 StatusComboBox2.setValue(produits.getStatus());
                 txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
                 populateUserComboBox();
@@ -103,6 +106,7 @@
 
          String description = txtdescription.getText();
          String labelle = txtlabelle.getText();
+         String localisation = txtlocalisation.getText();
 
          String type = typeComboBox.getValue();
          String status = StatusComboBox2.getValue();
@@ -121,7 +125,7 @@
          MembreService ms=new MembreService();
          Membre iduser = ms.readById(selectedUserid);
 
-         Produits pr = new Produits(id,type, description, prix, labelle, status, periodeGarantie,logoFileName,iduser);
+         Produits pr = new Produits(id,type, description, prix, labelle, status, periodeGarantie,logoFileName,localisation,iduser);
          produitsService.update(pr);
 
          try {

@@ -25,6 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import Services.ServiceProduit.ProduitsService;
 import com.itextpdf.text.Document;
@@ -68,6 +70,10 @@ public class AfficherProduitsController  implements Initializable {
     private TableColumn<Produits, String> colphoto;
 
     @FXML
+    private TableColumn<Produits, String> collocalisation;
+
+
+    @FXML
     private TableColumn<Produits, Float> colprix;
 
     @FXML
@@ -92,6 +98,8 @@ public class AfficherProduitsController  implements Initializable {
 
     @FXML
     private TextField txtphoto;
+    @FXML
+    private TextField txtlocalisation;
 
     @FXML
     private TextField txtprix;
@@ -116,6 +124,11 @@ public class AfficherProduitsController  implements Initializable {
     @FXML
     private ImageView placeholderImageView;
 
+    @FXML
+    private Button showMapButton;
+
+
+
 
     private ProduitsService produitsService = new ProduitsService();
     MembreService ms = new MembreService();
@@ -135,7 +148,18 @@ public class AfficherProduitsController  implements Initializable {
                 showProduits();
             }
         });
-    }
+        showMapButton.setOnAction(event -> {
+            System.out.println("Button clicked!");
+            Produits selectedProduct = table.getSelectionModel().getSelectedItem();
+            if (selectedProduct != null && selectedProduct.getLocalisation() != null) {
+                String locationUrl = selectedProduct.getLocalisation();
+                System.out.println("Opening map for location: " + locationUrl);
+                openMap(locationUrl);
+            } else {
+                System.out.println("No product selected or location not available.");
+            }
+        });
+           }
 
 
     private void rechercherProduitParNom(String nom) {
@@ -164,7 +188,28 @@ public class AfficherProduitsController  implements Initializable {
         }
     }
 
+    private void openMap(String location) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/Map.fxml"));
+            Parent root = loader.load();
 
+            // Get the controller for the Map.fxml
+            AfficherMapController mapController = loader.getController();
+
+            // Set the product location in the map controller
+            mapController.setProductLocation(location);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            showProduits();
+            stage.setTitle("Google Map");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     void addProduits(ActionEvent event) {
         try {
@@ -211,6 +256,7 @@ public class AfficherProduitsController  implements Initializable {
 
             txtdescription.setText(produits.getDescription());
             txtlabelle.setText(produits.getLabelle());
+            txtlocalisation.setText(produits.getLocalisation());
             txtprix.setText(String.valueOf(produits.getPrix()));
             txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
             // Load and display the image
@@ -295,7 +341,7 @@ public class AfficherProduitsController  implements Initializable {
     public void showProduits() {
         ObservableList<Produits> observableList = FXCollections.observableArrayList(produitsService.readAll());
         table.setItems(observableList);
-       // colidProduit.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("idProduit"));
+        colidProduit.setCellValueFactory(new PropertyValueFactory<Produits, Integer>("idProduit"));
         coltype.setCellValueFactory(new PropertyValueFactory<Produits, String>("type"));
         coldescription.setCellValueFactory(new PropertyValueFactory<Produits, String>("description"));
         colprix.setCellValueFactory(new PropertyValueFactory<Produits, Float>("prix"));
@@ -321,6 +367,7 @@ public class AfficherProduitsController  implements Initializable {
                 }
             }
         });
+        collocalisation.setCellValueFactory(new PropertyValueFactory<Produits, String>("localisation"));
 
         colUser.setCellValueFactory(cellData -> {
             int userId = cellData.getValue().getId().getIdUtilisateur();
@@ -449,6 +496,7 @@ public class AfficherProduitsController  implements Initializable {
                 Label descriptionLabel = new Label("Description : " + produits.getDescription());
                 Label labelLabel = new Label("Label : " + produits.getLabelle());
                 Label prixMaxLabel = new Label("Prix  : " + produits.getPrix());
+                Label localisation = new Label("localisation  : " + produits.getLocalisation());
 
                 // Ajouter les éléments à la VBox
                 vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel);
@@ -481,4 +529,35 @@ public class AfficherProduitsController  implements Initializable {
 
 
     }
-}
+    @FXML
+    void GoToMap(ActionEvent event) {
+        // Get the selected product from the table
+        Produits selectedProduct = table.getSelectionModel().getSelectedItem();
+
+        if (selectedProduct != null && selectedProduct.getLocalisation() != null) {
+            // Extract the location URL from the selected product
+            String locationUrl = selectedProduct.getLocalisation();
+
+            // Load the AfficherMapController and set the product location
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/Map.fxml"));
+                Parent root = loader.load();
+                AfficherMapController controller = loader.getController();
+                controller.setProductLocation(locationUrl);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.showAndWait();
+                showProduits();
+                stage.setTitle("Google Map");
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            // Handle the case when no product is selected or the location is not available
+            System.out.println("No product selected or location not available.");
+        }
+    }
+    }
+
