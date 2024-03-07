@@ -10,6 +10,7 @@ import controllers.UserAdminController.AccueilAdminController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -126,6 +127,8 @@ public class AfficherProduitsController  implements Initializable {
 
     @FXML
     private Button showMapButton;
+    @FXML
+    private WebView mapWebView;
 
 
 
@@ -198,6 +201,7 @@ public class AfficherProduitsController  implements Initializable {
 
             // Set the product location in the map controller
             mapController.setProductLocation(location);
+            mapController.loadMap();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -467,13 +471,14 @@ public class AfficherProduitsController  implements Initializable {
 
                 VBox vbox = new VBox();
                 vbox.setSpacing(10);
-                vbox.setPadding(new Insets(10));
+                  vbox.setPadding(new Insets(10));
 
                 // ImageView pour afficher la photo du produit
                 ImageView productImageView = new ImageView();
                 productImageView.setFitWidth(150); // Largeur souhaitée
                 productImageView.setFitHeight(150); // Hauteur souhaitée
                 productImageView.setPreserveRatio(true); // Conserver les proportions de l'image
+
 
                 try {
                     String imageName = produits.getPhoto();
@@ -498,8 +503,32 @@ public class AfficherProduitsController  implements Initializable {
                 Label prixMaxLabel = new Label("Prix  : " + produits.getPrix());
                 Label localisation = new Label("localisation  : " + produits.getLocalisation());
 
+                // WebView to display Google Maps
+                WebView mapWebView = new WebView();
+                WebEngine webEngine = mapWebView.getEngine();
+
+                // Set the Google Maps URL with the latitude and longitude from the product's location
+                String location = produits.getLocalisation();
+                String googleMapsUrl = location;
+
+                // Load the map when the WebView is initialized
+                webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue == Worker.State.SUCCEEDED) {
+                        String script = "document.body.style.overflow='hidden';"; // Disable scrolling in the iframe
+                        webEngine.executeScript(script);
+                    }
+                });
+
+                // Load HTML content into WebView
+                String htmlContent = "<html><head></head><body><iframe width='100%' height='100%' frameborder='0' style='border:0' src='" + googleMapsUrl + "' allowfullscreen></iframe></body></html>";
+                webEngine.loadContent(htmlContent);
+
+                // Add a button to open the map in a separate window
+                Button openMapButton = new Button("Open Map");
+                openMapButton.setOnAction(event -> openMap(googleMapsUrl));
+
                 // Ajouter les éléments à la VBox
-                vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel);
+                vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel,mapWebView);
 
                 Scene scene = new Scene(vbox, 400, 500); // Taille de la scène
                 stage.setScene(scene);
@@ -559,5 +588,6 @@ public class AfficherProduitsController  implements Initializable {
             System.out.println("No product selected or location not available.");
         }
     }
+
     }
 

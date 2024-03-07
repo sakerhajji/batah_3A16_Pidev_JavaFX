@@ -23,9 +23,9 @@
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             WebEngine webEngine = mapWebView.getEngine();
-            // loadMap();
+            loadMap();
         }
-        private void loadMap(/*String clubName, String governorate, String city*/) {
+        public void loadMap() {
             WebEngine webEngine = mapWebView.getEngine();
 
             // Generate HTML content with the correct map URL
@@ -35,12 +35,8 @@
             webEngine.loadContent(htmlContent);
         }
 
-        private String generateMapHtml(/*String clubName, String governorate, String city*/String productLocation) {
+        private String generateMapHtml(String productLocation) {
             // Construct the map URL based on the club name, governorate, and city
-           /* String mapUrl = "https://maps.google.com/maps?q=" +
-                    clubName.replace(" ", "%20") + ",%20" +
-                    governorate.replace(" ", "%20") + ",%20" +
-                    city.replace(" ", "%20") + "&t=k&z=16&output=embed";*/
 
             // Generate HTML content with the correct map URL
             return "<!DOCTYPE html>\n" +
