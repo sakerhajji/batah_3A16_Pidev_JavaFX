@@ -2,7 +2,6 @@ package Services.servicePartenaire;
 
 import DataBaseSource.DataSource;
 import Entity.entitiesPartenaire.Partenaire;
-import Entity.entitiesServiceApresVente.ServiceApresVente;
 
 import java.sql.*;
 import java.util.ArrayList;

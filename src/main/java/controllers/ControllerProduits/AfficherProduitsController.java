@@ -1,12 +1,13 @@
 
 package controllers.ControllerProduits;
 
-import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
 import Services.UserAdmineServices.MembreService;
-import Services.servicePartenaire.partenaireService;
-//import com.itextpdf.text.pdf.PdfPTable;
-import controllers.UserAdminController.AccueilAdminController;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +20,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,16 +27,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import Services.ServiceProduit.ProduitsService;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -46,8 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 
 public class AfficherProduitsController  implements Initializable {

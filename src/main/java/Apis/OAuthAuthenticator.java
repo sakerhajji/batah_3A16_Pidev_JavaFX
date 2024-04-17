@@ -1,19 +1,20 @@
     package Apis;
 
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebEvent;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+    import javafx.event.EventHandler;
+    import javafx.scene.Scene;
+    import javafx.scene.web.WebEngine;
+    import javafx.scene.web.WebEvent;
+    import javafx.scene.web.WebView;
+    import javafx.stage.Stage;
+    import org.json.JSONObject;
+
+    import java.io.BufferedReader;
+    import java.io.DataOutputStream;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.net.HttpURLConnection;
+    import java.net.URL;
+    import java.nio.charset.StandardCharsets;
 public abstract class OAuthAuthenticator {
 
     private JSONObject accessedJsonData;

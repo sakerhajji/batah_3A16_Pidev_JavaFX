@@ -2,7 +2,6 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerProduits.AfficherMapController">
     <WebView fx:id="mapWebView" layoutX="24.0" layoutY="24.0" prefHeight="351.0" prefWidth="872.0" />
 

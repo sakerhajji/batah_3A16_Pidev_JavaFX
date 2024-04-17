@@ -1,7 +1,9 @@
 package controllers.ControllerProduits;
 
-import Entity.entitiesProduits.Produits;
 import Entity.UserAdmin.Membre;
+import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
+import Services.UserAdmineServices.MembreService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import Services.ServiceProduit.ProduitsService;
-import Services.UserAdmineServices.MembreService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class AjouterProduitsController {

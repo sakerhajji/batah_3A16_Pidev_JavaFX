@@ -15,12 +15,12 @@ public class DataSource {
     private static DataSource instance;
 
     // Online database connection details
-    private String onlineUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11688387";
-    private String onlineLogin = "sql11688387";
-    private String onlinePwd = "Elpa42M5Ql";
+    private String onlineUrl = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11685928";
+    private String onlineLogin = "sql11685928";
+    private String onlinePwd = "byRB9bfy4H";
 
     // Local database connection details
-    private String localUrl = "jdbc:mysql://localhost:3306/Batahappfinal";
+    private String localUrl = "jdbc:mysql://localhost:3306/batahapp";
     private String localLogin = "root";
     private String localPwd = "";
 

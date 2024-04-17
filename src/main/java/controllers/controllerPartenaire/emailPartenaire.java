@@ -3,9 +3,8 @@ package controllers.controllerPartenaire;
 import Entity.entitiesPartenaire.Partenaire;
 
 import javax.mail.*;
-import javax.mail.internet.*;
-import javax.mail.PasswordAuthentication;
-
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class emailPartenaire {

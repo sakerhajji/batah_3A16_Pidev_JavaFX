@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.AffectationPartenaireController">
     <TableView fx:id="tableAff" layoutX="1.0" layoutY="37.0" prefHeight="310.0" prefWidth="594.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" AnchorPane.topAnchor="37.0">
         <columns>
