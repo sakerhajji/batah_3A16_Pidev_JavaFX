@@ -2,6 +2,7 @@ package org.example;
 
 import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.MembreService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -102,15 +103,19 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        Membre membre =new Membre() ;
-        membre.clearBinFile();
-        MembreService membreService= new MembreService() ;
-        membre=membreService.readById(2);
+//        Membre membre =new Membre() ;
+//        membre.clearBinFile();
+//        MembreService membreService= new MembreService() ;
+//        membre=membreService.readById(2);
+//
+//        membre.saveJsonToBinFile(membre);
+//
+//        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
+//
 
-        membre.saveJsonToBinFile(membre);
-
-        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
-        System.out.println(membre.getNomUtilisateur()+" "+ membre.getPrenomUtilisateur() );
+        String password = "test";
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println("Hashed password: " + hashedPassword);
 
     }
 
