@@ -2,7 +2,6 @@ package controllers.controllerPartenaire;
 
 
 import Entity.entitiesPartenaire.Partenaire;
-import Services.ServiceApresVentS.ServiceApresVentS;
 import Services.servicePartenaire.partenaireService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

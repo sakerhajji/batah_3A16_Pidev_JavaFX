@@ -1,7 +1,9 @@
 package controllers.ControllerProduits;
 
-import Entity.entitiesProduits.Produits;
 import Entity.UserAdmin.Membre;
+import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
+import Services.UserAdmineServices.MembreService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +15,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import Services.ServiceProduit.ProduitsService;
-import Services.UserAdmineServices.MembreService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class AjouterProduitsController {
@@ -63,6 +62,8 @@ public class AjouterProduitsController {
 
     @FXML
     private TableColumn<Produits, String> coltype;
+    @FXML
+    private TableColumn<Produits, String> collocalisation;
 
     @FXML
     private ChoiceBox<Integer> idUser;
@@ -71,6 +72,8 @@ public class AjouterProduitsController {
     @FXML
     private TextField txtdescription;
 
+    @FXML
+    private TextField txtlocalisation;
     @FXML
     private TextField txtlabelle;
 
@@ -151,6 +154,7 @@ public class AjouterProduitsController {
         String status = (String) StatusComboBox2.getValue();
         float prix = Float.parseFloat(txtprix.getText());
         int periodeGarantie = Integer.parseInt(txtperiodeGarentie.getText());
+        String localisation = txtlocalisation.getText();
 
 
         Integer selectedUserid = idUser.getValue();
@@ -161,7 +165,7 @@ public class AjouterProduitsController {
         MembreService ms = new MembreService();
         Membre selectedUser = ms.readById(selectedUserid);
 
-        Produits newProduit = new Produits(type, description, prix, labelle, status, periodeGarantie, logoFileName, selectedUser);
+        Produits newProduit = new Produits(type, description, prix, labelle, status, periodeGarantie, logoFileName,localisation, selectedUser);
         produitsService.add(newProduit);
         try {
             Stage stage = (Stage) txtdescription.getScene().getWindow();

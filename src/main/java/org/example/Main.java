@@ -1,13 +1,13 @@
 package org.example;
 
-import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
-import Services.UserAdmineServices.AdminService;
 import Services.UserAdmineServices.MembreService;
-import com.google.gson.Gson;
+import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 public class Main {
@@ -103,15 +103,19 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        Membre membre =new Membre() ;
-        membre.clearBinFile();
-        MembreService membreService= new MembreService() ;
-        membre=membreService.readById(2);
+//        Membre membre =new Membre() ;
+//        membre.clearBinFile();
+//        MembreService membreService= new MembreService() ;
+//        membre=membreService.readById(2);
+//
+//        membre.saveJsonToBinFile(membre);
+//
+//        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
+//
 
-        membre.saveJsonToBinFile(membre);
-
-        membre=membre.convertToMembre(membre.loadJsonFromBinFile()) ;
-        System.out.println(membre.getNomUtilisateur()+" "+ membre.getPrenomUtilisateur() );
+        String password = "test";
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println("Hashed password: " + hashedPassword);
 
     }
 

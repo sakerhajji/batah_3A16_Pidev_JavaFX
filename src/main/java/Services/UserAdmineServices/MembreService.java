@@ -1,16 +1,12 @@
 package Services.UserAdmineServices;
+
 import DataBaseSource.DataSource;
-import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
 import InterfaceServices.IService;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Date;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MembreService implements IService<Membre> {
@@ -64,14 +60,19 @@ public class MembreService implements IService<Membre> {
                 M.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
                 M.setMailUtilisateur(resultSet.getString("adresseEmail"));
                 M.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
-                M.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                M.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
+                M.setDateDeNaissance(resultSet.getDate("dateDeNaissance")); // Check if the value retrieved from resultSet.getString("sexe") is null
+                String sexe = resultSet.getString("sexe");
+                if (sexe != null && !sexe.isEmpty()) {
+                    M.setSexeUtilisateur(sexe.charAt(0));
+                }
+
                 M.setCinUtilisateur(resultSet.getString("numeroCin"));
                 M.setRoleUtilisateur(resultSet.getString("role").charAt(0));
                 M.setNumUtilisateur(resultSet.getString("numeroTelephone"));
                 M.setPays(resultSet.getString("pays"));
                 M.setAvatar(resultSet.getString("avatar"));
                 Membres.add(M);
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

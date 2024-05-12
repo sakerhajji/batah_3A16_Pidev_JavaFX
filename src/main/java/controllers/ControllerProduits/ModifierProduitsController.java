@@ -1,7 +1,9 @@
     package controllers.ControllerProduits;
 
-    import Entity.entitiesProduits.Produits;
     import Entity.UserAdmin.Membre;
+    import Entity.entitiesProduits.Produits;
+    import Services.ServiceProduit.ProduitsService;
+    import Services.UserAdmineServices.MembreService;
     import javafx.collections.FXCollections;
     import javafx.collections.ObservableList;
     import javafx.event.ActionEvent;
@@ -15,12 +17,9 @@
     import javafx.scene.image.ImageView;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
-    import Services.ServiceProduit.ProduitsService;
-    import Services.UserAdmineServices.MembreService;
 
     import java.io.File;
     import java.io.IOException;
-    import java.sql.SQLException;
     import java.util.List;
 
     public class ModifierProduitsController  {
@@ -33,6 +32,8 @@
 
         @FXML
         private TextField txtlabelle;
+        @FXML
+        private TextField txtlocalisation;
 
         @FXML
         private TextField txtperiodeGarentie;
@@ -73,6 +74,7 @@
                 txtprix.setText(String.valueOf(produits.getPrix()));
                 idUser.setValue(produits.getId().getIdUtilisateur());
                 txtlabelle.setText(produits.getLabelle());
+            txtlocalisation.setText(produits.getLocalisation());
                 StatusComboBox2.setValue(produits.getStatus());
                 txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
                 populateUserComboBox();
@@ -103,6 +105,7 @@
 
          String description = txtdescription.getText();
          String labelle = txtlabelle.getText();
+         String localisation = txtlocalisation.getText();
 
          String type = typeComboBox.getValue();
          String status = StatusComboBox2.getValue();
@@ -121,7 +124,7 @@
          MembreService ms=new MembreService();
          Membre iduser = ms.readById(selectedUserid);
 
-         Produits pr = new Produits(id,type, description, prix, labelle, status, periodeGarantie,logoFileName,iduser);
+         Produits pr = new Produits(id,type, description, prix, labelle, status, periodeGarantie,logoFileName,localisation,iduser);
          produitsService.update(pr);
 
          try {

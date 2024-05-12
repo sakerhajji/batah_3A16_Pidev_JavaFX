@@ -26,7 +26,7 @@ public class ProduitsService {
 
 
     public void add(Produits produits) {
-        String query = "INSERT INTO produits (type, description, prix, labelle,status,periodeGarantie,photo ,idUtilisateur) VALUES (?, ?,?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO produits (type, description, prix, labelle,status,periodeGarantie,photo ,localisation,idUtilisateur) VALUES (?, ?,?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setString(1, produits.getType());
             pst.setString(2, produits.getDescription());
@@ -35,7 +35,8 @@ public class ProduitsService {
             pst.setString(5, produits.getStatus());
             pst.setInt(6, produits.getPeriodeGarentie());
             pst.setString(7, produits.getPhoto());
-            pst.setInt(8, produits.getId().getIdUtilisateur());
+            pst.setString(8, produits.getLocalisation());
+            pst.setInt(9, produits.getId().getIdUtilisateur());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("1");
@@ -66,7 +67,7 @@ public class ProduitsService {
 
 
    public void update(Produits produits) {
-       String query = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=?,photo=?, idUtilisateur=? WHERE idProduit=?";
+       String query = "UPDATE produits SET type=?, description=?, prix=?, labelle=?, status=?, periodeGarantie=?,photo=?, localisation=?, idUtilisateur=? WHERE idProduit=?";
        try (PreparedStatement pst = conn.prepareStatement(query)) {
            pst.setString(1,produits.getType());
            pst.setString(2,produits.getDescription());
@@ -75,8 +76,9 @@ public class ProduitsService {
            pst.setString(5,produits.getStatus());
            pst.setInt(6,produits.getPeriodeGarentie());
            pst.setString(7,produits.getPhoto());
-           pst.setInt(8,produits.getId().getIdUtilisateur());
-           pst.setInt(9,produits.getIdProduit());
+           pst.setString(8,produits.getLocalisation());
+           pst.setInt(9,produits.getId().getIdUtilisateur());
+           pst.setInt(10,produits.getIdProduit());
            pst.executeUpdate();
        } catch (SQLException e) {
            throw new RuntimeException("Erreur lors de la mise à jour du produit", e);
@@ -97,16 +99,19 @@ public class ProduitsService {
             while (rs.next()) {
                 Produits produits=new Produits();
                 produits.setIdProduit(rs.getInt(1));
-                produits.setType(rs.getString(2));
-                produits.setDescription(rs.getString(3));
-                produits.setPrix(rs.getFloat(4));
-                produits.setLabelle(rs.getString(5));
-                produits.setStatus(rs.getString(6));
-                produits.setPeriodeGarentie(rs.getInt(7));
-                produits.setPhoto(rs.getString(8));
+                produits.setType(rs.getString("type"));
+                produits.setDescription(rs.getString("description"));
+                produits.setPrix(rs.getFloat("prix"));
+                produits.setLabelle(rs.getString("labelle"));
+                produits.setStatus(rs.getString("status"));
+                produits.setPeriodeGarentie(rs.getInt("periodeGarantie"));
+                produits.setPhoto(rs.getString("photo"));
+                produits.setLocalisation(rs.getString("localisation"));
                 Membre user=new Membre();
-                user.setIdUtilisateur(rs.getInt(9));
-                produits.setId(user);
+                user.setIdUtilisateur(rs.getInt("idUtilisateur"));
+              /*  user.setNomUtilisateur(rs.getString("nomUtilisateur"));
+                user.setPrenomUtilisateur(rs.getString("prenomUtilisateur"));
+                */produits.setId(user);
 
                 list.add(produits);
             }
@@ -144,14 +149,15 @@ public class ProduitsService {
                     String status = rs.getString("status");
                     int periodeGarantie = rs.getInt("periodeGarantie");
                     String photo = rs.getString("photo");
-                    int idUser =rs.getInt(9);
+                    String localisation = rs.getString("localisation");
+                    int idUser =rs.getInt(10);
                     MembreService ms = new MembreService();
                     Membre selectedUser = ms.readById(idUser);
 
 
 
                     // Create and return Produits object
-                    return new Produits(idProduitResult, type, description, prix, labelle,status, periodeGarantie, photo,selectedUser);
+                    return new Produits(idProduitResult, type, description, prix, labelle,status, periodeGarantie, photo,localisation,selectedUser);
                 }
             }
         } catch (SQLException e) {
@@ -172,6 +178,7 @@ public class ProduitsService {
                 rs.getString(6),
                 rs.getInt(7),
                rs.getString(8),
+               rs.getString(9),
                 utilisateur// L'utilisateur associé au produit
 
         );
@@ -203,6 +210,7 @@ public class ProduitsService {
                 produits.setStatus(rs.getString("status"));
                 produits.setPeriodeGarentie(rs.getInt(7));
                 produits.setPhoto(rs.getString(8));
+                produits.setLocalisation(rs.getString("localisation"));
                 Membre user=new Membre();
                 user.setIdUtilisateur(rs.getInt("idUtilisateur"));
                 produits.setId(user);

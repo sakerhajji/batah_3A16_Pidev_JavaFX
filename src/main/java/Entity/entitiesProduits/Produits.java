@@ -13,6 +13,7 @@ public class Produits {
     private int periodeGarentie ;
 
     private String photo;
+    private String localisation;
 
 
 //user id
@@ -28,7 +29,7 @@ public class Produits {
 
 
 
-    public Produits(String type, String description, float prix, String labelle, String status, int periodeGarentie, String photo,Membre id) {
+    public Produits(String type, String description, float prix, String labelle, String status, int periodeGarentie, String photo,String localisation,Membre id) {
         this.type = type;
         this.description = description;
         this.prix = prix;
@@ -37,9 +38,10 @@ public class Produits {
         this.status = status;
         this.periodeGarentie = periodeGarentie;
         this.photo=photo;
+        this.localisation=localisation;
         this.id = id;
     }
-    public Produits(int idProduit,String type, String description, float prix, String labelle, String status, int periodeGarentie,String photo,Membre id) {
+    public Produits(int idProduit,String type, String description, float prix, String labelle, String status, int periodeGarentie,String photo,String localisation,Membre id) {
         this.idProduit = idProduit;
         this.type = type;
         this.description = description;
@@ -49,6 +51,7 @@ public class Produits {
         this.status = status;
         this.periodeGarentie = periodeGarentie;
         this.photo=photo;
+        this.localisation=localisation;
 
         this.id = id;
     }
@@ -149,6 +152,13 @@ public class Produits {
         this.periodeGarentie = periodeGarentie;
     }
 
+    public String getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
 
     ///////
 //    public ObjectProperty<Utilisateur> utilisateurProperty() {
@@ -174,9 +184,10 @@ public class Produits {
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", labelle='" + labelle + '\'' +
-                ", photo='" + photo + '\'' +
-                ", status=" + status +
+                ", status='" + status + '\'' +
                 ", periodeGarentie=" + periodeGarentie +
+                ", photo='" + photo + '\'' +
+                ", localisation='" + localisation + '\'' +
                 ", id=" + id +
                 '}';
     }

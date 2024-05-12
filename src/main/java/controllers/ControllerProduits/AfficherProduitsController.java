@@ -1,15 +1,17 @@
 
 package controllers.ControllerProduits;
 
-import Entity.entitiesPartenaire.Partenaire;
 import Entity.entitiesProduits.Produits;
+import Services.ServiceProduit.ProduitsService;
 import Services.UserAdmineServices.MembreService;
-import Services.servicePartenaire.partenaireService;
-//import com.itextpdf.text.pdf.PdfPTable;
-import controllers.UserAdminController.AccueilAdminController;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,24 +20,16 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import Services.ServiceProduit.ProduitsService;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -43,8 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 
 public class AfficherProduitsController  implements Initializable {
@@ -66,6 +58,10 @@ public class AfficherProduitsController  implements Initializable {
 
     @FXML
     private TableColumn<Produits, String> colphoto;
+
+    @FXML
+    private TableColumn<Produits, String> collocalisation;
+
 
     @FXML
     private TableColumn<Produits, Float> colprix;
@@ -92,6 +88,8 @@ public class AfficherProduitsController  implements Initializable {
 
     @FXML
     private TextField txtphoto;
+    @FXML
+    private TextField txtlocalisation;
 
     @FXML
     private TextField txtprix;
@@ -116,6 +114,13 @@ public class AfficherProduitsController  implements Initializable {
     @FXML
     private ImageView placeholderImageView;
 
+    @FXML
+    private Button showMapButton;
+    @FXML
+    private WebView mapWebView;
+
+
+
 
     private ProduitsService produitsService = new ProduitsService();
     MembreService ms = new MembreService();
@@ -135,7 +140,18 @@ public class AfficherProduitsController  implements Initializable {
                 showProduits();
             }
         });
-    }
+        showMapButton.setOnAction(event -> {
+            System.out.println("Button clicked!");
+            Produits selectedProduct = table.getSelectionModel().getSelectedItem();
+            if (selectedProduct != null && selectedProduct.getLocalisation() != null) {
+                String locationUrl = selectedProduct.getLocalisation();
+                System.out.println("Opening map for location: " + locationUrl);
+                openMap(locationUrl);
+            } else {
+                System.out.println("No product selected or location not available.");
+            }
+        });
+           }
 
 
     private void rechercherProduitParNom(String nom) {
@@ -164,7 +180,29 @@ public class AfficherProduitsController  implements Initializable {
         }
     }
 
+    private void openMap(String location) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/Map.fxml"));
+            Parent root = loader.load();
 
+            // Get the controller for the Map.fxml
+            AfficherMapController mapController = loader.getController();
+
+            // Set the product location in the map controller
+            mapController.setProductLocation(location);
+            mapController.loadMap();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            showProduits();
+            stage.setTitle("Google Map");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     void addProduits(ActionEvent event) {
         try {
@@ -211,6 +249,7 @@ public class AfficherProduitsController  implements Initializable {
 
             txtdescription.setText(produits.getDescription());
             txtlabelle.setText(produits.getLabelle());
+            txtlocalisation.setText(produits.getLocalisation());
             txtprix.setText(String.valueOf(produits.getPrix()));
             txtperiodeGarentie.setText(String.valueOf(produits.getPeriodeGarentie()));
             // Load and display the image
@@ -321,6 +360,7 @@ public class AfficherProduitsController  implements Initializable {
                 }
             }
         });
+        collocalisation.setCellValueFactory(new PropertyValueFactory<Produits, String>("localisation"));
 
         colUser.setCellValueFactory(cellData -> {
             int userId = cellData.getValue().getId().getIdUtilisateur();
@@ -420,13 +460,14 @@ public class AfficherProduitsController  implements Initializable {
 
                 VBox vbox = new VBox();
                 vbox.setSpacing(10);
-                vbox.setPadding(new Insets(10));
+                  vbox.setPadding(new Insets(10));
 
                 // ImageView pour afficher la photo du produit
                 ImageView productImageView = new ImageView();
                 productImageView.setFitWidth(150); // Largeur souhaitée
                 productImageView.setFitHeight(150); // Hauteur souhaitée
                 productImageView.setPreserveRatio(true); // Conserver les proportions de l'image
+
 
                 try {
                     String imageName = produits.getPhoto();
@@ -449,9 +490,34 @@ public class AfficherProduitsController  implements Initializable {
                 Label descriptionLabel = new Label("Description : " + produits.getDescription());
                 Label labelLabel = new Label("Label : " + produits.getLabelle());
                 Label prixMaxLabel = new Label("Prix  : " + produits.getPrix());
+                Label localisation = new Label("localisation  : " + produits.getLocalisation());
+
+                // WebView to display Google Maps
+                WebView mapWebView = new WebView();
+                WebEngine webEngine = mapWebView.getEngine();
+
+                // Set the Google Maps URL with the latitude and longitude from the product's location
+                String location = produits.getLocalisation();
+                String googleMapsUrl = location;
+
+                // Load the map when the WebView is initialized
+                webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue == Worker.State.SUCCEEDED) {
+                        String script = "document.body.style.overflow='hidden';"; // Disable scrolling in the iframe
+                        webEngine.executeScript(script);
+                    }
+                });
+
+                // Load HTML content into WebView
+                String htmlContent = "<html><head></head><body><iframe width='100%' height='100%' frameborder='0' style='border:0' src='" + googleMapsUrl + "' allowfullscreen></iframe></body></html>";
+                webEngine.loadContent(htmlContent);
+
+                // Add a button to open the map in a separate window
+                Button openMapButton = new Button("Open Map");
+                openMapButton.setOnAction(event -> openMap(googleMapsUrl));
 
                 // Ajouter les éléments à la VBox
-                vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel);
+                vbox.getChildren().addAll(productImageView, titleLabel, descriptionLabel, labelLabel, prixMaxLabel,mapWebView);
 
                 Scene scene = new Scene(vbox, 400, 500); // Taille de la scène
                 stage.setScene(scene);
@@ -481,4 +547,36 @@ public class AfficherProduitsController  implements Initializable {
 
 
     }
-}
+    @FXML
+    void GoToMap(ActionEvent event) {
+        // Get the selected product from the table
+        Produits selectedProduct = table.getSelectionModel().getSelectedItem();
+
+        if (selectedProduct != null && selectedProduct.getLocalisation() != null) {
+            // Extract the location URL from the selected product
+            String locationUrl = selectedProduct.getLocalisation();
+
+            // Load the AfficherMapController and set the product location
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaceProduit/Map.fxml"));
+                Parent root = loader.load();
+                AfficherMapController controller = loader.getController();
+                controller.setProductLocation(locationUrl);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.showAndWait();
+                showProduits();
+                stage.setTitle("Google Map");
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            // Handle the case when no product is selected or the location is not available
+            System.out.println("No product selected or location not available.");
+        }
+    }
+
+    }
+

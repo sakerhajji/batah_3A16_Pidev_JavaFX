@@ -1,10 +1,9 @@
 package controllers.controllerGestionEnchere;
+
 import Entity.UserAdmin.Membre;
 import Entity.entitiesEncheres.Enchere;
 import Services.EnchereService.EnchereService;
 import Services.UserAdmineServices.MembreService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

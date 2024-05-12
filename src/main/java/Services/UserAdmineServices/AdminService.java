@@ -3,6 +3,7 @@ package Services.UserAdmineServices;
 import DataBaseSource.DataSource;
 import Entity.UserAdmin.Admin;
 import InterfaceServices.IService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -227,16 +228,14 @@ public class AdminService implements IService<Admin> {
         }
     }
     public Admin  Login(Admin admin)
-    {
-
-        String requete = "SELECT * FROM utilisateur WHERE adresseEmail = ? AND  motDePasse = ?";
+    {String plainPassword = admin.getMotDePassUtilisateur();
+        String requete = "SELECT * FROM utilisateur WHERE adresseEmail = ? ";
         try {
             pst = conn.prepareStatement(requete);
-            pst.setString(1,admin.getMailUtilisateur());
-            pst.setString(2,admin.getMotDePassUtilisateur());
+            pst.setString(1, admin.getMailUtilisateur());
             ResultSet resultSet = pst.executeQuery();
-            admin.setIdUtilisateur(-1);
-            if (resultSet.next()){
+
+            if (resultSet.next()) {
                 admin.setIdUtilisateur(resultSet.getInt("id"));
                 admin.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
                 admin.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
@@ -250,14 +249,25 @@ public class AdminService implements IService<Admin> {
                 admin.setPays(resultSet.getString("pays"));
                 admin.setAvatar(resultSet.getString("avatar"));
 
+            } else {
+                // If no user found with the given email, set ID to -1 to indicate failure
+                admin.setIdUtilisateur(-1);
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-return admin ;
 
+        // If the password does not match or admin object is null, set ID to -1
+        if (admin.getIdUtilisateur() != -1 && (admin.getMotDePassUtilisateur() == null || !BCrypt.checkpw(plainPassword, admin.getMotDePassUtilisateur()))) {
+            admin.setIdUtilisateur(-1);
+        }
+
+        return admin;
     }
+
+
+
 
     public boolean emailExists(String email) {
         boolean exists = false;

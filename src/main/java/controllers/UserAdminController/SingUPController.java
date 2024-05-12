@@ -15,14 +15,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SingUPController implements Initializable {
@@ -70,6 +70,9 @@ public class SingUPController implements Initializable {
                 char sexe = gender.charAt(0);
                 Admin admin = new Admin(NomUtlisateur.getText(), PrenomUtlisateur.getText(), MailUtilisateur.getText(), MotDePass.getText(), date, sexe);
                 admin.setRoleUtilisateur('U');
+
+                String hashedPassword = BCrypt.hashpw(admin.getMotDePassUtilisateur(), BCrypt.gensalt());
+                admin.setMotDePassUtilisateur(hashedPassword);
                 adminService.add(admin);
                 admin=adminService.Login(admin) ;
                 Membre membre =new Membre() ;

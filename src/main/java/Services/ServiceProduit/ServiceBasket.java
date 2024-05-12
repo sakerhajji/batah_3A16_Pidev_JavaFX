@@ -29,7 +29,7 @@ public boolean ajouter(int idClient, int idProduit) {
         selectPs.setInt(2, idProduit);
         selectPs.setInt(1, idClient);
         ResultSet resultSet = selectPs.executeQuery();
-        
+
         if (!resultSet.next()) {
             // idArticle does not exist in the database, add a new entry
             String insertQuery = "INSERT INTO `basket` (`id_client`, `id_produit`) VALUES (?,?)";
@@ -98,20 +98,20 @@ public boolean ajouter(int idClient, int idProduit) {
         String req = "SELECT * FROM `basket` WHERE id_client = ?";
         PreparedStatement pste=conn.prepareStatement(req);
         pste.setInt(1, idClient);
-        
+
         ResultSet result = pste.executeQuery();
         while(result.next()){
            Produits resultArticle = sa.fetchProduitById(result.getInt("id_produit"));
       bask.addArticle(resultArticle);
-     
+
         }
     } catch (SQLException ex) {
-         System.out.println(ex);   
+         System.out.println(ex);
     }
           bask.setRefClient(idClient);
          double totalCost = bask.getArticles().stream().mapToDouble(x->x.getPrix()).sum();
          bask.setTotalCost(totalCost);
-         
+
     return bask;
     }
     @Override

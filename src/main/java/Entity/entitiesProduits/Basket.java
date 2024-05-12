@@ -18,6 +18,8 @@ public class Basket {
     private double totalCost;
     private String dateAjout;
     private String remise;
+
+    //tax
     private final double tax= 0.025;
     
      public Basket() {
