@@ -61,6 +61,10 @@ public class AccueilAdminController implements Initializable {
     private Button ProduitButton;
     @FXML
     private Button btnResEnchere;
+    @FXML
+    private Button btnListeLivraisonAdmin;
+    @FXML
+    private Button btnAvisLivraisonAdmin;
 
     @FXML
     private Pane pnlCustomer;
@@ -77,6 +81,10 @@ public class AccueilAdminController implements Initializable {
     private Pane pnlEnchere;
     @FXML
     private Pane pnlResEnchere;
+    @FXML
+    private Pane pnlListeLivraisonAdmin;
+    @FXML
+    private Pane pnlAvisLivraisonAdmin;
 
     private Stage stage;
     private Scene scene;
@@ -200,6 +208,20 @@ public class AccueilAdminController implements Initializable {
             pnlResEnchere.getChildren().removeAll();
             loadEnchereResXMLContent();
 
+        }else if (actionEvent.getSource() == btnListeLivraisonAdmin) {
+            pnlListeLivraisonAdmin.setStyle("-fx-background-color: #fff0e7");
+            pnlListeLivraisonAdmin.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_Livraison.fxml"));
+            pnlListeLivraisonAdmin.getChildren().removeAll();
+            loadListeLivraisonAdminXMLContent();
+
+        }else if (actionEvent.getSource() == btnAvisLivraisonAdmin) {
+            pnlAvisLivraisonAdmin.setStyle("-fx-background-color: #fff0e7");
+            pnlAvisLivraisonAdmin.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_AvisLivraison.fxml"));
+            pnlAvisLivraisonAdmin.getChildren().removeAll();
+            loadAvisLivraisonAdminXMLContent();
+
         }
         else if (actionEvent.getSource() == btnSignout) {
             membre.clearBinFile();
@@ -275,6 +297,28 @@ public class AccueilAdminController implements Initializable {
             Pane XMLPane = loader.load();
             pnlResEnchere.getChildren().clear();
             pnlResEnchere.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadListeLivraisonAdminXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_Livraison.fxml"));
+            Pane XMLPane = loader.load();
+            pnlListeLivraisonAdmin.getChildren().clear();
+            pnlListeLivraisonAdmin.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadAvisLivraisonAdminXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_AvisLivraison.fxml"));
+            Pane XMLPane = loader.load();
+            pnlAvisLivraisonAdmin.getChildren().clear();
+            pnlAvisLivraisonAdmin.getChildren().setAll(XMLPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

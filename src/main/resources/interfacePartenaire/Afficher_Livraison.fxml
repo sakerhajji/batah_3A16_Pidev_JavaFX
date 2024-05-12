@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="554.0" prefWidth="709.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.Afficher_LivraisonController">
+   <children>
+      <Label alignment="CENTER" layoutX="290.0" layoutY="23.0" prefHeight="18.0" prefWidth="129.0" styleClass="title" text="Livraisons" />
+      <HBox layoutX="407.0" layoutY="23.0" />
+      <TableView fx:id="table" layoutX="7.0" layoutY="72.0" prefHeight="363.0" prefWidth="695.0" AnchorPane.topAnchor="72.0">
+         <columns>
+            <TableColumn fx:id="colnom" prefWidth="139.20003652572632" text="User" />
+            <TableColumn fx:id="coldate" prefWidth="154.80001831054688" text="Date" />
+            <TableColumn fx:id="colsatut" prefWidth="129.4000244140625" text="statut" />
+            <TableColumn fx:id="colpartner" prefWidth="181.00003051757812" text="Partenaire"/>
+            <TableColumn fx:id="colAvis" prefWidth="82.20001220703125" text="Avis"/>
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

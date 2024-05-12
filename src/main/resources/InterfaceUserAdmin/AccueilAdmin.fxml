@@ -109,6 +109,30 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
+            <Button fx:id="btnListeLivraisonAdmin" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Liste Livraisons" textFill="#fb7d5b">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnAvisLivraisonAdmin" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Avis Livraisons" textFill="#fb7d5b">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
             <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@../cssStyleSheet/style.css" text="Settings">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -244,6 +268,8 @@
             </Pane>
             <Pane fx:id="pnlEnchere" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlResEnchere" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlListeLivraisonAdmin" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlAvisLivraisonAdmin" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </StackPane>
    </children>

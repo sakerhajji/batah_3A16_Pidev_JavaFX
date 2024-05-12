@@ -65,6 +65,8 @@ public class AccueilUserController implements Initializable {
     private Button btnListeEncheres;
     @FXML
     private Button btnListeEncheresRes;
+    @FXML
+    private Button btnLivraison;
 
     @FXML
     private Pane pnlAccuiel;
@@ -84,6 +86,8 @@ public class AccueilUserController implements Initializable {
     private Pane pnlListeEnchere;
     @FXML
     private Pane pnlListeEnchereRes;
+    @FXML
+    private Pane pnlLivraison;
 
 
     public Label getNameLastName() {
@@ -184,6 +188,14 @@ public class AccueilUserController implements Initializable {
             pnlProduit.getChildren().removeAll();
             pnlProduit.getChildren().clear();
             loadSxmlProduits();
+        }else if(actionEvent.getSource()==btnLivraison)
+        {
+            pnlLivraison.setStyle("-fx-background-color: #FFFFFF");
+            pnlLivraison.toFront();
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_LivraisonBySession.fxml"));
+            pnlLivraison.getChildren().removeAll();
+            pnlLivraison.getChildren().clear();
+            loadSxmlLivraison();
         }
     }
 
@@ -248,6 +260,17 @@ public class AccueilUserController implements Initializable {
             Pane settingPane = loader.load();
             pnlProduit.getChildren().clear();
             pnlProduit.getChildren().setAll(settingPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private  void loadSxmlLivraison(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/Afficher_LivraisonBySession.fxml"));
+            Pane settingPane = loader.load();
+            pnlLivraison.getChildren().clear();
+            pnlLivraison.getChildren().setAll(settingPane);
         } catch (IOException e) {
             e.printStackTrace();
         }

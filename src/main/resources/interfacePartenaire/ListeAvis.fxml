@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerPartenaire.ListeAvisController">
+    <TableView fx:id="tableAff" layoutX="1.0" layoutY="37.0" prefHeight="310.0" prefWidth="594.0" styleClass="form_container" stylesheets="@../cssPartenaire/afficher.css" AnchorPane.topAnchor="37.0">
+        <columns>
+            <TableColumn fx:id="colnom" prefWidth="169.60003662109375" text="User" />
+            <TableColumn fx:id="colcom" prefWidth="394.4000244140625" text="Commentaire" />
+        </columns>
+    </TableView>
+
+</AnchorPane>
