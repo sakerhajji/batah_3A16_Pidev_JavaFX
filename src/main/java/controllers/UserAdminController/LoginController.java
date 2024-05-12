@@ -49,38 +49,37 @@ public class LoginController implements Initializable {
 
             emailPartenaire.sendEmail(admin.getMailUtilisateur(),"Login","vous avez recu login de votre compte a Batah");
             try {
-                    if (admin.getRoleUtilisateur()=='A')
-                    {root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
-                    else {
-                        Membre membre = new Membre() ;
-                        MembreService membreService =new MembreService();
-                        membre.setIdUtilisateur(admin.getIdUtilisateur());
-                        membre=membreService.readById(membre.getIdUtilisateur()) ;
-                        membre.saveJsonToBinFile(membre);
-                        root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));}
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    root.setOnMousePressed((MouseEvent events) -> {
-                        xOffset = events.getSceneX();
-                        yOffset = events.getSceneY();
-                    });
-                    root.setOnMouseDragged((MouseEvent events) -> {
-                        stage.setX(events.getScreenX() - xOffset);
-                        stage.setY(events.getScreenY() - yOffset);
-                    });
-                    stage.setScene(scene);
-                    stage.show();
+                if (admin.getRoleUtilisateur()=='A')
+                {root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
+                else {
+                    Membre membre = new Membre() ;
+                    MembreService membreService =new MembreService();
+                    membre.setIdUtilisateur(admin.getIdUtilisateur());
+                    membre=membreService.readById(membre.getIdUtilisateur()) ;
+                    membre.saveJsonToBinFile(membre);
+                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilUser.fxml"));}
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                root.setOnMousePressed((MouseEvent events) -> {
+                    xOffset = events.getSceneX();
+                    yOffset = events.getSceneY();
+                });
+                root.setOnMouseDragged((MouseEvent events) -> {
+                    stage.setX(events.getScreenX() - xOffset);
+                    stage.setY(events.getScreenY() - yOffset);
+                });
+                stage.setScene(scene);
+                stage.show();
 
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
 
 
 
         }
 
         else{
-
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("verifer votre mail et Mots de pass svp ");
             alert.setHeaderText("Formulaire Login invalide");
