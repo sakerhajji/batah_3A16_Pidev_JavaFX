@@ -45,6 +45,8 @@ public class AccueilAdminController implements Initializable {
 
     @FXML
     private Button ServiceButton;
+    @FXML
+    private Button ForumBtn;
 
     @FXML
     private Button PartenaireButton;
@@ -156,7 +158,11 @@ public class AccueilAdminController implements Initializable {
             pnlOrders.setStyle("-fx-background-color: #464F67");
             pnlOrders.toFront();
             loadServiceXMLContent();
-
+        }else if (actionEvent.getSource() == ForumBtn) {
+            FXMLLoader p = new FXMLLoader(getClass().getResource("/Forum/AfficherForum.fxml"));
+            pnlOrders.setStyle("-fx-background-color: #464F67");
+            pnlOrders.toFront();
+            loadForumXMLContent();
         }
     }
     private void loadSofXMLContent() {
@@ -181,6 +187,7 @@ public class AccueilAdminController implements Initializable {
         }
     }
 
+
     private void loadServiceXMLContent() {
         try {
             timeline.stop();
@@ -192,8 +199,17 @@ public class AccueilAdminController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
+    private void loadForumXMLContent() {
+        try {
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Forum/AfficherForum.fxml"));
+            Pane XMLPane = loader.load();
+            pnlOrders.getChildren().clear();
+            pnlOrders.getChildren().setAll(XMLPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public Admin getAdminSession() {

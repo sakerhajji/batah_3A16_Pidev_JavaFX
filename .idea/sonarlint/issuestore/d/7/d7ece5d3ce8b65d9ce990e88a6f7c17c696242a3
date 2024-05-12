@@ -1,0 +1,22 @@
+
+m
+java:S1192."KDefine a constant instead of duplicating this literal "created_at" 3 times.(¨Áöûÿÿÿÿ8çÖ‘™ô1
+c
+java:S1192,"FDefine a constant instead of duplicating this literal "title" 3 times.(µô­à8èÖ‘™ô1
+e
+java:S1192-"HDefine a constant instead of duplicating this literal "content" 3 times.(’ÀàŸ8èÖ‘™ô1
+f
+java:S1192/"IDefine a constant instead of duplicating this literal "username" 3 times.(Õ—ºˆ8èÖ‘™ô1
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ïœÅš
+L	java:S106"+Replace this use of System.err by a logger.(ÔÔ÷œÿÿÿÿÿ8æ’õñó1
+G	java:S1065"+Replace this use of System.err by a logger.(Ùé’­8ê’õñó1
+L	java:S106C"+Replace this use of System.out by a logger.(Ûê°şşÿÿÿÿ8å’õñó1
+G	java:S106E"+Replace this use of System.err by a logger.(Åì†‚8ø’õñó1
+L	java:S106V"+Replace this use of System.out by a logger.(‘‡£ñıÿÿÿÿ8é’õñó1
+L	java:S106X"+Replace this use of System.out by a logger.(çö£ÿÿÿÿÿ8é’õñó1
+L	java:S106["+Replace this use of System.err by a logger.(ìÀêûÿÿÿÿ8û’õñó1
+G	java:S106f"+Replace this use of System.out by a logger.(•ˆ¹²8÷’õñó1
+L	java:S106h"+Replace this use of System.out by a logger.(ÓÖ¡×ÿÿÿÿÿ8÷’õñó1
+L	java:S106k"+Replace this use of System.err by a logger.(ÌÑÕÚúÿÿÿÿ8ÿ’õñó1
+H	java:S106"+Replace this use of System.err by a logger.(ìÅß´8è‘™ô1
+M	java:S106˜"+Replace this use of System.err by a logger.(Ï‚Æıÿÿÿÿ8“×‘™ô1

@@ -22,6 +22,7 @@ public class Partenaire {
 
     public Partenaire() {
     }
+
     public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo) {
         this.id = id;
         this.nom = nom;
@@ -31,7 +32,8 @@ public class Partenaire {
         this.email = email;
 
     }
-    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo,int points) {
+
+    public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo, int points) {
         this.id = id;
         this.nom = nom;
         this.type = type;
@@ -39,7 +41,7 @@ public class Partenaire {
         this.tel = tel;
         this.email = email;
         this.logo = logo;
-        this.points=points;
+        this.points = points;
     }
 
     public Partenaire(String nom, String type, String adresse, int tel, String email, String logo) {
@@ -50,8 +52,11 @@ public class Partenaire {
         this.email = email;
         this.logo = logo;
     }
+    public Partenaire(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
 
-
+    }
 
     public int getId() {
         return id;
@@ -130,4 +135,6 @@ public class Partenaire {
                 ", points=" + points +
                 '}';
     }
+
+
 }

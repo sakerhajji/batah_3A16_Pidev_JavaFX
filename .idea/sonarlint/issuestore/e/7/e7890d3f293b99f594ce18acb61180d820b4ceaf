@@ -1,0 +1,13 @@
+
+`	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚‰¥œ
+q	java:S116"WRename this field "IdUtlisateur" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¯×‡úÿÿÿÿ
+r	java:S116"XRename this field "NomPartenaire" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®­†ïıÿÿÿÿ
+b	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ÏöK
+c
+java:S18540"HRemove this useless assignment to local variable "nouveauNomPartenaire".(şÿÜüÿÿÿÿ
+T
+java:S14810"9Remove this unused "nouveauNomPartenaire" local variable.(şÿÜüÿÿÿÿ
+h	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ¸Şıÿÿÿÿ
+b
+java:S1128"LRemove this unused import 'controllers.UserAdminController.LigneController'.(Ô¶çË

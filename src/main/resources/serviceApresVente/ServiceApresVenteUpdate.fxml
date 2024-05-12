@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,39 +8,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServiceApresVente.Updatecontroller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateForum">
    <children>
-      <Pane layoutX="35.0" layoutY="2.0" prefHeight="368.0" prefWidth="347.0" style="-fx-background-color: #FB7D5B;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="35.0" layoutY="2.0" prefHeight="368.0" prefWidth="530.0" style="-fx-background-color: #FB7D5B;">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="18.0" layoutY="56.0" prefHeight="307.0" prefWidth="321.0" spacing="40.0">
+            <VBox alignment="TOP_CENTER" layoutX="18.0" layoutY="56.0" prefHeight="307.0" prefWidth="321.0" spacing="20.0">
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
                      <children>
-                        <ComboBox fx:id="type" prefWidth="150.0" promptText="Choisir un type" />
-                        <DatePicker fx:id="date" prefHeight="37.0" prefWidth="154.0" promptText="date" />
+                        <TextField fx:id="titleField" prefHeight="38.0" prefWidth="234.0" promptText="Title" />
+                        <TextField fx:id="usernameField" prefHeight="38.0" prefWidth="156.0" promptText="Username" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
-                     <children>
-                        <TextField fx:id="description" prefHeight="38.0" prefWidth="234.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="48.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
-                     <children>
-                        <TextField fx:id="NomPartenaire" prefHeight="38.0" prefWidth="156.0" promptText="idPartenaire" />
-                        <TextField fx:id="status" prefHeight="38.0" prefWidth="156.0" />
-                     </children>
-                  </HBox>
+                  <TextArea fx:id="contentArea" prefHeight="100.0" prefWidth="300.0" promptText="Content" />
+                  <TextField fx:id="prixField" prefHeight="38.0" prefWidth="234.0" promptText="Price" />
                   <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="244.0" prefHeight="38.0" prefWidth="331.0" spacing="15.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#MisAJourClicked" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Mis a jour" textFill="#fb7d5b" />
-                        <Button layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#SupprimerClicked" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="supprimer" textFill="#fb7d5b" />
-                        <Button layoutX="183.0" layoutY="10.0" mnemonicParsing="false" onAction="#affecteClicked" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Affectation" textFill="#fb7d5b" />
+                        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateForum" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Update" textFill="#fb7d5b" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteForum" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: white;" text="Delete" textFill="#fb7d5b" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <Text fx:id="IdUtlisateur" fill="TRANSPARENT" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="14.0" layoutY="34.0" text="Update Forum" fill="#FFFFFF" />
          </children>
       </Pane>
    </children>

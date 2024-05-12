@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="694.0" spacing="20.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ForumController.LigneForumController">
+    <children>
+        <Label fx:id="titleLabel" maxWidth="100.0" prefHeight="30.0" prefWidth="150.0" text="Title" textFill="#fb7d5b" />
+        <Label fx:id="usernameLabel" maxWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="Username" textFill="#fb7d5b" />
+        <TextArea fx:id="contentLabel" editable="false" maxWidth="200.0" prefHeight="60.0" prefWidth="200.0" text="Content" wrapText="true" />
+        <Label fx:id="priceLabel" maxWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="Price" textFill="#fb7d5b" />
+        <Button fx:id="update" mnemonicParsing="false" onAction="#detailsClicked" prefHeight="27.0" prefWidth="98.0" style="-fx-border-color: fb7d5b ; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../cssStyleSheet/styleItems.css" text="Details" textFill="#d75336" />
+    </children>
+    <effect>
+        <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+    </effect>
+    <padding>
+        <Insets left="10.0" />
+    </padding>
+</HBox>

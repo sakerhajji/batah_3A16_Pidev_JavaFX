@@ -1,0 +1,10 @@
+
+@	java:S106A"+Replace this use of System.out by a logger.(ý˜Ç¶
+@	java:S106C"+Replace this use of System.out by a logger.(ÎÑ„¼
+N
+java:S1128"3Remove this unused import 'Entity.UserAdmin.Admin'.(ÄÎà‡ùÿÿÿÿ
+`
+java:S1128"ERemove this unused import 'Services.UserAdmineServices.AdminService'.(Å¬§øýÿÿÿÿ
+Q
+java:S1128
+";Remove this unused import 'java.net.MalformedURLException'.(ªËÞˆ

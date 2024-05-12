@@ -1,0 +1,32 @@
+
+s
+java:S1192s"^Define a constant instead of duplicating this literal "-fx-background-color: #FFFFFF" 3 times.(«“t
+l	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğæãºüÿÿÿÿ
+s	java:S117Î"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğæãºüÿÿÿÿ8¡ÒŸôó1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯îÁ»ıÿÿÿÿ
+g	java:S116&"RRename this field "Profile" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¤Şë
+r	java:S116/"XRename this field "ServiceButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”ƒû‹ıÿÿÿÿ
+t	java:S1161"SRename this field "ForumBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°‹¹œüÿÿÿÿ8ÃëŒôó1
+p	java:S1164"[Rename this field "PartenaireButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ™á¿
+m	java:S1167"XRename this field "ProduitButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÃÏ
+`
+java:S3252R"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ
+F	java:S106„"+Replace this use of System.out by a logger.(ï¯´¤üÿÿÿÿ
+L
+java:S1854Œ"5Remove this useless assignment to local variable "p".(ÄéÕ
+Q
+java:S1854”"5Remove this useless assignment to local variable "p".(Øº²Ğüÿÿÿÿ
+L
+java:S1854"5Remove this useless assignment to local variable "p".(‘ÀÌÃ
+X
+java:S1854¢"5Remove this useless assignment to local variable "p".(ôŸ½µÿÿÿÿÿ8ÏŸ‹ôó1
+=
+java:S1481Œ"&Remove this unused "p" local variable.(ÄéÕ
+B
+java:S1481”"&Remove this unused "p" local variable.(Øº²Ğüÿÿÿÿ
+=
+java:S1481"&Remove this unused "p" local variable.(‘ÀÌÃ
+I
+java:S1481¢"&Remove this unused "p" local variable.(ôŸ½µÿÿÿÿÿ8ÓŸ‹ôó1
+@
+java:S1068G"%Remove this unused "n" private field.(äÆİÜûÿÿÿÿ

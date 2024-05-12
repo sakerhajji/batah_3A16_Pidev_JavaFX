@@ -1,0 +1,10 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ϋθόÿÿÿÿ
+l	java:S117ƒ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦©ΪΊϊÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ωις ωÿÿÿÿ
+
+java:S41657"dRemove this useless assignment; "status" already holds the assigned value along all execution paths.(‰«Νϊÿÿÿÿ
+p	java:S116"VRename this field "Affectation" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—σθωÿÿÿÿ
+[	java:S107"AConstructor has 9 parameters, which is greater than 7 authorized.(Ϋθόÿÿÿÿ
+J
+java:S16567"/Remove or correct this useless self-assignment.(‰«Νϊÿÿÿÿ

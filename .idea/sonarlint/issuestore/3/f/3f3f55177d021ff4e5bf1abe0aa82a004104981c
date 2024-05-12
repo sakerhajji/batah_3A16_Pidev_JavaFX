@@ -1,0 +1,21 @@
+
+n	java:S117Œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈÅûì8À—Ğ—ô1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚‰¥œ8Â—Ğ—ô1
+t
+java:S1450'"WRemove the "timeline" field and declare it as a local variable in the relevant methods.(›ŸòÃ8î—Ğ—ô1
+Z
+java:S1117Y"=Rename "idService" which hides the field declared at line 55.(Ô§ö–8‚˜Ğ—ô1
+U
+java:S1117["8Rename "date" which hides the field declared at line 43.(Ô‚äÒ8„˜Ğ—ô1
+M	java:S106„"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8“˜Ğ—ô1
+c
+java:S1854Œ"ERemove this useless assignment to local variable "ServiceApresVentS".(ÈÅûì8”˜Ğ—ô1
+T
+java:S1481Œ"6Remove this unused "ServiceApresVentS" local variable.(ÈÅûì8•˜Ğ—ô1
+h
+java:S3252"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8˜˜Ğ—ô1
+M	java:S106˜"+Replace this use of System.out by a logger.(ışÄ¤ûÿÿÿÿ8™˜Ğ—ô1
+[
+java:S1117 "8Rename "type" which hides the field declared at line 64.(çá¬ëıÿÿÿÿ8ïŒ´™ô1
+M
+java:S1068)"0Remove this unused "adminSession" private field.(¿¨‹„8š˜Ğ—ô1

@@ -13,7 +13,20 @@ public class ServiceApresVente {
     private boolean status;
     private Partenaire idPartenaire;
     private Achats idAchats;
+    private String nomPartenaire;
+    private String Affectation;
 
+    public ServiceApresVente(int idService, String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats, String nomPartenaire, String Affectation) {
+        this.idService = idService;
+        this.description = description;
+        this.type = type;
+        this.date = date;
+        this.status = status;
+        this.idPartenaire = idPartenaire;
+        this.idAchats = idAchats;
+        this.nomPartenaire = nomPartenaire;
+        this.Affectation = Affectation;
+    }
 
     public ServiceApresVente(int idService, String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats) {
         this.idService = idService;
@@ -24,22 +37,28 @@ public class ServiceApresVente {
         this.idPartenaire = idPartenaire;
         this.idAchats = idAchats;
     }
+    public ServiceApresVente(int idService, String description, String type, Date date) {
+        this.idService = idService;
+        this.description = description;
+        this.type = type;
+        this.date = date;
+
+    }
+
+    public ServiceApresVente() {
+    }
 
     public ServiceApresVente(String description, String type, Date date, Achats idAchats) {
         this.description = description;
         this.type = type;
         this.date = date;
+        this.status = status;
+
         this.idAchats = idAchats;
     }
 
-    public ServiceApresVente(String description, String type, Date date, boolean status, Partenaire idPartenaire, Achats idAchats) {
-        this.description = description;
-        this.type = type;
-        this.date = date;
-        this.status = status;
-        this.idPartenaire = idPartenaire;
-        this.idAchats = idAchats;
-    }
+    // Getters and Setters
+    // ...
 
     public int getIdService() {
         return idService;
@@ -97,9 +116,19 @@ public class ServiceApresVente {
         this.idAchats = idAchats;
     }
 
-
-    public ServiceApresVente() {
+    public String getNomPartenaire() {
+        return nomPartenaire;
     }
 
+    public void setNomPartenaire(String nomPartenaire) {
+        this.nomPartenaire = nomPartenaire;
+    }
 
+    public String getAffectation() {
+        return Affectation;
+    }
+
+    public void setAffectation(String Affectation) {
+        this.Affectation = Affectation;
+    }
 }

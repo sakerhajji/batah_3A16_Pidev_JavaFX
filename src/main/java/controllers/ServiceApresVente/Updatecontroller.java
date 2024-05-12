@@ -1,40 +1,29 @@
 package controllers.ServiceApresVente;
-import Entity.entitiesProduits.Achats;
-import Services.ServiceApresVentS.ServiceApresVentS;
-import Entity.ControleDeSaisieClass.ControleDeSaisieClass;
-import Entity.entitiesPartenaire.Partenaire;
+
 import Entity.entitiesServiceApresVente.ServiceApresVente;
-import Services.servicePartenaire.partenaireService;
-import com.sun.javafx.charts.Legend;
-import controllers.UserAdminController.AccueilAdminController;
-import controllers.controllerPartenaire.AffectationPartenaireController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Services.ServiceApresVentS.ServiceApresVentS;
+import controllers.UserAdminController.LigneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.scene.control.TableView;
 
-public class Updatecontroller implements Initializable {
-    private ControleDeSaisieClass controle = new ControleDeSaisieClass();
+import java.io.IOException;
+import java.sql.Date;
+
+public class Updatecontroller {
+
     @FXML
-    private TableView<ServiceApresVente> table;
+    private Text IdUtlisateur;
+
     @FXML
-    private TextField idPartenaire;
+    private TextField NomPartenaire;
 
     @FXML
     private DatePicker date;
@@ -43,128 +32,107 @@ public class Updatecontroller implements Initializable {
     private TextField description;
 
     @FXML
-    private TextField status;
+    private ComboBox<String> type;
+    private int idService;
 
-    @FXML
-    private ComboBox<?> type;
-    @FXML
-    private Button  monBouton;
-    private TableColumn idReclamtion;
+    public int getIdService() {
+        return idService;
+    }
 
-    private Object showPartenaires;
-    private int id;
-    ;
-
+    public void setIdService(int idService) {
+        this.idService = idService;
+    }
 
     @FXML
     void MisAJourClicked(ActionEvent event) {
-        if (controle.checkText(description.getText()) &&
-                controle.chekNumero(status.getText()) &&
-                controle.checkText((String) type.getValue()) &&
-                controle.checkText(idPartenaire.getText()) &&
-                controle.isDateValidAndOver18(date.getValue())) {
+        String nouveauNomPartenaire = NomPartenaire.getText();
+        String nouvelleDescription = description.getText();
+        Date nouvelleDate = Date.valueOf(date.getValue());
+        String nouveauType = type.getValue();
 
-            LocalDate localDate = date.getValue();
-            Date dateValue = java.sql.Date.valueOf(localDate);
-
-            ServiceApresVente service = new ServiceApresVente();
-            service.setDescription(description.getText());
-            service.setType((String) type.getValue());
-            service.setDate(dateValue);
-            service.setStatus(Boolean.parseBoolean(status.getText()));
-            //service.setIdPartenaire((idPartenaire.getText());
-            String idPartenaireText = idPartenaire.getText();
-            Partenaire idPartenaire = new Partenaire();
-
-
-            ServiceApresVentS serviceApresVentS = new ServiceApresVentS();
-            serviceApresVentS.update(service);
-            System.out.println(service);
-            System.out.println("done");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteAffiche.fxml"));
-            AffichageController affichageController = loader.getController();
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Mise à jour réussie");
-            alert.setHeaderText(null);
-            alert.setContentText("Le service après-vente a été mis à jour avec succès.");
-            alert.showAndWait();
-
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Champs invalides");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez vérifier les champs et remplir correctement les informations.");
-            alert.showAndWait();
-        }
+        ServiceApresVentS s=new ServiceApresVentS();
+        ServiceApresVente service=new ServiceApresVente(getIdService(),nouvelleDescription,nouveauType,nouvelleDate);
+        s.updateS(service);
+        Stage stage = (Stage) description.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void SupprimerClicked(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
+        ServiceApresVentS s=new ServiceApresVentS();
+        s.delete(getIdService());
+        Stage stage = (Stage) description.getScene().getWindow();
         stage.close();
+    }
 
+
+
+void init(int id)
+{
+    setIdService(id);
+
+}
+
+    public Text getIdUtlisateur() {
+        return IdUtlisateur;
+    }
+
+    public void setIdUtlisateur(String idUtlisateur) {
+        IdUtlisateur.setText(idUtlisateur);
+    }
+
+    public TextField getNomPartenaire() {
+        return NomPartenaire;
+    }
+
+    public void setNomPartenaire(String nomPartenaire) {
+        NomPartenaire.setText(nomPartenaire);
+    }
+
+    public DatePicker getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date.setValue(date.toLocalDate());
+    }
+
+    public TextField getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description.setText(description);
+    }
+
+    public ComboBox<String> getType() {
+        return type;
+    }
+
+    public void setType(ComboBox<String> type) {
+        this.type = type;
     }
 
     @FXML
     void affecteClicked(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ServiceApresVenteAffectation.fxml"));
+        Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacePartenaire/AffectationPartenaire.fxml"));
-            Parent root = loader.load();
-
-            AffectationPartenaireController Controller = new AffectationPartenaireController();
-           Controller.init(id);
-           // String idBouton = monBouton.getId();
-
-            //  c.init(event.getId());
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Affectation");
-            stage.showAndWait();
+            root = loader.load();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-
-    public void showAffectation(int id) {
-        ServiceApresVentS sav = new ServiceApresVentS();
-        List<ServiceApresVente> affectations = sav.readByIdPartenaire(id);
-
-        if (affectations != null) {
-            ObservableList<ServiceApresVente> observableAffectations = FXCollections.observableArrayList(affectations);
-            table.setItems(observableAffectations);
-        }
-    }
-        private void showPartenaires() {
-            // Récupérer la liste des partenaires depuis le service approprié
-            partenaireService partenaireService = new partenaireService();
-            List<Partenaire> partenaires = new ArrayList<>();
-
-            // Effacer le contenu de la table des partenaires (si nécessaire)
-            // tablePartenaires.getItems().clear();
-
-            // Ajouter les partenaires à la table
-            for (Partenaire partenaire : partenaires) {
-                // Ajouter le partenaire à la table
-                // tablePartenaires.getItems().add(partenaire);
-            }
+            throw new RuntimeException(e);
         }
 
+        AffectationController controller = loader.getController();
+
+        controller.init(getIdService());
 
 
-
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        showAffectation(id);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Affectation");
+        stage.showAndWait();
 
     }
 }

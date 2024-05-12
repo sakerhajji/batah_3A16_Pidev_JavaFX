@@ -120,6 +120,20 @@ public class partenaireService implements IServicePartenaire<Partenaire> {
             System.err.println( e.getMessage());
         }
     }
+    public List<Partenaire> readPartenaire() {
+        String requte="select * from partenaires";
+        List<Partenaire> list=new ArrayList<>();
+        try {
+            ste=con.createStatement();
+            ResultSet rs =ste.executeQuery(requte);
+            while(rs.next()){
+                list.add(new Partenaire(rs.getInt(1),rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 
 
 }

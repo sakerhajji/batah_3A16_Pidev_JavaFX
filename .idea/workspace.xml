@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fd2ef5fa-3cf7-40d0-acf2-f771c201562e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Client/ChatClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Client/ClientThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Server/ChatServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/AffectationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/imgRec/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/imgRec/raw.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteAffectation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/serviceApresVente/sms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/cssdialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/batah_3A16_Pidev_JavaFX.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Apis/OAuthAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Apis/OAuthAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Apis/OAuthCompletedCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Apis/OAuthCompletedCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Apis/OAuthGoogleAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Apis/OAuthGoogleAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/entitiesPartenaire/Partenaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/entitiesPartenaire/Partenaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/entitiesServiceApresVente/ServiceApresVente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/entitiesServiceApresVente/ServiceApresVente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ServiceApresVentS/ServiceApresVentS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/ServiceApresVentS/ServiceApresVentS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/partenaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/servicePartenaire/partenaireService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/AffichageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/AffichageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/LigneServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/LigneServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/ServiceApresVenteAjouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/ServiceApresVenteAjouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/Updatecontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ServiceApresVente/Updatecontroller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UserAdminController/AccueilAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UserAdminController/AccueilAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UserAdminController/LoginSingUP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UserAdminController/LoginSingUP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/emailPartenaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/controllerPartenaire/emailPartenaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/ServiceApresVenteTest/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/ServiceApresVenteTest/MainFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/InterfaceUserAdmin/AccueilAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/InterfaceUserAdmin/AccueilAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteAffiche.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteAffiche.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteAjouter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteAjouter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/serviceApresVente/ServiceApresVenteUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Apis/OAuthAuthenticator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Apis/OAuthAuthenticator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Apis/OAuthCompletedCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Apis/OAuthGoogleAuthenticator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/entitiesPartenaire/partenaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Entity/entitiesPartenaire/partenaire.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/entitiesServiceApresVente/ServiceApresVente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Entity/entitiesServiceApresVente/ServiceApresVente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InterfaceUserAdmin/AccueilAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InterfaceUserAdmin/AccueilAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Services/ServiceApresVentS/ServiceApresVentS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/ServiceApresVentS/ServiceApresVentS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Services/servicePartenaire/partenaireService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/servicePartenaire/partenaireService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ControllerProduits/AfficherProduitsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ControllerProduits/AfficherProduitsController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ControllerProduits/AfficherProduitsController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ControllerProduits/AfficherProduitsController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/AffichageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/AffichageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/LigneServiceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/LigneServiceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/ServiceApresVenteAjouter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/ServiceApresVenteAjouter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/Updatecontroller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ServiceApresVente/Updatecontroller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/UserAdminController/AccueilAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/UserAdminController/AccueilAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/UserAdminController/LoginSingUP.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerGestionEnchere/ListeEnchereController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerGestionEnchere/ListeEnchereController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerGestionEnchere/ListeEnchereController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerGestionEnchere/ListeEnchereController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/AffectationPartenaireController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/AffectationPartenaireController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/AffectationPartenaireController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/AffectationPartenaireController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/Afficher_PartenaireController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/emailPartenaire$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/controllerPartenaire/emailPartenaire.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteAffiche.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteAffiche.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteAjouter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteAjouter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteUpdate.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/serviceApresVente/ServiceApresVenteUpdate.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/ServiceApresVenteTest/MainFx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/ServiceApresVenteTest/MainFx.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2fxHTfp0iiibCgtfoGUsCRQKeFy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/medsl/OneDrive/Bureau/Pi project work 2024/nes academy/hedil melki/hadil-copie/src/main/resources/Forum&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\medsl\OneDrive\Bureau\Pi project work 2024\nes academy\hedil melki\hadil-copie\src\main\resources\Forum" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controllers.ForumController" />
+      <recent name="Services.ServiceApresVentS" />
+      <recent name="Entity.entitiesServiceApresVente" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd2ef5fa-3cf7-40d0-acf2-f771c201562e" name="Changes" comment="" />
+      <created>1714735818187</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714735818187</updated>
+      <workItem from="1714735819249" duration="3526000" />
+      <workItem from="1714814536719" duration="4500000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

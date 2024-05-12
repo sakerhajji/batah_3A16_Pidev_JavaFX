@@ -1,0 +1,50 @@
+
+b
+java:S1192p"LDefine a constant instead of duplicating this literal "description" 3 times.(Ãõ›
+d
+java:S1192v"IDefine a constant instead of duplicating this literal "idAchats" 3 times.(Ô‰³›şÿÿÿÿ
+`
+java:S1192o"JDefine a constant instead of duplicating this literal "idService" 3 times.(°üï½
+h
+java:S1192u"MDefine a constant instead of duplicating this literal "idPartenaire" 3 times.(Ä÷³ úÿÿÿÿ
+b
+java:S1192s"GDefine a constant instead of duplicating this literal "status" 3 times.(¸²»§ÿÿÿÿÿ
+g	java:S117·"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†‡Æ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ïœÅš
+e
+java:S2095l"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ê·ë
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ê·ë
+h
+java:S1450"RRemove the "pst" field and declare it as a local variable in the relevant methods.(Í›†
+E	java:S106""+Replace this use of System.err by a logger.(Â¿å¢ıÿÿÿÿ
+M
+java:S1117)"7Rename "pst" which hides the field declared at line 19.(È×”¼
+E	java:S1062"+Replace this use of System.err by a logger.(ÄÓ°ÿÿÿÿÿ
+M
+java:S1117:"7Rename "pst" which hides the field declared at line 19.(È×”¼
+@	java:S106>"+Replace this use of System.err by a logger.(ÿ±îï
+M
+java:S1117F"7Rename "pst" which hides the field declared at line 19.(È×”¼
+@	java:S106P"+Replace this use of System.err by a logger.(şİ½É
+M
+java:S1117U"7Rename "pst" which hides the field declared at line 19.(È×”¼
+@	java:S106\"+Replace this use of System.err by a logger.(şİ½É
+M
+java:S1117l"7Rename "pst" which hides the field declared at line 19.(Ê·ë
+E	java:S106{"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+E	java:S106}"+Replace this use of System.out by a logger.(ã¿¢Ôùÿÿÿÿ
+N
+java:S1117"7Rename "pst" which hides the field declared at line 19.(Ê·ë
+F	java:S106œ"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+F	java:S106¼"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+i	java:S100Ä"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×°‡ûÿÿÿÿ
+N
+java:S1117Æ"7Rename "pst" which hides the field declared at line 19.(È×”¼
+F	java:S106Ë"+Replace this use of System.err by a logger.(–ÆĞùÿÿÿÿ
+i	java:S100Ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÕ¡¥øÿÿÿÿ
+N
+java:S1117Ñ"7Rename "pst" which hides the field declared at line 19.(È×”¼
+M	java:S106Õ"+Replace this use of System.err by a logger.(–ÆĞùÿÿÿÿ8Ÿ©²™ô1
+S
+java:S1128"7Remove this unused import 'InterfaceServices.IService'.(§ÿ’c8ğÖ²™ô1

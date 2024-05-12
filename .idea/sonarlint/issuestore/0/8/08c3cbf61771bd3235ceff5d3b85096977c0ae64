@@ -1,0 +1,14 @@
+
+q
+java:S1192M"VDefine a constant instead of duplicating this literal "-fx-border-color: red" 4 times.(ƒÌ÷Èúÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒ´¼€øÿÿÿÿ
+t	java:S116"ZRename this field "MailUtilisateur" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—„ƒ†ùÿÿÿÿ
+n	java:S116"TRename this field "MotDePass" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄùÙ®ûÿÿÿÿ
+n
+java:S1450"SRemove the "root" field and declare it as a local variable in the relevant methods.(Ð´”ðûÿÿÿÿ
+j
+java:S1450"TRemove the "scene" field and declare it as a local variable in the relevant methods.(÷‘éÑ
+o
+java:S1450"TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ðÑœýÿÿÿÿ
+c	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÑÑ·
+E	java:S106@"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ

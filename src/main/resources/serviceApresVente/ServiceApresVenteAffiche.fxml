@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="689.0" prefWidth="814.0" style="-fx-background-color: #FFF0E7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServiceApresVente.AffichageController">
+<AnchorPane prefHeight="689.0" prefWidth="814.0" style="-fx-background-color: #FFF0E7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServiceApresVente.AffichageController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="23.0" layoutY="117.0" prefHeight="42.0" prefWidth="702.0" spacing="35.0" style="-fx-background-color: #FB7D5B;">
          <children>
@@ -21,6 +21,7 @@
             <Label fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="53.0" prefWidth="45.0" text="date" textFill="WHITE" />
             <Label fx:id="status" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="35.0" text="status" textFill="WHITE" />
             <Label fx:id="idPartenaire" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="82.0" text="idPartenaire" textFill="WHITE" />
+            <Label fx:id="idAchats" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="82.0" text="idAchats" textFill="WHITE" />
             <Label fx:id="detaills" maxHeight="1.7976931348623157E308" maxWidth="115.0" prefHeight="42.0" prefWidth="72.0" text="detailles" textFill="WHITE" />
          </children>
          <padding>
@@ -43,5 +44,6 @@
          </content>
       </ScrollPane>
       <Button layoutX="31.0" layoutY="519.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="35.0" prefWidth="667.0" text="Ajouter" />
+      <Button layoutX="7.0" layoutY="66.0" mnemonicParsing="false" onAction="#showStat" prefHeight="35.0" prefWidth="218.0" text="Statistique" />
    </children>
 </AnchorPane>
