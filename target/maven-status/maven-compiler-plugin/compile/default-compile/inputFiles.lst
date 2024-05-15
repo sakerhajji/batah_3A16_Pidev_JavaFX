@@ -1,10 +1,12 @@
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\AffichageController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\ServiceProduit\InterfaceServiceBasket.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\AjouterForum.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\UserAdminController\CtemController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Apis\OAuthAuthenticator.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\ServiceApresVentS\ServiceApresVentS.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ControllerProduits\ModifierProduitsController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerPartenaire\AffectationPartenaireController.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\LigneForumController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\UserAdminController\InscriptionController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\location\Image.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\test\ProduitTest\MainFx.java
@@ -25,6 +27,7 @@ C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesPartenaire\AvisLiv
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ControllerProduits\AfficherProduitsController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\location\Reservation.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\UserAdmineServices\AdminService.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\AfficherForum.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerGestionEnchere\afficherencheres.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\org\example\Main.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerGestionEnchere\ListeEnchereController.java
@@ -71,6 +74,7 @@ C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\ServiceProduit\ServiceBa
 C:\Users\msi\Desktop\hadil-copie\src\main\java\test\ServiceApresVenteTest\MainFx.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerGestionEnchere\modifypourclient.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerPartenaire\StatistiqueController.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\UpdateForum.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\locationController\UpdateProduit.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\locationController\Item.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\UserAdmin\Admin.java
@@ -83,6 +87,7 @@ C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerGestionEnch
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesProduits\Produits.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\servicePartenaire\partenaireService.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesServiceApresVente\ServiceApresVente.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\Services\ServiceApresVentS\ForumService.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\InterfaceServices\IService.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesProduits\Avis.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\locationController\AjouterLocation.java
@@ -106,6 +111,7 @@ C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\locationController\Up
 C:\Users\msi\Desktop\hadil-copie\src\main\java\test\LocationTest\MainFx.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\ServiceApresVente\LigneServiceController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesEncheres\Enchere.java
+C:\Users\msi\Desktop\hadil-copie\src\main\java\Entity\entitiesServiceApresVente\Forum.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerPartenaire\modifier_PartenaireController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerGestionEnchere\ListEnchereClientController.java
 C:\Users\msi\Desktop\hadil-copie\src\main\java\controllers\controllerPartenaire\Afficher_UserLivraisonController.java

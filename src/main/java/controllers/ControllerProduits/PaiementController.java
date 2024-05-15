@@ -2,10 +2,17 @@ package controllers.ControllerProduits;
 
 import Entity.UserAdmin.Membre;
 import Entity.entitiesProduits.Basket;
+import Entity.entitiesProduits.InvoiceGenerator;
 import Entity.entitiesProduits.Produits;
 import Services.ServiceProduit.ProduitsService;
 import Services.ServiceProduit.ServiceBasket;
 import Services.UserAdmineServices.MembreService;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.FontSelector;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.stripe.exception.StripeException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +20,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.CharBuffer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,16 +56,16 @@ public class PaiementController {
     private Button pay;
 
     @FXML
-        private void Pay(ActionEvent event) throws StripeException, Exception {
+    private void Pay(ActionEvent event) throws StripeException, Exception {
 
-            MembreService sc = new MembreService();
-            Membre client;
+        MembreService sc = new MembreService();
+        Membre client;
 
-            ServiceBasket sb = new ServiceBasket();
-            ProduitsService p=new ProduitsService();
+        ServiceBasket sb = new ServiceBasket();
+        ProduitsService p=new ProduitsService();
 
 
-            System.out.println(isNum(moisExp.getText()));
+        System.out.println(isNum(moisExp.getText()));
         if ((isValidVisaCardNo(carte.getText()) && (!carte.getText().isEmpty()) && (isNum(carte.getText())))
                 && (!moisExp.getText().isEmpty()) && (isNum(moisExp.getText()))
                 && (!anneeExp.getText().isEmpty()) && (isNum(anneeExp.getText())) && (parseInt(anneeExp.getText()) >= LocalDate.now().getYear())
@@ -78,9 +94,9 @@ public class PaiementController {
                 System.out.println(e);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Paiement");
-                alert.setContentText("Paiement effectué avec succès \n Génération du fichier PDF");
-                Optional<ButtonType> result2 = alert.showAndWait();
+            alert.setTitle("Paiement");
+            alert.setContentText("Paiement effectué avec succès \n Génération du fichier PDF");
+            Optional<ButtonType> result2 = alert.showAndWait();
             if (result2.get() == ButtonType.OK) {
                 client = sc.readById(4);
                 Basket panier = sb.get(client.getIdUtilisateur());
@@ -107,7 +123,7 @@ public class PaiementController {
                         return;
                     }
                     try {*/
-                    // Create a FileChooser
+                // Create a FileChooser
                   /*  FileChooser fileChooser = new FileChooser();
                     fileChooser.setTitle("Save PDF File");
 
@@ -249,10 +265,10 @@ public class PaiementController {
                         return;
                     }*/
 
-                }
-                alert.show();
+            }
+            alert.show();
 
-            } else {
+        } else {
             System.out.println("Validation failed. Check the values:");
             System.out.println("Carte: " + carte.getText());
             System.out.println("Mois Exp: " + moisExp.getText());
@@ -264,7 +280,7 @@ public class PaiementController {
             alert.setContentText("Remplir les champs convenablement.");
             alert.show();
         }
-        }
+    }
 
     private boolean isValidVisaCardNo(String text) {
         // Remove spaces from the card number
@@ -286,14 +302,14 @@ public class PaiementController {
         // Return true if the string matches the regex
         return m.matches();
     }
-        public static boolean isNum(String str) {
-            String expression = "\\d+";
-            return str.matches(expression);
-        }
+    public static boolean isNum(String str) {
+        String expression = "\\d+";
+        return str.matches(expression);
+    }
 
-        public static int floatToInt(float value) {
-            return (int) value;
-        }
+    public static int floatToInt(float value) {
+        return (int) value;
+    }
 
 
 

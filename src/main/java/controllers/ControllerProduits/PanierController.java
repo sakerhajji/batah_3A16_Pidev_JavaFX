@@ -4,19 +4,24 @@ import Entity.UserAdmin.Membre;
 import Entity.entitiesProduits.Basket;
 import Entity.entitiesProduits.Produits;
 import Services.ServiceProduit.ServiceBasket;
-import javafx.event.ActionEvent;
+import Services.UserAdmineServices.MembreService;
+import controllers.controllerPartenaire.AffectationPartenaireController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,11 +31,14 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PanierController {
 
+    public static Membre membre=new Membre() ;
+    MembreService membreService = new MembreService() ;
     @FXML
     private VBox vbox1;
 
@@ -39,7 +47,7 @@ public class PanierController {
     List<Produits> produits;
     private static final int TEST_USER_ID = 5;
 
-     // Initialisation de userId avec un nouvel objet Membre
+    // Initialisation de userId avec un nouvel objet Membre
 
 
     private ServiceBasket serviceBasket = new ServiceBasket();
@@ -53,11 +61,12 @@ public class PanierController {
     @FXML
     public void initialize() {
         userId = new Membre(); // Initialisation de userId avec un nouvel objet Membre
-       userId.setIdUtilisateur(5);
+        membre = membre.convertToMembre(membre.loadJsonFromBinFile());
+        membre = membreService.readById(membre.getIdUtilisateur());
         loadUserCart();
 
     }
-        // This method should be called to load and display the user's cart
+    // This method should be called to load and display the user's cart
     public void loadUserCart() {
         // Clear existing content
         vbox1.getChildren().clear();
@@ -200,14 +209,14 @@ public class PanierController {
     void onCommanderButtonClicked(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("/interfaceProduit/GuiPaiement.fxml"));
+                    .getResource("/interfaceProduit/GuiCommand.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
 
             stage.showAndWait();
-            stage.setTitle("Paiement");
+            stage.setTitle("Ajouter Panier");
 
 
         } catch (IOException e) {
