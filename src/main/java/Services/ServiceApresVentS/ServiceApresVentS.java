@@ -9,7 +9,9 @@ import Services.servicePartenaire.partenaireService;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceApresVentS {
     private Connection con;
@@ -18,6 +20,20 @@ public class ServiceApresVentS {
     public ServiceApresVentS() {
         con = DataSource.getInstance().getCnx();
     }
+    public Map<String, Integer> countServicesByType() {
+        Map<String, Integer> results = new HashMap<>();
+        String query = "SELECT type, COUNT(*) as count FROM service_apres_vente GROUP BY type";
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                results.put(rs.getString("type"), rs.getInt("count"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching service counts by type: " + e.getMessage());
+        }
+        return results;
+    }
+
 
 
     public void add(ServiceApresVente serviceApresVente) {

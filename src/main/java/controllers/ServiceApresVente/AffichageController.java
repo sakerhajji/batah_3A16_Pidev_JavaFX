@@ -6,15 +6,26 @@ import Entity.entitiesServiceApresVente.ServiceApresVente;
 import Services.ServiceApresVentS.ServiceApresVentS;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+
+
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image ;
+
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -22,12 +33,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
+
 import java.util.ResourceBundle;
 
 public class AffichageController implements Initializable {
     private Timeline timeline;
 
-    private Admin adminSession ;
+    private Admin adminSession;
 
     @FXML
     private Label date;
@@ -53,22 +66,22 @@ public class AffichageController implements Initializable {
     @FXML
     private Label type;
 
-    List<ServiceApresVente>serviceApresVenteList ;
-    public void refrechPage()
-    {
+    List<ServiceApresVente> serviceApresVenteList;
+
+    public void refrechPage() {
         pnItems.getChildren().clear();
 
         try {
 
-            ServiceApresVentS s = new ServiceApresVentS() ;
-            serviceApresVenteList=s.readAll();
+            ServiceApresVentS s = new ServiceApresVentS();
+            serviceApresVenteList = s.readAll();
 
 
-            int i = 0 ;
+            int i = 0;
 
-            for (ServiceApresVente service:serviceApresVenteList) {
+            for (ServiceApresVente service : serviceApresVenteList) {
                 final int j = i;
-                i++ ;
+                i++;
 
                 String idPartenaireText = String.valueOf(service.getIdPartenaire().getId());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/serviceApresVente/ligneServices.fxml"));
@@ -83,7 +96,7 @@ public class AffichageController implements Initializable {
                 l.setType(service.getType());
                 l.setDate(date);
                 l.setStatus(String.valueOf(service.isStatus()));
-                if (idPartenaireText!=null) {
+                if (idPartenaireText != null) {
                     l.setIdPartenaire(service.getIdPartenaire().getNom());
                 } else {
                     l.setIdPartenaire("Null");
@@ -101,6 +114,7 @@ public class AffichageController implements Initializable {
         }
 
     }
+
     @FXML
     void ajouter(ActionEvent event) {
         try {
@@ -123,21 +137,40 @@ public class AffichageController implements Initializable {
 
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        refrechPage() ;
+        refrechPage();
         ServiceApresVentS ServiceApresVentS = new ServiceApresVentS();
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
 
-
     }
-    private void updatePage(ActionEvent events) {
 
+    private void updatePage(ActionEvent events) {
 
         refrechPage();
         System.out.println("Mise à jour de la page 1..");
+    }
+
+    @FXML
+    void showStat(ActionEvent event) {
+        Map<String, Integer> serviceCounts = new ServiceApresVentS().countServicesByType();
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        serviceCounts.forEach((type, count) -> pieChartData.add(new PieChart.Data(type, count)));
+
+        PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Statistics of Service Après Vente by Type");
+
+        // Create a dialog to show this chart
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(((Node) event.getSource()).getScene().getWindow());
+        dialog.setTitle("Service Statistics");
+        dialog.getDialogPane().setContent(chart);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.showAndWait();
     }
 }

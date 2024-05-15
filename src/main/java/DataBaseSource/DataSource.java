@@ -20,7 +20,7 @@ public class DataSource {
     private String onlinePwd = "byRB9bfy4H";
 
     // Local database connection details
-    private String localUrl = "jdbc:mysql://localhost:3306/batahapp";
+    private String localUrl = "jdbc:mysql://localhost:3306/batahapp1";
     private String localLogin = "root";
     private String localPwd = "";
 
