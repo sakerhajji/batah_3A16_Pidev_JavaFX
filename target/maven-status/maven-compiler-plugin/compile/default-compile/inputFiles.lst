@@ -4,6 +4,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesServiceApresVente\Service
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\SingUPController.java
 E:\fac\3eme\java\batahApp\src\main\java\test\LocationTest\MainFx.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesEncheres\ReservationEnchere.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\Afficher_UserLivraisonController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\LigneController.java
 E:\fac\3eme\java\batahApp\src\main\java\APIEnchere\EmailSender.java
 E:\fac\3eme\java\batahApp\src\main\java\InterfaceServices\IService.java
@@ -13,6 +14,8 @@ E:\fac\3eme\java\batahApp\src\main\java\controllers\locationController\AjouterLo
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ServiceApresVente\AffichageController.java
 E:\fac\3eme\java\batahApp\src\main\java\org\example\Main.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\afficherencheres.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\SmsController.java
+E:\fac\3eme\java\batahApp\src\main\java\Services\servicePartenaire\AvisLivraisonService.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\AffichageXml.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\locationController\AffichageLocation.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\Avis.java
@@ -23,6 +26,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Entity\ControleDeSaisieClass\ControleDeS
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ServiceApresVente\ServiceApresVenteAjouter.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\locationService\PublierService.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\location\Image.java
+E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesPartenaire\AvisLivraison.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceProduit\ServiceBasket.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\ModifierReservationEnchereController.java
 E:\fac\3eme\java\batahApp\src\main\java\test\UserTest\MainFx.java
@@ -30,12 +34,16 @@ E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\CtemCont
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\ajouterEnchereClientController.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesEncheres\Enchere.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\TestController.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\Afficher_AvisLivraisonController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\AccueilUserController.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\UserAdmin\Membre.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\ListeAvisController.java
 E:\fac\3eme\java\batahApp\src\main\java\DataBaseSource\DataSource.java
+E:\fac\3eme\java\batahApp\src\main\java\Services\servicePartenaire\LivraisonService.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\locationController\ReservationController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\ClientEnchereGridController.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\Produits.java
+E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesPartenaire\Livraison.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\StatistiqueController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\modifier_PartenaireController.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\Achats.java
@@ -51,6 +59,7 @@ E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\Lis
 E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceApresVentS\ServiceApresVentS.java
 E:\fac\3eme\java\batahApp\src\main\java\Apis\OAuthCompletedCallback.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\UserAdmin\Admin.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\AfficherMapController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\PanierController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\PaiementController.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceProduit\ProduitsService.java
@@ -58,6 +67,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Entity\UserAdmin\GoogleUser.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\modifypourclient.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\Basket.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\location\Reservation.java
+E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceProduit\commandeService.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\Afficher_PartenaireController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\emailPartenaire.java
 E:\fac\3eme\java\batahApp\src\main\java\test\ProduitTest\MainFx.java
@@ -65,6 +75,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Services\EnchereService\EnchereService.j
 E:\fac\3eme\java\batahApp\src\main\java\test\ServiceApresVenteTest\MainFx.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\PaymentStripApi.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\AccueilAdminController.java
+E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\commande.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\servicePartenaire\IServicePartenaire.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\entitiesProduits\Payment.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceProduit\InterfaceServiceBasket.java
@@ -84,6 +95,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Services\locationService\ImageService.ja
 E:\fac\3eme\java\batahApp\src\main\java\test\partenaireTest\MainFx.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\ClientController.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\locationService\LocationService.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerPartenaire\Afficher_LivraisonController.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\ServiceApresVente\LigneServiceController.java
 E:\fac\3eme\java\batahApp\src\main\java\Apis\OAuthAuthenticator.java
 E:\fac\3eme\java\batahApp\src\main\java\test\EnchereTest\MainFx.java
@@ -94,6 +106,7 @@ E:\fac\3eme\java\batahApp\src\main\java\Entity\UserAdmin\Utilisateur.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\EnchereService\ReservationEnchereService.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\SettingController.java
 E:\fac\3eme\java\batahApp\src\main\java\Services\ServiceProduit\RatingService.java
+E:\fac\3eme\java\batahApp\src\main\java\controllers\ControllerProduits\Maps.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\controllerGestionEnchere\reservedEnchere.java
 E:\fac\3eme\java\batahApp\src\main\java\Entity\location\Location.java
 E:\fac\3eme\java\batahApp\src\main\java\controllers\UserAdminController\InscriptionController.java
