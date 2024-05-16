@@ -3,6 +3,7 @@ package controllers.UserAdminController;//package test;
 import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
 import Services.UserAdmineServices.AdminService;
+import Services.UserAdmineServices.MembreService;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -23,6 +25,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -87,6 +90,8 @@ public class AccueilAdminController implements Initializable {
     private Pane pnlListeLivraisonAdmin;
     @FXML
     private Pane pnlAvisLivraisonAdmin;
+    @FXML
+    private Label nameUser;
 
     private Stage stage;
     private Scene scene;
@@ -99,28 +104,37 @@ public class AccueilAdminController implements Initializable {
     private Admin adminSession ;
     private Membre membre=new Membre() ;
 
-
+    MembreService membreService = new MembreService() ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
+        membre = membre.convertToMembre(membre.loadJsonFromBinFile());
+        membre = membreService.readById(membre.getIdUtilisateur());
         refrechPage();
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), this::updatePage));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-
+        String avatarPath = membre.getAvatar();
+        if (avatarPath != null) {
+            File file = new File("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\" + avatarPath);
+            if (file.exists()) {
+                Image image = new Image(file.toURI().toString());
+                this.Profile.setFill(new ImagePattern(image));
+            } else {
+                System.out.println("Avatar file does not exist: " + avatarPath);
+            }
+        }
     }
+
     public void refrechPage()
     {
 
         pnItems.getChildren().clear();
 
         try {
-            Image image = new Image("/images/SakerHajji.png");
-            Profile.setFill(new ImagePattern(image));
 
+
+            nameUser.setText(membre.getNomUtilisateur()+" "+membre.getPrenomUtilisateur());
 
             a=adminService.readAll();
             int i = 0 ;

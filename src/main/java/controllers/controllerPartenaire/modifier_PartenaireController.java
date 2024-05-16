@@ -50,13 +50,15 @@ public class modifier_PartenaireController {
         tel.setText(String.valueOf(personne.getTel()));
         typeComboBox.setValue(personne.getType());
         email.setText(personne.getEmail());
-        if ( !personne.getLogo().isEmpty()) {
-            String imagePath = "src/main/resources/images/imagesPartenaire/" + personne.getLogo();
+        String logo = personne.getLogo();
+        if (logo != null && !logo.isEmpty()) {
+            String imagePath = "E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\partenaires\\" + logo;
             Image image = new Image(new File(imagePath).toURI().toString());
             imageLogo.setImage(image);
-            logoFileName = personne.getLogo();
+            logoFileName = logo;
         }
     }
+
 
 
     @FXML
@@ -108,6 +110,7 @@ public class modifier_PartenaireController {
             int tl = Integer.parseInt(telText);
             Partenaire pr = new Partenaire(id, nm, tp, ad, tl, eml, logoFileName);
             ps.update(pr);
+            System.out.println(pr.getLogo());
 
             try {
                 Stage stage = (Stage) adressee.getScene().getWindow();
@@ -122,7 +125,7 @@ public class modifier_PartenaireController {
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
+        File initialDirectory = new File("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\partenaires\\");
         fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
@@ -130,6 +133,7 @@ public class modifier_PartenaireController {
             Image image = new Image(selectedFile.toURI().toString());
             imageLogo.setImage(image);
             logoFileName = imageName;
+
         }
     }
 

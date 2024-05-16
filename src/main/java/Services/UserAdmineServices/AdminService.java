@@ -236,20 +236,33 @@ public class AdminService implements IService<Admin> {
             pst.setString(2,admin.getMotDePassUtilisateur());
             ResultSet resultSet = pst.executeQuery();
             admin.setIdUtilisateur(-1);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 admin.setIdUtilisateur(resultSet.getInt("id"));
                 admin.setNomUtilisateur(resultSet.getString("nomUtilisateur"));
                 admin.setPrenomUtilisateur(resultSet.getString("prenomUtilisateur"));
                 admin.setMailUtilisateur(resultSet.getString("adresseEmail"));
                 admin.setMotDePassUtilisateur(resultSet.getString("motDePasse"));
                 admin.setDateDeNaissance(resultSet.getDate("dateDeNaissance"));
-                admin.setSexeUtilisateur(resultSet.getString("sexe").charAt(0));
+
+                String sexe = resultSet.getString("sexe");
+                if (sexe != null && !sexe.isEmpty()) {
+                    admin.setSexeUtilisateur(sexe.charAt(0));
+                } else {
+                    // Gérer le cas où la colonne sexe est nulle ou vide
+                    // Par exemple, attribuer une valeur par défaut ou laisser null selon votre logique
+                }
+
+                String role = resultSet.getString("role");
+                if (role != null && !role.isEmpty()) {
+                    admin.setRoleUtilisateur(role.charAt(0));
+                } else {
+                    // Gérer le cas où la colonne role est nulle ou vide
+                }
+
                 admin.setCinUtilisateur(resultSet.getString("numeroCin"));
-                admin.setRoleUtilisateur(resultSet.getString("role").charAt(0));
                 admin.setNumUtilisateur(resultSet.getString("numeroTelephone"));
                 admin.setPays(resultSet.getString("pays"));
                 admin.setAvatar(resultSet.getString("avatar"));
-
             }
 
         } catch (SQLException e) {

@@ -1,6 +1,8 @@
 package org.example;
 
+import Entity.UserAdmin.Admin;
 import Entity.UserAdmin.Membre;
+import Services.UserAdmineServices.AdminService;
 import Services.UserAdmineServices.MembreService;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -116,6 +118,7 @@ public class Main {
         String password = "test";
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("Hashed password: " + hashedPassword);
+
 
     }
 

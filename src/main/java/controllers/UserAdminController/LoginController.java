@@ -36,7 +36,8 @@ public class LoginController implements Initializable {
     private  Admin admin = new Admin() ;
     private AdminService adminService =new AdminService() ;
     private ControleDeSaisieClass controle = new ControleDeSaisieClass();
-
+    Membre membre = new Membre() ;
+    MembreService membreService =new MembreService();
     @FXML
     void Loginclicked(ActionEvent event) {
         admin.setIdUtilisateur(-1);
@@ -50,10 +51,13 @@ public class LoginController implements Initializable {
             emailPartenaire.sendEmail(admin.getMailUtilisateur(),"Login","vous avez recu login de votre compte a Batah");
             try {
                 if (admin.getRoleUtilisateur()=='A')
-                {root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
+                {
+                    membre.setIdUtilisateur(admin.getIdUtilisateur());
+                    membre=membreService.readById(membre.getIdUtilisateur()) ;
+                    membre.saveJsonToBinFile(membre);
+                    root = FXMLLoader.load(getClass().getResource("/InterfaceUserAdmin/AccueilAdmin.fxml"));}
                 else {
-                    Membre membre = new Membre() ;
-                    MembreService membreService =new MembreService();
+
                     membre.setIdUtilisateur(admin.getIdUtilisateur());
                     membre=membreService.readById(membre.getIdUtilisateur()) ;
                     membre.saveJsonToBinFile(membre);

@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -212,18 +213,30 @@ public class SettingController implements Initializable {
     void UpdateImg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        File initialDirectory = new File("src/main/resources/images");
+        File initialDirectory = new File("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads");
         fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
+
         if (selectedFile != null) {
+            try {
+                // Convertir le chemin de fichier local en URL valide
+                URL imageUrl = selectedFile.toURI().toURL();
+                Image image = new Image(imageUrl.toString());
 
-            Image image = new Image("/images/"+selectedFile.getName());
-            Profile.setFill(new ImagePattern(image));
-            img=selectedFile.getName();
-            System.out.println(img);
+                // Utiliser l'image chargée pour remplir un objet ImagePattern
+                Profile.setFill(new ImagePattern(image));
+
+                // Sauvegarder le nom du fichier pour une utilisation ultérieure
+                img = selectedFile.getName();
+                System.out.println(img);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                // Gérer l'exception de manière appropriée
+            }
+        } else {
+            // Si aucun fichier n'est sélectionné, conserver l'image précédente
+            img = membre.getAvatar();
         }
-        else img=membre.getAvatar() ;
-
     }
 
 }

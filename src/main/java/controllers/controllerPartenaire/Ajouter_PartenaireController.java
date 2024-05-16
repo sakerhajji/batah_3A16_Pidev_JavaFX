@@ -98,14 +98,13 @@ public class Ajouter_PartenaireController {
     void chooseImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        File initialDirectory = new File("src/main/resources/images/imagesPartenaire");
+        File initialDirectory = new File("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\partenaires\\");
         fileChooser.setInitialDirectory(initialDirectory);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             String imageName = selectedFile.getName();
             Image image = new Image(selectedFile.toURI().toString());
             imageLogo.setImage(image);
-            // Enregistrer le nom de l'image
             logoFileName = imageName;
         }
     }

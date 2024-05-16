@@ -141,6 +141,7 @@ public class Afficher_PartenaireController implements Initializable {
     public void showPartenaires () {
         partenaireService ps = new partenaireService();
         List<Partenaire> p = ps.readAll();
+        System.out.println(p);
         ObservableList<Partenaire> list = FXCollections.observableArrayList(p);
         table.setItems(list);
         colid.setCellValueFactory(new PropertyValueFactory<Partenaire, Integer>("id"));
@@ -153,23 +154,32 @@ public class Afficher_PartenaireController implements Initializable {
             @Override
             protected void updateItem(String imageName, boolean empty) {
                 super.updateItem(imageName, empty);
-                if (empty || imageName == null) {
+                if (empty || imageName == null || imageName.isEmpty()) {
                     setGraphic(null);
                 } else {
-                    ImageView imageView = new ImageView();
-                    String imagePath = "src/main/resources/images/imagesPartenaire/" + imageName;
-                    Image image = new Image(new File(imagePath).toURI().toString());
-                    imageView.setImage(image);
-                    imageView.setFitWidth(70);
-                    imageView.setFitHeight(50);
-                    setGraphic(imageView);
-
-
-
-
+                    try {
+                        ImageView imageView = new ImageView();
+                        String imagePath = "E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\partenaires\\" + imageName;
+                        File imageFile = new File(imagePath);
+                        if (imageFile.exists()) {
+                            Image image = new Image(imageFile.toURI().toString());
+                            imageView.setImage(image);
+                            imageView.setFitWidth(70);
+                            imageView.setFitHeight(50);
+                            setGraphic(imageView);
+                        } else {
+                            // Handle the case where the image file does not exist
+                            setGraphic(null);
+                        }
+                    } catch (Exception e) {
+                        // Handle any exceptions that occur while loading the image
+                        e.printStackTrace();
+                        setGraphic(null);
+                    }
                 }
             }
         });
+
 
 
     }

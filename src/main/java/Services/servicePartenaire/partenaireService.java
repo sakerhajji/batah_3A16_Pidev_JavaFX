@@ -49,19 +49,33 @@ public class partenaireService implements IServicePartenaire<Partenaire> {
     }
     @Override
     public List<Partenaire> readAll() {
-        String requte="select * from partenaires";
-        List<Partenaire> list=new ArrayList<>();
+        String requte = "SELECT * FROM partenaires";
+        List<Partenaire> list = new ArrayList<>();
         try {
-            ste=con.createStatement();
-            ResultSet rs =ste.executeQuery(requte);
-            while(rs.next()){
-                list.add(new Partenaire(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6), rs.getString(8),rs.getInt(9)));
+            ste = con.createStatement();
+            ResultSet rs = ste.executeQuery(requte);
+            if (rs != null) {
+
+
+                while (rs.next()) {
+
+
+
+
+                    list.add(new Partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                            rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
+                }
+
+            } else {
+                // Handle the case where ResultSet is null
+                System.out.println("ResultSet is null. No data fetched.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return list;
     }
+
 
     @Override
     public Partenaire readById(int id) {
@@ -72,7 +86,7 @@ public class partenaireService implements IServicePartenaire<Partenaire> {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                par = new Partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(8));
+                par = new Partenaire(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7));
             }
             ps.close();
         } catch (SQLException e) {

@@ -34,6 +34,7 @@ public class Partenaire {
         this.adresse = adresse;
         this.tel = tel;
         this.email = email;
+        this.logo=logo;
 
     }
     public Partenaire(int id, String nom, String type, String adresse, int tel, String email, String logo,int points) {

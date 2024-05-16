@@ -19,6 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -105,7 +106,7 @@ public class AccueilUserController implements Initializable {
 
 
         if (profile != null ) {
-            Image image = new Image("/images/"+profile);
+            Image image = new Image("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads"+profile);
             this.Profile.setFill(new ImagePattern(image));
         }
     }
@@ -284,19 +285,7 @@ public class AccueilUserController implements Initializable {
         if (membre != null) {
             NameLastName.setText(membre.getNomUtilisateur() + " " + membre.getPrenomUtilisateur());
 
-            if (membre.getAvatar() != null && membre.getAvatar()!="") {
-                // Checking if the resource exists before attempting to load
-                String imageUrl = "/images/" + membre.getAvatar();
-                InputStream stream = getClass().getResourceAsStream(imageUrl);
-                System.out.println(stream);
 
-                if (stream != null) {
-                    Image image = new Image(stream);
-                    Profile.setFill(new ImagePattern(image));
-                } else {
-                    System.out.println("Resource not Found: " + imageUrl);
-                }
-            }
         }
     }
 
