@@ -285,7 +285,16 @@ public class AccueilUserController implements Initializable {
         if (membre != null) {
             NameLastName.setText(membre.getNomUtilisateur() + " " + membre.getPrenomUtilisateur());
 
-
+            String avatarPath = membre.getAvatar();
+            if (avatarPath != null) {
+                File file = new File("E:\\fac\\3eme\\web\\BatahApp_Symfony_3A16\\public\\image\\uploads\\" + avatarPath);
+                if (file.exists()) {
+                    Image image = new Image(file.toURI().toString());
+                    this.Profile.setFill(new ImagePattern(image));
+                } else {
+                    System.out.println("Avatar file does not exist: " + avatarPath);
+                }
+            }
         }
     }
 
